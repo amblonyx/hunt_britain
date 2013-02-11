@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<location id="bristol">
+	<name>Bristol City</name>
+	<title>Bristol Treasure Hunt</title>
+	<images>
+		<image>img/places/BristolMain.JPG</image>
+	</images>
+	<map>
+		<x>180</x><y>480</y>
+	</map>
+	<tab type="image" name="photo">
+		<label>Image</label>
+	</tab>
+	<tab type="text" name="intro">
+		<label>Summary</label>
+		<content>
+<![CDATA[
+The city of Bristol has a long and colourful history, closely associated with the sea. This is still very much in evidence in the docks and quays that reach right into the centre of the city. Away from the main shopping area there are many beautiful buildings and fascinating clues to Bristol's grand past. The perfect area to explore on a Treasure Hunt!
+]]>
+		</content>
+	</tab>	
+	<tab type="text" name="details">
+		<label>Hunt Info</label>
+		<content>
+<![CDATA[
+<b>Hunts</b> The pack includes a treasure trail and a bonus round.
+<br/><br/>
+<b>Duration</b> 2 hours or so, not including breaks.
+<br/><br/>
+<b>Suitability</b> Suitable for any size of group from 1 to 8, good for families. The streets of Bristol are accessible to all, though there are some hilly roads. There are one set of steps in the hunt which can be detoured.
+<br/><br/>
+<b>Requirements</b> Just a pencil and paper, and a sensible pair of shoes.
+]]>
+		</content>
+	</tab>
+	<tab type="text" name="todo">
+		<label>Things to do</label>
+		<content>
+<![CDATA[
+<ul>
+<li>Enjoy the huge permenant street art on Nelson Street, created by the <a target="_blank" href="http://www.seenoevilbristol.co.uk/">See No Evil</a> project.</li>
+<li>Stop for a snack at the lively <a target="_blank" href="http://www.bristol.gov.uk/page/business-bristol/st-nicholas-market">St Nicholas Market</a> and explore the jumble of shops.</li>
+<li>Step aboard the <a target="_blank" href="http://www.ssgreatbritain.org/">SS Great Britain</a> and explore Brunel's great ship.</li>
+</ul>
+]]>
+		</content>
+	</tab>
+</location>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<location id="bath">
+	<name>Bath City</name>
+	<title>Bath Treasure Hunt</title>
+	<images>
+		<image>img/places/BathMain.JPG</image>
+	</images>
+	<map>
+		<x>200</x><y>500</y>
+	</map>
+	<tab type="image" name="photo">
+		<label>Image</label>
+	</tab>
+	<tab type="text" name="intro">
+		<label>Summary</label>
+		<content>
+<![CDATA[
+Bath is one of the finest small cities in Britain. Catch the warm light of a fine morning on the elegant golden limestone facades of the Georgian town houses and you'll see why. Despite the historical grandeur it is a buzzing and busy place with loads of great cafes, museums and highly individual shops. Bath is wonderfully preserved, with plenty of fascinating hidden corners, making it the perfect place for a Treasure Hunt!
+]]>
+		</content>
+	</tab>	
+	<tab type="text" name="details">
+		<label>Hunt Info</label>
+		<content>
+<![CDATA[
+<b>Hunts</b> The pack includes an easy and hard version of the main treasure trail and a bonus puzzle.
+<br/><br/>
+<b>Duration</b> 2 or 3 hours, not including breaks.
+<br/><br/>
+<b>Suitability</b> Suitable for any size of group from 1 to 8, good for families. The streets of Bath are accessible to all, though there are some hilly roads and a detour may be necessary to avoid steps.
+<br/><br/>
+<b>Requirements</b> Just a pencil and paper, and a sensible pair of shoes.
+]]>
+		</content>
+	</tab>
+	<tab type="text" name="todo">
+		<label>Things to do</label>
+		<content>
+<![CDATA[
+<ul>
+<li>Visit the <a target="_blank" href="http://www.romanbaths.co.uk/">Roman Baths</a>, perhaps the best preserved Roman remains in Britain</li>
+<li>Have a relaxing afternoon being pampered at <a target="_blank" href="http://www.thermaebathspa.com/">Thermae Bath Spa</a></li>
+<li>Explore the countryside and find the beautiful little <a target="_blank" href="http://www.ifordmanor.co.uk/">Iford Manor</a></li>
+<li>Visit in December to enjoy the <a target="_blank" href="http://www.bathchristmasmarket.co.uk/">Bath Christmas Market</a></li>
+</ul>
+]]>
+		</content>
+	</tab>
+</location>

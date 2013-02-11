@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<location id="brighton">
+	<name>Brighton City</name>
+	<title>Brighton Treasure Hunt</title>
+	<images>
+		<image>img/places/BrightonMain.JPG</image>
+	</images>
+	<map>
+		<x>400</x><y>540</y>
+	</map>
+	<tab type="image" name="photo">
+		<label>Image</label>
+	</tab>
+	<tab type="text" name="intro">
+		<label>Summary</label>
+		<content>
+<![CDATA[
+Brighton is a lively and eclectic city on the south coast, the first place in Britain to elect a Green MP to parliament. Here in the eccentric lanes you can find antiques and sticks of rock rubbing up against alternative lifestyles and bohemian boutiques. There are dozens of intriguing little corners to explore, and endless distractions for the curious. The ideal location for a Treasure Hunt!
+]]>
+		</content>
+	</tab>	
+	<tab type="text" name="details">
+		<label>Hunt Info</label>
+		<content>
+<![CDATA[
+<b>Hunts</b> The pack includes a treasure trail and a bonus round.
+<br/><br/>
+<b>Duration</b> 2 hours or so, not including breaks.
+<br/><br/>
+<b>Suitability</b> Suitable for any size of group from 1 to 8, good for families. The streets of Brighton are accessible to all, though there are some hilly roads.
+<br/><br/>
+<b>Requirements</b> Just a pencil and paper, and a sensible pair of shoes.
+]]>
+		</content>
+	</tab>
+	<tab type="text" name="todo">
+		<label>Things to do</label>
+		<content>
+<![CDATA[
+<ul>
+<li>Visit the <a target="_blank" href="http://www.brighton-hove-rpml.org.uk/RoyalPavilion/Pages/home.aspx">Brighton Pavilion</a>, a Prince's playhouse</li>
+<li>Come in May to enjoy England's largest performing arts festival, <a target="_blank" href="http://brightonfestival.org/guest_director_2013/">The Brighton Festival</a></li>
+<li>Amble around the <a target="_blank" href="http://www.northlaine.co.uk/">North Laines</a>, the biggest gathering of eclectic one-off shopping outside London</li>
+<li>In May or December, shop for arts and crafts at the <a target="_blank" href="http://www.aoh.org.uk/home">Artists' Open Houses</a></li>
+</ul>
+]]>
+		</content>
+	</tab>
+</location>

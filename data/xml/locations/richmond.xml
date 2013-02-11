@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<location id="richmond">
+	<name>Richmond-upon-Thames</name>
+	<title>Richmond-upon-Thames Treasure Hunt</title>
+	<images>
+		<image>img/places/RichmondMain.JPG</image>
+	</images>
+	<map>
+		<coord></coord>
+	</map>
+	<tab type="image" name="photo">
+		<label>Image</label>
+	</tab>
+	<tab type="text" name="intro">
+		<label>Summary</label>
+		<content>
+<![CDATA[
+Richmond is a splendid town on the banks of the River Thames to the west of London. Once home to kings and queens as the site of Richmond Palace, this is still a prosperous area.  With a handsome high street, a beautiful riverside, plenty of green spaces and stunning views from Richmond Hill it's easy to see why. So why not let us show you the best little corners of Richmond-upon-Thames with a Treasure Hunt?
+]]>
+		</content>
+	</tab>	
+	<tab type="text" name="details">
+		<label>Hunt Info</label>
+		<content>
+<![CDATA[
+<b>Hunts</b> The pack includes a treasure trail and a bonus round.
+<br/><br/>
+<b>Duration</b> 2 hours or so, not including breaks.
+<br/><br/>
+<b>Suitability</b> Suitable for any size of group from 1 to 8, good for families. The streets of Richmond are accessible to all, and any steps can be detoured around. 
+<br/><br/>
+<b>Requirements</b> Just a pencil and paper, and a sensible pair of shoes.
+]]>
+		</content>
+	</tab>
+	<tab type="text" name="todo">
+		<label>Things to do</label>
+		<content>
+<![CDATA[
+<ul>
+<li>It's only a ten minute walk from Richmond train station to <a target="_blank" href="http://www.kew.org/">Kew Gardens</a>, an amazing place to visit at any time of year whether you are a keen gardener or not</li>
+<li><a target="_blank" href="http://www.royalparks.org.uk/parks/richmond-park">Richmond Park</a> is unique, there's nowhere else in London where you can walk for hours and fool yourself into thinking you're in rolling countryside miles from anywhere</li>
+<li>The <a target="_blank" href="http://www.petershamnurseries.com/">Petersham Nurseries</a> is what anyone would think of if them picture an idyllic English garden nursery. It has a lovely cafe and restaurant too, though you must book for lunch</li>
+</ul>
+]]>
+		</content>
+	</tab>
+</location>

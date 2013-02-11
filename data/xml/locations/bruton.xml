@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<location id="bruton">
+	<name>Bruton</name>
+	<title>Bruton Treasure Hunt</title>
+	<images>
+		<image>img/places/BrutonMain.JPG</image>
+	</images>
+	<map>
+		<x>230</x><y>530</y>
+	</map>
+	<tab type="image" name="photo">
+		<label>Image</label>
+	</tab>
+	<tab type="text" name="intro">
+		<label>Summary</label>
+		<content>
+<![CDATA[
+Bruton is a small country town in a beautiful part of Somerset, full of interest for the explorer. The surrounding area is scattered with picturesque villages down winding lanes. This part of Somerset is well off the beaten track, but easily accessible if you're staying in Bristol, Bath or Salisbury. The perfect area to explore with a Treasure Hunt!
+]]>
+		</content>
+	</tab>	
+	<tab type="text" name="details">
+		<label>Hunt Info</label>
+		<content>
+<![CDATA[
+<b>Hunts</b> The pack includes a treasure trail by car around part of Somerset.
+<br/><br/>
+<b>Duration</b> 3-4 hours, including 38 miles of driving.
+<br/><br/>
+<b>Suitability</b> Suitable for any size of group from 1 to 8, good for families. The roads are mainly country lanes, with only short stretches on minor A roads. There is some walking at each stop, but mainly on pavement.
+<br/><br/>
+<b>Requirements</b> A car, an OS map, a pencil and paper, as well as a sensible pair of shoes.
+<br/><br/>
+<b>Map</b>The OS map for this trail is the Landranger Map 183, Yeovil & Frome
+]]>
+		</content>
+	</tab>
+	<tab type="text" name="todo">
+		<label>Things to do</label>
+		<content>
+<![CDATA[
+<ul>
+<li>If you have time, visit <a target="_blank" href="http://www.sherbornetown.com/">Sherborne</a>, a Dorset town a few miles south of this hunt and a real gem</li>
+<li>The gardens at <a target="_blank" href="http://www.nationaltrust.org.uk/stourhead/">Stourhead</a> are a stunning find when the weather is fine</li>
+<li>You are not very far from the famous <a target="_blank" href="http://www.longleat.co.uk/">Longleat Safari Park</a> here either</li>
+<li>The city of <a target="_blank" href="http://www.wellssomerset.com/">Wells</a> is a little further, but it is a magical town to explore</li>
+</ul>
+]]>
+		</content>
+	</tab>
+</location>

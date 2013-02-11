@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<location id="">
+	<name>xx</name>
+	<title>xx Treasure Hunt</title>
+	<images>
+		<image>img/places/xx.jpg</image>
+	</images>
+	<map>
+		<coord></coord>
+	</map>
+	<tab type="image" name="photo">
+		<label>Image</label>
+	</tab>
+	<tab type="text" name="intro">
+		<label>Summary</label>
+		<content>
+<![CDATA[
+]]>
+		</content>
+	</tab>	
+	<tab type="text" name="details">
+		<label>Hunt Info</label>
+		<content>
+<![CDATA[
+]]>
+		</content>
+	</tab>
+	<tab type="text" name="todo">
+		<label>Things to do</label>
+		<content>
+<![CDATA[
+]]>
+		</content>
+	</tab>
+</location>

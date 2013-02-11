@@ -1,0 +1,709 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hunts>
+
+	<hunt id="bath">
+		<name>Bath</name>
+		<title>Bath Treasure Hunt</title>
+		<images>
+			<image>img/places/BathMain.JPG</image>
+		</images>
+		<map>
+			<x>200</x><y>500</y>
+		</map>
+		<tab type="image" name="photo">
+			<label>Image</label>
+		</tab>
+		<tab type="text" name="intro">
+			<label>Summary</label>
+			<content>
+<![CDATA[
+Bath is one of the finest small cities in Britain. Catch the warm light of a fine morning on the elegant golden limestone facades of the Georgian town houses and you'll see why. Despite the historical grandeur it is a buzzing and busy place with loads of great cafes, museums and highly individual shops. Bath is wonderfully preserved, with plenty of fascinating hidden corners, making it the perfect place for a Treasure Hunt!
+]]>
+			</content>
+		</tab>	
+		<tab type="text" name="details">
+			<label>Hunt Info</label>
+			<content>
+<![CDATA[
+<b>Hunts</b> The pack includes an easy and hard version of the main treasure trail and a bonus puzzle.
+<br/><br/>
+<b>Duration</b> 2 or 3 hours, not including breaks.
+<br/><br/>
+<b>Suitability</b> Suitable for any size of group from 1 to 8, good for families. The streets of Bath are accessible to all, though there are some hilly roads and a detour may be necessary to avoid steps.
+<br/><br/>
+<b>Requirements</b> Just a pencil and paper, and a sensible pair of shoes.
+]]>
+			</content>
+		</tab>
+		<tab type="text" name="todo">
+			<label>Things to do</label>
+			<content>
+<![CDATA[
+<ul>
+<li>Visit the <a target="_blank" href="http://www.romanbaths.co.uk/">Roman Baths</a>, perhaps the best preserved Roman remains in Britain</li>
+<li>Have a relaxing afternoon being pampered at <a target="_blank" href="http://www.thermaebathspa.com/">Thermae Bath Spa</a></li>
+<li>Explore the countryside and find the beautiful little <a target="_blank" href="http://www.ifordmanor.co.uk/">Iford Manor</a></li>
+<li>Visit in December to enjoy the <a target="_blank" href="http://www.bathchristmasmarket.co.uk/">Bath Christmas Market</a></li>
+</ul>
+]]>
+			</content>
+		</tab>
+		<products>
+			<product type="pdf">
+				<label>Download PDF</label>
+				<url></url>
+				<price>3.99</price>
+			</product>
+			<product type="booklet">
+				<label>Buy booklet</label>
+				<price>5.99</price>				
+			</product>
+		</products>
+
+	</hunt>
+
+	<hunt id="brighton">
+		<name>Brighton</name>
+		<title>Brighton Treasure Hunt</title>
+		<images>
+			<image>img/places/BrightonMain.JPG</image>
+		</images>
+		<map>
+			<x>400</x><y>540</y>
+		</map>
+		<tab type="image" name="photo">
+			<label>Image</label>
+		</tab>
+		<tab type="text" name="intro">
+			<label>Summary</label>
+			<content>
+<![CDATA[
+Brighton is a lively and eclectic city on the south coast, the first place in Britain to elect a Green MP to parliament. Here in the eccentric lanes you can find antiques and sticks of rock rubbing up against alternative lifestyles and bohemian boutiques. There are dozens of intriguing little corners to explore, and endless distractions for the curious. The ideal location for a Treasure Hunt!
+]]>
+			</content>
+		</tab>	
+		<tab type="text" name="details">
+			<label>Hunt Info</label>
+			<content>
+<![CDATA[
+<b>Hunts</b> The pack includes a treasure trail and a bonus round.
+<br/><br/>
+<b>Duration</b> 2 hours or so, not including breaks.
+<br/><br/>
+<b>Suitability</b> Suitable for any size of group from 1 to 8, good for families. The streets of Brighton are accessible to all, though there are some hilly roads.
+<br/><br/>
+<b>Requirements</b> Just a pencil and paper, and a sensible pair of shoes.
+]]>
+			</content>
+		</tab>
+		<tab type="text" name="todo">
+			<label>Things to do</label>
+			<content>
+<![CDATA[
+<ul>
+<li>Visit the <a target="_blank" href="http://www.brighton-hove-rpml.org.uk/RoyalPavilion/Pages/home.aspx">Brighton Pavilion</a>, a Prince's playhouse</li>
+<li>Come in May to enjoy England's largest performing arts festival, <a target="_blank" href="http://brightonfestival.org/guest_director_2013/">The Brighton Festival</a></li>
+<li>Amble around the <a target="_blank" href="http://www.northlaine.co.uk/">North Laines</a>, the biggest gathering of eclectic one-off shopping outside London</li>
+<li>In May or December, shop for arts and crafts at the <a target="_blank" href="http://www.aoh.org.uk/home">Artists' Open Houses</a></li>
+</ul>
+]]>
+			</content>
+		</tab>
+		<products>
+			<product type="pdf">
+				<label>Download PDF</label>
+				<url></url>
+				<price>3.99</price>
+			</product>
+			<product type="booklet">
+				<label>Buy booklet</label>
+				<price>5.99</price>				
+			</product>
+		</products>
+	</hunt>
+	
+	<hunt id="bristol">
+		<name>Bristol</name>
+		<title>Bristol Treasure Hunt</title>
+		<images>
+			<image>img/places/BristolMain.JPG</image>
+		</images>
+		<map>
+			<x>180</x><y>480</y>
+		</map>
+		<tab type="image" name="photo">
+			<label>Image</label>
+		</tab>
+		<tab type="text" name="intro">
+			<label>Summary</label>
+			<content>
+<![CDATA[
+The city of Bristol has a long and colourful history, closely associated with the sea. This is still very much in evidence in the docks and quays that reach right into the centre of the city. Away from the main shopping area there are many beautiful buildings and fascinating clues to Bristol's grand past. The perfect area to explore on a Treasure Hunt!
+]]>
+			</content>
+		</tab>	
+		<tab type="text" name="details">
+			<label>Hunt Info</label>
+			<content>
+<![CDATA[
+<b>Hunts</b> The pack includes a treasure trail and a bonus round.
+<br/><br/>
+<b>Duration</b> 2 hours or so, not including breaks.
+<br/><br/>
+<b>Suitability</b> Suitable for any size of group from 1 to 8, good for families. The streets of Bristol are accessible to all, though there are some hilly roads. There are one set of steps in the hunt which can be detoured.
+<br/><br/>
+<b>Requirements</b> Just a pencil and paper, and a sensible pair of shoes.
+]]>
+			</content>
+		</tab>
+		<tab type="text" name="todo">
+			<label>Things to do</label>
+			<content>
+<![CDATA[
+<ul>
+<li>Enjoy the huge permenant street art on Nelson Street, created by the <a target="_blank" href="http://www.seenoevilbristol.co.uk/">See No Evil</a> project.</li>
+<li>Stop for a snack at the lively <a target="_blank" href="http://www.bristol.gov.uk/page/business-bristol/st-nicholas-market">St Nicholas Market</a> and explore the jumble of shops.</li>
+<li>Step aboard the <a target="_blank" href="http://www.ssgreatbritain.org/">SS Great Britain</a> and explore Brunel's great ship.</li>
+</ul>
+]]>
+			</content>
+		</tab>
+		<products>
+			<product type="pdf">
+				<label>Download PDF</label>
+				<url></url>
+				<price>3.99</price>
+			</product>
+			<product type="booklet">
+				<label>Buy booklet</label>
+				<price>5.99</price>				
+			</product>
+		</products>
+
+	</hunt>
+
+	<hunt id="bruton">
+		<name>Bruton</name>
+		<title>Bruton Treasure Hunt</title>
+		<images>
+			<image>img/places/BrutonMain.JPG</image>
+		</images>
+		<map>
+			<x>230</x><y>530</y>
+		</map>
+		<tab type="image" name="photo">
+			<label>Image</label>
+		</tab>
+		<tab type="text" name="intro">
+			<label>Summary</label>
+			<content>
+<![CDATA[
+Bruton is a small country town in a beautiful part of Somerset, full of interest for the explorer. The surrounding area is scattered with picturesque villages down winding lanes. This part of Somerset is well off the beaten track, but easily accessible if you're staying in Bristol, Bath or Salisbury. The perfect area to explore with a Treasure Hunt!
+]]>
+			</content>
+		</tab>	
+		<tab type="text" name="details">
+			<label>Hunt Info</label>
+			<content>
+<![CDATA[
+<b>Hunts</b> The pack includes a treasure trail by car around part of Somerset.
+<br/><br/>
+<b>Duration</b> 3-4 hours, including 38 miles of driving.
+<br/><br/>
+<b>Suitability</b> Suitable for any size of group from 1 to 8, good for families. The roads are mainly country lanes, with only short stretches on minor A roads. There is some walking at each stop, but mainly on pavement.
+<br/><br/>
+<b>Requirements</b> A car, an OS map, a pencil and paper, as well as a sensible pair of shoes.
+<br/><br/>
+<b>Map</b>The OS map for this trail is the Landranger Map 183, Yeovil & Frome
+]]>
+			</content>
+		</tab>
+		<tab type="text" name="todo">
+			<label>Things to do</label>
+			<content>
+<![CDATA[
+<ul>
+<li>If you have time, visit <a target="_blank" href="http://www.sherbornetown.com/">Sherborne</a>, a Dorset town a few miles south of this hunt and a real gem</li>
+<li>The gardens at <a target="_blank" href="http://www.nationaltrust.org.uk/stourhead/">Stourhead</a> are a stunning find when the weather is fine</li>
+<li>You are not very far from the famous <a target="_blank" href="http://www.longleat.co.uk/">Longleat Safari Park</a> here either</li>
+<li>The city of <a target="_blank" href="http://www.wellssomerset.com/">Wells</a> is a little further, but it is a magical town to explore</li>
+</ul>
+]]>
+			</content>
+		</tab>
+		<products>
+			<product type="pdf">
+				<label>Download PDF</label>
+				<url></url>
+				<price>3.99</price>
+			</product>
+			<product type="booklet">
+				<label>Buy booklet</label>
+				<price>5.99</price>				
+			</product>
+		</products>
+
+	</hunt>
+
+	<hunt id="londoncity">
+		<name>The City of London</name>
+		<title>City of London Treasure Hunt</title>
+		<images>
+			<image>img/places/CityMain.JPG</image>
+		</images>
+		<map>
+			<coord></coord>
+		</map>
+		<tab type="image" name="photo">
+			<label>Image</label>
+		</tab>
+		<tab type="text" name="intro">
+			<label>Summary</label>
+			<content>
+<![CDATA[
+Everyone knows the shiny towers of banks and big business that mark the skyline of the City of London, but do you know about the winding medieval alleyways, unexpected old churches and odd memorials that can still be found in the shadow of these buildings? The ancient history of the city is still there to be found, and what better way than on a Treasure Hunt!
+]]>
+			</content>
+		</tab>	
+		<tab type="text" name="details">
+			<label>Hunt Info</label>
+			<content>
+<![CDATA[
+<b>Hunts</b> The pack includes a treasure trail and a bonus round.
+<br/><br/>
+<b>Duration</b> 2 hours or so, not including breaks.
+<br/><br/>
+<b>Suitability</b> Suitable for any size of group from 1 to 8, good for families. The streets of the city are accessible to all, and any steps can be detoured around. There are two parks to enter but they should be freely accessible in daylight hours.
+<br/><br/>
+<b>Requirements</b> Just a pencil and paper, and a sensible pair of shoes.
+]]>
+			</content>
+		</tab>
+		<tab type="text" name="todo">
+			<label>Things to do</label>
+			<content>
+<![CDATA[
+<ul>
+<li>It's not cheap, but if you've never been to the <a target="_blank" href="http://www.hrp.org.uk/TowerOfLondon/">Tower of London</a> you really should go once – it's right at the heart of our history</li>
+<li>For a bird's eye view of the city with unusual food from a snack to a feast, try <a target="_blank" href="http://duckandwaffle.com/">Duck & Waffle</a> atop Heron Tower, open 24/7</li>
+<li>Beyond Liverpool St Station is <a target="_blank" href="http://www.spitalfields.co.uk/">Spitalfields Market</a>. You could spend a day shopping for gifts here, all under cover</li>
+</ul>
+]]>
+			</content>
+		</tab>
+		<products>
+			<product type="pdf">
+				<label>Download PDF</label>
+				<url></url>
+				<price>3.99</price>
+			</product>
+			<product type="booklet">
+				<label>Buy booklet</label>
+				<price>5.99</price>				
+			</product>
+		</products>
+	</hunt>
+
+	<hunt id="ludlow">
+		<name>Ludlow</name>
+		<title>Ludlow Treasure Hunt</title>
+		<map>
+			<coord></coord>
+		</map>
+		<tab type="image" name="photo">
+			<label>Image</label>
+		</tab>
+		<tab type="text" name="intro">
+			<label>Summary</label>
+			<content>
+<![CDATA[
+Ludlow is a quintessential and beautiful English market town in Shropshire. Indeed John Betjeman once wrote “Ludlow is the loveliest town in England” and more recently Jeremy Paxman said “Has there ever been a visitor to Ludlow who hasn't wished they lived there?” Needless to say it is a wonderful place in which to set a Treasure Hunt. With numerous independent shops and restaurants it feels like a place with a strong and vibrant community that hasn't changed much in many years.
+]]>
+			</content>
+		</tab>	
+		<tab type="text" name="details">
+			<label>Hunt Info</label>
+			<content>
+<![CDATA[
+<b>Hunts</b> The pack includes an easy and a hard treasure trail, a set of extra explorer puzzles and a bonus round.
+<br/><br/>
+<b>Duration</b> 2 hours to a full day, not including breaks.
+<br/><br/>
+<b>Suitability</b> Suitable for any size of group from 1 to 8, good for families. The streets of Ludlow are accessible to all, any steps can be detoured around. The hard trail includes an unmade country path that may be muddy after rain.
+<br/><br/>
+<b>Requirements</b> Just a pencil and paper, and a sensible pair of shoes.
+]]>
+			</content>
+		</tab>
+		<tab type="text" name="todo">
+			<label>Things to do</label>
+			<content>
+<![CDATA[
+<ul>
+<li>The big date in Ludlow's calendar is the annual <a target="_blank" href="http://www.foodfestival.co.uk/">Food Festival</a>, one of the first and definitely the best in the whole country</li>
+<li>Right in the middle of the town, <a target="_blank" href="http://www.ludlowcastle.com/">Ludlow Castle</a> is a grand ruin of a medieval fortress, great for exploring</li>
+<li>If you are looking for a lunch stop, the <a target="_blank" href="http://www.ludlowmillonthegreen.co.uk/tearooms.aspx">Green Cafe</a> is best – so good, in fact, that you'd be wise to book</li>
+<li>A few miles north of Ludlow the fortified manor of <a target="_blank" href="http://www.english-heritage.org.uk/daysout/properties/stokesay-castle/">Stokesay Castle</a> is a gem, the finest building of its kind in the country</li>
+</ul>
+]]>
+			</content>
+		</tab>
+		<images>
+			<image>img/places/LudlowMain.JPG</image>
+		</images>
+		<products>
+			<product type="pdf">
+				<label>Download PDF</label>
+				<url></url>
+				<price>3.99</price>
+			</product>
+			<product type="booklet">
+				<label>Buy booklet</label>
+				<price>5.99</price>				
+			</product>
+		</products>
+	</hunt>
+	
+	<hunt id="oxford">
+		<name>Oxford</name>
+		<title>Oxford Treasure Hunt</title>
+		<images>
+			<image>img/places/OxfordMain.JPG</image>
+		</images>
+		<map>
+			<coord></coord>
+		</map>
+		<tab type="image" name="photo">
+			<label>Image</label>
+		</tab>
+		<tab type="text" name="intro">
+			<label>Summary</label>
+			<content>
+<![CDATA[
+The Oxford University is the oldest university in the English-speaking world. It comprises 38 colleges, the oldest of which are University College, Balliol and Merton. The most recent was Green Templeton College, founded in 2008. Women were first allowed into the University in 1878, but now all colleges are co-educational.
+]]>
+			</content>
+		</tab>	
+		<tab type="text" name="details">
+			<label>Hunt Info</label>
+			<content>
+<![CDATA[
+<b>Hunts</b> The pack includes a treasure trail around Oxford.
+<br/><br/>
+<b>Duration</b> 2 hours or so, not including breaks.
+<br/><br/>
+<b>Suitability</b> Suitable for any size of group from 1 to 8, good for families. The streets of Oxford are accessible to all, and any steps can be detoured around. All the areas entered on this trail should be freely accessible in daylight hours.
+<br/><br/>
+<b>Requirements</b> Just a pencil and paper, and a sensible pair of shoes.
+]]>
+			</content>
+		</tab>
+		<tab type="text" name="todo">
+			<label>Things to do</label>
+			<content>
+<![CDATA[
+<ul>
+<li>Oxford is all about learning, so take time to explore the world-renowned <a target="_blank" href="http://www.ashmolean.org/">Ashmolean Museum</a></li>
+<li>The <a target="_blank" href="http://www.prm.ox.ac.uk/">Pitt Rivers Museum</a> looks and feels like a proper old museum, and is absolutely packed with artefacts from every corner of the globe</li>
+<li>Not far from Oxford is the picturesque town of Woodstock and the enormously impressive <a target="_blank" href="http://www.blenheimpalace.com/">Blenheim Palace</a>, both well worth visiting</li>
+</ul>
+]]>
+			</content>
+		</tab>
+		<products>
+			<product type="pdf">
+				<label>Download PDF</label>
+				<url></url>
+				<price>3.99</price>
+			</product>
+			<product type="booklet">
+				<label>Buy booklet</label>
+				<price>5.99</price>				
+			</product>
+		</products>
+
+	</hunt>
+
+	<hunt id="richmond">
+		<name>Richmond-upon-Thames</name>
+		<title>Richmond-upon-Thames Treasure Hunt</title>
+		<images>
+			<image>img/places/RichmondMain.JPG</image>
+		</images>
+		<map>
+			<coord></coord>
+		</map>
+		<tab type="image" name="photo">
+			<label>Image</label>
+		</tab>
+		<tab type="text" name="intro">
+			<label>Summary</label>
+			<content>
+<![CDATA[
+Richmond is a splendid town on the banks of the River Thames to the west of London. Once home to kings and queens as the site of Richmond Palace, this is still a prosperous area.  With a handsome high street, a beautiful riverside, plenty of green spaces and stunning views from Richmond Hill it's easy to see why. So why not let us show you the best little corners of Richmond-upon-Thames with a Treasure Hunt?
+]]>
+			</content>
+		</tab>	
+		<tab type="text" name="details">
+			<label>Hunt Info</label>
+			<content>
+<![CDATA[
+<b>Hunts</b> The pack includes a treasure trail and a bonus round.
+<br/><br/>
+<b>Duration</b> 2 hours or so, not including breaks.
+<br/><br/>
+<b>Suitability</b> Suitable for any size of group from 1 to 8, good for families. The streets of Richmond are accessible to all, and any steps can be detoured around. 
+<br/><br/>
+<b>Requirements</b> Just a pencil and paper, and a sensible pair of shoes.
+]]>
+			</content>
+		</tab>
+		<tab type="text" name="todo">
+			<label>Things to do</label>
+			<content>
+<![CDATA[
+<ul>
+<li>It's only a ten minute walk from Richmond train station to <a target="_blank" href="http://www.kew.org/">Kew Gardens</a>, an amazing place to visit at any time of year whether you are a keen gardener or not</li>
+<li><a target="_blank" href="http://www.royalparks.org.uk/parks/richmond-park">Richmond Park</a> is unique, there's nowhere else in London where you can walk for hours and fool yourself into thinking you're in rolling countryside miles from anywhere</li>
+<li>The <a target="_blank" href="http://www.petershamnurseries.com/">Petersham Nurseries</a> is what anyone would think of if them picture an idyllic English garden nursery. It has a lovely cafe and restaurant too, though you must book for lunch</li>
+</ul>
+]]>
+			</content>
+		</tab>
+		<products>
+			<product type="pdf">
+				<label>Download PDF</label>
+				<url></url>
+				<price>3.99</price>
+			</product>
+			<product type="booklet">
+				<label>Buy booklet</label>
+				<price>5.99</price>				
+			</product>
+		</products>
+
+	</hunt>
+
+	<hunt id="southwark">
+		<name>Southwark</name>
+		<title>Southwark Treasure Hunt</title>
+		<images>
+			<image>img/places/SouthwarkMain.JPG</image>
+		</images>
+		<map>
+			<coord></coord>
+		</map>
+		<tab type="image" name="photo">
+			<label>Image</label>
+		</tab>
+		<tab type="text" name="intro">
+			<label>Summary</label>
+			<content>
+<![CDATA[
+Throughout history the south bank of the Thames in London has been a less affluent area, a melting pot of people and a lively neighbourhood. This is still true today! But it is also true that the roads and passages of Southwark hold many clues to the riches of the past. Surely a great place to explore with a Treasure Hunt?
+]]>
+			</content>
+		</tab>	
+		<tab type="text" name="details">
+			<label>Hunt Info</label>
+			<content>
+<![CDATA[
+<b>Hunts</b> The pack includes a treasure trail and a bonus round.
+<br/><br/>
+<b>Duration</b> 2 hours or so, not including breaks.
+<br/><br/>
+<b>Suitability</b> Suitable for any size of group from 1 to 8, good for families. The streets of Southwark are accessible to all, and any steps can be detoured around. All the areas explored should be freely accessible in daylight hours.
+<br/><br/>
+<b>Requirements</b> Just a pencil and paper, and a sensible pair of shoes.
+]]>
+			</content>
+		</tab>
+		<tab type="text" name="todo">
+			<label>Things to do</label>
+			<content>
+<![CDATA[
+<ul>
+<li>Your treasure hunt takes you right through <a target="_blank" href="http://www.boroughmarket.org.uk/">Borough Market</a>, and if it's open there's nowhere better to find snacks or lunch around here</li>
+<li>At <a target="_blank" href="http://www.shakespearesglobe.com/">Shakespeare's Globe</a> they perform traditional renditions of the bard's great plays in evocative surroundings</li>
+<li>The <a target="_blank" href="http://www.tate.org.uk/visit/tate-modern">Tate Modern</a> holds a really important collection of modern art in a very unique building</li>
+<li>Have a look at the <a target="_blank" href="http://www.thegarret.org.uk/">Old Operating Theatre Museum</a> for a unique insight into how medicine used to be done</li>
+</ul>
+]]>
+			</content>
+		</tab>
+		<products>
+			<product type="pdf">
+				<label>Download PDF</label>
+				<url></url>
+				<price>3.99</price>
+			</product>
+			<product type="booklet">
+				<label>Buy booklet</label>
+				<price>5.99</price>				
+			</product>
+		</products>
+
+	</hunt>
+
+	<hunt id="stratford">
+		<name>Stratford-upon-Avon</name>
+		<title>Stratford Treasure Hunt</title>
+		<images>
+			<image>img/places/StratfordMain.JPG</image>
+		</images>
+		<map>
+			<coord></coord>
+		</map>
+		<tab type="image" name="photo">
+			<label>Image</label>
+		</tab>
+		<tab type="text" name="intro">
+			<label>Summary</label>
+			<content>
+<![CDATA[
+Stratford-upon-Avon is the city of the bard, renowned as Shakespeare's birthplace. Perhaps because of this it has kept much of the charm and character of a country market town while playing host to so many thousands of tourists annually. Of course, if you want to find some of the hidden corners and interesting details of Stratford that the tourist crowds seldom see you would be wise to try this Treasure Hunt.
+]]>
+			</content>
+		</tab>	
+		<tab type="text" name="details">
+			<label>Hunt Info</label>
+			<content>
+<![CDATA[
+<b>Hunts</b> The pack includes an easy and hard version of the main treasure trail, a set of extra explorer puzzles and a bonus round.
+<br/><br/>
+<b>Duration</b> 2 hours to a full day, not including breaks.
+<br/><br/>
+<b>Suitability</b> Suitable for any size of group from 1 to 8, good for families. The streets of Stratford are accessible to all, and any areas included in the trails should be freely accessible in daylight hours.
+<br/><br/>
+<b>Requirements</b> Just a pencil and paper, and a sensible pair of shoes.
+]]>
+			</content>
+		</tab>
+		<tab type="text" name="todo">
+			<label>Things to do</label>
+			<content>
+<![CDATA[
+<ul>
+<li>You shouldn't visit Stratford without seeing some top-quality Shakespeare at the <a target="_blank" href="http://www.rsc.org.uk/">RSC's theatres</a></li>
+<li>Not so very far from Stratford is one of the greatest medieval ruins in Britain, <a target="_blank" href="http://www.warwick-castle.com/">Warwick Castle</a> - beware, though very impressive it is also very expensive</li>
+</ul>
+]]>
+			</content>
+		</tab>
+		<products>
+			<product type="pdf">
+				<label>Download PDF</label>
+				<url></url>
+				<price>3.99</price>
+			</product>
+			<product type="booklet">
+				<label>Buy booklet</label>
+				<price>5.99</price>				
+			</product>
+		</products>
+	</hunt>
+	<hunt id="windsor">
+		<name>Windsor and Eton</name>
+		<title>Windsor and Eton Treasure Hunt</title>
+		<images>
+			<image>img/places/WindsorMain.JPG</image>
+		</images>
+		<map>
+			<coord></coord>
+		</map>
+		<tab type="image" name="photo">
+			<label>Image</label>
+		</tab>
+		<tab type="text" name="intro">
+			<label>Summary</label>
+			<content>
+<![CDATA[
+Windsor town is dominated by the majestic Windsor Castle, one of the great royal residences of Britain. It is also a charming town to visit, with a cluster of interesting shops and enticing cafes and plenty of easily overlooked details hinting at the royal connection. What's more, a short walk over the River Thames is the town of Eton, home to one of the most famous old schools in the world. This Treasure Hunt draws both of these towns together in a fascinating walk through history.
+]]>
+			</content>
+		</tab>	
+		<tab type="text" name="details">
+			<label>Hunt Info</label>
+			<content>
+<![CDATA[
+<b>Hunts</b> The pack includes a treasure trail and a bonus round.
+<br/><br/>
+<b>Duration</b> 2 hours or so, not including breaks.
+<br/><br/>
+<b>Suitability</b> Suitable for any size of group from 1 to 8, good for families. The streets of Windsor are accessible to all, and any steps can be detoured around. All the areas explored should be freely accessible in daylight hours.
+<br/><br/>
+<b>Requirements</b> Just a pencil and paper, and a sensible pair of shoes.
+]]>
+			</content>
+		</tab>
+		<tab type="text" name="todo">
+			<label>Things to do</label>
+			<content>
+<![CDATA[
+<ul>
+<li>The <a target="_blank" href="http://www.theroyallandscape.co.uk/">Royal Landscape</a> around Windsor includes some fantastic places to walk and gardens to explore – Virginia Water is our favourite</li>
+<li>The <a target="_blank" href="http://www.nationaltrail.co.uk/thamespath/">Thames Path</a> around Windsor and Eton is good for a ramble or a bicycle ride, you can see Eton Dorney where the Olympic rowing took place</li>
+<li>If your wallet is weighing you down, why not splash out on dinner at <a target="_blank" href="http://www.thefatduck.co.uk/">The Fat Duck</a> in nearby Bray? One of the world's best restaurants</li>
+</ul>
+]]>
+			</content>
+		</tab>
+		<products>
+			<product type="pdf">
+				<label>Download PDF</label>
+				<url></url>
+				<price>3.99</price>
+			</product>
+			<product type="booklet">
+				<label>Buy booklet</label>
+				<price>5.99</price>				
+			</product>
+		</products>
+	</hunt>
+	<hunt hide="true">
+		<name>xx</name>
+		<title>xx Treasure Hunt</title>
+		<images>
+			<image>img/places/xx.jpg</image>
+		</images>
+		<map>
+			<coord></coord>
+		</map>
+		<tab type="image" name="photo">
+			<label>Image</label>
+		</tab>
+		<tab type="text" name="intro">
+			<label>Summary</label>
+			<content>
+<![CDATA[
+]]>
+			</content>
+		</tab>	
+		<tab type="text" name="details">
+			<label>Hunt Info</label>
+			<content>
+<![CDATA[
+]]>
+			</content>
+		</tab>
+		<tab type="text" name="todo">
+			<label>Things to do</label>
+			<content>
+<![CDATA[
+]]>
+			</content>
+		</tab>
+		<products>
+			<product type="pdf">
+				<label>Download PDF</label>
+				<url></url>
+				<price>3.99</price>
+			</product>
+			<product type="booklet">
+				<label>Buy booklet</label>
+				<price>5.99</price>				
+			</product>
+		</products>
+
+	</hunt>
+</hunts>

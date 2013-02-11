@@ -1,0 +1,4 @@
+<h1>Product</h1>
+
+<%= render @product %>
+<%= load_xml("#{@product.data_file}.xml").to_s.html_safe %>

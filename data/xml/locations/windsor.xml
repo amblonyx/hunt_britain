@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<location id="windsor">
+	<name>Windsor and Eton</name>
+	<title>Windsor and Eton Treasure Hunt</title>
+	<images>
+		<image>img/places/WindsorMain.JPG</image>
+	</images>
+	<map>
+		<coord></coord>
+	</map>
+	<tab type="image" name="photo">
+		<label>Image</label>
+	</tab>
+	<tab type="text" name="intro">
+		<label>Summary</label>
+		<content>
+<![CDATA[
+Windsor town is dominated by the majestic Windsor Castle, one of the great royal residences of Britain. It is also a charming town to visit, with a cluster of interesting shops and enticing cafes and plenty of easily overlooked details hinting at the royal connection. What's more, a short walk over the River Thames is the town of Eton, home to one of the most famous old schools in the world. This Treasure Hunt draws both of these towns together in a fascinating walk through history.
+]]>
+		</content>
+	</tab>	
+	<tab type="text" name="details">
+		<label>Hunt Info</label>
+		<content>
+<![CDATA[
+<b>Hunts</b> The pack includes a treasure trail and a bonus round.
+<br/><br/>
+<b>Duration</b> 2 hours or so, not including breaks.
+<br/><br/>
+<b>Suitability</b> Suitable for any size of group from 1 to 8, good for families. The streets of Windsor are accessible to all, and any steps can be detoured around. All the areas explored should be freely accessible in daylight hours.
+<br/><br/>
+<b>Requirements</b> Just a pencil and paper, and a sensible pair of shoes.
+]]>
+		</content>
+	</tab>
+	<tab type="text" name="todo">
+		<label>Things to do</label>
+		<content>
+<![CDATA[
+<ul>
+<li>The <a target="_blank" href="http://www.theroyallandscape.co.uk/">Royal Landscape</a> around Windsor includes some fantastic places to walk and gardens to explore – Virginia Water is our favourite</li>
+<li>The <a target="_blank" href="http://www.nationaltrail.co.uk/thamespath/">Thames Path</a> around Windsor and Eton is good for a ramble or a bicycle ride, you can see Eton Dorney where the Olympic rowing took place</li>
+<li>If your wallet is weighing you down, why not splash out on dinner at <a target="_blank" href="http://www.thefatduck.co.uk/">The Fat Duck</a> in nearby Bray? One of the world's best restaurants</li>
+</ul>
+]]>
+		</content>
+	</tab>
+</location>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<location id="londoncity">
+	<name>The City of London</name>
+	<title>City of London Treasure Hunt</title>
+	<images>
+		<image>img/places/CityMain.JPG</image>
+	</images>
+	<map>
+		<coord></coord>
+	</map>
+	<tab type="image" name="photo">
+		<label>Image</label>
+	</tab>
+	<tab type="text" name="intro">
+		<label>Summary</label>
+		<content>
+<![CDATA[
+Everyone knows the shiny towers of banks and big business that mark the skyline of the City of London, but do you know about the winding medieval alleyways, unexpected old churches and odd memorials that can still be found in the shadow of these buildings? The ancient history of the city is still there to be found, and what better way than on a Treasure Hunt!
+]]>
+		</content>
+	</tab>	
+	<tab type="text" name="details">
+		<label>Hunt Info</label>
+		<content>
+<![CDATA[
+<b>Hunts</b> The pack includes a treasure trail and a bonus round.
+<br/><br/>
+<b>Duration</b> 2 hours or so, not including breaks.
+<br/><br/>
+<b>Suitability</b> Suitable for any size of group from 1 to 8, good for families. The streets of the city are accessible to all, and any steps can be detoured around. There are two parks to enter but they should be freely accessible in daylight hours.
+<br/><br/>
+<b>Requirements</b> Just a pencil and paper, and a sensible pair of shoes.
+]]>
+		</content>
+	</tab>
+	<tab type="text" name="todo">
+		<label>Things to do</label>
+		<content>
+<![CDATA[
+<ul>
+<li>It's not cheap, but if you've never been to the <a target="_blank" href="http://www.hrp.org.uk/TowerOfLondon/">Tower of London</a> you really should go once – it's right at the heart of our history</li>
+<li>For a bird's eye view of the city with unusual food from a snack to a feast, try <a target="_blank" href="http://duckandwaffle.com/">Duck & Waffle</a> atop Heron Tower, open 24/7</li>
+<li>Beyond Liverpool St Station is <a target="_blank" href="http://www.spitalfields.co.uk/">Spitalfields Market</a>. You could spend a day shopping for gifts here, all under cover</li>
+</ul>
+]]>
+		</content>
+	</tab>
+</location>

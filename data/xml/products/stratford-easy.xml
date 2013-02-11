@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hunt id="stratford-easy">
+
+	<number_of_clues>18</number_of_clues>
+	<circular>Y</circular>
+	
+	<outcome type="elimination">
+		<intro>No other author in history is as quoteable as Shakespeare.  His works are credited with adding more than 1,700 new words to the English language!  At the back of this hunt are a list of Shakespearean quotes and one rogue quote from his arch-rival Kit Marlowe.  Each clue you solve will help you cross a quotation off the list until only the misplaced quotation remains.  Can you find Marlowe's quote?</intro>
+		
+		<answer>marlowe</answer>
+		<terminology>
+			<correct></correct>
+			<incorrect></incorrect>
+		</terminology>
+		
+		<selection>
+			<option id="foolery">
+				<content>Foolery, sir, does walk about the orb like the sun; it shines everywhere</content>
+				<comment>Twelfth Night</comment>
+			</option>
+			<option id="water">
+				<content>Honest water, which ne'er left man I' the mire</content>
+				<comment>Timon of Athens</comment>
+			</option>
+			<option id="mason">
+				<content>What is he that builds stronger than either the mason, the shipwright, or the carpenter?</content>
+				<comment>Hamlet</comment>
+			</option>
+			<option id="lysander">
+				<content>Relent, sweet Hermia: and, Lysander, yield Thy crazed title to my certain right.</content>
+				<comment>A Midsummer Night's Dream</comment>
+			</option>
+			<option id="cog">
+				<content>Seventh sweet, adieu: Since you can cog, I'll play no more with you. </content>
+				<comment>Love's Labour's Lost</comment>
+			</option>
+			<option id="hall">
+				<content>That light we see is burning in my hall. How far that little candle throws his beams! So shines a good deed in a naughty world</content>
+				<comment>Merchant of Venice</comment>
+			</option>
+			<option id="stephen">
+				<content>King Stephen was a worthy peer, His breeches cost him but a crown</content>
+				<comment>Othello</comment>
+			</option>
+			<option id="flower">
+				<content>The summer's flower is to the summer sweet. Though to itself it only live and die</content>
+				<comment>Sonnet 91</comment>
+			</option>
+			<option id="westminster">
+				<content>Methought I sat in seat of majesty In the cathedral church of Westminster</content>
+				<comment>Henry VI, Part II</comment>
+			</option>
+			<option id="lass">
+				<content>Now boast thee, death, in thy possession lies A lass unparallel'd </content>
+				<comment>Antony and Cleopatra</comment>
+			</option>
+			<option id="swan">
+				<content>Hark, canst thou hear me? I will play the swan. And die in music.</content>
+				<comment>Othello</comment>
+			</option>
+			<option id="loyalty">
+				<content>Master, go on; and I will follow thee To the last gasp, with truth and loyalty.</content>
+				<comment>As You Like It</comment>
+			</option>
+			<option id="crown">
+				<content>As fit as ten groats is for the hand of an attorney, as your French crown for your taffeta punk </content>
+				<comment>All's Well That Ends Well</comment>
+			</option>
+			<option id="fifteen">
+				<content>These fifteen years! by my fay, a goodly nap. But did I never speak of all that time? </content>
+				<comment>Taming of the Shrew</comment>
+			</option>
+			<option id="birds">
+				<content>For both of you are birds of selfsame feather</content>
+				<comment>Henry VI, Part III</comment>
+			</option>
+			<option id="library">
+				<content>Come and take choice of all my library and so beguile thy sorrow</content>
+				<comment>Titus Andronicus</comment>
+			</option>
+			<option id="clock">
+				<content>It was two ere I left him, and now the clock strikes one.</content>
+				<comment>Comedy of Errors</comment>
+			</option>
+			<option id="dove">
+				<content>Thou wilt be as valiant as the wrathful dove or most magnanimous mouse.</content>
+				<comment>Henry IV, Part II</comment>
+			</option>
+			<option id="marlowe">
+				<content>I am Envy. I cannot read and therefore wish all books burned.</content>
+				<comment>Marlowe</comment>
+			</option>
+		</selection>
+	</outcome>
+	
+	<clues>
+		<before>
+			<output>
+				<direction>Begin at the entrance to Shakespeare's Birthplace in Henley Street.</direction>
+			</output>
+		</before>
+		<clue number="1">
+			<output>
+				<direction>Standing with your back to the entrance, turn right and walk along Henley Street. Stop by the jester.</direction>
+				<question>You should be able to find a Shakespeare quotation here to cross off the list.</question>
+			</output>
+			<hint></hint>
+			<answer id="foolery">Foolery, sir, does walk about the orb like the sun; it shines everywhere</answer>
+		</clue>
+		<clue number="2">
+			<output>
+				<direction>Turn left into Windsor Street and walk to a crossroads.  Cross over Wood Street.</direction>
+				<question>Where you see this lion, go and take a closer look.  You should be able to find another quotation to cross off.</question>
+				<image>ShieldLion.jpg</image>
+			</output>
+			<hint></hint>
+			<answer id="water">Honest water, which ne'er left man I' the mire</answer>
+		</clue>
+		<clue number="3">
+			<output>
+				<direction>Continue straight on along Rother Street until you reach this sign.</direction>
+				<image>RotherMarket.jpg</image>
+				<question>What is the name of the half-timber building on the other side of the road? The first word appears in a real Shakespeare quotation you can now cross off.</question>
+			</output>
+			<hint></hint>
+			<answer id="mason">Masons Court</answer>
+		</clue>
+		<clue number="4">
+			<output>
+				<direction>Go back a few steps and turn into Ely Street</direction>
+				<question>What is the name of the court with these gates? This character appears in a quotation you can cross off your list.</question>
+				<image>Lysander.jpg</image>
+			</output>
+			<hint></hint>
+			<answer id="lysander">Lysander court</answer>
+		</clue>
+		<clue number="5">
+			<output>
+				<direction>At the crossroads turn right into Chapel Street</direction>
+				<question>As you walk along here, look for a bear and a boar above a shield. Are they holding a dog, a log, a cog or a frog?  The correct answer is in a quotation you can cross off.</question>
+			</output>
+			<hint></hint>
+			<answer id="cog">Cog</answer>
+		</clue>
+		<clue number="6">
+			<output>
+				<direction>Continue straight on into Church Street, and admire the well-preserved buildings here.  At the T-junction turn left into Old Town.</direction>
+				<question>What Croft has this horrible face on the guttering?  This word is in a quotation on your list to cross off.</question>
+				<image>UglyHallsCroft.jpg</image>
+			</output>
+			<hint></hint>
+			<answer id="hall">Hall's</answer>
+		</clue>
+		<clue number="7">
+			<output>
+				<direction>Turn right into College Street just before the war memorial garden.  At the crossroads turn left, this is College Lane and should lead you to Holy Trinity church.  Go straight ahead into the churchyard</direction>
+				<question>Look for a series of horizontal gravestones by the river.  Holton, Mason, Oldaker... what's next? Find this name in a quotation to cross off.</question>
+			</output>
+			<hint></hint>
+			<answer id="stephen">Stephens</answer>
+		</clue>
+		<clue number="8">
+			<output>
+				<question>Elsewhere in the graveyard is a tall obelisk with a Shakespearean quote on it. Cross this off your list.</question>
+			</output>
+			<hint></hint>
+			<answer id="flower">The summer's flower is to the summer sweet. Though to itself it only live and die</answer>
+		</clue>
+		<clue number="9">
+			<output>
+				<direction>Leave the churchyard by the gate furthest from the church and emerge onto Old Town.  Go right.</direction>
+				<question>The second lamppost on the right is out of place!  Where should it be?  Find a quote with this place in it, and cross it off.</question>
+			</output>
+			<hint></hint>
+			<answer id="westminster">Westminster</answer>
+		</clue>
+		<clue number="10">
+			<output>
+				<direction>Turn right through a gate into a park and follow this path as it runs through the gardens and along the river bank. Continue past the foot ferry, keeping to the riverbank path.</direction>
+				<question>Opposite the SOA District Council lamppost there is a memorial at the foot of a tree.  This includes part of a quote you can cross off.</question>
+			</output>
+			<hint></hint>
+			<answer id="lass">Vivian Leigh</answer>
+		</clue>
+		<clue number="11">
+			<output>
+				<direction>Walk past the Swan theatre and enter Bancroft Gardens</direction>
+				<question>Find a fountain that celebrates Stratford's 800th year as a market town.  What pair of creatures are depicted here?  Find a quote that includes this word on the list and cross it off.</question>
+			</output>
+			<hint></hint>
+			<answer id="swan">Swans</answer>
+		</clue>
+		<clue number="12">
+			<output>
+				<direction>Walk towards the footbridge over the canal at the far side of the gardens near the river, and cross it.</direction>
+				<question>Search around here for a circle commemorating Warwickshire Fire & Rescue. One of the words in the same ring as “Explicitness” occurs in a quotation on your list.</question>
+			</output>
+			<hint></hint>
+			<answer id="loyalty">Loyalty</answer>
+		</clue>
+		<clue number="13">
+			<output>
+				<direction>Now head towards the large monument with a bronze Shakespeare sitting upon it. This is the Gower Monument.</direction>
+				<question>What is Prince Hal holding?  Find a quotation on the list including this word and cross it off.</question>
+			</output>
+			<hint></hint>
+			<answer id="crown">Crown</answer>
+		</clue>
+		<clue number="14">
+			<output>
+				<direction>Continue on to the road, and turn left to cross over the canal on Bridgefoot.  Turn left onto Waterside and then take the next right turning into Sheep Street</direction>
+				<question>Count the number of windows between these two sign hangers.  Ignore doors and the plate glass shopfront.  This number can be found in a quote on your list.</question>
+				<image>Ironwork1.jpg</image>
+				<image>Ironwork2.jpg</image>
+			</output>
+			<hint></hint>
+			<answer id="fifteen">Fifteen</answer>
+		</clue>
+		<clue number="15">
+			<output>
+				<direction>Turn right into High Street</direction>
+				<question>Find drainpipes decorated with daggers.  What kind of creatures are on the drainpipes of the building opposite?  Cross off a quotation mentioning these.</question>
+			</output>
+			<hint></hint>
+			<answer id="birds">Birds</answer>
+		</clue>
+		<clue number="16">
+			<output>
+				<question>Look for another Shakespearean quotation on the shopfront above this face.  You can cross it off your list.</question>
+				<image>WHSmithPuck.jpg</image>
+			</output>
+			<hint></hint>
+			<answer id="library">Come and take choice of all my library and so beguile thy sorrow</answer>
+		</clue>
+		<clue number="17">
+			<output>
+				<direction>Walk as far as the roundabout</direction>
+				<question>What is missing from this picture?  This can be found in another quotation and crossed off.</question>
+				<image>Clocktower.jpg</image>
+			</output>
+			<hint></hint>
+			<answer id="clock">Clock</answer>
+		</clue>
+		<clue number="18">
+			<output>
+				<direction>At the roundabout, turn left into Wood Street.  Walk up here and then turn right into Meer Street.</direction>
+				<question>What bird made this trail of prints?  The answer is also on the pavement.  The quotation to cross off includes a very similar bird (4 letters).</question>
+				<image>BirdPrints.jpg</image>
+			</output>
+			<hint></hint>
+			<answer id="dove">Pigeon</answer>
+		</clue>
+		<after>
+			<output>
+				<direction>Turn left into Henley Street and you will find yourself back at the start.  Well done!</direction>
+			</output>
+		</after>
+	</clues>
+</hunt>

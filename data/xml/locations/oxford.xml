@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<location id="oxford">
+	<name>Oxford</name>
+	<title>Oxford Treasure Hunt</title>
+	<images>
+		<image>img/places/OxfordMain.JPG</image>
+	</images>
+	<map>
+		<coord></coord>
+	</map>
+	<tab type="image" name="photo">
+		<label>Image</label>
+	</tab>
+	<tab type="text" name="intro">
+		<label>Summary</label>
+		<content>
+<![CDATA[
+The Oxford University is the oldest university in the English-speaking world. It comprises 38 colleges, the oldest of which are University College, Balliol and Merton. The most recent was Green Templeton College, founded in 2008. Women were first allowed into the University in 1878, but now all colleges are co-educational.
+]]>
+		</content>
+	</tab>	
+	<tab type="text" name="details">
+		<label>Hunt Info</label>
+		<content>
+<![CDATA[
+<b>Hunts</b> The pack includes a treasure trail around Oxford.
+<br/><br/>
+<b>Duration</b> 2 hours or so, not including breaks.
+<br/><br/>
+<b>Suitability</b> Suitable for any size of group from 1 to 8, good for families. The streets of Oxford are accessible to all, and any steps can be detoured around. All the areas entered on this trail should be freely accessible in daylight hours.
+<br/><br/>
+<b>Requirements</b> Just a pencil and paper, and a sensible pair of shoes.
+]]>
+		</content>
+	</tab>
+	<tab type="text" name="todo">
+		<label>Things to do</label>
+		<content>
+<![CDATA[
+<ul>
+<li>Oxford is all about learning, so take time to explore the world-renowned <a target="_blank" href="http://www.ashmolean.org/">Ashmolean Museum</a></li>
+<li>The <a target="_blank" href="http://www.prm.ox.ac.uk/">Pitt Rivers Museum</a> looks and feels like a proper old museum, and is absolutely packed with artefacts from every corner of the globe</li>
+<li>Not far from Oxford is the picturesque town of Woodstock and the enormously impressive <a target="_blank" href="http://www.blenheimpalace.com/">Blenheim Palace</a>, both well worth visiting</li>
+</ul>
+]]>
+		</content>
+	</tab>
+</location>

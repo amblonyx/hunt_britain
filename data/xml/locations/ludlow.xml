@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<location id="ludlow">
+	<name>Ludlow</name>
+	<title>Ludlow Treasure Hunt</title>
+	<map>
+		<coord></coord>
+	</map>
+	<tab type="image" name="photo">
+		<label>Image</label>
+	</tab>
+	<tab type="text" name="intro">
+		<label>Summary</label>
+		<content>
+<![CDATA[
+Ludlow is a quintessential and beautiful English market town in Shropshire. Indeed John Betjeman once wrote “Ludlow is the loveliest town in England” and more recently Jeremy Paxman said “Has there ever been a visitor to Ludlow who hasn't wished they lived there?” Needless to say it is a wonderful place in which to set a Treasure Hunt. With numerous independent shops and restaurants it feels like a place with a strong and vibrant community that hasn't changed much in many years.
+]]>
+		</content>
+	</tab>	
+	<tab type="text" name="details">
+		<label>Hunt Info</label>
+		<content>
+<![CDATA[
+<b>Hunts</b> The pack includes an easy and a hard treasure trail, a set of extra explorer puzzles and a bonus round.
+<br/><br/>
+<b>Duration</b> 2 hours to a full day, not including breaks.
+<br/><br/>
+<b>Suitability</b> Suitable for any size of group from 1 to 8, good for families. The streets of Ludlow are accessible to all, any steps can be detoured around. The hard trail includes an unmade country path that may be muddy after rain.
+<br/><br/>
+<b>Requirements</b> Just a pencil and paper, and a sensible pair of shoes.
+]]>
+		</content>
+	</tab>
+	<tab type="text" name="todo">
+		<label>Things to do</label>
+		<content>
+<![CDATA[
+<ul>
+<li>The big date in Ludlow's calendar is the annual <a target="_blank" href="http://www.foodfestival.co.uk/">Food Festival</a>, one of the first and definitely the best in the whole country</li>
+<li>Right in the middle of the town, <a target="_blank" href="http://www.ludlowcastle.com/">Ludlow Castle</a> is a grand ruin of a medieval fortress, great for exploring</li>
+<li>If you are looking for a lunch stop, the <a target="_blank" href="http://www.ludlowmillonthegreen.co.uk/tearooms.aspx">Green Cafe</a> is best – so good, in fact, that you'd be wise to book</li>
+<li>A few miles north of Ludlow the fortified manor of <a target="_blank" href="http://www.english-heritage.org.uk/daysout/properties/stokesay-castle/">Stokesay Castle</a> is a gem, the finest building of its kind in the country</li>
+</ul>
+]]>
+		</content>
+	</tab>
+	<images>
+		<image>img/places/LudlowMain.JPG</image>
+	</images>
+</location>

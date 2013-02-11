@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<location id="southwark">
+	<name>Southwark</name>
+	<title>Southwark Treasure Hunt</title>
+	<images>
+		<image>img/places/SouthwarkMain.JPG</image>
+	</images>
+	<map>
+		<coord></coord>
+	</map>
+	<tab type="image" name="photo">
+		<label>Image</label>
+	</tab>
+	<tab type="text" name="intro">
+		<label>Summary</label>
+		<content>
+<![CDATA[
+Throughout history the south bank of the Thames in London has been a less affluent area, a melting pot of people and a lively neighbourhood. This is still true today! But it is also true that the roads and passages of Southwark hold many clues to the riches of the past. Surely a great place to explore with a Treasure Hunt?
+]]>
+		</content>
+	</tab>	
+	<tab type="text" name="details">
+		<label>Hunt Info</label>
+		<content>
+<![CDATA[
+<b>Hunts</b> The pack includes a treasure trail and a bonus round.
+<br/><br/>
+<b>Duration</b> 2 hours or so, not including breaks.
+<br/><br/>
+<b>Suitability</b> Suitable for any size of group from 1 to 8, good for families. The streets of Southwark are accessible to all, and any steps can be detoured around. All the areas explored should be freely accessible in daylight hours.
+<br/><br/>
+<b>Requirements</b> Just a pencil and paper, and a sensible pair of shoes.
+]]>
+		</content>
+	</tab>
+	<tab type="text" name="todo">
+		<label>Things to do</label>
+		<content>
+<![CDATA[
+<ul>
+<li>Your treasure hunt takes you right through <a target="_blank" href="http://www.boroughmarket.org.uk/">Borough Market</a>, and if it's open there's nowhere better to find snacks or lunch around here</li>
+<li>At <a target="_blank" href="http://www.shakespearesglobe.com/">Shakespeare's Globe</a> they perform traditional renditions of the bard's great plays in evocative surroundings</li>
+<li>The <a target="_blank" href="http://www.tate.org.uk/visit/tate-modern">Tate Modern</a> holds a really important collection of modern art in a very unique building</li>
+<li>Have a look at the <a target="_blank" href="http://www.thegarret.org.uk/">Old Operating Theatre Museum</a> for a unique insight into how medicine used to be done</li>
+</ul>
+]]>
+		</content>
+	</tab>
+</location>
