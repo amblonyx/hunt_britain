@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<location id="stratford">
+	<name>Stratford-upon-Avon</name>
+	<title>Stratford Treasure Hunt</title>
+	<images>
+		<image>img/places/StratfordMain.JPG</image>
+	</images>
+	<map>
+		<coord></coord>
+	</map>
+	<tab type="image" name="photo">
+		<label>Image</label>
+	</tab>
+	<tab type="text" name="intro">
+		<label>Summary</label>
+		<content>
+<![CDATA[
+Stratford-upon-Avon is the city of the bard, renowned as Shakespeare's birthplace. Perhaps because of this it has kept much of the charm and character of a country market town while playing host to so many thousands of tourists annually. Of course, if you want to find some of the hidden corners and interesting details of Stratford that the tourist crowds seldom see you would be wise to try this Treasure Hunt.
+]]>
+		</content>
+	</tab>	
+	<tab type="text" name="details">
+		<label>Hunt Info</label>
+		<content>
+<![CDATA[
+<b>Hunts</b> The pack includes an easy and hard version of the main treasure trail, a set of extra explorer puzzles and a bonus round.
+<br/><br/>
+<b>Duration</b> 2 hours to a full day, not including breaks.
+<br/><br/>
+<b>Suitability</b> Suitable for any size of group from 1 to 8, good for families. The streets of Stratford are accessible to all, and any areas included in the trails should be freely accessible in daylight hours.
+<br/><br/>
+<b>Requirements</b> Just a pencil and paper, and a sensible pair of shoes.
+]]>
+		</content>
+	</tab>
+	<tab type="text" name="todo">
+		<label>Things to do</label>
+		<content>
+<![CDATA[
+<ul>
+<li>You shouldn't visit Stratford without seeing some top-quality Shakespeare at the <a target="_blank" href="http://www.rsc.org.uk/">RSC's theatres</a></li>
+<li>Not so very far from Stratford is one of the greatest medieval ruins in Britain, <a target="_blank" href="http://www.warwick-castle.com/">Warwick Castle</a> - beware, though very impressive it is also very expensive</li>
+</ul>
+]]>
+		</content>
+	</tab>
+</location>

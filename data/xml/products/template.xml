@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hunt id="">
+	<number_of_clues></number_of_clues>
+	<circular>Y/N</circular>
+	
+	<outcome type="elimination">
+		<intro></intro>
+		
+		<answer></answer>
+		
+		<terminology>
+			<correct></correct>
+			<incorrect></incorrect>
+		</terminology>
+		
+		<selection>
+			<option id="">
+				<content></content>
+				<comment></comment>
+			</option>
+		</selection>
+	</outcome>	
+
+	<outcome type="string">
+		<intro></intro>
+		
+		<answer></answer>
+		
+		<terminology>
+			<correct></correct>
+			<incorrect></incorrect>
+		</terminology>		
+	</outcome>	
+	
+	<clues>
+		<before>
+			<output>
+				<direction></direction>
+			</output>
+		</before>
+		<clue number="">
+			<output>
+				<direction></direction>
+				<question></question>
+			</output>
+			<hint></hint>
+			<answer id=""></answer>
+		</clue>
+		<after>
+			<output>
+				<direction></direction>
+			</output>
+		</after>
+	</clues>
+</hunt>

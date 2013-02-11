@@ -7,7 +7,12 @@ HuntBritain::Application.routes.draw do
   end
   resources :sessions, only: [:new, :create, :destroy]
 #  resources :microposts, only: [:create, :destroy]
-  
+
+	resources :locations do
+		resources :products 
+	end
+	resources :products 
+	
   root to: 'static_pages#home'
   
   match '/help', to: 'static_pages#help'

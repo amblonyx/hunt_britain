@@ -1,0 +1,47 @@
+<% provide(:title, @location.name) %>
+
+<div class="row">
+	<aside class="span4">
+		<section>
+			<h1>
+				<%= @location.name %>
+			</h1>
+			<%= @location.description %>
+			<%= @location.region %>
+			<%= @location.image %>
+			<%= @location.hunt_mode %>
+		</section>
+	</aside>
+	<%= load_xml("#{@location.data_file}.xml").to_s.html_safe %>
+
+	<div class="span8">
+		<% if @products.any? %>
+			<h3>Products <%= @location.products.count %></h3>
+			<ol class="products">
+				<%= render @products %>
+			</ol>
+		<% end %>
+	</div>
+
+	<%= form_for([@location, @product]) do |f| %>
+		<%= render 'shared/error_messages', object: f.object %>
+
+		<div class="field">
+			<%= f.label :name %>
+			<%= f.text_field :name %>
+
+			<%= f.label :product_code %>
+			<%= f.text_field :product_code %>
+
+			<%= f.label :format %>
+			<%= f.text_field :format %>
+
+			<%= f.label :price %>
+			<%= f.text_field :price %>
+
+			<%= f.label :data_file %>
+			<%= f.text_field :data_file %>
+		</div>
+		<%= f.submit "Create", class: "btn btn_large btn_primary" %>
+	<% end %>
+</div>
