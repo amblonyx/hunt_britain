@@ -1,6 +1,4 @@
 class LocationsController < ApplicationController
-
-	#named_scope :saved, where('id is not null')
 	
 	def index
 		@locations = Location.paginate(page: params[:page])

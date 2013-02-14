@@ -1,0 +1,19 @@
+
+	<%= @hunt.id %>
+	<%= link_to @hunt.product.name, @hunt.product %>
+	
+		<% unless @hunt.user.nil? %>
+			<%= link_to @hunt.user.name, @hunt.user  %>
+		<% end %>
+	
+	<%= link_to @hunt.voucher_code, @hunt %>
+	<%= @hunt.team_name %>
+	<%= @hunt.email %>
+	<%= @hunt.started %>
+	<%= @hunt.paused %>
+	<%= @hunt.completed %>
+	<%= @hunt.started_at %>
+	<%= @hunt.last_submitted %>
+	<%= @hunt.time_taken %>
+	<%= @hunt.current_clue %>
+	<%= @hunt.current_status %>

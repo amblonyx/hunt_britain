@@ -1,0 +1,22 @@
+﻿<div class="row">
+<%= form_for([hunt], html: { class: "form-horizontal well" }) do |f| %>
+	<%= render 'shared/error_messages', object: f.object %>
+
+	<%= f.label :product_id %>
+	<%= f.select :product_id, Product.all.collect { |prod| [prod.name, prod.id] } %>
+	
+	<%= f.label :user_id %>
+	<%= f.text_field :user_id %>
+
+	<%= f.label :voucher_code %> 
+	<%= f.text_field :voucher_code %>
+
+	<%= f.label :team_name %>
+	<%= f.text_field :team_name %>
+
+	<%= f.label :email %>
+	<%= f.text_field :email %>
+	
+	<%= f.submit "Create", class: "btn btn_large btn_primary" %>
+
+	<% end %>

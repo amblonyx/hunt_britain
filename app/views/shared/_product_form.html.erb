@@ -1,0 +1,48 @@
+﻿<div class="row">
+<%= form_for([location, product], html: { class: "form-horizontal well" }) do |f| %>
+	<%= render 'shared/error_messages', object: f.object %>
+
+	<% if location.nil? %>
+		<div class="control-group">
+			<%= f.label :location_id %>
+			<div class="controls">
+				<%= f.select :location_id, Location.all.collect { |loc| [loc.name, loc.id] } %>
+			</div>
+		</div>
+	<% end %>
+
+	<div class="control-group">
+		<%= f.label :name %>
+		<div class="controls">
+			<%= f.text_field :name %>
+		</div>
+	</div>
+	<div class="control-group">
+		<%= f.label :product_code %>
+		<div class="controls">
+			<%= f.text_field :product_code %>
+		</div>
+	</div>
+	<div class="control-group">
+		<%= f.label :format %>
+		<div class="controls">
+			<%= f.select :format, ["Online", "PDF", "Paper"] %>
+		</div>
+	</div>
+	<div class="control-group">
+		<%= f.label :price %>
+		<div class="controls">
+			<%= f.text_field :price %>
+		</div>
+	</div>
+	<div class="control-group">
+		<%= f.label :data_file %>
+		<div class="controls">
+			<%= f.text_field :data_file %>
+			<span class="help-block"><%#= App_Constants::DATA_XML + "products/" %></span>
+		</div>
+	</div>
+	<div class="form-actions">
+		<%= f.submit "Create", class: "btn btn_large btn_primary" %>
+	</div>
+<% end %>

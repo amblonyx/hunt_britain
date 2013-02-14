@@ -3,8 +3,9 @@
 
 	<number_of_clues>18</number_of_clues>
 	<circular>Y</circular>
+	<style>elimination</style>
 	
-	<outcome type="elimination">
+	<outcome>
 		<intro>No other author in history is as quoteable as Shakespeare.  His works are credited with adding more than 1,700 new words to the English language!  At the back of this hunt are a list of Shakespearean quotes and one rogue quote from his arch-rival Kit Marlowe.  Each clue you solve will help you cross a quotation off the list until only the misplaced quotation remains.  Can you find Marlowe's quote?</intro>
 		
 		<answer>marlowe</answer>
@@ -86,7 +87,7 @@
 				<content>Thou wilt be as valiant as the wrathful dove or most magnanimous mouse.</content>
 				<comment>Henry IV, Part II</comment>
 			</option>
-			<option id="marlowe">
+			<option id="marlowe" correct="1">
 				<content>I am Envy. I cannot read and therefore wish all books burned.</content>
 				<comment>Marlowe</comment>
 			</option>

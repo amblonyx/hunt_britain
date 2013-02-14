@@ -1,7 +1,9 @@
-<li>
-	<%= link_to product.name, product %>
-	<%= product.product_code %>
-	<%= product.format %>
-	<%= product.price %>
-	<%= product.data_file %>
-</li>
+<tr>
+	<td><%= product.id %></td>
+	<td><%= product.product_code %></td>
+	<td><%= link_to product.location.name, product.location %></td>
+	<td><%= link_to product.name, product %></td>
+	<td><%= product.format %></td>
+	<td><%= product.price %></td>
+	<td><%= product.data_file %></td>
+</tr>

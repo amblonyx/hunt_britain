@@ -1,9 +1,6 @@
-<% provide(:title, "All locations") %>
+<% provide(:title, "Locations") %>
 
-<h1>All locations</h1>
+<h1>Locations</h1>
+<%= render "location_table", obj: @locations %>
 
-<%= will_paginate %>
-<ul class="locations">
-	<%= render @locations %>
-</ul>
 <%= will_paginate %>

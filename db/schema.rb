@@ -11,7 +11,25 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130210213825) do
+ActiveRecord::Schema.define(:version => 20130211165844) do
+
+  create_table "hunts", :force => true do |t|
+    t.integer  "product_id"
+    t.string   "voucher_code"
+    t.string   "team_name"
+    t.string   "email"
+    t.boolean  "started"
+    t.boolean  "paused"
+    t.boolean  "completed"
+    t.datetime "started_at"
+    t.datetime "last_submitted"
+    t.boolean  "current_clue"
+    t.string   "current_status"
+    t.integer  "time_taken"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+    t.integer  "user_id"
+  end
 
   create_table "locations", :force => true do |t|
     t.string   "name"

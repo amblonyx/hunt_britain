@@ -1,0 +1,16 @@
+
+<%= render "hunt_header" %>
+<h1>Set team name</h1>
+
+<div class="row">
+<%= form_for(@hunt, html: { class: "form-horizontal well" }) do |f| %>
+	<%= render 'shared/error_messages', object: f.object %>
+
+	<%= f.label :team_name %>
+	<%= f.text_field :team_name %>
+
+	<%= f.label :email %>
+	<%= f.text_field :email %>
+	
+	<%= f.submit "Next", class: "btn btn_large btn_primary" %>
+<% end %>

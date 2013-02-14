@@ -1,0 +1,8 @@
+<% provide(:title, "Hunts") %>
+
+<h1>Hunts</h1>
+<h2>Hunt details</h2>
+<%= render "shared/hunt_table", obj: @hunts %>
+<%= will_paginate %>
+
+<%= link_to "Add a new hunt", new_hunt_path %>
