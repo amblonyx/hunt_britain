@@ -1,47 +1,28 @@
 <% provide(:title, @location.name) %>
 
-<div class="row">
-	<aside class="span4">
-		<section>
-			<h1>
-				<%= @location.name %>
-			</h1>
-			<%= @location.description %>
-			<%= @location.region %>
-			<%= @location.image %>
-			<%= @location.hunt_mode %>
-		</section>
-	</aside>
-	<%= load_xml("#{@location.data_file}.xml").to_s.html_safe %>
+	<h1>Location: <%= @location.name %></h1>
 
-	<div class="span8">
-		<% if @products.any? %>
-			<h3>Products <%= @location.products.count %></h3>
-			<ol class="products">
-				<%= render @products %>
-			</ol>
-		<% end %>
-	</div>
-
-	<%= form_for([@location, @product]) do |f| %>
-		<%= render 'shared/error_messages', object: f.object %>
-
-		<div class="field">
-			<%= f.label :name %>
-			<%= f.text_field :name %>
-
-			<%= f.label :product_code %>
-			<%= f.text_field :product_code %>
-
-			<%= f.label :format %>
-			<%= f.text_field :format %>
-
-			<%= f.label :price %>
-			<%= f.text_field :price %>
-
-			<%= f.label :data_file %>
-			<%= f.text_field :data_file %>
+	<div class="container">
+		<div class="row">
+			<div class="span10 offset1">
+				<section>
+					<h2>Location details</h2>
+					<%= render "location_table", obj: @location %>
+				</section>
+				<section>
+					<h2>Location data</h2>
+					<%= transform_location("#{@location.data_file}.xml").to_s.html_safe %>
+				</section>
+				<section>
+					<h2>Products: <%= @location.products.count %></h2>
+					<% if @products.any? %>
+						<%= render "shared/product_table", obj: @products %>
+					<% end %>	
+				</section>
+				<section>
+					<h2>Add new product</h2>
+					<%= render "shared/product_form", location: @location, product: @product %>
+				</section>
+			</div>
 		</div>
-		<%= f.submit "Create", class: "btn btn_large btn_primary" %>
-	<% end %>
-</div>
+	</div>

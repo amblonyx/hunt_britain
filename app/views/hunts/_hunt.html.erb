@@ -1,0 +1,20 @@
+<tr>
+	<td><%= hunt.id %></td>
+	<td><%= link_to hunt.product.name, hunt.product %></td>
+	<td>
+		<% unless hunt.user.nil? %>
+			<%= link_to hunt.user.name, hunt.user  %>
+		<% end %>
+	</td>
+	<td><%= link_to hunt.voucher_code, hunt %></td>
+	<td><%= hunt.team_name %></td>
+	<td><%= hunt.email %></td>
+	<td><%= hunt.started %></td>
+	<td><%= hunt.paused %></td>
+	<td><%= hunt.completed %></td>
+	<td><%= hunt.started_at %></td>
+	<td><%= hunt.last_submitted %></td>
+	<td><%= hunt.time_taken %></td>
+	<td><%= hunt.current_clue %></td>
+	<td><%= hunt.current_status %></td>
+</tr>

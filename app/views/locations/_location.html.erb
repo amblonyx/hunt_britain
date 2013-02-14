@@ -1,8 +1,10 @@
-<li>
-	<%= link_to location.name, location %>
-	<%= location.description %>
-	<%= location.hunt_mode %>
-	<%= location.image %>
-	<%= location.region %>
-	<%= location.data_file %>
-</li>
+
+<tr>
+	<td><%= location.id %></td>
+	<td><%= link_to location.name, location %></td>
+	<td><%= location.description %></td>
+	<td><%= location.hunt_mode %></td>
+	<td><%= link_to location.image, "/images/" + location.image %></td>
+	<td><%= location.region %></td>
+	<td><%= location.data_file %></td>
+</tr>

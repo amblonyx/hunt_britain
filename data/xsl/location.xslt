@@ -4,10 +4,14 @@
 <xsl:output method="html" indent="yes"/>
 
 <xsl:template match="/location">
-      <xsl:for-each select="tab">		
-          <h2><xsl:value-of select="label"/></h2>
-          <xsl:value-of select="content"/>
-      </xsl:for-each>
+		<div class="span6 offset8 location-data">
+			  <xsl:for-each select="tab">		
+					<section>
+					  <h3><xsl:value-of select="label"/></h3>
+					  <xsl:value-of select="content"/>
+					</section>
+			  </xsl:for-each>		  
+		  </div>
 </xsl:template>
 
 </xsl:stylesheet>

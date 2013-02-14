@@ -1,6 +1,7 @@
 HuntBritain::Application.routes.draw do
 
   resources :users do 
+	resources :hunts
 #	member do
 #		get :following, :followers
 #	end
@@ -9,9 +10,12 @@ HuntBritain::Application.routes.draw do
 #  resources :microposts, only: [:create, :destroy]
 
 	resources :locations do
-		resources :products 
+		resources :products do
+			resources :hunts
+		end
 	end
 	resources :products 
+	resources :hunts
 	
   root to: 'static_pages#home'
   

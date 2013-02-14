@@ -1,13 +1,11 @@
 module LocationsHelper
-	LOCATION_XML_PATH = "data/xml/locations/"
-	LOCATION_XSL_PATH = "data/xsl/location.xslt"
-	
-	def load_xml(path)	
+
+	def transform_location(path)	
 		require 'nokogiri'
 	
-		f = File.open( LOCATION_XML_PATH + path)
+		f = File.open( XML_PATH + "locations/" + path)
 		doc = Nokogiri::XML(f)
-		xslt  = Nokogiri::XSLT(File.read(LOCATION_XSL_PATH))
+		xslt  = Nokogiri::XSLT(File.read(XSL_PATH + "location.xslt"))
 		f.close
 		
 		xslt.transform(doc)
