@@ -1,7 +1,14 @@
-
-<%= render "hunt_header" %>
 <h1>Hunt intro</h1>
 
 <div class="row">
-
+	<%= get_xml_node("location", "#{@hunt.product.location.data_file}.xml", "//tab[@name='details']/content").inner_text.to_s.html_safe %>
+	
+	<%= form_for(@hunt, html: { class: "form-horizontal well" }) do |f| %>
+		<% if @hunt.started? %>
+			<%= f.submit "Close", name: "submit_resume", class: "btn btn_large btn_primary" %>		
+		<% else %>
+			<%= f.submit "Start the hunt!", name: "submit_start_hunt", class: "btn btn_large btn_primary" %>
+		<% end %>
+	
+	<% end %>
 </div>

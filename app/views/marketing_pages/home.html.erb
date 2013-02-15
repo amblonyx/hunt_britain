@@ -1,0 +1,25 @@
+<% provide(:title, "Locations") %>
+
+<section id="boxes">
+	<ul class="box activeview" id="box">
+		<% @locations.each do |loc| %>
+			<%= link_to "accordion/#{loc.id}", remote: true do %>
+				<li data-hunt="<%= loc.name %>">
+					<span class="placelabel"><%= loc.description %></span>
+					<span class="placename"><%= loc.description %></span>
+					<%= image_tag "places/"+loc.image %>
+				</li>
+			<% end %>
+		<% end %>
+	</ul>
+</section>
+
+<section id="popup">
+	<a id="closepopup" href="#"><%= image_tag "Close.png", alt: "Close popup" %></a>
+	<h2></h2>
+	<div id="accordion"></div>
+	<ul id="popupmenu"></ul>
+</section>
+
+<article id="tabtemplate" style="display:none"><span></span></article>  
+<div id="overlay" class="main_dark_overlay"></div>

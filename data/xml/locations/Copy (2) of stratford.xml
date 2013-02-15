@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<location id="stratford">
+	<name>Stratford-upon-Avon</name>
+	<title>Stratford Treasure Hunt</title>
+	<images>
+		<image>img/places/StratfordMain.JPG</image>
+	</images>
+	<map>
+		<coord></coord>
+	</map>
+	<tab type="image" name="photo">
+		<label>Image</label>
+	</tab>
+	<tab type="text" name="intro">
+		<label>Summary</label>
+		<content><![CDATA[<b>Stratford-upon-Avon</b> is the city of the bard, renowned as Shakespeare's birthplace. Perhaps because of this it has kept much of the charm and character of a country market town while playing host to so many thousands of tourists annually. Of course, if you want to find some of the hidden corners and interesting details of Stratford that the tourist crowds seldom see you would be wise to try this Treasure Hunt.]]></content>
+	</tab>	
+	<tab type="text" name="details">
+		<label>Hunt Info</label>
+		<oink>Just a pencil and paper, and a sensible pair of shoes.</oink>
+	</tab>
+	<tab type="text" name="todo">
+		<label>Things to do</label>
+		<oink>beware, though very impressive it is also very expensive</oink>
+	</tab>
+</location>

@@ -1,0 +1,22 @@
+<% xml_doc = load_xml("product", "#{@hunt.product.data_file}.xml") %>
+
+<h3>Answer to <%= @hunt.current_clue %></h3>
+<% answer_node = xml_doc.xpath("//clues/clue[@number='#{@hunt.current_clue}']/answer") %>
+
+<%= answer_node.inner_html %>
+<% if xml_doc.xpath("//style").inner_html == "elimination" %>
+	<% option_node = xml_doc.xpath("//outcome/selection/option[@id='#{answer_node.xpath("@id")}']") %>
+	<%= option_node.inner_html %>
+<% end %>	
+
+<div class="row">
+	<% if @hunt.current_status == "Passed" %>
+		
+	<% else %>
+	
+	<% end %>
+	
+	<%= form_for(@hunt, html: { class: "form-horizontal well" }) do |f| %>
+		<%= f.submit "Next clue", name: "submit_next_clue", class: "btn btn_large btn_primary" %>
+	<% end %>
+</div>

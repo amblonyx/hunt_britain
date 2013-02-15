@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Hunt Britain</title>
+  <%= stylesheet_link_tag "marketing", :media => "all" %>
+  <%= javascript_include_tag "marketing" %>
+  <%= csrf_meta_tags %>
+  <%= render 'layouts/shim' %>
+</head>
+<body>
+	<%= render 'header' %>
+	<%= render 'topnote' %>
+	<% flash.each do |key, value| %>
+		<%= content_tag(:div, value, class: "alert alert-#{key}") %>
+	<% end %>
+	<%= yield %>
+	<%= render 'footer' %>	
+	<%= debug(params) if Rails.env.development? %>		
+</body>
+</html>
+
+<script>
+	$('#closepopup').click(function(){
+		$("#overlay").hide()
+		$("#popup").hide()	
+	})
+
+	$('header nav li').click(function() {
+		var n = $(this).index()
+		
+		$("nav li").not($(this)).removeClass("activelink")
+		$(this).toggleClass("activelink")
+
+		if ( ! $(this).hasClass("activelink") ) {	
+			$("#topnote").height(5)	
+		}
+		else {
+			$(".panel:not(:eq("+n+"))").width(0)
+			$(".panel:eq("+n+")").width(1200)
+			$("#topnote").height(300)	
+		}
+	});
+
+	function expandTab(tab) {
+		if ( tab.hasClass("tabopen") ){
+		} else {
+			$("#popup article.tabopen").toggleClass("tabopen")
+			tab.toggleClass("tabopen")
+		}
+	}
+</script>

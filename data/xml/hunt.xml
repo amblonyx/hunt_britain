@@ -5,7 +5,7 @@
 		<name>Bath</name>
 		<title>Bath Treasure Hunt</title>
 		<images>
-			<image>img/places/BathMain.JPG</image>
+			<image>places/BathMain.JPG</image>
 		</images>
 		<map>
 			<x>200</x><y>500</y>
@@ -66,7 +66,7 @@ Bath is one of the finest small cities in Britain. Catch the warm light of a fin
 		<name>Brighton</name>
 		<title>Brighton Treasure Hunt</title>
 		<images>
-			<image>img/places/BrightonMain.JPG</image>
+			<image>places/BrightonMain.JPG</image>
 		</images>
 		<map>
 			<x>400</x><y>540</y>
@@ -126,7 +126,7 @@ Brighton is a lively and eclectic city on the south coast, the first place in Br
 		<name>Bristol</name>
 		<title>Bristol Treasure Hunt</title>
 		<images>
-			<image>img/places/BristolMain.JPG</image>
+			<image>places/BristolMain.JPG</image>
 		</images>
 		<map>
 			<x>180</x><y>480</y>
@@ -186,7 +186,7 @@ The city of Bristol has a long and colourful history, closely associated with th
 		<name>Bruton</name>
 		<title>Bruton Treasure Hunt</title>
 		<images>
-			<image>img/places/BrutonMain.JPG</image>
+			<image>places/BrutonMain.JPG</image>
 		</images>
 		<map>
 			<x>230</x><y>530</y>
@@ -249,7 +249,7 @@ Bruton is a small country town in a beautiful part of Somerset, full of interest
 		<name>The City of London</name>
 		<title>City of London Treasure Hunt</title>
 		<images>
-			<image>img/places/CityMain.JPG</image>
+			<image>places/CityMain.JPG</image>
 		</images>
 		<map>
 			<coord></coord>
@@ -349,7 +349,7 @@ Ludlow is a quintessential and beautiful English market town in Shropshire. Inde
 			</content>
 		</tab>
 		<images>
-			<image>img/places/LudlowMain.JPG</image>
+			<image>places/LudlowMain.JPG</image>
 		</images>
 		<products>
 			<product type="pdf">
@@ -368,7 +368,7 @@ Ludlow is a quintessential and beautiful English market town in Shropshire. Inde
 		<name>Oxford</name>
 		<title>Oxford Treasure Hunt</title>
 		<images>
-			<image>img/places/OxfordMain.JPG</image>
+			<image>places/OxfordMain.JPG</image>
 		</images>
 		<map>
 			<coord></coord>
@@ -428,7 +428,7 @@ The Oxford University is the oldest university in the English-speaking world. It
 		<name>Richmond-upon-Thames</name>
 		<title>Richmond-upon-Thames Treasure Hunt</title>
 		<images>
-			<image>img/places/RichmondMain.JPG</image>
+			<image>places/RichmondMain.JPG</image>
 		</images>
 		<map>
 			<coord></coord>
@@ -488,7 +488,7 @@ Richmond is a splendid town on the banks of the River Thames to the west of Lond
 		<name>Southwark</name>
 		<title>Southwark Treasure Hunt</title>
 		<images>
-			<image>img/places/SouthwarkMain.JPG</image>
+			<image>places/SouthwarkMain.JPG</image>
 		</images>
 		<map>
 			<coord></coord>
@@ -549,7 +549,7 @@ Throughout history the south bank of the Thames in London has been a less afflue
 		<name>Stratford-upon-Avon</name>
 		<title>Stratford Treasure Hunt</title>
 		<images>
-			<image>img/places/StratfordMain.JPG</image>
+			<image>places/StratfordMain.JPG</image>
 		</images>
 		<map>
 			<coord></coord>
@@ -606,7 +606,7 @@ Stratford-upon-Avon is the city of the bard, renowned as Shakespeare's birthplac
 		<name>Windsor and Eton</name>
 		<title>Windsor and Eton Treasure Hunt</title>
 		<images>
-			<image>img/places/WindsorMain.JPG</image>
+			<image>places/WindsorMain.JPG</image>
 		</images>
 		<map>
 			<coord></coord>
@@ -664,7 +664,7 @@ Windsor town is dominated by the majestic Windsor Castle, one of the great royal
 		<name>xx</name>
 		<title>xx Treasure Hunt</title>
 		<images>
-			<image>img/places/xx.jpg</image>
+			<image>places/xx.jpg</image>
 		</images>
 		<map>
 			<coord></coord>

@@ -1,0 +1,2 @@
+module MarketingPagesHelper
+end

@@ -1,18 +1,23 @@
 class LocationsController < ApplicationController
+
+	def home
+		@locations = Location.all
+	end
 	
 	def index
 		@locations = Location.paginate(page: params[:page])
 	end
 	
-	def show 
+	def show
 		@location = Location.find(params[:id])
 		@products = @location.products.where(['id is not null'])		
 		@product = @location.products.new
 	end
-
+	
 	def new
 		@location = Location.new
 	end
+	
 	def create
 		@location = Location.new(params[:location])
 		if @location.save 
