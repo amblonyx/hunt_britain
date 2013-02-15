@@ -1,0 +1,54 @@
+﻿var hunt = '<%= @location.name %>'
+if ($("#popup").attr("data-current") != hunt) {
+	$("#popup article").remove()
+
+	<% xml_doc = load_xml("location", "#{@location.data_file}.xml") %>
+	<% root_node = xml_doc.root %>
+
+	$('#popup h2').text('<%= root_node.xpath("title").inner_html %>')
+
+	<% root_node.xpath("tab").each do |node| %>
+
+		var $newtab = $("#tabtemplate").clone(true).appendTo($("#accordion"))
+		var tabname = '<%= node.get_attribute("name") %>'	
+		$newtab.attr("id", tabname)
+
+		var label = '<%= node.xpath("label").inner_html %>'	
+		var content = '<%= node.xpath("content").inner_html.to_s.gsub(/\r?\n/," ") %>'
+		var content = $("<div/>").html(content).text();
+
+		$newtab.find("span").addClass("label")
+		$newtab.find(".label").html(label)
+		
+		if( '<%= node.get_attribute("type") %>' == "text" ) {
+			
+			$newtab.find(".label").after("<p/>")
+			$newtab.find("p").html("<span class='header'>"+label+'</span>'+content)
+		}
+		else {
+			imgurl = '<%= asset_path "places/" + @location.image %>'
+					
+			$newtab.find(".label").after("<img/>")
+			$newtab.find("img").attr("src", imgurl)
+		}
+
+		$newtab.click(function() {
+			expandTab($(this))
+		})
+		if( $newtab.index() == 0 ){
+			$newtab.addClass("tabopen")
+		}
+		$newtab.show()
+
+	<% end %>
+	
+	<% @location.products.each do |prod| %>
+		var imgtag = '<%= image_tag "Buy" + prod.format + ".png" %>'
+		var $prod_item = $("#popupmenu").append("<li><a href='#'>"+imgtag+"<%= prod.format %> - £<%= prod.price %></a></li>")
+	<% end %>
+
+	$("#popup").attr("data-current", hunt)
+}
+
+$("#overlay").show()
+$("#popup").show()

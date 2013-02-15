@@ -1,0 +1,31 @@
+<% xml_doc = load_xml("product", "#{@hunt.product.data_file}.xml") %>
+
+<%# output_node = get_xml_node("product", "#{@hunt.product.data_file}.xml", "//clues/clue[@number='#{@hunt.current_clue}']/output/*") %>
+<% output_node = xml_doc.xpath("//clues/clue[@number='#{@hunt.current_clue}']/output/*") %>
+
+<h3>Clue <%= @hunt.current_clue %></h3>
+
+<div class="row">
+	
+	<% output_node.each do |node| %>
+		<p class="<%=node.name()%>"><%=node.name()%>: <%= node.inner_text.to_s.html_safe %></p>
+	<% end %>
+	
+	<%= form_for(@hunt, html: { class: "form-horizontal well" }) do |f| %>
+
+		<% if xml_doc.xpath("//style").inner_html == "elimination" %>
+			<% answer_node = xml_doc.xpath("//outcome/selection/*") %>
+			<% answer_node.each do |node| %>
+				<%= f.submit node.inner_text.to_s.html_safe, name: node.get_attribute("id"), class: "btn btn-mini" %>
+			<% end %>
+		<% else %>
+			<label for="answer">Answer</label>
+			<input id="answer" name="answer" size="30" type="text"/>			
+			<%= f.submit "Answer", name: "submit_answer", class: "btn btn_large btn_primary" %>
+		<% end %>
+		
+		<%= f.submit "Give me a hint", name: "submit_hint", class: "btn btn_large btn_primary" %>		
+		<%= f.submit "Give up!", name: "submit_pass", class: "btn btn_large btn_primary" %>		
+			
+	<% end %>
+</div>

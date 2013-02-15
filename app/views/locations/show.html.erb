@@ -11,7 +11,7 @@
 				</section>
 				<section>
 					<h2>Location data</h2>
-					<%= transform_location("#{@location.data_file}.xml").to_s.html_safe %>
+					<%= transform_xml("location", "#{@location.data_file}.xml").to_s.html_safe %>
 				</section>
 				<section>
 					<h2>Products: <%= @location.products.count %></h2>

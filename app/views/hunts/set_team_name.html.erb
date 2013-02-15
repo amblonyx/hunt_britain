@@ -1,5 +1,3 @@
-
-<%= render "hunt_header" %>
 <h1>Set team name</h1>
 
 <div class="row">
@@ -12,5 +10,5 @@
 	<%= f.label :email %>
 	<%= f.text_field :email %>
 	
-	<%= f.submit "Next", class: "btn btn_large btn_primary" %>
+	<%= f.submit "Set", name: "submit_team_name", class: "btn btn_large btn_primary" %>
 <% end %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130211165844) do
+ActiveRecord::Schema.define(:version => 20130214174053) do
 
   create_table "hunts", :force => true do |t|
     t.integer  "product_id"
@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(:version => 20130211165844) do
     t.boolean  "completed"
     t.datetime "started_at"
     t.datetime "last_submitted"
-    t.boolean  "current_clue"
+    t.integer  "current_clue"
     t.string   "current_status"
     t.integer  "time_taken"
     t.datetime "created_at",     :null => false
