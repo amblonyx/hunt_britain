@@ -1,0 +1,27 @@
+<p>Shopping Cart Checkout</p>
+<table>
+  <tr>
+    <th>Product Name</th>
+    <th>Quantity</th>
+    <th>Price per unit</th>
+    <th>Total Price</th>
+  </tr>
+    <% total_price = 0 %>
+    <% @cart.each do |cart_item| %>
+      <tr>
+        <% product = Product.find(cart_item[:product_id]) %>
+        <% total_price += product.price * cart_item[:num] %>
+        <td><%= product.name %></td>
+        <td><%= cart_item[:num] %></td>
+        <td>$<%= "%.2f" % (product.price / 100.0) %></td>
+        <td>$<%= "%.2f" % (cart_item[:num] * product.price / 100.0) %></td>
+      </tr>
+    <% end %>
+    <tr>
+      <td></td>
+      <td></td>
+      <td><strong>Grand Total:</strong></td>
+      <td>$<%= "%.2f" % (total_price / 100.0) %></td>
+    </tr>
+</table>
+<%= link_to "Pay With Paypal", @paypal_link %>
