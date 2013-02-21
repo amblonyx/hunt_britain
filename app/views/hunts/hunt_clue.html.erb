@@ -14,18 +14,30 @@
 	<%= form_for(@hunt, html: { class: "form-horizontal well" }) do |f| %>
 
 		<% if xml_doc.xpath("//style").inner_html == "elimination" %>
-			<% answer_node = xml_doc.xpath("//outcome/selection/*") %>
-			<% answer_node.each do |node| %>
-				<%= f.submit node.inner_text.to_s.html_safe, name: node.get_attribute("id"), class: "btn btn-mini" %>
+			<% answers = five_answers(xml_doc) %>
+			<% answers.each do |ahash| %>
+			<div class="answer_set">
+				<div class="answer_btn">
+					<%# link_to ahash[:index], "answer/" + ahash{:id} %>
+					<%= f.submit ahash[:index], name: ahash[:id], class: "btn" %> 
+				</div>
+				<div class="answer_text">
+					<%= ahash[:text] %>
+				</div>
+				<div class="answer_clear">&nbsp;</div>
+			</div>
 			<% end %>
 		<% else %>
 			<label for="answer">Answer</label>
 			<input id="answer" name="answer" size="30" type="text"/>			
-			<%= f.submit "Answer", name: "submit_answer", class: "btn btn_large btn_primary" %>
+			<%= f.submit "Answer", name: "submit_answer", class: "btn" %>
 		<% end %>
-		
-		<%= f.submit "Give me a hint", name: "submit_hint", class: "btn btn_large btn_primary" %>		
-		<%= f.submit "Give up!", name: "submit_pass", class: "btn btn_large btn_primary" %>		
 			
+		<div id="buttonbar">
+			<%= f.submit "Hint", name: "submit_hint", class: "btn" %>		
+			<%= f.submit "Give up!", name: "submit_pass", class: "btn" %>		
+			<%= f.submit "Peek", name: "submit_peek", class: "btn" %>		
+			<%= f.submit "Pause", name: "submit_break", class: "btn" %>		
+		</div>
 	<% end %>
 </div>

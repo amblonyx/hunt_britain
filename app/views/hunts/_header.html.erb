@@ -1,5 +1,11 @@
 <header>
-	<%= image_tag "THBLogo.png", id: "logo" %>
-	<span class="huntname"><%= @hunt.product.name %> - <%= @hunt.team_name %></span>
+		<%= image_tag "THBSm.png", id: "logo" %>
+		<span id="team">
+			<span id="teamlabel">Team </span>
+			<%= @hunt.team_name %>
+		</span>
+		<span id="huntname">
+			<%= @hunt.product.name %>
+		</span>
 	<%#= render "shared/hunt_table", obj: @hunt %>
 </header>
