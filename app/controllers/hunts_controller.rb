@@ -15,10 +15,10 @@ class HuntsController < ApplicationController
 			if @hunt.current_status == "Passed"
 				render "hunt_answer", layout: "hunt"
 			else
-				render "hunt_clue"			
+				render "hunt_clue", layout: "hunt"
 			end
 		elsif @hunt.team_name.blank?
-			render "set_team_name"
+			render "set_team_name", layout: "hunt"
 		else
 			show_intro
 		end
@@ -65,7 +65,7 @@ class HuntsController < ApplicationController
 	end
 	
 	def show_intro
-		render "hunt_intro"
+		render "hunt_intro", layout: "hunt"
 	end
 
 	private
