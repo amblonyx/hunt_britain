@@ -20,6 +20,12 @@ HuntBritain::Application.routes.draw do
   root to: 'marketing_pages#home'
   
   match 'accordion/:id', to: 'marketing_pages#accordion'
+  match 'cart' => 'sessions#cart'
+  match 'add_to_cart' => 'sessions#add_to_cart', :via => :post
+  match 'update_cart' => 'sessions#update_cart', :via => :update
+  match 'checkout' => 'sessions#checkout'
+  match 'payment_success' => 'sessions#payment_success'
+  
   match '/help', to: 'static_pages#help'
   match '/about', to: 'static_pages#about'
   match '/contact', to: 'static_pages#contact'
