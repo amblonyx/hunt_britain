@@ -1,5 +1,5 @@
 class MarketingPagesController < ApplicationController
-	
+	before_filter :load_cart
 	def home
 		@locations = Location.all
 		render layout: "marketing"		
@@ -11,5 +11,13 @@ class MarketingPagesController < ApplicationController
 			format.html
 			format.js  { render "accordion.js" }
 		end
+	end
+	
+	private
+	def load_cart
+		if not session.has_key? :cart
+			session[:cart] = Array.new
+		end
+		@cart = session[:cart]
 	end
 end
