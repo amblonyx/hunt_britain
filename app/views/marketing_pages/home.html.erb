@@ -18,8 +18,20 @@
 	<a id="closepopup" href="#"><%= image_tag "Close.png", alt: "Close popup" %></a>
 	<h2></h2>
 	<div id="accordion"></div>
-	<ul id="popupmenu"></ul>
+	<ul id="popupmenu">
+		<%= form_tag("/add_to_cart", id: "buyForm", method: "post") do %>
+		
+			<%= submit_tag("Add To Cart") %>
+		<% end %>
+	</ul>
 </section>
 
 <article id="tabtemplate" style="display:none"><span></span></article>  
 <div id="overlay" class="main_dark_overlay"></div>
+<li id="producttemplate" style="display: none">
+	<img/>
+	<span></span>
+	<%= label_tag(:num, ":") %>
+	<%= text_field_tag(:num, 1) %>
+	<%= hidden_field_tag(:product_id, "") %>
+</li>
