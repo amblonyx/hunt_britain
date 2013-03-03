@@ -21,11 +21,20 @@ module SessionsHelper
 	def store_location
 		session[:return_to] = request.fullpath
 	end
+	def has_address?
+		current_user.address_1.blank? or current_user.postcode.blank?
+	end
 
 	def not_signed_in_user
 		unless signed_in?
 			store_location
 			redirect_to signin_path, notice: "Please sign in." 
+		end
+	end
+	def user_has_no_address
+		unless has_address?
+			store_location
+			redirect_to edit_user_path, notice: "Please enter an address" 
 		end
 	end
 	
