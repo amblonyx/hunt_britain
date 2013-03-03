@@ -1,14 +1,54 @@
-<h1>Hunt intro</h1>
+<% xml_doc = load_xml("product", "#{@hunt.product.data_file}.xml") %>
+<h1>Before you begin</h1>
 
 <div class="row">
-	<%= get_xml_node("location", "#{@hunt.product.location.data_file}.xml", "//tab[@name='details']/content").inner_text.to_s.html_safe %>
+	<%= get_xml_node("product", "#{@hunt.product.data_file}.xml", "//outcome/intro").inner_text.to_s.html_safe %>
 	
+	<% if xml_doc.xpath("//style").inner_html == "elimination" %>
+		<% answer_node = xml_doc.xpath("//outcome/selection/*") %>
+		<div class="accordion" id="condenser">
+			<div class="accordion-group">
+				<div class="accordion-heading">
+					<a class="btn btn-block" data-toggle="collapse" data-parent="#condenser" href="#collapseOne">See the quotes</a>
+				</div>
+				<div id="collapseOne" class="accordion-body collapse">
+					<div class="accordion-inner">
+						<ul>
+						<% answer_node.each do |node| %>
+							<li><%= node.inner_text.to_s.html_safe %></li>
+						<% end %>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="accordion-group">
+				<div class="accordion-heading">
+					<a class="btn btn-block" data-toggle="collapse" data-parent="#condenser" href="#collapseTwo">Instructions</a>
+				</div>
+				<div id="collapseTwo" class="accordion-body collapse">
+					<div class="accordion-inner">
+						How to play the hunt
+					</div>
+				</div>
+			</div>
+		</div>
+	<% else %>
+		<div id="containCollapse">
+			<button type="button" class="btn" data-toggle="collapse" data-target="#instruct">
+				Instructions
+			</button>
+			<div id="instruct" class="collapse">
+				How to play the hunt
+			</div>
+		</div>
+	<% end %>
+
 	<%= form_for(@hunt, html: { class: "form-horizontal well" }) do |f| %>
 		<% if @hunt.started? %>
-			<%= f.submit "Close", name: "submit_resume", class: "btn btn_large btn_primary" %>		
+			<%= f.submit "Close", name: "submit_resume", class: "btn btn-block btn-primary" %>		
 		<% else %>
-			<%= f.submit "Start the hunt!", name: "submit_start_hunt", class: "btn btn_large btn_primary" %>
-		<% end %>
-	
+			<%= f.submit "Start the hunt!", name: "submit_start_hunt", class: "btn btn-block btn-primary" %>
+		<% end %>	
 	<% end %>
+	
 </div>
