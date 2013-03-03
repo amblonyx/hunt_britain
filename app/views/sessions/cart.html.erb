@@ -1,7 +1,29 @@
 ﻿<% provide(:title, "Shopping cart") %>
 
 <h1>Shopping Cart</h1>
-<%= form_tag("/update_cart", id: "updateCartForm", method: "post") do %>
+<div class="row">
+<div class="span10 offset1">
+<% if @action == "checkout" %>
+	Name: <%= current_user.name %>
+	Email: <%= current_user.email %>
+	<%= output_phone(current_user.phone) %>
+	
+	Paper hunts will be sent to:
+	<address>
+		<%= output_address_line(current_user.address_1) %>
+		<%= output_address_line(current_user.address_2) %>
+		<%= output_address_line(current_user.town) %>
+		<%= output_address_line(current_user.county) %>
+		<%= output_address_line(current_user.postcode) %>
+		<%= output_address_line(current_user.country) %>
+	</address>
+	
+	PDFs and Links to the online hunt will be sent to:
+	<%= current_user.email %>
+	
+<% end %>
+
+<%= form_tag("/update_cart", id: "updateCartForm", method: "put") do %>
 
 	<table class="table table-bordered table-striped">
 		<thead>
@@ -18,7 +40,7 @@
 			
 			<% @cart.each do |cart_item| %>
 				<% product = Product.find(cart_item[:product_id]) %>
-				<% total_price += product.price * cart_item[:num] %>
+				<% total_price += product.price * cart_item[:num].to_i %>
 				<tr>
 					<td><%= product.name %></td>
 					<td>
@@ -29,10 +51,10 @@
 					<% end %>
 					</td>
 					<td>£<%= "%.2f" % (product.price / 100.0) %></td>
-					<td>£<%= "%.2f" % (cart_item[:num] * product.price / 100.0) %></td>
+					<td>£<%= "%.2f" % (cart_item[:num].to_i * product.price / 100.0) %></td>
 					<td>
 						<% if @action == "cart" %>
-							<%= link_to "Remove", "delete_cart_item[" + cart_item[:product_id] + "]" %>
+							<%= link_to "Remove", remove_from_cart_path(product_id: product.id), method: :post %>
 						<% end %>
 					</td>
 				</tr>
@@ -48,13 +70,19 @@
 	</table>
 	
 	<% if @action == "cart" %>
-		<%= submit_tag "Update" %>
+		<%= submit_tag "Update", class: "btn btn-large btn-primary" %>
 	<% end %>
 <% end %>
 
+
 <%= link_to "Continue shopping", root_path %>
 <% if @action == "cart" %>
-	<%= link_to "Checkout", checkout_path %>
+	| <%= link_to "Checkout", checkout_path %>
 <% else %>
-	<%= link_to "Pay with Paypal", @paypal_link %>
+	| <%= link_to "Pay with Paypal", @paypal_link %>
 <% end %>
+
+</div>
+</div>
+
+

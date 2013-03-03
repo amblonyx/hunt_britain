@@ -1,5 +1,15 @@
 <header>
 	<%= link_to image_tag("THBLogo.png", alt: "Treasure Hunt Britain", id: "logo" ), root_path %>
+	<ul class="nav">
+		<li><%= link_to "Cart (#{@cart.length})", cart_path %></li>
+		<% if signed_in? %>
+			<li><%= link_to "My account", user_path(current_user) %></li>
+			<li><%= link_to "Log out", signout_path, method: "delete" %></li>
+		<% else %>
+			<li><%= link_to "Sign up", signup_path %></li>
+			<li><%= link_to "Log in", signin_path %></li>
+		<% end %>
+	</ul>
 	<div id="doyoulike">
 		<%= image_tag("DoYouLike.png", alt: "Do you like?", class: "question" ) %>
 		<div class="alternates">
@@ -14,5 +24,4 @@
 		<li><a href="#">how it works</a></li>
 		<li><a href="#">contact us</a></li>
 	</nav>
-	<a href="/cart">Shopping Cart (<%= @cart.length %>)</a>
 </header>

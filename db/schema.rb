@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130216143457) do
+ActiveRecord::Schema.define(:version => 20130303192621) do
 
   create_table "hunts", :force => true do |t|
     t.integer  "product_id"
@@ -53,6 +53,26 @@ ActiveRecord::Schema.define(:version => 20130216143457) do
     t.integer  "location_id"
   end
 
+  create_table "purchase_items", :force => true do |t|
+    t.integer  "product_id"
+    t.integer  "purchase_id"
+    t.integer  "quantity"
+    t.integer  "unit_price"
+    t.integer  "total_price"
+    t.string   "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "purchases", :force => true do |t|
+    t.datetime "date_purchased"
+    t.string   "reference"
+    t.integer  "price_total"
+    t.integer  "user_id"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
   create_table "users", :force => true do |t|
     t.string   "name"
     t.string   "email"
@@ -61,9 +81,19 @@ ActiveRecord::Schema.define(:version => 20130216143457) do
     t.string   "password_digest"
     t.string   "remember_token"
     t.boolean  "admin",           :default => false
+    t.string   "address_1"
+    t.string   "address_2"
+    t.string   "town"
+    t.string   "county"
+    t.string   "postcode"
+    t.string   "country"
+    t.string   "phone"
+    t.string   "user_name"
+    t.boolean  "guest",           :default => false
   end
 
-  add_index "users", ["email"], :name => "index_users_on_email", :unique => true
+  add_index "users", ["email"], :name => "index_users_on_email"
   add_index "users", ["remember_token"], :name => "index_users_on_remember_token", :unique => true
+  add_index "users", ["user_name"], :name => "index_users_on_user_name", :unique => true
 
 end

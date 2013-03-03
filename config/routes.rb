@@ -2,6 +2,9 @@ HuntBritain::Application.routes.draw do
 
   resources :users do 
 	resources :hunts
+	resources :purchases do
+		resources :purchase_items
+	end
 #	member do
 #		get :following, :followers
 #	end
@@ -22,7 +25,8 @@ HuntBritain::Application.routes.draw do
   match 'accordion/:id', to: 'marketing_pages#accordion'
   match 'cart' => 'sessions#cart'
   match 'add_to_cart' => 'sessions#add_to_cart', :via => :post
-  match 'update_cart' => 'sessions#update_cart', :via => :update
+  match 'remove_from_cart' => 'sessions#remove_from_cart', :via => :post
+  match 'update_cart' => 'sessions#update_cart', :via => :put
   match 'checkout' => 'sessions#checkout'
   match 'payment_success' => 'sessions#payment_success'
   
