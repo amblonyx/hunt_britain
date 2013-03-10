@@ -1,0 +1,15 @@
+var clue = '<%= @hunt.current_clue %>' + '_hint'
+if ($("#popup").attr("data-current") != clue) {
+
+	<% xml_doc = load_xml("product", "#{@hunt.product.data_file}.xml") %>
+	<% clue_node = xml_doc.xpath("//clues/clue[@number='#{@hunt.current_clue}']") %>
+
+	$('#popup h2').text('Hint for this clue')
+	$('#popup p').text('<%= clue_node.xpath("hint").inner_html %>')
+	$('#popup a').text('OK')
+	
+	$("#popup").attr("data-current", clue)
+}
+
+$("#overlay").show()
+$("#popup").show()
