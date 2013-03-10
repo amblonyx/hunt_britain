@@ -1,7 +1,11 @@
 <% provide(:title, "Locations") %>
 
 <h1>Locations</h1>
-<%= render "location_table", obj: @locations %>
-<%= link_to "New location", new_location_path %>
+<div class="row">
+	<div class="span10 offset1">
+		<%= render "location_table", obj: @locations %>
+		<%= link_to "New location", new_location_path %>
 
-<%= will_paginate %>
+		<%= will_paginate %>
+	</div>
+</div>

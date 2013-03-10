@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+	before_filter :check_for_cancel, :only => [:create, :update]
+
+	 
 	def index
 		@users = User.paginate(page: params[:page])
 	end
@@ -21,11 +24,11 @@ class UsersController < ApplicationController
 			if @user.save 
 
 				# Tell the UserMailer to send a welcome Email after save
-				UserMailer.welcome_email(@user).deliver
+				#-----UserMailer.welcome_email(@user).deliver
 		 
 				sign_in @user
 				flash[:success] = "Welcome to the Sample App"
-				format.html { redirect_back_or(@user, notice: 'User was successfully created.') }
+				format.html { redirect_back_or(@user) }
 				format.json { render json: @user, status: :created, location: @user }
 				
 			else
@@ -67,4 +70,12 @@ class UsersController < ApplicationController
 		flash[:success] = "Sent"
 		redirect_to @user
 	end
+	
+	private
+	def check_for_cancel
+		if params[:commit] == "Cancel"
+			redirect_back_or current_user
+		end
+	end
+
 end

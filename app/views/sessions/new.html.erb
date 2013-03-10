@@ -1,55 +1,55 @@
-<% provide :title, 'Sign in' %>
-	
-	<h1>Sign in</h1>
-	<div class="row">
-		<div class="span6 offset3">
-		
-			<%= form_for(:session, url: sessions_path, html: { class: "form-horizontal" } ) do |f| %>
-				<%= render "shared/error_messages", object: @user %>
-				<div class="form_group well">
-					<div class="control-group">
-						<%= f.label :email, class: "control-label" %>
-						<div class="controls">
-							<%= f.text_field :email %>
-						</div>
-					</div>
-				</div>
-				
-				<div class="form_group well">
-					<input type="radio" name="identify" id="identify_signin" class="pull-right" value="signin" checked/>
-					<label for="identify_signin">
-						Sign in
-					</label>
-					
-					<div class="control-group pull-right">
-						<%= f.label :password, class: "control-label" %>
-						<div class="controls">
-							<%= f.password_field :password %>
-						</div>
-					</div>
-					<small>I have an account already</small>
-					
-				</div>
+<h1>Sign in</h1>
 
-				<div class="form_group well">
-					<input type="radio" name="identify" id="identify_guest" class="pull-right" value="guest"/>
-					<label for="identify_guest">
-						Continue as guest
-					</label>
-					<small>We still need your email to send confirmation</small>
-				</div>
+	<div class="row">
+		<div class="span8 offset2">
+			<% if signed_in? %>
+				<%= render 'shared/already_signed_in', signin: true, signup: false %>
+			<% else %>
+				<% qstring = { from: params[:from] } %>
+				<%= form_for(:session, url: sessions_path(qstring), html: { class: "form-horizontal" } ) do |f| %>
+					<%= render "shared/error_messages", object: @user %>
+
+					<div class="form_group well">
+						I have an account already
+						<div class="control-group">
+							<label class="control-label" for="session_user_name">Email</label>
+							<div class="controls">
+								<%= f.text_field :user_name %>
+							</div>
+						</div>
 				
-				<div class="form_group well">
-					<input type="radio" name="identify" id="identify_register" class="pull-right" value="register"/>
-					<label for="identify_register">
-						Register
-					</label>
-					<small>We will send you a free otter</small>
-				</div>
+						<div class="control-group">
+							<%= f.label :password, class: "control-label" %>
+							<div class="controls">
+								<%= f.password_field :password %>
+								<%= f.button "Sign in", name: "known_user", class: "btn btn-primary" %>
+							</div>
+						</div>		
+
+						<%= link_to "Register with Hunt Britain", signup_path(qstring) %>
+		
+					</div>
+
+					<% if params[:from] == "checkout" %>
+
+						<div class="form_group well">
+							Continue as guest
+							<p><small>We still need your email to send confirmation</small></p>
+
+							<div class="control-group">
+								<label class="control-label" for="session_email">Email</label>
+								<div class="controls">
+									<%= f.text_field :email %>
+									<%= f.button "Continue as guest", name: "guest_user", class: "btn btn-primary" %>
+								</div>
+							</div>
+						</div>
+						
+					<% end %>
+				<% end %>
 				
-				<div class="center"><%= f.submit "Go", class: "btn btn-large btn-primary" %></div>
+				
 			<% end %>
-				
 		</div>
 		
 	</div>

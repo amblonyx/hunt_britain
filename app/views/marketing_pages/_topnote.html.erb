@@ -1,39 +1,79 @@
-﻿<section id="topnote">
+﻿	<a class="pull-right closetopnote" href="#"><%= image_tag "Close.png", alt: "Close popup" %></a>
+
 	<!-- About -->
 	<div id="about" class="panel">
-		<div class="content">
-			<p>Salty plums are a Chinese snack that you can find in Asian food shops. Apparently they've also become popular in Mexico. They are insanely salty and sweet: eating one makes my mouth go squee and my eyes curl up in horror. Which is somehow pleasant. In moderation. They're not my favourite food, but the name also sounds a little rude and slightly intriguing. I've always wanted to be seen as a little rude and slightly intriguing, so there you have it.</p>
+		<div class="content span6 offset1 well">
+		<p>
+			Salty plums are a Chinese snack that you can find in Asian food shops. 
+			Apparently they've also become popular in Mexico. 
+			They are insanely salty and sweet: eating one makes my mouth go squee and my eyes curl up in horror. 
+			Which is somehow pleasant. In moderation. 
+		</p>
+		<p>
+			
+			They're not my favourite food, but the name also sounds a little rude and slightly intriguing. 
+			I've always wanted to be seen as a little rude and slightly intriguing, so there you have it.
+		</p>
 		</div>
 	</div>
 	<div id="how" class="panel">
-		<div class="content">
-			<p>We both love eating out. Lots and lots of Michelin stars, lots of foams and emulsions, cunning patisserie and tender water-bathed meat. Since returning from our year of travelling I've been thinking more carefully about the intersection of price and quality; finding a place to enjoy really good foor for a tenner is just as precious as finding exquisite food for a cool hundred. That's because for now we're jobless bums living off our savings.</p>
+		<div class="content span2 offset1 well">
+			<p>Browse our website and choose your treasure hunt</p>
+		</div>
+		<div class="content span1">
+			arrow
+		</div>
+		<div class="content span2 well">
+			<p>We send it to you</p>
+		</div>
+		<div class="content span1">
+			arrow
+		</div>
+		<div class="content span2">
+			<div class="well">
+				<p>We send you a booklet</p>
+			</div>
+			<div class="well">
+				<p>We email you a PDF</p>
+			</div>
+			<div class="well">
+				<p>Use your phone or laptop to do the hunt</p>
+			</div>
 		</div>
 	</div>
-	<div id="contact" class="panel">
 	
-		<form method="POST" id='contactForm' action="javascript:void(0);" >
-			<p>Have a question or comment? We're only a click away!</p>
-			<ul>
-			<li> 
-				<label class="field_name" for="name">Name *</label> 	
-				<input type="text" id='name_input' name="name" class="text"/>
-			</li>
-			<li> 
-				<label class="field_name" for="email">Email *</label>
-				<input type="text" id='email_input' name="email" class="text"/>
-			</li>
-			<li>  
-				<label class="field_name" for="message">Message</label>
-				<textarea style='width:285px;height:80px' id="message_textarea" name="message" class="textfield"></textarea>
-		   </li>
-		   <li>
-				<label class="field_name"></label>
-				<input type="submit" onClick='submitForm()' class="button" value='Send Message!'/> 	
-		   </li>
-		   </ul>
-		</form>
+	<div id="contact" class="panel">
+		<div class="content span6 offset1 well">
+			<form method="POST" id='contactForm' class="form-horizontal" >
+				<p class="center">Have a question or comment? We're only a click away!</p>
+				
+				  <div class="control-group">
+					<label class="control-label" for="name">Name</label>
+					<div class="controls">
+					  <input type="text" id="name_input" name="name"/>
+					</div>
+				  </div>
+				  
+				  <div class="control-group">
+					<label class="control-label" for="email">Email</label>
+					<div class="controls">
+					  <input type="text" id="email_input" name="email"/>
+					</div>
+				  </div>
+				  <div class="control-group">
+					<label class="control-label" for="message">Message</label>
+					<div class="controls">
+					  <textarea rows="3" id="message_textarea" name="message" ></textarea>
+					</div>
+				  </div>
+				  <div class="control-group">
+					<div class="controls">
+					   <button type="submit" class="btn">Send message</button>
+					</div>
+				  </div>  
 
+			</form>
+		</div>
 	</div>
 	<!-- /About -->
-</section>
+

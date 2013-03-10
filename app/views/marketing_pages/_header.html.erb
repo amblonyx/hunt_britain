@@ -1,15 +1,20 @@
-<header>
-	<%= link_to image_tag("THBLogo.png", alt: "Treasure Hunt Britain", id: "logo" ), root_path %>
-	<ul class="nav">
-		<li><%= link_to "Cart (#{@cart.length})", cart_path %></li>
-		<% if signed_in? %>
-			<li><%= link_to "My account", user_path(current_user) %></li>
-			<li><%= link_to "Log out", signout_path, method: "delete" %></li>
-		<% else %>
-			<li><%= link_to "Sign up", signup_path %></li>
-			<li><%= link_to "Log in", signin_path %></li>
-		<% end %>
-	</ul>
+<div id="header">
+	<%= link_to image_tag("THBLogo.png", alt: "Treasure Hunt Britain", class: "logo" ), root_path %>
+	<div class="navbar pull-right" id="appbar">
+		<div class="navbar-inner">
+			<ul class="nav">
+				<li><%= link_to "Cart (#{@cart.length})", cart_path %></li>
+				<% if signed_in? %>
+					<li><%= link_to "My account", user_path(current_user) %></li>
+					<li><%= link_to "Log out", signout_path, method: "delete" %></li>
+				<% else %>
+					<li><%= link_to "Sign up", signup_path %></li>
+					<li><%= link_to "Log in", signin_path %></li>
+				<% end %>
+			</ul>
+		</div>
+	</div>
+	
 	<div id="doyoulike">
 		<%= image_tag("DoYouLike.png", alt: "Do you like?", class: "question" ) %>
 		<div class="alternates">
@@ -19,9 +24,14 @@
 			<%= image_tag("DYLChallenges.png", alt: "Challenges" ) %>
 		</div>
 	</div>
-	<nav>
-		<li><a href="#">about us</a></li>
-		<li><a href="#">how it works</a></li>
-		<li><a href="#">contact us</a></li>
-	</nav>
-</header>
+	
+	<div class="navbar" id="topnotebar">
+	  <div class="navbar-inner">
+		<ul class="nav">
+			<li><a href="#">about us</a></li>
+			<li><a href="#">how it works</a></li>
+			<li><a href="#">contact us</a></li>
+		</ul>
+	  </div>
+	</div>
+</div>
