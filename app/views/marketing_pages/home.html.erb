@@ -1,5 +1,3 @@
-<% provide(:title, "Locations") %>
-
 <section id="boxes">
 	<ul class="box activeview" id="box">
 		<% @locations.each do |loc| %>
@@ -18,20 +16,15 @@
 	<a id="closepopup" href="#"><%= image_tag "Close.png", alt: "Close popup" %></a>
 	<h2></h2>
 	<div id="accordion"></div>
-	<ul id="popupmenu">
-		<%= form_tag("/add_to_cart", id: "buyForm", method: "post") do %>
-		
-			<%= submit_tag("Add To Cart") %>
-		<% end %>
-	</ul>
+	<ul id="popupmenu"></ul>
 </section>
 
 <article id="tabtemplate" style="display:none"><span></span></article>  
 <div id="overlay" class="main_dark_overlay"></div>
 <li id="producttemplate" style="display: none">
-	<img/>
-	<span></span>
-	<%= label_tag(:num, ":") %>
-	<%= text_field_tag(:num, 1) %>
-	<%= hidden_field_tag(:product_id, "") %>
+	<%= form_tag("/add_to_cart", class: "form-inline", method: "post") do %>
+		<input name="product_id" type="hidden" value="" class="input-small"/>
+		<img/><span></span>: <input name="num" type="text" value="1" class="input-small"/>
+		<button name="commit" type="submit" class="btn">Add</button>
+	<% end %>
 </li>

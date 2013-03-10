@@ -28,7 +28,7 @@ HuntBritain::Application.routes.draw do
   match 'remove_from_cart' => 'sessions#remove_from_cart', :via => :post
   match 'update_cart' => 'sessions#update_cart', :via => :put
   match 'checkout' => 'sessions#checkout'
-  match 'payment_success' => 'sessions#payment_success'
+  match 'success' => 'sessions#success'
   
   match '/help', to: 'static_pages#help'
   match '/about', to: 'static_pages#about'
@@ -36,6 +36,7 @@ HuntBritain::Application.routes.draw do
   match '/signup', to: 'users#new'
   match '/signin', to: 'sessions#new'
   match '/signout', to: 'sessions#destroy', via: :delete
+  match '/identify', to: 'sessions#identify'
   
 
   # The priority is based upon order of creation:

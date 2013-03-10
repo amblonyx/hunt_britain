@@ -1,28 +1,26 @@
 <% provide(:title, @location.name) %>
 
-	<h1>Location: <%= @location.name %></h1>
+<h1>Location: <%= @location.name %></h1>
 
-	<div class="container">
-		<div class="row">
-			<div class="span10 offset1">
-				<section>
-					<h2>Location details</h2>
-					<%= render "location_table", obj: @location %>
-				</section>
-				<section>
-					<h2>Location data</h2>
-					<%= transform_xml("location", "#{@location.data_file}.xml").to_s.html_safe %>
-				</section>
-				<section>
-					<h2>Products: <%= @location.products.count %></h2>
-					<% if @products.any? %>
-						<%= render "shared/product_table", obj: @products %>
-					<% end %>	
-				</section>
-				<section>
-					<h2>Add new product</h2>
-					<%= render "shared/product_form", location: @location, product: @product %>
-				</section>
-			</div>
-		</div>
+<div class="row">
+	<div class="span10 offset1">
+		<section>
+			<h2>Location details</h2>
+			<%= render "location_table", obj: @location %>
+		</section>
+		<section>
+			<h2>Location data</h2>
+			<%= transform_xml("location", "#{@location.data_file}.xml").to_s.html_safe %>
+		</section>
+		<section>
+			<h2>Products: <%= @location.products.count %></h2>
+			<% if @products.any? %>
+				<%= render "shared/product_table", obj: @products %>
+			<% end %>	
+		</section>
+		<section>
+			<h2>Add new product</h2>
+			<%= render "shared/product_form", location: @location, product: @product %>
+		</section>
 	</div>
+</div>

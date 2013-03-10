@@ -1,13 +1,11 @@
 <% provide(:title, @user.name) %>
 
 <div class="row" >
-	<aside class="span4 offset1 well">
+	<aside class="span3 offset1 well">
+			<%= link_to "Log out", signout_path, method: "delete", class: "pull-right" %>
 		<section>
-			<h1>
-				<%= @user.name %><br/>
-				<%= @user.email %><br/>
-			</h1>
-			<%= link_to "Log out", signout_path, method: "delete" %>
+			<h1><%= @user.name %></h1>
+			<em><%= @user.email %></em>
 			<address>
 				<%= output_address_line(@user.address_1) %>
 				<%= output_address_line(@user.address_2) %>
@@ -17,6 +15,7 @@
 				<%= output_address_line(@user.country) %>
 				<%= output_phone(@user.phone) %>
 			</address>
+			<%= link_to "Edit my address", edit_user_path %><br/>
 		</section>
 	</aside>
 	<div class="span6">
@@ -54,6 +53,4 @@
 </div>
 
 
-
-<%= link_to "Change", edit_user_path %><br/>
 <%= link_to "Send welcome email", user_path( email: "welcome" ) %>

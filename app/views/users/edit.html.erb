@@ -1,11 +1,14 @@
 <% provide :title, 'Edit' %>
 
-	<h1>Update details</h1>
+	<h1>Update my details</h1>
 	<div class="row">
 		<div class="span6 offset3">
-			<%= form_for(@user) do |f| %>
+			<%= form_for(@user, html: { class:"form-horizontal well"} ) do |f| %>
 				<%= render 'contact_fields', f: f, confirm: "Confirm password" %>
-				<%= f.submit "Update", class: "btn btn-large btn-primary" %>
+				<div class="center">
+					<%= f.submit "Update", class: "btn btn-large btn-primary" %>
+					<%= submit_tag "Cancel", class: "btn btn-large" %>
+				</div>
 			<% end %>
 		</div>
 		

@@ -9,7 +9,9 @@
 </head>
 <body>
 	<%= render 'header' %>
-	<%= render 'topnote' %>
+	<div id="topnote" class="row">
+		<%= render 'topnote' %>
+	</div>
 	<% flash.each do |key, value| %>
 		<%= content_tag(:div, value, class: "alert alert-#{key}") %>
 	<% end %>
@@ -24,23 +26,37 @@
 		$("#overlay").hide()
 		$("#popup").hide()	
 	})
+	$('.closetopnote').click(function(){
+		$("#topnotebar li.activelink").removeClass("activelink")
+		$("#topnote").height(5)	
+	})
 
-	$('header nav li').click(function() {
+	$('#topnotebar ul li').click(function() {
+		var active = $("#topnotebar li.activelink")
+		
+		if( active.index() == -1 ) {
+			$(this).addClass("activelink")
+			
+		} else if( active.index() == $(this).index() ) {
+			$(this).removeClass("activelink")
+			
+		} else {
+			$(this).addClass("activelink")
+			active.removeClass("activelink")
+		}
+
 		var n = $(this).index()
 		
-		$("nav li").not($(this)).removeClass("activelink")
-		$(this).toggleClass("activelink")
-
 		if ( ! $(this).hasClass("activelink") ) {	
 			$("#topnote").height(5)	
-		}
-		else {
-			$(".panel:not(:eq("+n+"))").width(0)
-			$(".panel:eq("+n+")").width(1200)
+		} else {
+			$(".panel:not(:eq("+n+"))").hide()
+			$(".panel:eq("+n+")").show()
 			$("#topnote").height(300)	
 		}
+		
 	});
-
+	
 	function expandTab(tab) {
 		if ( tab.hasClass("tabopen") ){
 		} else {
