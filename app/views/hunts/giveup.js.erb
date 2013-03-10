@@ -1,0 +1,17 @@
+$("#giveup").hide()
+
+var clue = 'correct'
+if ($("#popup").attr("data-current") != clue) {
+
+	<% xml_doc = load_xml("product", "#{@hunt.product.data_file}.xml") %>
+	<% clue_node = xml_doc.xpath("//clues/clue[@number='#{@hunt.current_clue - 1}']") %>
+
+	$('#popup h2').text('The answer was...')
+	$('#popup p').text('<%= clue_node.xpath("answer").inner_html %>')
+	$('#popup a').text('Continue')
+		
+	$("#popup").attr("data-current", clue)
+}
+
+$("#overlay").show()
+$("#popup").show()

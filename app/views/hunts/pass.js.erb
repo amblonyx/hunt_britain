@@ -1,0 +1,11 @@
+var clue = 'pass'
+if ($("#giveup").attr("data-current") != clue) {
+
+	$('#giveup h2').text('Give up?')
+	$('#giveup p').text('Tried the hint? If you want to give up on this clue, click OK')
+		
+	$("#giveup").attr("data-current", clue)
+}
+
+$("#overlay").show()
+$("#giveup").show()

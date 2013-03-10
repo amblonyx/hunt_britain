@@ -1,25 +1,25 @@
 <% xml_doc = load_xml("product", "#{@hunt.product.data_file}.xml") %>
 
 <%# output_node = get_xml_node("product", "#{@hunt.product.data_file}.xml", "//clues/clue[@number='#{@hunt.current_clue}']/output/*") %>
-<% output_node = xml_doc.xpath("//clues/clue[@number='#{@hunt.current_clue}']/output/*") %>
+<% clue_node = xml_doc.xpath("//clues/clue[@number='#{@hunt.current_clue}']") %>
 
 <h3>Clue <%= @hunt.current_clue %></h3>
 
 <div class="row">
 	
-	<% output_node.each do |node| %>
+	<% clue_node.xpath("output/*").each do |node| %>
 		<p class="<%=node.name()%>"><%=node.name()%>: <%= node.inner_text.to_s.html_safe %></p>
 	<% end %>
 	
-	<%= form_for(@hunt, html: { class: "form-horizontal well" }) do |f| %>
+	<%= form_for(@hunt, remote: true, html: { class: "form-horizontal well" }) do |f| %>
 
 		<% if xml_doc.xpath("//style").inner_html == "elimination" %>
-			<% answers = five_answers(xml_doc) %>
+			<% answers = five_answers(xml_doc, clue_node.xpath("answer").first.get_attribute("id")) %>
 			<% answers.each do |ahash| %>
 			<div class="answer_set">
 				<div class="answer_btn">
-					<%# link_to ahash[:index], "answer/" + ahash{:id} %>
-					<%= f.submit ahash[:index], name: ahash[:id], class: "btn" %> 
+					<input class="btn" name="<%= ahash[:id].to_s %>" type="submit" value="<%= ahash[:index].to_s %>" />
+					<%# f.submit ahash[:index], name: ahash[:id], class: "btn" %> 
 				</div>
 				<div class="answer_text">
 					<%= ahash[:text] %>
@@ -31,13 +31,49 @@
 			<label for="answer">Answer</label>
 			<input id="answer" name="answer" size="30" type="text"/>			
 			<%= f.submit "Answer", name: "submit_answer", class: "btn" %>
-		<% end %>
+		<% end %>			
 			
 		<div id="buttonbar">
 			<%= f.submit "Hint", name: "submit_hint", class: "btn" %>		
-			<%= f.submit "Give up!", name: "submit_pass", class: "btn" %>		
 			<%= f.submit "Peek", name: "submit_peek", class: "btn" %>		
-			<%= f.submit "Pause", name: "submit_break", class: "btn" %>		
+			<%= f.submit "Give up!", name: "submit_pass", class: "btn" %>		
+			<%= f.submit "Pause", name: "submit_pause", class: "btn" %>		
 		</div>
+
+		<section id="giveup">
+			<h2></h2>
+			<p></p>
+			<%= f.submit "OK", name: "submit_giveup", class: "btn" %>		
+			<%= f.submit "Cancel", name: "submit_nogiveup", class: "btn" %>		
+		</section>
+
 	<% end %>
 </div>
+
+<section id="popup">
+	<h2></h2>
+	<p></p>
+	<a id="closepopup" href="#" class="btn"></a>
+</section>
+
+<div id="overlay" class="main_dark_overlay"></div>
+
+<script>
+	$('#closepopup').click(function(){
+		$("#overlay").hide()
+		$("#popup").hide()	
+		if ($("#popup").attr("data-current") == 'correct')
+		{
+			window.location.replace("<%= @hunt.id.to_s %>");
+		}
+	})
+	$('#okgiveup').click(function(){
+		$("#overlay").hide()
+		$("#giveup").hide()	
+		window.location.replace("<%= @hunt.id.to_s %>");
+	})
+	$('#cancelgiveup').click(function(){
+		$("#overlay").hide()
+		$("#giveup").hide()	
+	})
+</script>
