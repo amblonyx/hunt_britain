@@ -10,13 +10,11 @@ class HuntsController < ApplicationController
 		if params[:p] == "intro"
 			show_intro
 		elsif @hunt.completed?
-		
+			render "hunt_complete", layout: "hunt"
+		elsif @hunt.paused?
+			render "hunt_paused", layout: "hunt"
 		elsif @hunt.started?
-			if @hunt.current_status == "Passed"
-				render "hunt_answer", layout: "hunt"
-			else
-				render "hunt_clue", layout: "hunt"
-			end
+			render "hunt_clue", layout: "hunt"
 		elsif @hunt.team_name.blank?
 			render "set_team_name", layout: "hunt"
 		else
@@ -51,17 +49,48 @@ class HuntsController < ApplicationController
 				render 'set_team_name'
 			end		
 		elsif params[:submit_start_hunt]
-			start_hunt
+			@hunt.start
+			@hunt.save
 			redirect_to @hunt
+		elsif params[:submit_hint]
+			@hunt.add_penalty 2
+			@hunt.save
+			render "hint.js" 
 		elsif params[:submit_pass]
-			pass_on_clue
-			redirect_to @hunt		
+			render "pass.js" 
+		elsif params[:submit_giveup]
+			@hunt.pass_on_clue
+			@hunt.save
+			render "giveup.js"
+		elsif params[:submit_nogiveup]
+			render "nogiveup.js"		
+		elsif params[:submit_peek]
+			render "peek.js" 
+		elsif params[:submit_pause]
+			@hunt.pause_hunt
+			@hunt.save
+			render "reload.js"
 		elsif params[:submit_resume]
-			redirect_to @hunt				
+			@hunt.resume_hunt
+			@hunt.save
+			render "reload.js"
 		else
-			render "show"
+			f = File.open( XML_PATH + "products/#{@hunt.product.data_file}.xml" )
+			huntxml = Nokogiri::XML(f)
+			f.close
+			clue_node = huntxml.xpath("//clues/clue[@number='#{@hunt.current_clue}']")
+			if params[clue_node.xpath("answer").first.get_attribute("id").to_sym]
+				@hunt.mark_time
+				@hunt.next_clue
+				@hunt.save
+				render "answer.js"
+			else
+				@hunt.add_penalty 2		# 2 minutes for a wrong answer
+				@hunt.save
+				render "wrong.js"
+			end
 		end
-		
+
 	end
 	
 	def show_intro
@@ -74,22 +103,5 @@ class HuntsController < ApplicationController
 				@hunt.voucher_code = SecureRandom.hex(5) 
 			end
 		end
-		def start_hunt
-			@hunt.started = true
-			@hunt.started_at = Time.now
-			@hunt.current_clue = 1
-			@hunt.current_status = "Fresh"
-			
-			@hunt.paused = false
-			@hunt.completed = false
-			@hunt.time_taken = 0
-			@hunt.last_submitted = nil 
-			
-			@hunt.save
-		end
-		def pass_on_clue
-			@hunt.current_status = "Passed"
-			@hunt.last_submitted = Time.now 
-			@hunt.save
-		end
+
 end
