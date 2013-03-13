@@ -9,16 +9,34 @@ class SessionsController < ApplicationController
 		@user = User.new
 		if params[:guest_user]
 			if @user.is_valid_email?(params[:session][:email])
-				#remember_guest params[:session][:email]
-				#redirect_back_or "/cart"
-				redirect_to "/cart"		
-				
+				if params[:session][:address_1] 
+					if params[:session][:postcode] 
+						all_valid = true
+					else
+						flash[:error] = "Please enter a postcode"
+						all_valid = false
+					end 
+				else
+					flash[:error] = "Please enter an address"
+					all_valid = false
+				end
 			else
-				flash[:error] = "Invalid email"
-				hash = {from: "checkout"}
-				not_signed_in_user (hash)
+				flash[:error] = "Please enter a valid email"
+				all_valid = false
 			end			
-
+			if all_valid
+				session[:guest] = params[:session][:email]	# keep the guest email until ready to pay
+				session[:address_1] = params[:session][:address_1]
+				session[:address_2] = params[:session][:address_2]
+				session[:town] = params[:session][:town]
+				session[:county] = params[:session][:county]
+				session[:postcode] = params[:session][:postcode]
+				session[:country] = params[:session][:country]
+				redirect_back_or @user
+			else
+				hash = {from: "checkout"}	# need to keep track of where they came from
+				not_signed_in_user (hash)	# send them back to the sign-in form
+			end
 		else
 			user = User.find_by_user_name(params[:session][:user_name])
 			if user && user.authenticate(params[:session][:password]) 
@@ -53,8 +71,7 @@ class SessionsController < ApplicationController
 		pid = params[:product_id]
 		if params[:num] and params[:product_id]
 			matching = Product.where(id: pid)
-			if matching.length > 0
-				
+			if matching.length > 0				
 				cart_items = @cart.select { |item| item[:product_id] == pid }
 				if cart_items.length == 0 
 					@cart.push({ product_id: pid, num: params[:num].to_i})
@@ -97,9 +114,26 @@ class SessionsController < ApplicationController
 					@user = current_user
 				else
 					@user = guest_user
+					@user.save	# we are finally at the point where we must save the guest, so they can pay
+					current_user = @user
 				end
 				
 				@action = "checkout"
+
+#				if !has_address?
+#					@cart.each do |cart_item|
+#						product = Product.find(cart_item[:product_id])
+#						if product.format = "Paper"
+#							hash = {from: "checkout"}
+#							user_has_no_address (hash)
+#						end
+#					end
+#				end
+
+				# if we reach this point, we can trash the session stored guest
+				# so that if the guest continues shopping they won't have their email stored
+#				session.delete(:guest)
+				
 				paypal_params = {
 					business: 'huntbritain@gmail.com',
 					cmd: '_cart',
@@ -126,6 +160,13 @@ class SessionsController < ApplicationController
 				render "cart"
 			else
 				hash = {from: "checkout"}
+				# also must decide whether to require the address fields
+				@cart.each do |cart_item|
+					product = Product.find(cart_item[:product_id])
+					if product.format = "Paper"
+						hash[:addy] = "need"
+					end
+				end
 				not_signed_in_user (hash)
 			end
 		end

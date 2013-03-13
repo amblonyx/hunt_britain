@@ -1,0 +1,45 @@
+
+<div class="control-group">
+	<%= f.label :address_1, class: "control-label" %>
+	<div class="controls">
+		<%= f.text_field :address_1 %>
+	</div>
+</div>
+<div class="control-group">
+	<%= f.label :address_2, class: "control-label" %>
+	<div class="controls">
+		<%= f.text_field :address_2 %>
+	</div>
+</div>
+<div class="control-group">
+	<%= f.label :town, class: "control-label" %>
+	<div class="controls">
+		<%= f.text_field :town %>
+	</div>
+</div>
+<div class="control-group">
+	<%= f.label :county, class: "control-label" %>
+	<div class="controls">
+		<%= f.text_field :county %>
+	</div>
+</div>
+<div class="control-group">
+	<%= f.label :postcode, class: "control-label" %>
+	<div class="controls">
+		<%= f.text_field :postcode %>
+	</div>
+</div>
+<div class="control-group">
+	<%= f.label :country, class: "control-label" %>
+	<div class="controls">
+		<%= f.text_field :country %>
+	</div>
+</div>
+<% if !guest %>
+	<div class="control-group">
+		<%= f.label :phone, class: "control-label" %>
+		<div class="controls">
+			<%= f.text_field :phone %>
+		</div>
+	</div>
+<% end %>

@@ -34,15 +34,23 @@
 
 						<div class="form_group well">
 							Continue as guest
-							<p><small>We still need your email to send confirmation</small></p>
+							<p><small>We will need your email to send a confirmation <% if params[:addy] == "need" %>and your address to send the Treasure Hunt<% end %></small></p>
 
 							<div class="control-group">
 								<label class="control-label" for="session_email">Email</label>
 								<div class="controls">
 									<%= f.text_field :email %>
+								</div>
+							</div>
+							<% if params[:addy] == "need" %>
+								<%= render 'shared/contact_fields', f: f, guest: true %>
+							<% end %>
+							<div class="control-group">
+								<div class="controls">
 									<%= f.button "Continue as guest", name: "guest_user", class: "btn btn-primary" %>
 								</div>
 							</div>
+
 						</div>
 						
 					<% end %>
