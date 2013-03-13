@@ -8,20 +8,20 @@ class User < ActiveRecord::Base
 	
 	before_save do |user| 
 		if !user.guest?
-			user.email = user_name
+			user.email = user.user_name
 		else
 			user.user_name = SecureRandom.hex(10)
 			user.password = "password"
 			user.remember_token = "guest"
 		end
-		user.email = email.downcase 
+		user.email = user.email.downcase 
 	end
 	before_save :create_remember_token
 	
  	validates :user_name, presence: true, uniqueness: true
 	
-	with_options if: :not_guest? do |user|
-		validates :email, presence: true, format: {with: VALID_EMAIL_REGEX} 
+	with_options if: :guest? do |user|
+		user.validates :email, presence: true, format: {with: VALID_EMAIL_REGEX} 
 	end
 	
 	with_options if: :not_guest? do |user|
@@ -60,6 +60,7 @@ class User < ActiveRecord::Base
 		self.guest = true 	
 		self.remember_token = "guest"
 	end 
+	
 	def is_valid_email?(email)
 		(email =~ VALID_EMAIL_REGEX)
 	end

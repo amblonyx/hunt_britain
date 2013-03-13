@@ -9,14 +9,15 @@ module SessionsHelper
 		cookies[:remember_token] = "guest"
 	end
 	def identified?
-		!current_user.nil? || !cookies[:guest].blank?
+		!current_user.nil? || !session[:guest].blank?
 	end
 	def signed_in?
 		!current_user.nil? 
 	end
 	def guest_user
 		user = User.new
-		user.create_as_guest cookies[:guest]
+		user.create_as_guest session[:guest]
+		session.delete(:guest)	# so their email isn't stored if they leave the page
 		user
 	end
 	def correct_user?(user)
@@ -44,10 +45,10 @@ module SessionsHelper
 			redirect_to signin_path(params)#, notice: "Please sign in."
 		end
 	end
-	def user_has_no_address
+	def user_has_no_address(params)
 		unless has_address?
 			store_location
-			redirect_to edit_user_path, notice: "Please enter an address" 
+			redirect_to edit_user_path(params)#, notice: "Please enter an address" 
 		end
 	end
 	
