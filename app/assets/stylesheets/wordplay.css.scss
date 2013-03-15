@@ -1,23 +1,39 @@
+#wordplay {
+	position: absolute;
+	left: 320px;
+	top: 20px;
+	width: 400px;
+	.try {
+		position: relative;
+		margin: 0; 
+		padding: 0;
+		width: 400px;
+		left: 120px;
+		top: 100px;
+	}
+}
+
 #doyoulike {
 	position: absolute;
-	left: 400px;
-	top: 30px;
-	width: 400px;
+	left: 0px;
+	top: 0px;
+	width: 200px;
 	height: auto;
 	margin: 0; 
 	padding: 0;
-	
+
 	.question {
 		position: relative;
 		margin: 0; 
 		padding: 0;
 		width: 250px;
 	}
+	
 	.alternates {
 		position: relative;
 		text-align: right;
 		display: inline;
-		left: 100px;
+		left: 80px;
 		
 		img {
 			opacity: 0;
@@ -36,7 +52,7 @@
 				-ms-animation-delay: 3s; 
 				animation-delay: 3s; 
 				color: #6b889d;
-				margin-top: -60px;
+				margin-top: -55px;
 			}
 			&:nth-child(3) { 
 				-webkit-animation-delay: 6s; 
@@ -45,7 +61,7 @@
 				-ms-animation-delay: 6s; 
 				animation-delay: 6s; 
 				color: #6b739d;
-				margin-top: -120px;
+				margin-top: -50px;
 			}
 			&:nth-child(4) { 
 				-webkit-animation-delay: 9s; 
@@ -54,7 +70,7 @@
 				-ms-animation-delay: 9s; 
 				animation-delay: 9s; 
 				color: #7a6b9d;	
-				margin-top: -180px;
+				margin-top: -80px;
 			}
 		}
 	}

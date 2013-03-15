@@ -45,10 +45,15 @@ class UsersController < ApplicationController
 		@user = User.find(params[:id])
 		if @user.update_attributes(params[:user])
 			flash[:success] = "Profile updated"
-			#sign_in @user
-			redirect_to @user
+			# Back to show user, or to checkout if recording address from there
+			redirect_to(session[:return_to] || @user)
 		else
-			render 'edit'
+			if session[:return_to] == "checkout"
+				hash = {from: "checkout"}
+				render 'edit', params: hash, layout: "processing"
+			else
+				render 'edit'
+			end
 		end
 	end
   

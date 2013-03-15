@@ -38,7 +38,7 @@
 						<tr>
 							<th>Product Name</th>
 							<th>Product Code</th>
-							<th>Quantity</th>
+							<th colspan="2">Quantity</th>
 							<th>Price per unit</th>
 							<th>Total Price</th>
 							<th></th>
@@ -55,7 +55,10 @@
 								<td><%= product.product_code %></td>
 								<td>
 								<% if @action == "cart" %>
-									<%= text_field_tag "product[" + cart_item[:product_id] + "]", cart_item[:num] %>
+										<%= text_field_tag "product[" + cart_item[:product_id] + "]", cart_item[:num] %>
+									</td>
+									<td>
+										<%= submit_tag "Update", class: "btn btn-primary" %>
 								<% else %>
 									<%= cart_item[:num] %>
 								<% end %>
@@ -70,18 +73,12 @@
 							</tr>
 						<% end %>
 						<tr>  
-						  <td></td>
-						  <td></td>
-						  <td><strong>Grand Total:</strong></td>
+						  <td colspan="5"><strong>Grand Total:</strong></td>
 						  <td>£<%= "%.2f" % (total_price / 100.0) %></td>
 						  <td></td>
 						</tr>
 					<tbody>
-				</table>
-				
-				<% if @action == "cart" %>
-					<%= submit_tag "Update", class: "btn btn-large btn-primary" %>
-				<% end %>
+				</table>				
 			<% end %>
 
 

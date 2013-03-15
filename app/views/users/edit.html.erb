@@ -1,12 +1,20 @@
 <% provide :title, 'Edit' %>
 
+<% if params[:from] == "checkout" %>
+	<h1>Provide address</h1>
+<% else %>
 	<h1>Update my details</h1>
+<% end %>
 	<div class="row">
 		<div class="span6 offset3">
 			<%= form_for(@user, html: { class:"form-horizontal well"} ) do |f| %>
 				<%= render 'contact_fields', f: f, confirm: "Confirm password" %>
 				<div class="center">
+				<% if params[:from] == "checkout" %>
+					<%= f.submit "Continue", class: "btn btn-large btn-primary" %>
+				<% else %>
 					<%= f.submit "Update", class: "btn btn-large btn-primary" %>
+				<% end %>
 					<%= submit_tag "Cancel", class: "btn btn-large" %>
 				</div>
 			<% end %>

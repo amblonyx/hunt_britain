@@ -20,6 +20,9 @@ class User < ActiveRecord::Base
 	
  	validates :user_name, presence: true, uniqueness: true
 	
+	validates :postcode, presence: true, if: :have_address?
+	validates :address_1, presence: true, if: :have_postcode?
+	
 	with_options if: :guest? do |user|
 		user.validates :email, presence: true, format: {with: VALID_EMAIL_REGEX} 
 	end
@@ -64,10 +67,17 @@ class User < ActiveRecord::Base
 	def is_valid_email?(email)
 		(email =~ VALID_EMAIL_REGEX)
 	end
+
+	def have_address?
+		!self.address_1.blank?
+	end
 	
 	private
 	def not_guest?
 		!self.guest?
+	end
+	def have_postcode?
+		!self.postcode.blank?
 	end
 	def create_remember_token 
 		self.remember_token = SecureRandom.urlsafe_base64
