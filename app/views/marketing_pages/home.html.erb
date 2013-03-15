@@ -3,7 +3,7 @@
 		<% @locations.each do |loc| %>
 			<%= link_to "accordion/#{loc.id}", remote: true do %>
 				<li data-hunt="<%= loc.name %>">
-					<span class="placelabel"><%= loc.description %></span>
+					<span class="placelabel" style="background-color: <%= random_colour %>;"><%= loc.description %></span>
 					<span class="placename"><%= loc.description %></span>
 					<%= image_tag "places/"+loc.image %>
 				</li>

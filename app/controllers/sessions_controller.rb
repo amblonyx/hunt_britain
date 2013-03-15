@@ -1,25 +1,34 @@
 class SessionsController < ApplicationController
 	before_filter :load_cart
 	
-	def new
+	def new			
 		@user = User.new
+		if params[:from] == "checkout"
+			render layout: "processing"
+		else
+			render
+		end 
 	end
 	
 	def create
 		@user = User.new
 		if params[:guest_user]
 			if @user.is_valid_email?(params[:session][:email])
-				if params[:session][:address_1] 
-					if params[:session][:postcode] 
-						all_valid = true
+				if cart_needs_address
+					if !params[:session][:address_1].blank?
+						if !params[:session][:postcode].blank? 
+							all_valid = true
+						else
+							flash[:error] = "Please enter a postcode"
+							all_valid = false
+						end 
 					else
-						flash[:error] = "Please enter a postcode"
+						flash[:error] = "Please enter an address"
 						all_valid = false
-					end 
+					end
 				else
-					flash[:error] = "Please enter an address"
-					all_valid = false
-				end
+					all_valid = true
+				end 
 			else
 				flash[:error] = "Please enter a valid email"
 				all_valid = false
@@ -35,6 +44,9 @@ class SessionsController < ApplicationController
 				redirect_back_or @user
 			else
 				hash = {from: "checkout"}	# need to keep track of where they came from
+				if cart_needs_address
+					hash[:addy] = "need"
+				end 
 				not_signed_in_user (hash)	# send them back to the sign-in form
 			end
 		else
@@ -43,11 +55,17 @@ class SessionsController < ApplicationController
 				# SessionsHelper functions...
 				#	sign_in 1) sets the cookies remember_token  2) sets current_user
 				sign_in user
-				#	redirect_back_or 1) redirects to previously stored location OR default (user)
-				redirect_back_or user
+				if cart_needs_address && !user.have_address?
+					# session[:return_to] should already be set...?
+					hash = {from: "checkout", id: user.id.to_s}
+					redirect_to editdetails_path(hash)  #, notice: "Please sign in."				
+				else
+					#	redirect_back_or 1) redirects to previously stored location OR default (user)
+					redirect_back_or user
+				end
 			else
 				flash.now[:error] = "Invalid email/password combination"
-				render 'new'
+				render 'new', layout: "processing"
 			end
 		end
 	end
@@ -65,6 +83,7 @@ class SessionsController < ApplicationController
 			upload: 1,
 			return: '/payment_success',
 		}
+		render layout: "processing"
 	end
 	
 	def add_to_cart
@@ -101,7 +120,7 @@ class SessionsController < ApplicationController
 		consolidate_cart
 
 		@action = "cart"
-		render "cart"
+		render "cart", layout: "processing"
 		# redirect_to "/cart"
 	end
 
@@ -114,26 +133,30 @@ class SessionsController < ApplicationController
 					@user = current_user
 				else
 					@user = guest_user
+					if cart_needs_address
+						@user.address_1 = session[:address_1]
+						@user.address_2 = session[:address_2]
+						@user.town = session[:town]
+						@user.county = session[:county]
+						@user.postcode = session[:postcode]
+						@user.country = session[:country]
+					end if
 					@user.save	# we are finally at the point where we must save the guest, so they can pay
 					current_user = @user
 				end
 				
 				@action = "checkout"
 
-#				if !has_address?
-#					@cart.each do |cart_item|
-#						product = Product.find(cart_item[:product_id])
-#						if product.format = "Paper"
-#							hash = {from: "checkout"}
-#							user_has_no_address (hash)
-#						end
-#					end
-#				end
-
 				# if we reach this point, we can trash the session stored guest
 				# so that if the guest continues shopping they won't have their email stored
-#				session.delete(:guest)
-				
+				session.delete(:guest)
+				session.delete(:address_1)
+				session.delete(:address_2)
+				session.delete(:town)
+				session.delete(:county)
+				session.delete(:postcode)
+				session.delete(:country)
+
 				paypal_params = {
 					business: 'huntbritain@gmail.com',
 					cmd: '_cart',
@@ -157,16 +180,13 @@ class SessionsController < ApplicationController
 				
 				end
 				@paypal_link = "https://www.sandbox.paypal.com/cgi-bin/webscr?" + paypal_params.to_query
-				render "cart"
+				render "cart", layout: "processing"
 			else
 				hash = {from: "checkout"}
 				# also must decide whether to require the address fields
-				@cart.each do |cart_item|
-					product = Product.find(cart_item[:product_id])
-					if product.format = "Paper"
-						hash[:addy] = "need"
-					end
-				end
+				if cart_needs_address
+					hash[:addy] = "need"
+				end 
 				not_signed_in_user (hash)
 			end
 		end
@@ -183,6 +203,16 @@ class SessionsController < ApplicationController
 			session[:cart] = Array.new
 		end
 		@cart = session[:cart]
+	end
+
+	def cart_needs_address
+		@cart.each do |cart_item|
+			product = Product.find(cart_item[:product_id])
+			if product.format = "Paper"
+				return true
+			end
+		end
+		return false
 	end
 	
 	def consolidate_cart
