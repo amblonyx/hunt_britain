@@ -53,12 +53,12 @@
 							<tr>
 								<td><%= product.name %></td>
 								<td><%= product.product_code %></td>
-								<td>
+								<td class="merge-right">
 								<% if @action == "cart" %>
-										<%= text_field_tag "product[" + cart_item[:product_id] + "]", cart_item[:num] %>
+										<%= text_field_tag "product[" + cart_item[:product_id] + "]", cart_item[:num], class: "input-small" %>
 									</td>
-									<td>
-										<%= submit_tag "Update", class: "btn btn-primary" %>
+									<td class="merge-left">
+										<%= submit_tag "Update", class: "btn" %>
 								<% else %>
 									<%= cart_item[:num] %>
 								<% end %>
