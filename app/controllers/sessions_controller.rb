@@ -117,7 +117,7 @@ class SessionsController < ApplicationController
 				cart_items.first[:num] = value
 			end 
 		end
-		consolidate_cart
+#		consolidate_cart
 
 		@action = "cart"
 		render "cart", layout: "processing"

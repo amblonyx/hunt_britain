@@ -44,18 +44,14 @@ if ($("#popup").attr("data-current") != hunt) {
 	
 	var $form = $("#buyForm")
 	<% if @location.products.any? %>
+		var $product = $("#producttemplate").clone(true).appendTo($("#popupmenu"))
+		var $sel = $product.find("select")
 		<% @location.products.each do |prod| %>
-
-			var imgtag = '<%= image_tag "Buy" + prod.format + ".png" %>'
-			var $product = $("#producttemplate").clone(true).appendTo($("#popupmenu"))
-			$product.find("img").attr("src", imgtag)
-			$product.find("span").html("<%= prod.name %>")
-			$product.find("input[name='product_id']").attr("value", "<%= prod.id %>")
-
-			$product.attr("id", "")
-			$product.show()
-			
+			opt = "<option value='<%= prod.id %>'><%= prod.name %></option>"
+			$sel.append(opt)			
 		<% end %>
+		$product.attr("id", "")
+		$product.show()
 		$("#popupmenu").show()
 	<% else %>
 		$("#popupmenu").hide()
