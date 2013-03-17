@@ -1,7 +1,6 @@
 ﻿<% provide(:title, "Shopping cart") %>
 
 <h1>Shopping Cart</h1>
-
 <div class="row">
 	<div class="span10 offset1">
 	
@@ -81,14 +80,15 @@
 				</table>				
 			<% end %>
 
-
-			<%= link_to "Continue shopping", root_path %>
-			
-			<% if @action == "cart" %>
-				| <%= link_to "Checkout", checkout_path %>
-			<% else %>
-				| <%= link_to "Pay with Paypal", @paypal_link %>
-			<% end %>
+			<div class="pull-right">
+				<%= link_to "Continue shopping", root_path, class: "btn" %>
+				
+				<% if @action == "cart" %>
+					<%= link_to "Checkout", checkout_path, class: "btn btn-primary" %>
+				<% else %>
+					<%= link_to "Pay with Paypal", @paypal_link, class: "btn btn-primary" %>
+				<% end %>
+			</div>
 		<% end %>
 	</div>
 </div>

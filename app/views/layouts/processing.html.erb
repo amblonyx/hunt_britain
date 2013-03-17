@@ -16,9 +16,6 @@
 				<% if signed_in? %>
 					<li><%= link_to "My account", user_path(current_user) %></li>
 					<li><%= link_to "Log out", signout_path, method: "delete" %></li>
-				<% else %>
-					<li><%= link_to "Sign up", signup_path %></li>
-					<li><%= link_to "Log in", signin_path %></li>
 				<% end %>
 			</ul>
 		</div>

@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 	before_filter :check_for_cancel, :only => [:create, :update]
-
+	before_filter :clear_state
 	 
 	def index
 		@users = User.paginate(page: params[:page])
@@ -15,44 +15,63 @@ class UsersController < ApplicationController
 
 	def new
 		@user = User.new
+		render layout: "processing"
 	end
 	
 	def create
 		@user = User.new(params[:user])
 
-		respond_to do |format|
-			if @user.save 
+		if @user.save 
+			# Tell the UserMailer to send a welcome Email after save
+			#-----UserMailer.welcome_email(@user).deliver
+			sign_in @user
+			flash[:success] = "Welcome to Hunt Britain"
+			redirect_back_or(@user)
+		else
+			render 'new'
+		end
 
+#		respond_to do |format|
+#			if @user.save 
 				# Tell the UserMailer to send a welcome Email after save
 				#-----UserMailer.welcome_email(@user).deliver
-		 
-				sign_in @user
-				flash[:success] = "Welcome to the Sample App"
-				format.html { redirect_back_or(@user) }
-				format.json { render json: @user, status: :created, location: @user }
-				
-			else
-				format.html { render action: 'new' }
-				format.json { render json: @user.errors, status: :unprocessable_entity }			end
-		end
+#				sign_in @user
+#				flash[:success] = "Welcome to Hunt Britain"
+#				format.html { redirect_back_or(@user) }
+#				format.json { render json: @user, status: :created, location: @user }
+#			else
+#				format.html { render action: 'new' }
+#				format.json { render json: @user.errors, status: :unprocessable_entity }			
+#			end
+#		end
 	end
 
 	def edit
 		@user = User.find(params[:id])
+		set_state	# need to keep location and addy for upd
+		render layout: "processing"
 	end
 	
 	def update
 		@user = User.find(params[:id])
-		if @user.update_attributes(params[:user])
-			flash[:success] = "Profile updated"
-			# Back to show user, or to checkout if recording address from there
-			redirect_to(session[:return_to] || @user)
+		if need_address? && params[:user][:address_1].blank? && params[:user][:postcode].blank?
+			flash[:error] = "Please provide an address"
+			set_state	# keep location and need address
+			render 'edit', layout: "processing" 
 		else
-			if session[:return_to] == "checkout"
-				hash = {from: "checkout"}
-				render 'edit', params: hash, layout: "processing"
+			if @user.update_attributes(params[:user])
+				flash[:success] = "Profile updated"
+				# I don't know why, but update_attributes seems to sign out the user, so...
+				sign_in @user
+				# Back to show user, or to checkout if recording address from there
+				redirect_back_or @user
 			else
-				render 'edit'
+				set_state
+				if in_checkout?
+					render 'edit', layout: "processing"
+				else
+					render 'edit'
+				end
 			end
 		end
 	end
@@ -79,7 +98,11 @@ class UsersController < ApplicationController
 	private
 	def check_for_cancel
 		if params[:commit] == "Cancel"
-			redirect_back_or current_user
+#			if action = "create"
+#				redirect_back_or root_path
+#			else
+				redirect_back_or current_user
+#			end
 		end
 	end
 

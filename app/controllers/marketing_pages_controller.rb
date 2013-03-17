@@ -1,5 +1,7 @@
 class MarketingPagesController < ApplicationController
 	before_filter :load_cart
+	before_filter :clear_state
+
 	def home
 		@locations = Location.all
 		render layout: "marketing"		
