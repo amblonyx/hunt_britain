@@ -1,12 +1,14 @@
-<h1>Sign in</h1>
-
+<% if in_checkout? %>
+	<h1>Enter your details</h1>
+<% else %>
+	<h1>Sign in</h1>
+<% end %>
 	<div class="row">
 		<div class="span8 offset2">
 			<% if signed_in? %>
 				<%= render 'shared/already_signed_in', signin: true, signup: false %>
 			<% else %>
-				<% qstring = { from: params[:from] } %>
-				<%= form_for(:session, url: sessions_path(qstring), html: { class: "form-horizontal" } ) do |f| %>
+				<%= form_for(:session, url: "sessions", html: { class: "form-horizontal" } ) do |f| %>
 					<%= render "shared/error_messages", object: @user %>
 
 					<div class="form_group well">
@@ -26,15 +28,15 @@
 							</div>
 						</div>		
 
-						<%= link_to "Register with Hunt Britain", signup_path(qstring) %>
+						<%= link_to "Register with Hunt Britain", signup_path %>
 		
 					</div>
 
-					<% if params[:from] == "checkout" %>
+					<% if in_checkout? %>
 
 						<div class="form_group well">
 							Continue as guest
-							<p><small>We will need your email to send a confirmation <% if params[:addy] == "need" %>and your address to send the Treasure Hunt<% end %></small></p>
+							<p><small>We will need your email to send a confirmation <% if need_address? %>and your address to send the Treasure Hunt<% end %></small></p>
 
 							<div class="control-group">
 								<label class="control-label" for="session_email">Email</label>
@@ -42,7 +44,7 @@
 									<%= f.text_field :email %>
 								</div>
 							</div>
-							<% if params[:addy] == "need" %>
+							<% if need_address? %>
 								<%= render 'shared/contact_fields', f: f, guest: true %>
 							<% end %>
 							<div class="control-group">
