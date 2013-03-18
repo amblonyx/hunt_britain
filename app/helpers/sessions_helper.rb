@@ -32,6 +32,14 @@ module SessionsHelper
 	def signed_in?
 		!current_user.nil? 
 	end
+	
+	def pick_layout
+		if current_user.nil? || !current_user.admin?
+			return "application"
+		else
+			return "admin"
+		end
+	end
 #	def make_guest_user
 #		user = User.new
 #		user.create_as_guest session[:guest]

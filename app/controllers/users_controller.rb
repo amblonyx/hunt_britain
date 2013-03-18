@@ -1,9 +1,13 @@
 class UsersController < ApplicationController
-	before_filter :check_for_cancel, :only => [:create, :update]
+#	before_filter :check_for_cancel, :only => [:create, :update]
+	before_filter :signed_in_user, only: [:index, :edit, :update, :destroy]
+	before_filter :correct_user, only: [:edit, :update]
+	before_filter :admin_user, only: [:index, :destroy]
 	before_filter :clear_state
 	 
 	def index
 		@users = User.paginate(page: params[:page])
+		render layout: pick_layout
 	end
 	
 	def show 
@@ -11,14 +15,20 @@ class UsersController < ApplicationController
 		if params[:email] == "welcome"
 			send_welcome_email
 		end
+		render layout: pick_layout
 	end
 
 	def new
 		@user = User.new
-		render layout: "processing"
+		render layout: pick_layout
 	end
 	
 	def create
+		if params[:commit] == "Cancel"
+			redirect_back_or(root_path) 
+			return
+		end
+
 		@user = User.new(params[:user])
 
 		if @user.save 
@@ -28,7 +38,7 @@ class UsersController < ApplicationController
 			flash[:success] = "Welcome to Hunt Britain"
 			redirect_back_or(@user)
 		else
-			render 'new'
+			render 'new', layout: pick_layout
 		end
 
 #		respond_to do |format|
@@ -49,15 +59,20 @@ class UsersController < ApplicationController
 	def edit
 		@user = User.find(params[:id])
 		set_state	# need to keep location and addy for upd
-		render layout: "processing"
+		render layout: pick_layout
 	end
 	
 	def update
+		if params[:commit] == "Cancel"
+			redirect_back_or(current_user) 
+			return
+		end
+		
 		@user = User.find(params[:id])
 		if need_address? && params[:user][:address_1].blank? && params[:user][:postcode].blank?
 			flash[:error] = "Please provide an address"
 			set_state	# keep location and need address
-			render 'edit', layout: "processing" 
+			render 'edit', layout: pick_layout 
 		else
 			if @user.update_attributes(params[:user])
 				flash[:success] = "Profile updated"
@@ -67,11 +82,7 @@ class UsersController < ApplicationController
 				redirect_back_or @user
 			else
 				set_state
-				if in_checkout?
-					render 'edit', layout: "processing"
-				else
-					render 'edit'
-				end
+				render 'edit', layout: pick_layout
 			end
 		end
 	end
@@ -96,14 +107,28 @@ class UsersController < ApplicationController
 	end
 	
 	private
+	
+	def signed_in_user
+		redirect_to signin_path, notice: "Please sign in" unless signed_in?
+	end
+	
+	def correct_user
+		@user = User.find(params[:id])
+		redirect_to root_path unless correct_user?(@user)
+	end
+	
+	def admin_user
+		redirect_to root_path unless current_user.admin?
+	end
+	
 	def check_for_cancel
-		if params[:commit] == "Cancel"
+#		if params[:commit] == "Cancel"
 #			if action = "create"
 #				redirect_back_or root_path
 #			else
-				redirect_back_or current_user
+#				redirect_back_or current_user
 #			end
-		end
+#		end
 	end
 
 end

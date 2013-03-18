@@ -1,15 +1,11 @@
 class SessionsController < ApplicationController
 	before_filter :load_cart
-	before_filter :clear_state
+	before_filter :clear_state	# in app helper
 
 	def new			
 		@user = User.new
 		set_state	# keep state if we're here from checkout
-		if in_checkout?
-			render layout: "processing"
-		else
-			render
-		end 
+		render layout: pick_layout
 	end
 	
 	def create
@@ -135,7 +131,7 @@ class SessionsController < ApplicationController
 				
 				end
 				@paypal_link = "https://www.sandbox.paypal.com/cgi-bin/webscr?" + paypal_params.to_query
-				render "cart", layout: "processing"
+				render "cart", layout: pick_layout
 			else
 				# also must decide whether to require the address fields
 				if cart_needs_address
@@ -161,7 +157,7 @@ class SessionsController < ApplicationController
 			upload: 1,
 			return: '/payment_success',
 		}
-		render layout: "processing"
+		render layout: pick_layout
 	end
 	
 	def add_to_cart
