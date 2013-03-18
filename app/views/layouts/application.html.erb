@@ -8,19 +8,32 @@
   <%= render 'layouts/shim' %>
 </head>
 <body>
-	<%= render 'layouts/header' %>
-	<div class="container">
-		<% flash.each do |key, value| %>
-			<%= content_tag(:div, value, class: "alert alert-#{key}") %>
-		<% end %>
-		<%= yield %>
-		<%= debug(params) if Rails.env.development? %>	
-		<% if Rails.env.development? %>
-			<% if signed_in? %>
-				<%= "User: #{current_user.email}" %>
-			<% end %>
-		<% end %>
+<header>
+	<%= link_to image_tag("THBLogo.png", alt: "Treasure Hunt Britain", id: "logo", class: "pull-left"), root_path %>
+	<div class="navbar pull-right" id="appbar">
+		<div class="navbar-inner">
+			<ul class="nav">
+				<% if signed_in? %>
+					<li><%= link_to "My account", user_path(current_user) %></li>
+					<li><%= link_to "Log out", signout_path, method: "delete" %></li>
+				<% end %>
+			</ul>
+		</div>
 	</div>
-	<%= render 'layouts/footer' %>
+</header>
+<div id="topnote"></div>
+<div class="container" id="process_step">
+	<% flash.each do |key, value| %>
+		<%= content_tag(:div, value, class: "alert alert-#{key}") %>
+	<% end %>
+	<%= yield %>
+	<%= debug(params) if Rails.env.development? %>	
+	<% if Rails.env.development? %>
+		<% if signed_in? %>
+			<%= "User: #{current_user.email}" %>
+		<% end %>
+	<% end %>
+</div>
+<%= render 'layouts/footer' %>
 </body>
 </html>

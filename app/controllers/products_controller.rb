@@ -1,14 +1,19 @@
 class ProductsController < ApplicationController
+	before_filter :admin_user, only: [:destroy, :edit, :update, :create, :new]
+
 	def index
 		@products = Product.paginate(page: params[:page])
 		@product = Product.new
+		render layout: pick_layout
 	end
 
 	def show
 		@product = Product.find(params[:id])
+		render layout: pick_layout
 	end
 
 	def new
+		render layout: pick_layout
 	end
 	
 	def create
@@ -18,8 +23,14 @@ class ProductsController < ApplicationController
 			flash[:success] = "The new product has been saved"
 			redirect_to @product.location
 		else
-			render 'new'
+			render 'new', layout: pick_layout
 		end
+	end
+
+	private
+	
+	def admin_user
+		redirect_to root_path unless current_user.admin?
 	end
 
 end
