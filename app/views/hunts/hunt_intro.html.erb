@@ -1,67 +1,75 @@
 <% xml_doc = load_xml("product", "#{@hunt.product.data_file}.xml") %>
-<h1>Before you begin</h1>
+<% if @hunt.started? %>
+	<h1>Hunt information</h1>
+<% else %>
+	<h1>Before you begin</h1>
+<% end %>
 
 <div class="row">
-	<%= get_xml_node("product", "#{@hunt.product.data_file}.xml", "//outcome/intro").inner_text.to_s.html_safe %>
+	<% if @hunt.started? %>
+		<p>Take a minute to review the instructions and tips for successful hunting</p>
+	<% else %>
+		<%= get_xml_node("product", "#{@hunt.product.data_file}.xml", "//outcome/intro").inner_text.to_s.html_safe %>
+	<% end %>
 	
+	<div class="accordion" id="condenser">
 	<% if xml_doc.xpath("//style").inner_html == "elimination" %>
 		<% answer_node = xml_doc.xpath("//outcome/selection/*") %>
-		<div class="accordion" id="condenser">
-			<div class="accordion-group">
-				<div class="accordion-heading">
-					<a class="btn btn-block" data-toggle="collapse" data-parent="#condenser" href="#collapseOne">See the quotes</a>
-				</div>
-				<div id="collapseOne" class="accordion-body collapse">
-					<div class="accordion-inner">
-						<ul>
-						<% answer_node.each do |node| %>
-							<li><%= node.inner_text.to_s.html_safe %></li>
-						<% end %>
-						</ul>
-					</div>
-				</div>
+		<div class="accordion-group">
+			<div class="accordion-heading">
+				<a class="btn btn-inverse btn-block" data-toggle="collapse" data-parent="#condenser" href="#collapseOne">See the quotes</a>
 			</div>
-			<div class="accordion-group">
-				<div class="accordion-heading">
-					<a class="btn btn-block" data-toggle="collapse" data-parent="#condenser" href="#collapseTwo">Instructions</a>
+			<div id="collapseOne" class="accordion-body collapse">
+				<div class="accordion-inner">
+					<ul>
+					<% answer_node.each do |node| %>
+						<li><%= node.inner_text.to_s.html_safe %></li>
+					<% end %>
+					</ul>
 				</div>
-				<div id="collapseTwo" class="accordion-body collapse">
-					<div class="accordion-inner">
-<p>On the next page you will see the first clue. Follow the directions and find the answer - 
-once you have chosen the correct answer you will see the next clue. You also have the following options:
-<ul><li><strong>Hint</strong> - you can get a hint if you can't find the answer, but this comes with a 2 minute penalty</li>
-<li><strong>Peek</strong> - you can peek ahead at the next directions, this is helpful if you think you may have walked too far</li>
-<li><strong>Give up!</strong> - if you really are stuck, you can pass on this clue and see the answer, but this comes with a 5 minute penalty</li>
-<li><strong>Pause</strong> - pause the hunt, for a tea break! This stops the timer, though it does cost 2 minutes so don't use it too often</li>
-<ul>
-Oh, and you should know that choosing a wrong answer costs 2 minutes, so make sure you choose carefully.</p>
-					</div>
-				</div>
-			</div>
-		</div>
-	<% else %>
-		<div id="containCollapse">
-			<button type="button" class="btn" data-toggle="collapse" data-target="#instruct">
-<p>On the next page you will see the first clue. Follow the directions and find the answer - 
-once you have entered the correct answer you will see the next clue. You also have the following options:
-<ul><li><strong>Hint</strong> - you can get a hint if you can't find the answer, but this comes with a 2 minute penalty</li>
-<li><strong>Peek</strong> - you can peek ahead at the next directions, this is helpful if you think you may have walked too far</li>
-<li><strong>Give up!</strong> - if you really are stuck, you can pass on this clue and see the answer, but this comes with a 5 minute penalty</li>
-<li><strong>Pause</strong> - pause the hunt, for a tea break! This stops the timer, though it does cost 2 minutes so don't use it too often</li>
-<ul>
-Oh, and you should know that entering a wrong answer costs 2 minutes, so make sure you choose carefully.</p>
-			</button>
-			<div id="instruct" class="collapse">
-				How to play the hunt
 			</div>
 		</div>
 	<% end %>
+		<div class="accordion-group">
+			<div class="accordion-heading">
+				<a class="btn btn-inverse btn-block" data-toggle="collapse" data-parent="#condenser" href="#collapseTwo">Instructions</a>
+			</div>
+			<div id="collapseTwo" class="accordion-body collapse">
+				<div class="accordion-inner">
+<p>On the next page you will see the first clue. Follow the directions and find the answer - 
+once you have chosen the correct answer you will continue to the next clue. You also have the following options:</p>
+<ul><li><strong>Hint</strong> - you can get a hint if you can't find the answer, but this comes with a 2 minute penalty</li>
+<li><strong>Peek</strong> - you can peek ahead at the next directions, this is helpful if you think you may have walked too far</li>
+<li><strong>Give up!</strong> - if you really are stuck, you can pass on this clue and see the answer, but this comes with a 5 minute penalty</li>
+<li><strong>Pause</strong> - pause the hunt, for a tea break! This stops the timer, though it does cost 2 minutes so don't use it too often</li>
+</ul>
+<p>Oh, and you should know that choosing a wrong answer costs 2 minutes, so make sure you choose carefully.</p>
+				</div>
+			</div>
+		</div>
+		<div class="accordion-group">
+			<div class="accordion-heading">
+				<a class="btn btn-inverse btn-block" data-toggle="collapse" data-parent="#condenser" href="#collapseThree">Hunting Tips</a>
+			</div>
+			<div id="collapseThree" class="accordion-body collapse">
+				<div class="accordion-inner">
+<ul><li>Look ahead at the next direction, you'll know if you reach it that you've gone too far and need to go back for the clue</li>
+<li>Watch out for scaffolding and roadworks, they may have hidden a clue (in which case you may have no choice but to pass on it)</li>
+<li>Please let us know if any clues have vanished or become hidden, it will help us keep our hunts bang up-to-date</li>
+<li>Have fun!</li></ul>
+				</div>
+			</div>
+		</div>
+	</div>
 
-	<%= form_for(@hunt, html: { class: "form-horizontal well" }) do |f| %>
+	<%= form_tag("/hunt_trail/" + @hunt.id.to_s, class: "form", method: "post") do %>
+	<%# form_for(@hunt, html: { class: "form" }) do |f| %>
 		<% if @hunt.started? %>
-			<%= f.submit "Close", name: "submit_resume", class: "btn btn-block btn-primary" %>		
+			<input class="btn btn-block btn-primary" name="submit_continue" type="submit" value="Continue hunting" />			
+			<%# f.submit "Continue hunting", name: "submit_continue", class: "btn btn-block btn-primary" %>		
 		<% else %>
-			<%= f.submit "Start the hunt!", name: "submit_start_hunt", class: "btn btn-block btn-primary" %>
+			<input class="btn btn-block btn-primary" name="submit_start_hunt" type="submit" value="Start the hunt!" />			
+			<%# f.submit "Start the hunt!", name: "submit_start_hunt", class: "btn btn-block btn-primary" %>
 		<% end %>	
 	<% end %>
 	

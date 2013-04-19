@@ -108,30 +108,91 @@ input, textarea, select, .uneditable-input {
 	@include box_sizing;
 }
 .answer_set {
-	border: 1px blue solid;
+	/*border: 1px blue solid;*/
 	height: 100%;
 	padding: 0px;
-	margin: 0px;
+	width: 250px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 1px;
+	margin-bottom: 1px;
+}
+.centre-buttons {
+	margin-left: auto;
+	margin-right: auto;
 }
 .answer_btn {
-	border: 1px green solid;
-	text-align: left;
+	/*border: 1px green solid;*/
 	padding-left: 0px;
 	margin-left: 0px;
 	float: left;
 }
 .answer_text {
-	border: 1px red solid;
+	/*border: 1px red solid;*/
 	text-align: left;
 	font-size: 0.8em;
 	float: right;
 	width: 80%;
 }
 .answer_clear {
-	border: 1px black solid;
+	/*border: 1px black solid;*/
 	font-size: 1px;
 	height: 1px;
 	clear: both;
+}
+.btn-answer {
+	width: 250px !important;
+}
+#answerbox {
+	margin: 5px;
+	padding: 10px;
+	border: 1px solid #1111ff;
+	box-shadow: 1px 2px 2px #4444ff inset;
+	border-radius: 4px;
+	background-color: #6666ff;
+}
+#buttonbar {
+	margin: 5px;
+	padding: 10px;
+	border: 1px solid #009900;
+	box-shadow: 1px 2px 2px #00aa00 inset;
+	border-radius: 4px;
+	background-color: #00cc00;
+	a {
+		font-size: 0.9em;
+		color: white;
+	}
+}
+#buttonset {
+	margin-left: auto;
+	margin-right: auto;
+}
+.cluepic {
+	width: 70%;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 15px;
+}
+centered {
+	text-align: center;
+}
+.badge-large {
+	line-height: 18px;
+	font-size: 1.2em;
+}
+.inner {
+	float:left;
+	position:relative;
+	left:50%;
+}
+.center {
+	float:left;
+	position:relative;
+	left:-50%;
+}
+.outer {
+	position:relative;
+	overflow:hidden;
 }
 
 #error_explanation {

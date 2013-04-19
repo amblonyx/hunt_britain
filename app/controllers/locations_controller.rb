@@ -33,6 +33,23 @@ class LocationsController < ApplicationController
 		end
 	end
 
+	def edit
+		@location = Location.find(params[:id])
+		@products = @location.products.where(['id is not null'])		
+		@product = @location.products.new
+		render layout: pick_layout	
+	end
+
+	def update
+		@location = Location.find(params[:id])
+		if @location.update_attributes(params[:location])
+			flash[:success] = "Update successful"
+			redirect_to @location
+		else
+			render 'edit', layout: pick_layout
+		end
+	end
+
 	private
 	
 	def admin_user

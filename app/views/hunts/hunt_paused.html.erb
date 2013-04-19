@@ -4,10 +4,11 @@
 <h3>Take A Break</h3>
 
 <div class="row">
-	<p>Hope you are enjoying your Treasure Hunt. Enjoy a well-earned break and click "Continue" when you're ready to get going again with clue <%= @hunt.current_clue %>.</p>
-	<%= form_for(@hunt, remote: true, html: { class: "form-horizontal well" }) do |f| %>
+	<p>Hope you are enjoying your Treasure Hunt. Enjoy a well-earned break and click "Continue hunt" when you're ready to get going again with clue <%= @hunt.current_clue %>.</p>
+	<%= form_tag("/hunt_trail/" + @hunt.id.to_s, remote: true, class: "form", method: "post") do %>
+	<%# form_for(@hunt, remote: true, html: { class: "form" }) do |f| %>
 		<div id="buttonbar">
-			<%= f.submit "Continue", name: "submit_resume", class: "btn" %>		
+			<input class="btn btn-block btn-primary" name="submit_resume" type="submit" value="Continue hunt" />			
 		</div>
 	<% end %>
 </div>

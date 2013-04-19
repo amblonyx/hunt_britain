@@ -1,62 +1,66 @@
 <% xml_doc = load_xml("product", "#{@hunt.product.data_file}.xml") %>
-
-<%# output_node = get_xml_node("product", "#{@hunt.product.data_file}.xml", "//clues/clue[@number='#{@hunt.current_clue}']/output/*") %>
 <% clue_node = xml_doc.xpath("//clues/clue[@number='#{@hunt.current_clue}']") %>
-
 <h3>Clue <%= @hunt.current_clue %></h3>
-
 <div class="row">
-	
 	<% clue_node.xpath("output/*").each do |node| %>
-		<p class="<%=node.name()%>"><%=node.name()%>: <%= node.inner_text.to_s.html_safe %></p>
+		<% if node.name() == "image" %>
+			<div class="cluepic">
+				<%= image_tag @hunt.product.data_file + "/tablet/" + node.inner_text.to_s, class: "img-polaroid" %>
+			</div>
+		<% else %>
+			<p class="<%=node.name()%>"><%= node.inner_text.to_s.html_safe %></p>
+		<% end %>
 	<% end %>
-	
-	<%= form_for(@hunt, remote: true, html: { class: "form-horizontal well" }) do |f| %>
 
+	<%= form_tag("/hunt_trail/" + @hunt.id.to_s, remote: true, class: "form", method: "post") do %>
+	<%# form_for(@hunt, remote: true, html: { class: "form" }) do |f| %>
+		<div id="answerbox">
 		<% if xml_doc.xpath("//style").inner_html == "elimination" %>
 			<% answers = five_answers(xml_doc, clue_node.xpath("answer").first.get_attribute("id")) %>
 			<% answers.each do |ahash| %>
 			<div class="answer_set">
-				<div class="answer_btn">
-					<input class="btn" name="<%= ahash[:id].to_s %>" type="submit" value="<%= ahash[:index].to_s %>" />
-				</div>
-				<div class="answer_text">
-					<%= ahash[:text] %>
-				</div>
+				<div class="answer_btn"><input class="btn" name="<%= ahash[:id].to_s %>" type="submit" value="<%= ahash[:index].to_s %>" /></div>
+				<div class="answer_text"><%= ahash[:text] %></div>
 				<div class="answer_clear">&nbsp;</div>
 			</div>
+			<% end %>
+		<% elsif xml_doc.xpath("//style").inner_html == "multichoice" %>
+			<% clue_node.xpath("options/*").each do |node| %>
+				<input class="btn btn-block" name="<%= node.inner_text.to_s.html_safe %>" type="submit" value="<%= node.inner_text.to_s.html_safe %>" />
 			<% end %>
 		<% else %>
 			<label for="answer">Answer</label>
 			<input id="answer" name="answer" size="30" type="text"/>			
-			<%= f.submit "Answer", name: "submit_answer", class: "btn" %>
+			<input class="btn" name="submit_answer" type="submit" value="Answer" />			
 		<% end %>			
-			
-		<div id="buttonbar">
-			<%= f.submit "Hint", name: "submit_hint", class: "btn" %>		
-			<%= f.submit "Peek", name: "submit_peek", class: "btn" %>		
-			<%= f.submit "Give up!", name: "submit_pass", class: "btn" %>		
-			<%= f.submit "Pause", name: "submit_pause", class: "btn" %>		
 		</div>
-
+		<div id="buttonbar">
+			<div class="btn-group">
+				<input class="btn" name="submit_hint" type="submit" value="Hint" />			
+				<input class="btn" name="submit_peek" type="submit" value="Peek" />			
+				<input class="btn" name="submit_pass" type="submit" value="Give up!" />			
+				<input class="btn" name="submit_pause" type="submit" value="Pause" />			
+			</div>
+			<br/><a href="/hunts/<%= @hunt.id.to_s %>?p=intro" class="whitelink">Instructions</a>
+		</div>
 		<section id="giveup">
 			<h2></h2>
 			<p></p>
-			<%= f.submit "OK", name: "submit_giveup", class: "btn" %>		
-			<%= f.submit "Cancel", name: "submit_nogiveup", class: "btn" %>		
+			<div class="outer"><div class="inner"><div class="center">
+				<input class="btn" name="submit_giveup" type="submit" value="OK" />			
+				<input class="btn" name="submit_nogiveup" type="submit" value="Cancel" />			
+			</div></div></div>
 		</section>
-
 	<% end %>
 </div>
-
 <section id="popup">
 	<h2></h2>
 	<p></p>
+	<div class="outer"><div class="inner"><div class="center">
 	<a id="closepopup" href="#" class="btn"></a>
+	</div></div></div>
 </section>
-
 <div id="overlay" class="main_dark_overlay"></div>
-
 <script>
 	$('#closepopup').click(function(){
 		$("#overlay").hide()

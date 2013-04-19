@@ -1,5 +1,18 @@
 module HuntsHelper
 
+	def hunt_time(hunt)
+	
+		days = (hunt.time_taken/86400).floor
+		hours = ((hunt.time_taken - (days * 86400))/3600).floor
+		minutes = ((hunt.time_taken - (days * 86400) - (hours * 3600))/60).floor
+		output = hours.to_s + " hours " + minutes.to_s + " minutes"
+		if days > 0
+			output = days.to_s + " days " + output
+		end
+		return output
+		
+	end
+	
 	def five_answers(xml, correct)	
 		# Put the answers (except the correct one) in an array and get four random ones
 		a = xml.xpath("//outcome/selection/option[@id!='" + correct + "']")
