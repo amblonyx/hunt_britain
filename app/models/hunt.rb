@@ -51,6 +51,12 @@ class Hunt < ActiveRecord::Base
 	end
 	def next_clue
 		self.current_clue = self.current_clue + 1
+		f = File.open( XML_PATH + "products/#{self.product.data_file}.xml" )
+		huntxml = Nokogiri::XML(f)
+		f.close
+		if self.current_clue > huntxml.xpath("//number_of_clues").inner_text.to_i
+			self.completed = true
+		end
 	end
 	def pass_on_clue
 		self.current_status = "Passed"

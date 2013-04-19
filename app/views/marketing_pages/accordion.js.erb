@@ -47,7 +47,7 @@ if ($("#popup").attr("data-current") != hunt) {
 		var $product = $("#producttemplate").clone(true).appendTo($("#popupmenu"))
 		var $sel = $product.find("select")
 		<% @location.products.each do |prod| %>
-			opt = "<option value='<%= prod.id %>'><%= prod.name %></option>"
+			opt = "<option value='<%= prod.id %>'><%= prod.name %> - £<%= prod.price %></option>"
 			$sel.append(opt)			
 		<% end %>
 		$product.attr("id", "")

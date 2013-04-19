@@ -23,9 +23,9 @@
 <div id="overlay" class="main_dark_overlay"></div>
 <li id="producttemplate" style="display: none">
 	<%= form_tag("/add_to_cart", class: "form-inline", method: "post") do %>
-		<select name="product_id" value="Choose a hunt" class="input"/>
+		<select name="product_id" value="Choose a hunt" class="input-large"/>
 		</select>
-		<span>Quantity</span>: <input name="num" type="text" value="1" class="input-small"/>
+		<input name="num" type="hidden" value="1"/>
 		<button name="commit" type="submit" class="btn">Buy</button>
 	<% end %>
 </li>

@@ -2,15 +2,6 @@
 <%= form_for([location, product], html: { class: "form-horizontal well" }) do |f| %>
 	<%= render 'shared/error_messages', object: f.object %>
 
-	<% if location.nil? %>
-		<div class="control-group">
-			<%= f.label :location_id, class: "control-label" %>
-			<div class="controls">
-				<%= f.select :location_id, Location.all.collect { |loc| [loc.name, loc.id] } %>
-			</div>
-		</div>
-	<% end %>
-
 	<div class="control-group">
 		<%= f.label :name, class: "control-label" %>
 		<div class="controls">
@@ -43,7 +34,7 @@
 		</div>
 	</div>
 	<div class="center">
-		<%= f.submit "Create product", class: "btn btn_large btn_primary" %>
+		<%= f.submit "Commit", class: "btn btn_large btn_primary" %>
 	</div>
 <% end %>
 </div>

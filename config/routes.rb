@@ -5,20 +5,18 @@ HuntBritain::Application.routes.draw do
 	resources :purchases do
 		resources :purchase_items
 	end
-#	member do
-#		get :following, :followers
-#	end
   end
   resources :sessions, only: [:new, :create, :destroy]
-#  resources :microposts, only: [:create, :destroy]
 
-	resources :locations do
-		resources :products do
-			resources :hunts
-		end
+  resources :locations do
+	resources :products do
+		resources :hunts
 	end
-	resources :products 
-	resources :hunts
+  end
+  
+  resources :products 
+  
+  resources :hunts
 	
   root to: 'marketing_pages#home'
   
@@ -29,6 +27,8 @@ HuntBritain::Application.routes.draw do
   match 'update_cart' => 'sessions#update_cart', :via => :put
   match 'checkout' => 'sessions#checkout'
   match 'success' => 'sessions#success'
+  match 'hunt_home/:id', to: 'hunts#hunt_home'
+  match 'hunt_trail/:id', to: 'hunts#hunt_trail', :via => :post
   
   match '/help', to: 'static_pages#help'
   match '/about', to: 'static_pages#about'
@@ -39,7 +39,6 @@ HuntBritain::Application.routes.draw do
   match '/signout', to: 'sessions#destroy', via: :delete
   match '/identify', to: 'sessions#identify'
   
-
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
