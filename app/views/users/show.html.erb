@@ -47,6 +47,25 @@
 		
 		<section>
 			<h2>Hunt Library</h2>
+			<table class="table table-bordered table-striped">
+				<thead>
+					<tr>
+						<th>Hunt</th>
+						<th>Voucher</th>
+						<th>Status</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% @user.hunts.each do |hunt| %>
+						<tr>  
+						  <td><%= hunt.product.name %></td>
+						  <td><%= link_to hunt.voucher_code, "/hunt_login?voucher=" + hunt.voucher_code %></td>
+						  <td><%= status_string(hunt) %></td>
+						</tr>			
+					<% end %>
+
+				<tbody>
+			</table>
 		</section>
 	</div>
 	

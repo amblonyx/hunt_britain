@@ -3,8 +3,12 @@ class MarketingPagesController < ApplicationController
 	before_filter :clear_state
 
 	def home
-		@locations = Location.all
-		render layout: "marketing"		
+		if params.has_key?(:voucher)
+			redirect_to '/hunt_login?voucher=' + params[:voucher]
+		else
+			@locations = Location.all
+			render layout: "marketing"				
+		end 
 	end
 	
 	def accordion

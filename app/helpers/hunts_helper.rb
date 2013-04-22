@@ -1,5 +1,34 @@
 module HuntsHelper
 
+	# let and set...  @current_hunt is local variable
+	def current_hunt=(hunt)
+		@current_hunt = hunt
+	end
+	
+	def current_hunt
+		# if current_hunt is NOT nil, set it using voucher
+		@current_hunt ||= Hunt.find_by_voucher_code(cookies[:voucher_code])
+	end
+
+	def sign_in_voucher(hunt)
+		cookies.permanent[:voucher_code] = hunt.voucher_code
+		self.current_hunt = hunt
+	end
+
+	def correct_hunt?(hunt)
+		hunt == current_hunt
+	end
+
+	def status_string(hunt)
+		if hunt.completed?
+			"Completed " +  l(hunt.last_submitted, format: :short)
+		elsif hunt.started?
+			"Started " + l(hunt.started_at, format: :short)
+		else
+			"Not started"
+		end
+	end
+
 	def hunt_time(hunt)
 	
 		days = (hunt.time_taken/86400).floor

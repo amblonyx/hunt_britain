@@ -1,22 +1,24 @@
 ﻿<div class="row">
-<%= form_for([hunt], html: { class: "form-horizontal well" }) do |f| %>
-	<%= render 'shared/error_messages', object: f.object %>
+	<div class="span8 offset2">
+		<%= form_for([hunt], html: { class: "form-horizontal well" }) do |f| %>
+			<%= render 'shared/error_messages', object: f.object %>
 
-	<%= f.label :product_id %>
-	<%= f.select :product_id, Product.all.collect { |prod| [prod.name, prod.id] } %>
-	
-	<%= f.label :user_id %>
-	<%= f.text_field :user_id %>
+			<%= f.label :product_id %>
+			<%= f.select :product_id, Product.all.collect { |prod| [prod.name, prod.id] } %>
+			
+			<%= f.label :user_id %>
+			<%= f.text_field :user_id %> (optional)
 
-	<%= f.label :voucher_code %> 
-	<%= f.text_field :voucher_code %>
+			<%= f.label :voucher_code %> 
+			<%= f.text_field :voucher_code %> (if left empty, a random 10-digit code will be generated)
 
-	<%= f.label :team_name %>
-	<%= f.text_field :team_name %>
+			<%= f.label :team_name %>
+			<%= f.text_field :team_name %> (optional)
 
-	<%= f.label :email %>
-	<%= f.text_field :email %>
-	
-	<%= f.submit "Commit", class: "btn btn_large btn_primary" %>
-
-<% end %>
+			<%= f.label :email %>
+			<%= f.text_field :email %> (optional)
+			
+			<%= f.submit "Commit", class: "btn btn_large btn_primary" %>
+		<% end %>
+	</div>
+</div>

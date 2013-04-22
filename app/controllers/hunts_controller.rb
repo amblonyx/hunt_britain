@@ -1,5 +1,5 @@
 class HuntsController < ApplicationController
-before_filter :admin_user, only: [:index, :edit, :create, :new]
+	before_filter :admin_user, only: [:index, :edit, :create, :new]
 	
 	def index
 		@hunts = Hunt.paginate(page: params[:page])
@@ -41,9 +41,35 @@ before_filter :admin_user, only: [:index, :edit, :create, :new]
 		end
 	end
 	
+	def hunt_login
+		if params.has_key?(:voucher)
+			voucher = params[:voucher]
+			@hunt = Hunt.find_by_voucher_code(voucher)
+			if @hunt
+				sign_in_voucher(@hunt)
+				redirect_to '/hunt_home/' + @hunt.id.to_s
+				return
+			else
+				flash[:error] = "There is an error with this voucher"
+			end
+		else
+			@hunt = Hunt.new
+			render "hunt_login"
+		end
+	end
+	
 	def hunt_home
-		@hunt = Hunt.find(params[:id])
-		
+		@hunt = Hunt.find_by_id(params[:id])
+		if @hunt.nil?
+			flash[:error] = "Invalid hunt"
+			redirect_to hunt_login_path
+			return
+		end
+		unless correct_hunt?(@hunt)
+			redirect_to hunt_login_path
+			return
+		end
+
 		if params[:p] == "intro"	# this is for showing instructions
 			show_intro
 		elsif @hunt.completed?
@@ -61,18 +87,18 @@ before_filter :admin_user, only: [:index, :edit, :create, :new]
 
 	def hunt_trail
 		@hunt = Hunt.find(params[:id])
-
+		
 		if params[:submit_team_name]
 			if @hunt.update_attributes(params[:hunt])
 				flash[:success] = "Hunt details updated"
-				redirect_to @hunt
+				redirect_to '/hunt_home/' + @hunt.id.to_s
 			else
 				render 'set_team_name'
 			end		
 		elsif params[:submit_start_hunt]
 			@hunt.start
 			@hunt.save
-			redirect_to @hunt
+			redirect_to '/hunt_home/' + @hunt.id.to_s
 		elsif params[:submit_hint]
 			@hunt.add_penalty 2
 			@hunt.save
@@ -96,7 +122,7 @@ before_filter :admin_user, only: [:index, :edit, :create, :new]
 			@hunt.save
 			render "reload.js"
 		elsif params[:submit_continue]	# this is used if they re-view the instructions then continue
-			redirect_to @hunt
+			redirect_to '/hunt_home/' + @hunt.id.to_s
 		else	# it is an attempted answer, so check it
 			f = File.open( XML_PATH + "products/#{@hunt.product.data_file}.xml" )
 			huntxml = Nokogiri::XML(f)
@@ -131,5 +157,5 @@ before_filter :admin_user, only: [:index, :edit, :create, :new]
 	def admin_user
 		redirect_to root_path unless current_user.admin?
 	end
-	
+
 end

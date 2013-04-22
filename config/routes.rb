@@ -27,6 +27,7 @@ HuntBritain::Application.routes.draw do
   match 'update_cart' => 'sessions#update_cart', :via => :put
   match 'checkout' => 'sessions#checkout'
   match 'success' => 'sessions#success'
+  match 'hunt_login', to: 'hunts#hunt_login'
   match 'hunt_home/:id', to: 'hunts#hunt_home'
   match 'hunt_trail/:id', to: 'hunts#hunt_trail', :via => :post
   

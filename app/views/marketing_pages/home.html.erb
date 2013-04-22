@@ -16,16 +16,18 @@
 	<a id="closepopup" href="#"><%= image_tag "Close.png", alt: "Close popup" %></a>
 	<h2></h2>
 	<div id="accordion"></div>
-	<ul id="popupmenu"></ul>
+	<ul id="popupmenu">
+		<li id="producttemplate">
+			<%= form_tag("/add_to_cart", class: "form-inline", method: "post") do %>
+				<select name="product_id" value="Choose a hunt" class="input-large"/>
+				</select>
+				<input name="num" type="hidden" value="1"/>
+				<button name="commit" type="submit" class="btn">Buy</button>
+			<% end %>
+		</li>
+	</ul>
 </section>
 
 <article id="tabtemplate" style="display:none"><span></span></article>  
 <div id="overlay" class="main_dark_overlay"></div>
-<li id="producttemplate" style="display: none">
-	<%= form_tag("/add_to_cart", class: "form-inline", method: "post") do %>
-		<select name="product_id" value="Choose a hunt" class="input-large"/>
-		</select>
-		<input name="num" type="hidden" value="1"/>
-		<button name="commit" type="submit" class="btn">Buy</button>
-	<% end %>
-</li>
+
