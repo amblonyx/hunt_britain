@@ -162,10 +162,12 @@ header {
 	margin: 10px 0;
 	list-style: none;
 	position: relative;
-	text-align: left;
+	text-align: center;
 	font-size: 14px;
 	line-height: 16px;
-	padding-left: 100px;
+	select {
+		width: 500px;
+	}
 	input {
 		width: 30px;
 	}

@@ -72,6 +72,10 @@ class User < ActiveRecord::Base
 		!self.address_1.blank?
 	end
 	
+	def has_voucher?(voucher)
+		hunts.find_by_voucher_code(voucher)
+	end
+	
 	private
 	def not_guest?
 		!self.guest?

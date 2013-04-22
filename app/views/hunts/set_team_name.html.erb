@@ -1,7 +1,7 @@
 <h1>Set team name</h1>
 
 <div class="row">
-<%= form_for(@hunt, html: { class: "form-horizontal well" }) do |f| %>
+<%= form_for(@hunt, url: "/hunt_trail/"+@hunt.id.to_s , method: :post, html: { class: "form-horizontal well" }) do |f| %>
 	<%= render 'shared/error_messages', object: f.object %>
 
 	<%= f.label :team_name %>
@@ -12,3 +12,4 @@
 	
 	<%= f.submit "Set", name: "submit_team_name", class: "btn btn_large btn_primary" %>
 <% end %>
+</div>

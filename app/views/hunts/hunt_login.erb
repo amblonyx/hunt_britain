@@ -1,0 +1,12 @@
+<h1>Log into a hunt I have already purchased</h1>
+
+<div class="row">
+	<div class="span8 offset2">
+		<%= form_tag( "/hunt_login", html: { class: "form-horizontal" } ) do %>
+			<%= label_tag "voucher", "Voucher code" %>
+			<%= text_field_tag "voucher" %>
+			
+			<%= submit_tag "Go", class: "btn btn_large btn_primary" %>
+		<% end %>
+	</div>
+</div>
