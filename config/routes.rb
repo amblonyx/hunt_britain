@@ -21,6 +21,7 @@ HuntBritain::Application.routes.draw do
   root to: 'marketing_pages#home'
   
   match 'accordion/:id', to: 'marketing_pages#accordion'
+  match '/feedback', to: 'marketing_pages#feedback', via: :post
   match 'cart' => 'sessions#cart'
   match 'add_to_cart' => 'sessions#add_to_cart', :via => :post
   match 'remove_from_cart' => 'sessions#remove_from_cart', :via => :post
@@ -31,9 +32,11 @@ HuntBritain::Application.routes.draw do
   match 'hunt_home/:id', to: 'hunts#hunt_home'
   match 'hunt_trail/:id', to: 'hunts#hunt_trail', :via => :post
   
-  match '/help', to: 'static_pages#help'
-  match '/about', to: 'static_pages#about'
-  match '/contact', to: 'static_pages#contact'
+  match '/faq', to: 'marketing_pages#faq'
+  match '/about', to: 'marketing_pages#about'
+  match '/contact', to: 'marketing_pages#contact'
+  match '/copyright', to: 'marketing_pages#copyright'
+
   match '/signup', to: 'users#new'
   match '/editdetails', to: 'users#edit'
   match '/signin', to: 'sessions#new'

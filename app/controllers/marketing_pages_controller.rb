@@ -18,6 +18,53 @@ class MarketingPagesController < ApplicationController
 			format.js  { render "accordion.js" }
 		end
 	end
+
+	def feedback 
+		if !params[:honey].blank? 
+			# BOT ALERT!
+			#flash[:error] = "Die BOT!"
+			redirect_to root_path
+		else
+			if(!params[:name].blank? && !params[:email].blank? && !params[:message].blank?)
+				#-- FEEDBACK EMAIL ONLY ENABLED FOR PRODUCTION
+				if Rails.env.production?
+					UserMailer.feedback_email(params[:name], params[:email], params[:message]).deliver
+				end 
+				flash[:success] = "Thanks for sending us a feedback.  We'll get back to you!"
+				redirect_to root_path
+			else
+				@feedback_name = params[:name]
+				@feedback_email = params[:email]
+				@feedback_message = params[:message]
+				@mode = "feedback"
+				
+				flash[:error] = "Please fill in all the fields"
+				@locations = Location.all
+				render "home", layout: "marketing"
+			end
+		end
+	end
+	
+	def faq
+		@info = "faq"
+		@title = "FAQ" 
+		render "info", layout: "marketing"
+	end
+	def about
+		@info = "about"
+		@title = "About Us" 
+		render "info", layout: "marketing"
+	end
+	def contact
+		@info = "contact"
+		@title = "Contact Us" 
+		render "info", layout: "marketing"
+	end
+	def copyright
+		@info = "copyright"
+		@title = "Copyright" 
+		render "info", layout: "marketing"
+	end
 	
 	private
 	def load_cart
@@ -26,4 +73,5 @@ class MarketingPagesController < ApplicationController
 		end
 		@cart = session[:cart]
 	end
+
 end

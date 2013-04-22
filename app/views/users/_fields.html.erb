@@ -1,4 +1,4 @@
-<%= render 'shared/error_messages', object: f.object %>
+<%#= render 'shared/error_messages', object: f.object %>
 
 	<% err =  f.object.errors[:name].any? ? "error" : "" %>
 	<div class="control-group <%= err %>">
@@ -51,3 +51,4 @@
 			<% end %>
 		</div>
 	</div>
+	

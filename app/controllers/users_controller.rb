@@ -3,6 +3,7 @@ class UsersController < ApplicationController
 	before_filter :signed_in_user, only: [:index, :edit, :update, :destroy]
 	before_filter :correct_user, only: [:edit, :update]
 	before_filter :admin_user, only: [:index, :destroy]
+	before_filter :load_cart
 	before_filter :clear_state
 	 
 	def index
@@ -25,6 +26,11 @@ class UsersController < ApplicationController
 	
 	def create
 		if params[:commit] == "Cancel"
+			redirect_back_or(root_path) 
+			return
+		end
+		if !params[:honey].blank?
+			flash[:error] = "Are you a BOT?"
 			redirect_back_or(root_path) 
 			return
 		end
@@ -131,4 +137,10 @@ class UsersController < ApplicationController
 #		end
 	end
 
+	def load_cart
+		if not session.has_key? :cart
+			session[:cart] = Array.new
+		end
+		@cart = session[:cart]
+	end
 end

@@ -9,6 +9,12 @@ class SessionsController < ApplicationController
 	end
 	
 	def create
+		if !params[:honey].blank?
+			# BOT alert!
+			flash[:error] = "Are you a BOT?"
+			redirect_to root_path
+			return
+		end
 		@user = User.new
 		if params[:guest_user]
 			if @user.is_valid_email?(params[:session][:email])
