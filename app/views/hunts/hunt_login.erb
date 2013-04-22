@@ -1,12 +1,17 @@
-<h1>Log into a hunt I have already purchased</h1>
+<h1>Start Treasure Hunting</h1>
 
 <div class="row">
 	<div class="span8 offset2">
 		<%= form_tag( "/hunt_login", html: { class: "form-horizontal" } ) do %>
-			<%= label_tag "voucher", "Voucher code" %>
-			<%= text_field_tag "voucher" %>
-			
-			<%= submit_tag "Go", class: "btn btn_large btn_primary" %>
+			<%= label_tag "voucher", "Enter voucher code" %>
+			<input id="voucher" name="voucher" type="text" class="input-text" />
+			<input id="donotenter" name="donotenter" type="text" class="input-honey" />
+			<%= submit_tag "Go", class: "btn btn-primary" %>
 		<% end %>
 	</div>
+	<p>You will find your voucher code on your confirmation email.</p>
+	<ul><li>If you have an account you can also access your hunt directly from My Account.</li>
+	<li>If you are playing a team game, the organiser should give you your voucher code.</li>
+	<li>If you have lost your voucher code, please contact us using the feedback form and tell us your email address so that we can find your record.</li></ul>
+	<p><%= link_to "Return to Treasure Hunt Britain", root_path %></p>
 </div>

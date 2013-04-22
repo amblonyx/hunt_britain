@@ -11,6 +11,9 @@
  *= require_self
  */
 
+/* Overrides of bootstrap variables */
+$baseFontSize: 30px;
+
 @import "bootstrap";
 @import "bootstrap-responsive";
 
@@ -25,15 +28,18 @@ $grayMediumLight: #eaeaea;
 
 /* universal */
 html {
-	overflow-y: scroll;
+/*	overflow-y: scroll;*/
 }
 body {
 }
+.row {
+	margin: 10px;
+}
 section {
-	overflow: auto;
+/*	overflow: auto;*/
 }
 textarea {
-	resize: vertical;
+/*	resize: vertical;*/
 }
 .center {
 	text-align: center;
@@ -47,52 +53,71 @@ h1, h2, h3, h4, h5, h6 {
 	line-height: 1;
 }
 h1 {
-	font-size: 1.5em;
-	letter-spacing: 0px;
-	margin-bottom: 10px;
-	text-align: left;
-}
-h2 {
-	font-size: 1.2em;
-	margin-bottom: 8px;
-	font-weight: normal;
-	color: $grayLight;
-}	
-p {
-	font-size: 1.1em;
-	line-height: 1.7em;
-}
-/* header */
-header {
-	height: 50px;
-	background-color: black;
+	font-size: 1.25em;
+	font-weight: bold;
 	color: white;
 	text-align: center;
-	#huntname {
-		/*border: 1px red solid;*/
-		font-size: 1.2em;
+}
+h3 {
+/*	display: inline;*/
+	font-size: 1.0em;
+	text-align: center;
+	font-weight: normal;
+	color: #444444;
+	#cluelabel {
 		font-weight: bold;
-		width: 100%;
-		margin-top: 15px;
-		display: block;
+		font-size: 0.6em;
+	}
+	#cluenumber {
+		font-size: 1.4em;
+	}
+}
+.blob {
+	width: 2.5em;
+	height: 2.5em;
+	line-height: 0.8em;
+	margin-bottom: 10px;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#f7f7f7), to(#e7e7e7));
+	background-image: -webkit-linear-gradient(top, #f7f7f7, #e7e7e7); 
+	background-image: -moz-linear-gradient(top, #f7f7f7, #e7e7e7); 
+	background-image: -ms-linear-gradient(top, #f7f7f7, #e7e7e7); 
+	background-image: -o-linear-gradient(top, #f7f7f7, #e7e7e7); 
+/*	border: 1px solid gray;*/
+	box-shadow: 0px 3px 8px #aaaaaa, 0px 2px 3px #ffffff inset;
+	border-radius: 50%;
+	background-color: #f7f7f7;
+}		
+p, li {
+	line-height: 1.4em;
+}
+
+/* header */
+header {
+	height: 2em;
+	background-color: black;
+	color: white;
+	.left {
+		float:left;
+	}
+	.right {
+		float:right;
+	}
+	.middle {
+		padding-top: 1px;
 	}
 	#team {
-		/*border: 1px blue solid;*/
 		font-size: 0.8em;
-		fint-weight: bold;
-		float: right;
 		margin-right: 5px;
 		margin-top: 3px;
-	}
-	#teamlabel {
-		color: red;
+		#teamlabel {
+			color: $grayLight;
+		}
 	}
 	#logo {
-		width: 40px;
-		float: left;
-		margin-left: 5px;
-		margin-top: 5px;
-
+		width: 1.6em;
+		/*float: left;*/
+		margin-left: 0.2em;
+		margin-top: 0.2em;
 		&:hover {
 			color: white;
 			text-decoration: none;
@@ -100,48 +125,22 @@ header {
 	}
 }
 /* forms */
+.btn {
+	height: 1.8em;
+}
+.input-text {
+	margin-top: 0.4em;
+	height: 1.8em !important;
+}
+.input-honey {
+	display: none !important;
+}
 input, textarea, select, .uneditable-input {
 	border: 1px solid #bbb;
 	padding: 10px;
-	height: auto;
+	height: 1.8em;
 	margin-bottom: 15px;
 	@include box_sizing;
-}
-.answer_set {
-	/*border: 1px blue solid;*/
-	height: 100%;
-	padding: 0px;
-	width: 250px;
-	margin-left: auto;
-	margin-right: auto;
-	margin-top: 1px;
-	margin-bottom: 1px;
-}
-.centre-buttons {
-	margin-left: auto;
-	margin-right: auto;
-}
-.answer_btn {
-	/*border: 1px green solid;*/
-	padding-left: 0px;
-	margin-left: 0px;
-	float: left;
-}
-.answer_text {
-	/*border: 1px red solid;*/
-	text-align: left;
-	font-size: 0.8em;
-	float: right;
-	width: 80%;
-}
-.answer_clear {
-	/*border: 1px black solid;*/
-	font-size: 1px;
-	height: 1px;
-	clear: both;
-}
-.btn-answer {
-	width: 250px !important;
 }
 #answerbox {
 	margin: 5px;
@@ -163,12 +162,33 @@ input, textarea, select, .uneditable-input {
 		color: white;
 	}
 }
-#buttonset {
+.answer_set {
+	height: 100%;
+	padding: 0px;
+	width: 250px;
 	margin-left: auto;
 	margin-right: auto;
+	margin-top: 1px;
+	margin-bottom: 1px;
+	.answer_btn {
+		padding-left: 0px;
+		margin-left: 0px;
+		float: left;
+	}
+	.answer_text {
+		text-align: left;
+		font-size: 0.8em;
+		float: right;
+		width: 80%;
+	}
+	.answer_clear {
+		font-size: 1px;
+		height: 1px;
+		clear: both;
+	}
 }
 .cluepic {
-	width: 70%;
+	width: 65%;
 	margin-left: auto;
 	margin-right: auto;
 	margin-bottom: 15px;
@@ -180,6 +200,7 @@ centered {
 	line-height: 18px;
 	font-size: 1.2em;
 }
+/* For centering pairs of buttons etc */
 .inner {
 	float:left;
 	position:relative;
@@ -212,6 +233,7 @@ footer {
 	padding-top: 5px;
 	border-top: 1px solid $grayMediumLight;
 	color: $grayLight;
+	font-size: 0.7em;
 	a {
 		color: $gray;
 		&:hover {
@@ -227,19 +249,6 @@ footer {
 		li {
 			float: left;
 			margin-left: 10px;
-		}
-	}
-}
-/* users index */
-.users {
-	list-style: none;
-	margin: 0;
-	li {
-		overflow: auto;
-		padding: 10px 0;
-		border-top: 1px solid $grayLighter; 
-		&:last-child {
-			border-bottom: 1px solid $grayLighter;
 		}
 	}
 }

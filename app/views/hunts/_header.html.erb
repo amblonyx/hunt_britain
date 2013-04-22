@@ -1,11 +1,19 @@
 <header>
-		<%= image_tag "THBSm.png", id: "logo" %>
-		<span id="team">
-			<span id="teamlabel">Team </span>
-			<%= @hunt.team_name %>
-		</span>
-		<span id="huntname">
-			<%= @hunt.product.location.name %>
-		</span>
-	<%#= render "shared/hunt_table", obj: @hunt %>
+		<div class="left"><%= image_tag "THBSm.png", id: "logo" %></div>
+		<% if !@hunt.id %>
+			<div class="middle">
+				<h1>Treasure Hunt Britain</h1>
+			</div>
+		<% else %>
+			<div class="right">
+			<% if @hunt.team_name.length > 0 %>
+				<span id="team"><span id="teamlabel">Team<br/></span>
+					<%= @hunt.team_name %>
+				</span>
+			<% end %>
+			</div>
+			<div class="middle">
+				<h1><%= @hunt.product.location.name %></h1>
+			</div>
+		<% end %>
 </header>
