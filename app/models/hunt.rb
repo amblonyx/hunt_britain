@@ -46,7 +46,11 @@ class Hunt < ActiveRecord::Base
 	end
 	def mark_time
 		thetime = Time.now
-		self.time_taken = self.time_taken + thetime.to_i - self.last_submitted.to_i
+		thediff = thetime.to_i - self.last_submitted.to_i
+		if thediff > 1800	# after 30 minutes we assume they've lost connection or meant to pause
+			thediff = 1800
+		end
+		self.time_taken = self.time_taken + thediff
 		self.last_submitted = thetime 			
 	end
 	def next_clue

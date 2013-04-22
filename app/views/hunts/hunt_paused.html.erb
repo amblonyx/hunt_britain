@@ -8,7 +8,7 @@
 	<%= form_tag("/hunt_trail/" + @hunt.id.to_s, remote: true, class: "form", method: "post") do %>
 	<%# form_for(@hunt, remote: true, html: { class: "form" }) do |f| %>
 		<div id="buttonbar">
-			<input class="btn btn-block btn-primary" name="submit_resume" type="submit" value="Continue hunt" />			
+			<input class="btn btn-block" name="submit_resume" type="submit" value="Continue hunt" />			
 		</div>
 	<% end %>
 </div>

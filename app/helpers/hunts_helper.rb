@@ -41,6 +41,30 @@ module HuntsHelper
 		return output
 		
 	end
+
+	def peek_text(clue_node)
+		found_dir = false
+		peek_text = "blah"	# for some reason we need a value in here to begin with
+		clue_node.xpath("output/*").each do |node|
+			if node.name() == "direction"	# first node should always be direction
+				if found_dir		# two directions in a row, just return first
+					return "peek_text"
+				else
+					peek_text = node.inner_text.to_s.html_safe
+					found_dir = true
+					#return peek_text
+				end 
+			else
+				if node.name() == "image" # won't be the first node so don't worry
+					peek_text = peek_text.to_s + " [image]"
+				end
+				if found_dir
+					return peek_text
+				end
+			end
+		end
+		return "Nothing"
+	end
 	
 	def five_answers(xml, correct)	
 		# Put the answers (except the correct one) in an array and get four random ones

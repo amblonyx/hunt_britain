@@ -96,7 +96,7 @@ class HuntsController < ApplicationController
 		
 		if params[:submit_team_name]
 			if @hunt.update_attributes(params[:hunt])
-				flash[:success] = "Hunt details updated"
+				#flash[:success] = "Hunt details updated"
 				redirect_to '/hunt_home/' + @hunt.id.to_s
 			else
 				render 'set_team_name'
