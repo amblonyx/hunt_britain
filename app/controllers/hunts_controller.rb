@@ -43,18 +43,24 @@ class HuntsController < ApplicationController
 	
 	def hunt_login
 		if params.has_key?(:voucher)
-			voucher = params[:voucher]
-			@hunt = Hunt.find_by_voucher_code(voucher)
-			if @hunt
-				sign_in_voucher(@hunt)
-				redirect_to '/hunt_home/' + @hunt.id.to_s
-				return
+			if params[:donotenter].length > 0
+				flash[:error] = "Die bot!"
+				redirect_to '/hunt_login/'
 			else
-				flash[:error] = "There is an error with this voucher"
+				voucher = params[:voucher]
+				@hunt = Hunt.find_by_voucher_code(voucher)
+				if @hunt
+					sign_in_voucher(@hunt)
+					redirect_to '/hunt_home/' + @hunt.id.to_s, layout: "hunt"
+					return
+				else
+					flash[:error] = "Voucher code was not found"
+					redirect_to '/hunt_login/'
+				end
 			end
 		else
 			@hunt = Hunt.new
-			render "hunt_login"
+			render "hunt_login", layout: "hunt"
 		end
 	end
 	

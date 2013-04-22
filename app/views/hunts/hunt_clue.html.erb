@@ -1,7 +1,7 @@
 <% xml_doc = load_xml("product", "#{@hunt.product.data_file}.xml") %>
 <% clue_node = xml_doc.xpath("//clues/clue[@number='#{@hunt.current_clue}']") %>
-<h3>Clue <%= @hunt.current_clue %></h3>
 <div class="row">
+<div class="blob"><h3><span id="cluelabel">CLUE</span><br/><span id="cluenumber"><%= @hunt.current_clue %></span></h3></div>
 	<% clue_node.xpath("output/*").each do |node| %>
 		<% if node.name() == "image" %>
 			<div class="cluepic">
@@ -19,7 +19,7 @@
 			<% answers = five_answers(xml_doc, clue_node.xpath("answer").first.get_attribute("id")) %>
 			<% answers.each do |ahash| %>
 			<div class="answer_set">
-				<div class="answer_btn"><input class="btn" name="<%= ahash[:id].to_s %>" type="submit" value="<%= ahash[:index].to_s %>" /></div>
+				<div class="answer_btn"><input class="btn btn-large" name="<%= ahash[:id].to_s %>" type="submit" value="<%= ahash[:index].to_s %>" /></div>
 				<div class="answer_text"><%= ahash[:text] %></div>
 				<div class="answer_clear">&nbsp;</div>
 			</div>
