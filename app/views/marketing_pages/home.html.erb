@@ -5,7 +5,7 @@
 				<li data-hunt="<%= loc.name %>">
 					<span class="placelabel" style="background-color: <%= random_colour %>;"><%= loc.description %></span>
 					<span class="placename"><%= loc.description %></span>
-					<%= image_tag "places/"+loc.image %>
+					<%= image_tag "places/"+loc.image, alt: loc.description, title: loc.description  %>
 				</li>
 			<% end %>
 		<% end %>

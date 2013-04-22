@@ -1,5 +1,5 @@
 <header>
-	<%= link_to image_tag("THBLogo.png", alt: "Treasure Hunt Britain", class: "logo" ), root_path %>
+	<%= link_to image_tag("THBLogo.png", alt: "Treasure Hunt Britain", title: "Treasure Hunt Britain", class: "logo" ), root_path %>
 	<div class="navbar pull-right" id="appbar">
 		<div class="navbar-inner">
 			<ul class="nav">
@@ -17,15 +17,15 @@
 	
 	<div id="wordplay">
 		<div id="doyoulike">
-			<%= image_tag("DoYouLike.png", alt: "Do you like?", class: "question" ) %>
+			<%= image_tag("DoYouLike.png", alt: "Do you like?", title: "Do you like?", class: "question" ) %>
 			<div class="alternates">
-				<%= image_tag("DYLExploring.png", alt: "Exploring" ) %>
-				<%= image_tag("DYLHistory.png", alt: "History" ) %>
-				<%= image_tag("DYLPuzzles.png", alt: "Puzzles" ) %>
-				<%= image_tag("DYLChallenges.png", alt: "Challenges" ) %>
+				<%= image_tag("DYLExploring.png", alt: "Exploring", title: "Exploring" ) %>
+				<%= image_tag("DYLHistory.png", alt: "History", title: "History" ) %>
+				<%= image_tag("DYLPuzzles.png", alt: "Puzzles", title: "Puzzles" ) %>
+				<%= image_tag("DYLChallenges.png", alt: "Challenges", title: "Challenges" ) %>
 			</div>
 		</div>
-		<%= image_tag("TryOne.png", alt: "Try a treasure hunt...", class: "try" ) %>
+		<%= image_tag("TryOne.png", alt: "Try a treasure hunt...", title: "Try a treasure hunt...", class: "try" ) %>
 	</div>
 	
 	<div class="navbar" id="topnotebar">
