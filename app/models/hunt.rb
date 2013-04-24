@@ -29,7 +29,6 @@ class Hunt < ActiveRecord::Base
 #  updated_at     :datetime        not null
 #  user_id        :integer
 #
-
 	def start
 		self.started = true
 		self.started_at = Time.now
@@ -40,6 +39,17 @@ class Hunt < ActiveRecord::Base
 		self.completed = false
 		self.time_taken = 0
 		self.last_submitted = self.started_at # so the time_taken can be easily updated			
+	end
+	def restart
+		self.started = false
+		self.paused = false
+		self.completed = false
+
+		self.current_clue = nil
+		self.current_status = nil
+		self.time_taken = nil
+		self.started_at = nil
+		self.last_submitted = nil		
 	end
 	def add_penalty(minutes)
 		self.time_taken = self.time_taken + (minutes * 60)

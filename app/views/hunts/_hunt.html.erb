@@ -1,21 +1,36 @@
 <tr>
 	<td><%= hunt.id %></td>
-	<td><%= link_to hunt.product.name, hunt.product %></td>
+	<td><%= link_to hunt.product.product_code, hunt.product %></td>
 	<td>
 		<% unless hunt.user.nil? %>
 			<%= link_to hunt.user.name, hunt.user  %>
 		<% end %>
 	</td>
-	<td><%= link_to hunt.voucher_code, hunt %></td>
+	<td><%= hunt.voucher_code %><br/>
+		<a href="/change_voucher/<%=hunt.id.to_s%>" onclick="return confirm('Are you sure?')">Change</a>
+	</td>
 	<td><%= hunt.team_name %></td>
 	<td><%= hunt.email %></td>
-	<td><%= hunt.started %></td>
+	<td><%= hunt.started %>
+		<% if hunt.started? %>
+			<br/><a href="/restart_hunt/<%=hunt.id.to_s%>" onclick="return confirm('Are you sure?')">Restart</a>
+		<% end %>
+	</td>
 	<td><%= hunt.paused %></td>
 	<td><%= hunt.completed %></td>
-	<td><%= hunt.started_at %></td>
-	<td><%= hunt.last_submitted %></td>
-	<td><%= hunt.time_taken %></td>
-	<td><%= hunt.current_clue %></td>
-	<td><%= hunt.current_status %></td>
-	<td><%= link_to "Edit", edit_hunt_path(hunt.id) %>
+	<td><%= link_to "Edit", edit_hunt_path(hunt.id) %><br/>
+	<a href="/restart_hunt/<%=hunt.id.to_s%>" onclick="return confirm('Are you sure you want to PERMANENTLY delete this hunt?')">Delete</a></td>
+</tr>
+<tr>
+	<td></td>
+	<td colspan="9">
+		<% if !hunt.id.blank? %>
+			<strong>Started at:</strong> <%= hunt.started_at %>,
+			<strong>Last submitted:</strong> <%= hunt.last_submitted %>,
+			<strong>Time taken:</strong> <%= hunt.time_taken %>,
+			<strong>Current clue:</strong> <%= hunt.current_clue %>,
+			<strong>Current status:</strong> <%= hunt.current_status %>,
+		<% end %>
+		<%= link_to "#{hunt_login_url}?voucher=#{hunt.voucher_code}", "#{hunt_login_url}?voucher=#{hunt.voucher_code}" %>
+	</td>
 </tr>

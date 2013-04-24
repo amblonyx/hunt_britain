@@ -1,6 +1,7 @@
 class LocationsController < ApplicationController
 	before_filter :admin_user, only: [:destroy, :edit, :update, :create, :new]
-	
+	before_filter :check_for_cancel, only: [:create, :update]
+
 	def home
 		@locations = Location.all
 		render layout: pick_layout
@@ -55,5 +56,9 @@ class LocationsController < ApplicationController
 	def admin_user
 		redirect_to root_path unless current_user.admin?
 	end
-	
+	def check_for_cancel
+		if params[:commit] == "Cancel"
+			redirect_to locations_path
+		end
+	end
 end

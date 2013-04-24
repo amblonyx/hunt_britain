@@ -6,7 +6,7 @@
 			</div>
 		<% else %>
 			<div class="right">
-			<% if @hunt.team_name.length > 0 %>
+			<% if !@hunt.team_name.blank? %>
 				<span id="team"><span id="teamlabel">Team<br/></span>
 					<%= @hunt.team_name %>
 				</span>
