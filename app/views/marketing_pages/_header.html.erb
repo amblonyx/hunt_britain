@@ -4,6 +4,7 @@
 		<div class="navbar-inner">
 			<ul class="nav">
 				<li><%= link_to "Cart (#{@cart.length})", cart_path %></li>
+				<li><%= link_to "Voucher", hunt_login_path %></li>
 				<% if signed_in? %>
 					<li><%= link_to "My account", user_path(current_user) %></li>
 					<li><%= link_to "Log out", signout_path, method: "delete" %></li>

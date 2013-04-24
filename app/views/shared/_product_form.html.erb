@@ -1,40 +1,43 @@
-﻿<div class="span5">
-<%= form_for([location, product], html: { class: "form-horizontal well" }) do |f| %>
-	<%= render 'shared/error_messages', object: f.object %>
+﻿<div class="row">
+	<div class="span8 offset2">
+		<%= form_for([location, product], html: { class: "form-horizontal well" }) do |f| %>
+			<%= render 'shared/error_messages', object: f.object %>
 
-	<div class="control-group">
-		<%= f.label :name, class: "control-label" %>
-		<div class="controls">
-			<%= f.text_field :name %>
-		</div>
+			<div class="control-group">
+				<%= f.label :name, class: "control-label" %>
+				<div class="controls">
+					<%= f.text_field :name %>
+				</div>
+			</div>
+			<div class="control-group">
+				<%= f.label :product_code, class: "control-label" %>
+				<div class="controls">
+					<%= f.text_field :product_code %>
+				</div>
+			</div>
+			<div class="control-group">
+				<%= f.label :format, class: "control-label" %>
+				<div class="controls">
+					<%= f.select :format, ["Online", "PDF", "Paper"] %>
+				</div>
+			</div>
+			<div class="control-group">
+				<%= f.label :price, class: "control-label" %>
+				<div class="controls">
+					<%= f.text_field :price %>
+				</div>
+			</div>
+			<div class="control-group">
+				<%= f.label :data_file, class: "control-label" %>
+				<div class="controls">
+					<%= f.text_field :data_file %>
+					<span class="help-block"><%#= App_Constants::DATA_XML + "products/" %></span>
+				</div>
+			</div>
+			<div class="center">
+				<%= f.submit "Commit", class: "btn btn_large btn_primary" %>
+				<%= f.submit "Cancel", class: "btn btn_large btn_primary"%>
+			</div>
+		<% end %>
 	</div>
-	<div class="control-group">
-		<%= f.label :product_code, class: "control-label" %>
-		<div class="controls">
-			<%= f.text_field :product_code %>
-		</div>
-	</div>
-	<div class="control-group">
-		<%= f.label :format, class: "control-label" %>
-		<div class="controls">
-			<%= f.select :format, ["Online", "PDF", "Paper"] %>
-		</div>
-	</div>
-	<div class="control-group">
-		<%= f.label :price, class: "control-label" %>
-		<div class="controls">
-			<%= f.text_field :price %>
-		</div>
-	</div>
-	<div class="control-group">
-		<%= f.label :data_file, class: "control-label" %>
-		<div class="controls">
-			<%= f.text_field :data_file %>
-			<span class="help-block"><%#= App_Constants::DATA_XML + "products/" %></span>
-		</div>
-	</div>
-	<div class="center">
-		<%= f.submit "Commit", class: "btn btn_large btn_primary" %>
-	</div>
-<% end %>
 </div>

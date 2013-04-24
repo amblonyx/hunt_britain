@@ -2,23 +2,88 @@
 	<div class="span8 offset2">
 		<%= form_for([hunt], html: { class: "form-horizontal well" }) do |f| %>
 			<%= render 'shared/error_messages', object: f.object %>
-
-			<%= f.label :product_id %>
-			<%= f.select :product_id, Product.all.collect { |prod| [prod.name, prod.id] } %>
 			
-			<%= f.label :user_id %>
-			<%= f.text_field :user_id %> (optional)
-
-			<%= f.label :voucher_code %> 
-			<%= f.text_field :voucher_code %> (if left empty, a random 10-digit code will be generated)
-
-			<%= f.label :team_name %>
-			<%= f.text_field :team_name %> (optional)
-
-			<%= f.label :email %>
-			<%= f.text_field :email %> (optional)
+			<div class="control-group">
+				<label class="control-label" for="product_id">Product</label>
+				<div class="controls">
+					<%= f.select :product_id, Product.where("format = ?", "Online").collect { |prod| [prod.name, prod.id] } %>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="user_id">User</label>
+				<div class="controls">
+					<%= f.text_field :user_id %> 
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="voucher_code">Voucher code</label>
+				<div class="controls">
+					<%= f.text_field :voucher_code %>
+					<span class="help-block">(if left empty, a random 10-digit code will be generated)</span>
+				</div>
+			</div>
 			
-			<%= f.submit "Commit", class: "btn btn_large btn_primary" %>
+			<% if !hunt.id.blank? %>
+				<div class="control-group">
+					<div class="controls">
+						<label class="checkbox inline">
+							<%= f.check_box :started %> Started
+						</label>
+						<label class="checkbox inline">
+							<%= f.check_box :paused %> Paused
+						</label>
+						<label class="checkbox inline">
+							<%= f.check_box :completed %> Completed
+						</label>
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="team_name">Team name</label>
+					<div class="controls">
+						<%= f.text_field :team_name %> 
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="email">Email</label>
+					<div class="controls">
+						<%= f.text_field :email %> 
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="started_at">Started at</label>
+					<div class="controls">
+						<%= f.text_field :started_at %> 
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="last_submitted">Last submitted</label>
+					<div class="controls">
+						<%= f.text_field :last_submitted %> 
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="time_taken">Time taken</label>
+					<div class="controls">
+						<%= f.text_field :time_taken %> 
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="current_clue">Current clue</label>
+					<div class="controls">
+						<%= f.text_field :current_clue %> 
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="current_status">Current status</label>
+					<div class="controls">
+						<%= f.text_field :current_status %> 
+					</div>
+				</div>			
+			<% end %>
+			<div class="center">
+				<%= f.submit "Commit", class: "btn btn_large btn_primary" %>
+				<%= f.submit "Cancel", class: "btn btn_large btn_primary"%>
+			</div>
 		<% end %>
 	</div>
 </div>

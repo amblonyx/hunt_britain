@@ -1,5 +1,6 @@
 class HuntsController < ApplicationController
-	before_filter :admin_user, only: [:index, :edit, :create, :new]
+	before_filter :admin_user, only: [:index, :edit, :create, :new, :destroy, :change_voucher, :restart_hunt]
+	before_filter :check_for_cancel, only: [:create, :update]
 	
 	def index
 		@hunts = Hunt.paginate(page: params[:page])
@@ -17,10 +18,10 @@ class HuntsController < ApplicationController
 	  
 	def create
 		@hunt = Hunt.new(params[:hunt])
-		create_voucher_code
+		create_voucher_code true
 		if @hunt.save 
 			flash[:success] = "The new hunt has been saved"
-			redirect_to @hunt.product
+			redirect_to hunts_path
 		else
 			render 'new', layout: pick_layout
 		end
@@ -35,18 +36,47 @@ class HuntsController < ApplicationController
 		@hunt = Hunt.find(params[:id])
 		if @hunt.update_attributes(params[:hunt])
 			flash[:success] = "Update successful"
-			redirect_to @hunt
+			redirect_to hunts_path
 		else
 			render 'edit', layout: pick_layout
 		end
 	end
 	
+	def destroy
+		@hunt = Hunt.find(params[:id])
+		@hunt.destroy
+		redirect_to hunts_path
+	end
+	
+	def change_voucher
+		@hunt = Hunt.find(params[:id])
+		create_voucher_code true
+		if @hunt.save 
+			flash[:success] = "Voucher code has been changed"
+			redirect_to hunts_path
+		else
+			flash[:error] = "Error while changing voucher code"
+			render 'index', layout: pick_layout
+		end
+	
+	end 
+	
+	def restart_hunt
+		@hunt = Hunt.find(params[:id])
+		@hunt.restart
+		if @hunt.save 
+			flash[:success] = "Hunt status changed"
+			redirect_to hunts_path
+		else
+			flash[:error] = "Error while restarting hunt"
+			render 'index', layout: pick_layout
+		end
+
+	end 
+	
 	def hunt_login
-		if params.has_key?(:voucher)
-			if params[:donotenter].length > 0
-				flash[:error] = "Die bot!"
-				redirect_to '/hunt_login/'
-			else
+		if !honeypot #Catch BOTS.  In applicationHelper
+			if params.has_key?(:voucher)
 				voucher = params[:voucher]
 				@hunt = Hunt.find_by_voucher_code(voucher)
 				if @hunt
@@ -57,10 +87,10 @@ class HuntsController < ApplicationController
 					flash[:error] = "Voucher code was not found"
 					redirect_to '/hunt_login/'
 				end
+			else
+				@hunt = Hunt.new
+				render "hunt_login", layout: "hunt"
 			end
-		else
-			@hunt = Hunt.new
-			render "hunt_login", layout: "hunt"
 		end
 	end
 	
@@ -133,8 +163,13 @@ class HuntsController < ApplicationController
 			f = File.open( XML_PATH + "products/#{@hunt.product.data_file}.xml" )
 			huntxml = Nokogiri::XML(f)
 			f.close
-			clue_node = huntxml.xpath("//clues/clue[@number='#{@hunt.current_clue}']")
-			if params[clue_node.xpath("answer").first.get_attribute("id").to_sym]
+			@clue_node = huntxml.xpath("//clues/clue[@number='#{@hunt.current_clue}']")
+			
+			#-- Parameter being returned is "option_#" where # is the position of the (clicked) answer within the node set (starting at 0)
+			correct_node = @clue_node.xpath("options/option[@correct='1']").first
+			correct_posn = correct_node.parent.children.index(correct_node).to_s
+			opt = "option_" + correct_posn
+			if params.has_key?(opt.to_sym)
 				@hunt.mark_time
 				@hunt.next_clue
 				@hunt.save
@@ -154,14 +189,22 @@ class HuntsController < ApplicationController
 
 	private
 
-	def create_voucher_code
-		if params[:voucher_code].blank? 
+	def create_voucher_code(force)
+		if force 
 			@hunt.voucher_code = SecureRandom.hex(5) 
+		else
+			if params[:voucher_code].blank? 
+				@hunt.voucher_code = SecureRandom.hex(5) 
+			end
 		end
 	end
 	
 	def admin_user
 		redirect_to root_path unless current_user.admin?
 	end
-
+	def check_for_cancel
+		if params[:commit] == "Cancel"
+			redirect_to hunts_path
+		end
+	end
 end

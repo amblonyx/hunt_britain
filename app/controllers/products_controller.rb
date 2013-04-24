@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
 	before_filter :admin_user, only: [:destroy, :edit, :update, :create, :new]
+	before_filter :check_for_cancel, only: [:create, :update]
 
 	def index
 		@products = Product.paginate(page: params[:page])
@@ -47,5 +48,9 @@ class ProductsController < ApplicationController
 	def admin_user
 		redirect_to root_path unless current_user.admin?
 	end
-
+	def check_for_cancel
+		if params[:commit] == "Cancel"
+			redirect_to products_path
+		end
+	end
 end

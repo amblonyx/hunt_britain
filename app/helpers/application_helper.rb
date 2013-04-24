@@ -1,5 +1,14 @@
 module ApplicationHelper
 	require 'nokogiri'
+	
+	def honeypot
+		if params.has_key?(:honey)
+			if params[:honey].length > 0
+				redirect_to 'http://www.sadtrombone.com/?play=true'	
+				return true 
+			end 
+		end
+	end
 
 	def has_purchase_format(cart, *formats)
 		cart.each_with_index do |cart_item, index|

@@ -26,7 +26,7 @@
 			<% end %>
 		<% elsif xml_doc.xpath("//style").inner_html == "multichoice" %>
 			<% clue_node.xpath("options/*").each do |node| %>
-				<input class="btn btn-block" name="<%= node.inner_text.to_s.html_safe %>" type="submit" value="<%= node.inner_text.to_s.html_safe %>" />
+				<input class="btn btn-block" name="option_<%= node.parent.children.index(node).to_s.html_safe %>" type="submit" value="<%= node.inner_text.to_s.html_safe %>" />
 			<% end %>
 		<% else %>
 			<label for="answer">Answer</label>
@@ -67,13 +67,14 @@
 		$("#popup").hide()	
 		if ($("#popup").attr("data-current") == 'correct')
 		{
-			window.location.replace("<%= @hunt.id.to_s %>");
+			$("#popup").attr("data-current") == ''
+			window.location.replace(<%= @hunt.id.to_s %>);
 		}
 	})
 	$('#okgiveup').click(function(){
 		$("#overlay").hide()
 		$("#giveup").hide()	
-		window.location.replace("<%= @hunt.id.to_s %>");
+		window.location.replace(<%= @hunt.id.to_s %>);
 	})
 	$('#cancelgiveup').click(function(){
 		$("#overlay").hide()

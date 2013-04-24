@@ -31,7 +31,9 @@ HuntBritain::Application.routes.draw do
   match 'hunt_login', to: 'hunts#hunt_login'
   match 'hunt_home/:id', to: 'hunts#hunt_home'
   match 'hunt_trail/:id', to: 'hunts#hunt_trail', :via => :post
-  
+  match 'change_voucher/:id', to: 'hunts#change_voucher'
+  match 'restart_hunt/:id', to: 'hunts#restart_hunt'
+   
   match '/faq', to: 'marketing_pages#faq'
   match '/about', to: 'marketing_pages#about'
   match '/contact', to: 'marketing_pages#contact'
