@@ -2,6 +2,9 @@
 <h1>Congratulations</h1>
 <div class="row">
 	<p><%= get_xml_node("product", "#{@hunt.product.data_file}.xml", "//outcome/congrat").inner_text.to_s.html_safe %></p>
+	<% xml_doc.xpath("//clues/after/output/*").each do |node| %>
+		<p><%= node.inner_text.to_s.html_safe %></p>
+	<% end %>
 	<p>You completed the hunt in <span class="badge badge-warning badge-large"><%= hunt_time(@hunt) %></span></p>
 	<p>Have a look on our website to see how your time measures up to others and start planning your next Treasure Hunt...</p>
 	<%= form_tag(root_path, html: { class: "form" }) do %>
