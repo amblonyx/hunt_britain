@@ -1,8 +1,8 @@
 <% xml_doc = load_xml("product", "#{@hunt.product.data_file}.xml") %>
 <% if @hunt.started? %>
-	<h1>Hunt information</h1>
+	<h2>Hunt information</h2>
 <% else %>
-	<h1>Before you begin</h1>
+	<h2>Before you begin</h2>
 <% end %>
 
 <div class="row">
@@ -43,7 +43,7 @@
 once you have chosen the correct answer you will continue to the next clue. You also have the following options:</p>
 <ul><li><strong>Hint</strong> - you can get a hint if you can't find the answer, but this comes with a 2 minute penalty</li>
 <li><strong>Peek</strong> - you can peek ahead at the next directions, this is helpful if you think you may have walked too far</li>
-<li><strong>Give up!</strong> - if you really are stuck, you can pass on this clue and see the answer, but this comes with a 5 minute penalty</li>
+<li><strong>Pass!</strong> - if you really are stuck, you can pass on this clue and see the answer, but this comes with a 5 minute penalty</li>
 <li><strong>Pause</strong> - pause the hunt, for a tea break! This stops the timer, though it does cost 2 minutes so don't use it too often</li>
 </ul>
 <p>Oh, and you should know that choosing a wrong answer costs 2 minutes, so make sure you choose carefully.</p>

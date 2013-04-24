@@ -2,7 +2,7 @@ var clue = 'correct'
 if ($("#popup").attr("data-current") != clue) {
 
 	$('#popup h2').text('Correct!')
-	$('#popup p').text('The answer is: <%= h @clue_node.xpath("answer").inner_text.to_s.html_safe %>. <%#= @clue_node.xpath("extra").inner_text.to_s.html_safe %>')
+	$('#popup p').html('The answer is: <%= @clue_node.xpath("answer").inner_text.to_s %>. <%= @clue_node.xpath("extra").inner_text.to_s %>')
 	$('#popup a').text('Continue')
 		
 	$("#popup").attr("data-current", clue)
