@@ -50,7 +50,7 @@ module HuntsHelper
 				if found_dir		# two directions in a row, just return first
 					return "peek_text"
 				else
-					peek_text = node.inner_text.to_s.html_safe
+					peek_text = node.inner_text.to_s
 					found_dir = true
 					#return peek_text
 				end 
