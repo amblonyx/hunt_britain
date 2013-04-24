@@ -1,12 +1,15 @@
-var clue = 'peek'
+var clue = '<%= @hunt.current_clue %>' + 'peek'
 if ($("#popup").attr("data-current") != clue) {
 
 	<% xml_doc = load_xml("product", "#{@hunt.product.data_file}.xml") %>
 	<% clue_node = xml_doc.xpath("//clues/clue[@number='#{@hunt.current_clue + 1}']") %>
-
+<% puts "Here we are in peek" %>
 	$('#popup h2').text('Next direction will be')
-	$('#popup p').text('<%= peek_text clue_node %>')
+<% puts "Stop 2 in peek" %>
+	$('#popup p').html('<%= peek_text clue_node %>')
+<% puts "Stop 3 in peek" %>
 	$('#popup a').text('OK')
+<% puts "Stop 4 in peek" %>
 	
 	$("#popup").attr("data-current", clue)
 }
