@@ -12,7 +12,7 @@
  */
 
 /* Overrides of bootstrap variables */
-$baseFontSize: 30px;
+$baseFontSize: 14px;
 
 @import "bootstrap";
 @import "bootstrap-responsive";
@@ -53,40 +53,48 @@ h1, h2, h3, h4, h5, h6 {
 	line-height: 1;
 }
 h1 {
-	font-size: 1.25em;
+	font-size: 1.4em;
 	font-weight: bold;
 	color: white;
 	text-align: center;
 }
+h2 {
+	font-size: 1.4em;
+	font-weight: bold;
+	color: #666666;
+	margin-left: 10px;
+}
 h3 {
-/*	display: inline;*/
+	margin-top: 0.1em;
 	font-size: 1.0em;
 	text-align: center;
 	font-weight: normal;
 	color: #664400;
-	text-shadow: 0px 1px white;
+	text-shadow: 0px 1px 1px white;
 	#cluelabel {
 		font-weight: bold;
 		font-size: 0.6em;
 	}
 	#cluenumber {
-		font-size: 1.4em;
+		font-size: 1.6em;
 	}
 }
 .blob {
-	width: 2.5em;
-	height: 2.5em;
-	line-height: 0.8em;
-	margin-bottom: 10px;
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#fff555), to(#eee744));
-	background-image: -webkit-linear-gradient(top, #fff555, #eee744); 
-	background-image: -moz-linear-gradient(top, #fff555, #eee744); 
-	background-image: -ms-linear-gradient(top, #fff555, #eee744); 
-	background-image: -o-linear-gradient(top, #fff555, #eee744); 
+	float: left;
+	clear: right;
+	width: 3.0em;
+	height: 3.0em;
+	line-height: 1.4em;
+	margin: 0.5em 0.75em 0.5em 0em;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#fff777), to(#eee744));
+	background-image: -webkit-linear-gradient(top, #fff777, #eee744); 
+	background-image: -moz-linear-gradient(top, #fff777, #eee744); 
+	background-image: -ms-linear-gradient(top, #fff777, #eee744); 
+	background-image: -o-linear-gradient(top, #fff777, #eee744); 
 /*	border: 1px solid gray;*/
-	box-shadow: 0px 3px 8px #cc7700, 0px 2px 3px #ffffff inset;
+	box-shadow: 0px 4px 9px #cc7700, 0px 3px 4px #ffffff inset;
 	border-radius: 50%;
-	background-color: #fff555;
+	background-color: #fff777;
 }		
 p, li {
 	line-height: 1.4em;
@@ -94,12 +102,9 @@ p, li {
 .footnote {
 	font-size: 0.7em;
 }
-a.btn {
-	line-height: 1.8em;
-}
 /* header */
 header {
-	height: 2em;
+	height: 3.6em;
 	background-color: black;
 	color: white;
 	.left {
@@ -109,21 +114,21 @@ header {
 		float:right;
 	}
 	.middle {
-		padding-top: 1px;
+		padding-top: 0.4em;
 	}
 	#team {
 		font-size: 0.8em;
-		margin-right: 5px;
-		margin-top: 3px;
+		margin-right: 0.5em;
+		margin-top: 0.5em;
 		#teamlabel {
 			color: $grayLight;
 		}
 	}
 	#logo {
-		width: 1.6em;
+		width: 2.6em;
 		/*float: left;*/
-		margin-left: 0.2em;
-		margin-top: 0.2em;
+		margin-left: 0.5em;
+		margin-top: 0.5em;
 		&:hover {
 			color: white;
 			text-decoration: none;
@@ -131,37 +136,47 @@ header {
 	}
 }
 /* forms */
-.btn {
-	height: 1.8em;
+/*.btn {
+	height: 2.8em;
+	font-size: 1.2em;
+	padding: 0em 0.75em 0em 0.75em;
+	border-radius: 0.2em;
+}
+a.btn {
+	line-height: 2.6em;
 }
 .input-text {
 	margin-top: 0.4em;
-	height: 1.8em !important;
-}
+	height: 2.8em !important;
+}*/
 .input-honey {
 	display: none !important;
 }
 input, textarea, select, .uneditable-input {
 	border: 1px solid #bbb;
-	padding: 10px;
-	height: 1.8em;
+/*	padding: 0.6em;
+	height: 2.8em;*/
 	margin-bottom: 15px;
 	@include box_sizing;
 }
 #answerbox {
-	margin: 5px;
-	padding: 10px;
+	margin: 0.5em 0.25em 0.5em 0.25em;
+	padding: 0em 0.3em 0em 0.3em;
 	border: 1px solid #1111ff;
-	box-shadow: 1px 2px 2px #4444ff inset;
-	border-radius: 4px;
+	box-shadow: 1px 2px 3px #111199 inset, -1px -1px 3px #111199 inset;
+	border-radius: 0.3em;
 	background-color: #6666ff;
+	.btn {
+		height: 3.0em;
+		margin: 0.3em 0em 0.3em 0em;
+	}
 }
 #buttonbar {
-	margin: 5px;
-	padding: 10px;
+	margin: 0.5em 0.25em 0.5em 0.25em;
+	padding: 0.4em;
 	border: 1px solid #009900;
-	box-shadow: 1px 2px 2px #00aa00 inset;
-	border-radius: 4px;
+	box-shadow: 1px 2px 3px #117711 inset, -1px -1px 3px #117711 inset;
+	border-radius: 0.3em;
 	background-color: #00cc00;
 	a {
 		font-size: 0.9em;

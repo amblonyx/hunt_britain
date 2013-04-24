@@ -63,7 +63,7 @@ module HuntsHelper
 				end
 			end
 		end
-		return "Nothing"
+		return "The next clue is in the same location."
 	end
 	
 	def five_answers(xml, correct)	

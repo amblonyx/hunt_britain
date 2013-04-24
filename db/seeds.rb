@@ -6,6 +6,15 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+admin = User.create(
+	name: 'Mr Admin', 
+	email: 'shortclaws@gmail.com', 
+	password: 'treasure', 
+	password_confirmation: 'treasure',
+	user_name: 'shortclaws@gmail.com'
+)
+admin.toggle!(:admin)
+	
 locations = Location.create([
 	{ name: 'Bath', description: 'Bath City', image: 'BathMain.JPG', region: 'South West', hunt_mode: 'Walking', data_file: 'bath' },
 	{ name: 'Brighton', description: 'Brighton City', image: 'BrightonMain.JPG', region: 'South East', hunt_mode: 'Walking', data_file: 'brighton' },
@@ -19,7 +28,6 @@ locations = Location.create([
 	{ name: 'Stratford', description: 'Stratford-upon-Avon', image: 'StratfordMain.JPG', region: 'West Midlands', hunt_mode: 'Walking', data_file: 'stratford' },
 	{ name: 'Windsor and Eton', description: 'Windsor and Eton', image: 'WindsorMain.JPG', region: 'South East', hunt_mode: 'Walking', data_file: 'windsor' }
 ])
-
 
 location = Location.find_by_name('Bath')
 location.products.create(  product_code: 'Bath-Easy-O', name: 'Bath (easy version), for phones and tablets', format: 'Online', price: '399', data_file: 'bath-easy' )
