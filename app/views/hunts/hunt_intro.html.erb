@@ -9,7 +9,10 @@
 	<% if @hunt.started? %>
 		<p>Take a minute to review the instructions and tips for successful hunting</p>
 	<% else %>
-		<p><%= get_xml_node("product", "#{@hunt.product.data_file}.xml", "//outcome/intro").inner_text.to_s.html_safe %></p>
+		<p><%= xml_doc.xpath("//outcome/intro").inner_text.to_s.html_safe %></p>
+		<% xml_doc.xpath("//clues/before/output/*").each do |node| %>
+			<p><%= node.inner_text.to_s.html_safe %></p>
+		<% end %>
 	<% end %>
 	
 	<div class="accordion" id="condenser">

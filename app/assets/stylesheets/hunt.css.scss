@@ -53,7 +53,7 @@ h1, h2, h3, h4, h5, h6 {
 	line-height: 1;
 }
 h1 {
-	font-size: 1.25em;
+	font-size: 1.4em;
 	font-weight: bold;
 	color: white;
 	text-align: center;
@@ -64,27 +64,29 @@ h3 {
 	text-align: center;
 	font-weight: normal;
 	color: #664400;
-	text-shadow: 0px 1px white;
+	text-shadow: 1px 2px white;
 	#cluelabel {
 		font-weight: bold;
 		font-size: 0.6em;
 	}
 	#cluenumber {
-		font-size: 1.4em;
+		font-size: 1.6em;
 	}
 }
 .blob {
-	width: 2.5em;
-	height: 2.5em;
+	float: left;
+	clear: right;
+	width: 3.0em;
+	height: 3.0em;
 	line-height: 0.8em;
-	margin-bottom: 10px;
+	margin: 0.5em 0.75em 0.5em 0em;
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#fff777), to(#eee744));
 	background-image: -webkit-linear-gradient(top, #fff777, #eee744); 
 	background-image: -moz-linear-gradient(top, #fff777, #eee744); 
 	background-image: -ms-linear-gradient(top, #fff777, #eee744); 
 	background-image: -o-linear-gradient(top, #fff777, #eee744); 
 /*	border: 1px solid gray;*/
-	box-shadow: 0px 3px 8px #cc7700, 0px 2px 3px #ffffff inset;
+	box-shadow: 0px 4px 9px #cc7700, 0px 3px 4px #ffffff inset;
 	border-radius: 50%;
 	background-color: #fff777;
 }		
@@ -94,12 +96,9 @@ p, li {
 .footnote {
 	font-size: 0.7em;
 }
-a.btn {
-	line-height: 1.8em;
-}
 /* header */
 header {
-	height: 2em;
+	height: 3.6em;
 	background-color: black;
 	color: white;
 	.left {
@@ -109,21 +108,21 @@ header {
 		float:right;
 	}
 	.middle {
-		padding-top: 1px;
+		padding-top: 0.6em;
 	}
 	#team {
 		font-size: 0.8em;
-		margin-right: 5px;
-		margin-top: 3px;
+		margin-right: 0.5em;
+		margin-top: 0.5em;
 		#teamlabel {
 			color: $grayLight;
 		}
 	}
 	#logo {
-		width: 1.6em;
+		width: 2.6em;
 		/*float: left;*/
-		margin-left: 0.2em;
-		margin-top: 0.2em;
+		margin-left: 0.5em;
+		margin-top: 0.5em;
 		&:hover {
 			color: white;
 			text-decoration: none;
@@ -132,11 +131,17 @@ header {
 }
 /* forms */
 .btn {
-	height: 1.8em;
+	height: 3.2em;
+	font-size: 1.25em;
+	padding-left: 0.75em;
+	padding-right: 0.75em;
+}
+a.btn {
+	line-height: 3.0em;
 }
 .input-text {
 	margin-top: 0.4em;
-	height: 1.8em !important;
+	height: 3.2em !important;
 }
 .input-honey {
 	display: none !important;
@@ -144,7 +149,7 @@ header {
 input, textarea, select, .uneditable-input {
 	border: 1px solid #bbb;
 	padding: 10px;
-	height: 1.8em;
+	height: 3.2em;
 	margin-bottom: 15px;
 	@include box_sizing;
 }
