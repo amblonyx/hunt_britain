@@ -119,7 +119,7 @@ class SessionsController < ApplicationController
 					cmd: '_cart',
 					upload: 1,
 					notify_url: '',
-					return: '/success',
+					return: "#{request.protocol}#{request.host_with_port}#{request.fullpath}/payment_success",
 					currency_code: 'GBP',
 					invoice: ''
 				}

@@ -13,4 +13,11 @@ class UserMailer < ActionMailer::Base
 		@message = message
 		mail(to: "treasurehuntbritain@gmail.com", subject: 'Feedback from Treasure Hunt Britain')		
 	end
+
+	def problem_email(hunt, clue, problem)
+		@hunt = hunt
+		@clue = clue
+		@problem = problem
+		mail(to: "treasurehuntbritain@gmail.com", subject: 'Feedback about a hunt')		
+	end
 end

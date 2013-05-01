@@ -273,7 +273,7 @@ footer {
 		}
 	}
 }
-#popup {
+#popup, #popup_problem {
 	background: #000;
 	color: #fff;
 	padding: 10px;
@@ -286,7 +286,7 @@ footer {
 	top: 50%;
 	width: 100%;
 	margin-top: -100px;
-	margin-left: -20px;
+/*	margin-left: -20px;*/
 	z-index: 9999;
 	display: none;
 	
@@ -360,6 +360,13 @@ footer {
 	z-index: 1001;
 	opacity: 0.6;
 	filter: alpha(opacity=60); /* IE6+ */
+}
+/* Over-ride Bootstrap's default 20px padding when viewed on phones */
+@media (max-width: 767px) {
+  body {
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+  }
 }
 
 /* Miscellaneous */
