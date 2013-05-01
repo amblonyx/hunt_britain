@@ -15,154 +15,158 @@
 		</terminology>
 	</outcome>
 <clues>
-<before><output><direction>Start in front of Bath Abbey facing the doors, in the pedestrianised area.</direction></output></before>
+<before><output><direction><![CDATA[Start in front of Bath Abbey facing the doors, in the pedestrianised area.]]></direction></output></before>
 <clue number="1"><output>
-<direction></direction>
-<question>How many angels are climbing Jacob's ladder on the abbey (watch out for fallen angels!)?  Select the writer listed against this number</question>
-</output><hint></hint>
-<extra></extra>
-<options><option correct="1">10=Charles Dickens</option><option>11=Charles Kingsley</option><option>12=Elizabeth Gaskell</option><option>13=George Eliot</option><option>14=Henry James</option></options>
-<answer id="10=Charles Dickens">10=Charles Dickens</answer></clue>
+<direction><![CDATA[]]></direction>
+<question><![CDATA[How many angels are climbing Jacob's ladder on the abbey (watch out for fallen angels!)?  Select the writer listed against this number]]></question>
+</output><hint><![CDATA[The ladders are either side of the main windows, and there is one angel not climbing on each ladder.]]></hint>
+<extra><![CDATA[Bath abbey was rebuilt in the 15th by Bishop Oliver King after a vision of angels climbing a ladder to heaven.  You can join the Tower Tours to learn more about the abbey and enjoy a spectacular view of the city from its roof.]]></extra>
+<options><option correct="1"><![CDATA[10=Charles Dickens]]></option><option><![CDATA[11=Charles Kingsley]]></option><option><![CDATA[12=Elizabeth Gaskell]]></option><option><![CDATA[13=George Eliot]]></option><option><![CDATA[14=Henry James]]></option></options>
+<answer id="10=Charles Dickens"><![CDATA[10=Charles Dickens]]></answer></clue>
 <clue number="2"><output>
-<direction>Turn your back to the abbey and pass between ionic columns into Stall Street. Turn left, then right into Bath Street. With the small Cross Bath in front of you, turn left into Hot Bath Street, then right into Hetling Court.</direction>
-<question>Which saint is associated with the hospital? Select the architect with the same first name</question>
-</output><hint></hint>
-<extra></extra>
-<options><option>George Gilbert Scott</option><option correct="1">John Wood the Elder</option><option>Nicholas Hawksmoor</option><option>Paul Paget</option><option>Thomas Henry Wyatt</option></options>
-<answer id="John = John Wood the Elder">John = John Wood the Elder</answer></clue>
+<direction><![CDATA[Turn your back to the abbey and pass between ionic columns into Stall Street. Turn left, then right into Bath Street. With the small Cross Bath in front of you, turn left into Hot Bath Street, then right into Hetling Court.]]></direction>
+<question><![CDATA[Which saint is associated with the hospital? Select the architect with the same first name]]></question>
+</output><hint><![CDATA[Look on your right as you enter Hetling Court.]]></hint>
+<extra><![CDATA[Bath is the site of Britain's only natural hot spring. Since the Romans built a bathing complex here, visitors have been coming to drink or bathe in the water.  Today you can still sample the water in the Pump room though it is not to everyone's taste!]]></extra>
+<options><option><![CDATA[George Gilbert Scott]]></option><option correct="1"><![CDATA[John Wood the Elder]]></option><option><![CDATA[Nicholas Hawksmoor]]></option><option><![CDATA[Paul Paget]]></option><option><![CDATA[Thomas Henry Wyatt]]></option></options>
+<answer id="John = John Wood the Elder"><![CDATA[John = John Wood the Elder]]></answer></clue>
 <clue number="3"><output>
-<question>Whose bust is this?  Select the explorer with the same double letter in their surname</question>
-<image>TheatreGarricksHead.jpg</image>
-</output><hint></hint>
-<extra></extra>
-<options><option>David Livingstone</option><option>James Cook</option><option>Ranulph Fiennes</option><option>Robert Scott</option><option correct="1">William Edward Parry</option></options>
-<answer id="David Garrick = William Edward Parry">David Garrick = William Edward Parry</answer></clue>
+<direction><![CDATA[Turn right at the road, then at the next junction continue straight on up the hill into Saw Close.]]></direction>
+<question><![CDATA[Whose bust is this?  Select the explorer with the same double letter in their surname]]></question>
+<image><![CDATA[TheatreGarricksHead.jpg]]></image>
+</output><hint><![CDATA[Look on the side of a building ahead of you. You can guess his name by the name of the pub.]]></hint>
+<extra><![CDATA[The 200-year-old Theatre Royal claims to be the most haunted theatre in Britain!  Its most famous ghost is the Grey Lady whose appearance is often accompanied by the scent of jasmine.  She is said to be the ghost of an actress who committed suicide in the Garrick's head.]]></extra>
+<options><option><![CDATA[David Livingstone]]></option><option><![CDATA[James Cook]]></option><option><![CDATA[Ranulph Fiennes]]></option><option><![CDATA[Robert Scott]]></option><option correct="1"><![CDATA[William Edward Parry]]></option></options>
+<answer id="David Garrick = William Edward Parry"><![CDATA[David Garrick = William Edward Parry]]></answer></clue>
 <clue number="4"><output>
-<direction>Continue straight on into Barton Street until you reach Queen Square.</direction>
-<question>When was the obelisk erected?  Select the astronomer who was born in that year</question>
-</output><hint></hint>
-<extra></extra>
-<options><option>Arthur Eddington (1882-1944)</option><option>Edmond Halley (1656-1742)</option><option>Joseph Lockyer (1836-1920)</option><option>Patrick Moore (1923-2012)</option><option correct="1">William Herschel (1738-1822)</option></options>
-<answer id="1738 = William Herschel">1738 = William Herschel</answer></clue>
+<direction><![CDATA[Continue straight on into Barton Street until you reach Queen Square.]]></direction>
+<question><![CDATA[When was the obelisk erected?  Select the astronomer who was born in that year]]></question>
+</output><hint><![CDATA[There is a plaque on the corner of the square nearest you, so you don't need to go up to the obelisk.]]></hint>
+<extra><![CDATA[Along with the Circus and Royal Crescent, Queen Square was a key element in the design of architect John Wood the Elder.  The central obelisk used to be taller, but it was truncated in a gale in 1815.]]></extra>
+<options><option><![CDATA[Arthur Eddington (1882-1944)]]></option><option><![CDATA[Edmond Halley (1656-1742)]]></option><option><![CDATA[Joseph Lockyer (1836-1920)]]></option><option><![CDATA[Patrick Moore (1923-2012)]]></option><option correct="1"><![CDATA[William Herschel (1738-1822)]]></option></options>
+<answer id="1738 = William Herschel"><![CDATA[1738 = William Herschel]]></answer></clue>
 <clue number="5"><output>
-<direction>Walk around the square to the opposite corner, and take the road into Queens Parade</direction>
-<question>What kind of animal guards the gate to Royal Victoria Park?  Select the sea captain with all the letters in their name.</question>
-</output><hint></hint>
-<extra></extra>
-<options><option>Francis Drake</option><option correct="1">Horatio Nelson</option><option>Robert Fitzroy</option><option>Robert Maynard</option><option>William Bligh</option></options>
-<answer id="Lion = Horatio Nelson">Lion = Horatio Nelson</answer></clue>
+<direction><![CDATA[Walk around the square to the opposite corner, and take the road uphill into Queens Parade.]]></direction>
+<question><![CDATA[What kind of animal guards the gate to Royal Victoria Park?  Select the sea captain with all the letters in their name.]]></question>
+</output><hint><![CDATA[There are a pair of these animals, holding golden balls.]]></hint>
+<extra><![CDATA[The park was opened in 1830 by the 11-year-old Princess Victoria who was visiting Bath at the time.  Within the park is the picturesque Bath Botanical Gardens stocked with an interesting collection of plants.]]></extra>
+<options><option><![CDATA[Francis Drake]]></option><option correct="1"><![CDATA[Horatio Nelson]]></option><option><![CDATA[Robert Fitzroy]]></option><option><![CDATA[Robert Maynard]]></option><option><![CDATA[William Bligh]]></option></options>
+<answer id="Lion = Horatio Nelson"><![CDATA[Lion = Horatio Nelson]]></answer></clue>
 <clue number="6"><output>
-<direction>Walk up the nearby set of steps into Gravel Walk. Follow it, then at a junction of paths turn right and walk up to Brock Street, admiring the Royal Crescent on your left.</direction>
-<question>Turn left into Royal Crescent.  Which wordy person used to live here?</question>
-</output><hint></hint>
-<extra></extra>
-<options><option>Ebenezer Brewer</option><option>Eric Gill</option><option correct="1">Isaac Pitman</option><option>Thomas Longman</option><option>Noah Webster</option></options>
-<answer id="Isaac Pitman">Isaac Pitman</answer></clue>
+<direction><![CDATA[Don't go through the gates, go back a few yards and walk up the nearby set of steps on your right into Gravel Walk. ]]></direction>
+<direction><![CDATA[Follow the walk, then at a junction of paths turn right and walk up to Brock Street, admiring the Royal Crescent on your left.]]></direction>
+<question><![CDATA[Turn left into Royal Crescent.  Which wordy person used to live here?]]></question>
+</output><hint><![CDATA[They lived at number 17.]]></hint>
+<extra><![CDATA[The Royal Crescent was designed by John Wood the Younger.  Originally purchasers bought a length of the facade then employed their own architect to build the house behind it, so it doesn't look so uniform from behind.  Number 1 is now a historic house museum furnished in the style of the 18th century.]]></extra>
+<options><option><![CDATA[Ebenezer Brewer]]></option><option><![CDATA[Eric Gill]]></option><option correct="1"><![CDATA[Isaac Pitman]]></option><option><![CDATA[Thomas Longman]]></option><option><![CDATA[Noah Webster]]></option></options>
+<answer id="Isaac Pitman"><![CDATA[Isaac Pitman]]></answer></clue>
 <clue number="7"><output>
-<direction>Return to Brock Street and walk along the road to King's Circus.</direction>
-<question>Which artist lived in a house with these carvings above the door?</question>
-<image>CircusCarvings-10.jpg</image>
-</output><hint></hint>
-<extra></extra>
-<options><option>George Stubbs</option><option>John Constable</option><option correct="1">Thomas Gainsborough</option><option>William Tate</option><option>William Turner</option></options>
-<answer id="Thomas Gainsborough">Thomas Gainsborough</answer></clue>
+<direction><![CDATA[Return to Brock Street and walk along the road to King's Circus. Start circumnavigating the circus clockwise.]]></direction>
+<question><![CDATA[Which artist lived in a house with these carvings above the door?]]></question>
+<image><![CDATA[CircusCarvings-10.jpg]]></image>
+</output><hint><![CDATA[They lived at number 17.]]></hint>
+<extra><![CDATA[The design for the Circus was inspired by the Roman Colosseum.  There is a total of 525 pictorial emblems decorating the buildings.  When viewed from the air, The Circus along with Queen Square and Gay Street form a key shape which is a masonic symbol.]]></extra>
+<options><option><![CDATA[George Stubbs]]></option><option><![CDATA[John Constable]]></option><option correct="1"><![CDATA[Thomas Gainsborough]]></option><option><![CDATA[William Tate]]></option><option><![CDATA[William Turner]]></option></options>
+<answer id="Thomas Gainsborough"><![CDATA[Thomas Gainsborough]]></answer></clue>
 <clue number="8"><output>
-<direction>Leave the Circus by Bennett Street and turn right in front of the Assembly Rooms onto a footpath.</direction>
-<question>Whose bust is this?  Select the monarch sharing his initial</question>
-<image>AlfredStBust.jpg</image>
-</output><hint></hint>
-<extra></extra>
-<options><option correct="1">Queen Anne</option><option>Edward the Confessor</option><option>King John</option><option>Richard the Lionheart</option><option>William the Conqueror</option></options>
-<answer id="Alfred = Queen Anne">Alfred = Queen Anne</answer></clue>
+<direction><![CDATA[Leave the Circus by Bennett Street and then turn right in front of the Assembly Rooms onto a footpath.]]></direction>
+<question><![CDATA[Whose bust is this?  Select the monarch sharing his initial]]></question>
+<image><![CDATA[AlfredStBust.jpg]]></image>
+</output><hint><![CDATA[The bust is at number 14 Alfred Street, and the name of the street is also a clue to the answer]]></hint>
+<extra><![CDATA[The elegant Assembly Rooms was the hub of fashionable society during the Georgian period.  People came for dancing, music, to play cards, drink tea or just have a conversation.  It was also a good place for young ladies to find a husband.]]></extra>
+<options><option correct="1"><![CDATA[Queen Anne]]></option><option><![CDATA[Edward the Confessor]]></option><option><![CDATA[King John]]></option><option><![CDATA[Richard the Lionheart]]></option><option><![CDATA[William the Conqueror]]></option></options>
+<answer id="Alfred = Queen Anne"><![CDATA[Alfred = Queen Anne]]></answer></clue>
 <clue number="9"><output>
-<direction>Follow the footpath to the bottom. Turn left into St Andrews Terrace, then right into Bartlett Street. Emerge onto George Street.</direction>
-<question>There is one stone lady amongst a row of stone men.  What number is she from the left?  Select the economist listed at this number</question>
-</output><hint></hint>
-<extra></extra>
-<options><option>1=Adam Smith</option><option>2=Jeremy Bentham</option><option>3=John Stuart Mill</option><option correct="1">4=Thomas Malthus</option><option>5=Walter Block</option></options>
-<answer id="4 = Thomas Malthus">4 = Thomas Malthus</answer></clue>
+<direction><![CDATA[Follow the footpath to the bottom. Turn left into St Andrews Terrace, then right into Bartlett Street. Emerge onto George Street.]]></direction>
+<question><![CDATA[There is one stone lady amongst a row of stone men.  What number is she from the left?  Select the economist listed at this number]]></question>
+</output><hint><![CDATA[Look for faces on the side of the building across the road.]]></hint>
+<extra><![CDATA[Milsom Street was a fashionable Georgian thoroughfare and remains so today.  In 2010 it was voted Britain's Best Fashion Street by the public.]]></extra>
+<options><option><![CDATA[1=Adam Smith]]></option><option><![CDATA[2=Jeremy Bentham]]></option><option><![CDATA[3=John Stuart Mill]]></option><option correct="1"><![CDATA[4=Thomas Malthus]]></option><option><![CDATA[5=Walter Block]]></option></options>
+<answer id="4 = Thomas Malthus"><![CDATA[4 = Thomas Malthus]]></answer></clue>
 <clue number="10"><output>
-<direction>Turn right, and stay on the high pavement.</direction>
-<question>Two brothers put their stamp here.  Select the novelist who shares the elder brother's first name</question>
-</output><hint></hint>
-<extra></extra>
-<options><option>Alexander Pope</option><option>Daniel Defoe</option><option correct="1">Henry Fielding</option><option>Jonathan Swift</option><option>Samuel Johnson</option></options>
-<answer id="Henry Stafford Smith = Henry Fielding">Henry Stafford Smith = Henry Fielding</answer></clue>
+<direction><![CDATA[Turn right, and stay on the high pavement.]]></direction>
+<question><![CDATA[Two brothers put their stamp here.  Select the novelist who shares the younger brother's first name]]></question>
+</output><hint><![CDATA[You need to look at number 13, where you should find a plaque.]]></hint>
+<extra><![CDATA[Henry Fielding lived in Bath while writing part of Tom Jones, a ground-breaking book in which people acted and spoke just as they did in everyday life.  Fielding gained inspiration for some of the characters and places from his stay here.]]></extra>
+<options><option><![CDATA[Alexander Pope]]></option><option><![CDATA[Daniel Defoe]]></option><option correct="1"><![CDATA[Henry Fielding]]></option><option><![CDATA[Jonathan Swift]]></option><option><![CDATA[Samuel Johnson]]></option></options>
+<answer id="Henry Stafford Smith = Henry Fielding"><![CDATA[Henry Stafford Smith = Henry Fielding]]></answer></clue>
 <clue number="11"><output>
-<direction>Turn left into Gay Street.</direction>
-<question>Who is celebrated in a house on this street?  She died at the same age as the number of the house.</question>
-</output><hint></hint>
-<extra></extra>
-<options><option>Ann Radcliffe</option><option>Charlotte Bronte</option><option>Fanny Burney</option><option correct="1">Jane Austen</option><option>Mary Shelley</option></options>
-<answer id="Jane Austen">Jane Austen</answer></clue>
+<direction><![CDATA[Turn left into Gay Street.]]></direction>
+<question><![CDATA[Who is celebrated in a house on this street?  She died at the same age as the number of the house.]]></question>
+</output><hint><![CDATA[The house is now a museum dedicated to this person]]></hint>
+<extra><![CDATA[Jane Austen lived in Bath for five years and set two of her novels in the city.  Every autumn, a festival in her honour is held here to celebrate her life and work.  Expect plenty of bonnets!]]></extra>
+<options><option><![CDATA[Ann Radcliffe]]></option><option><![CDATA[Charlotte Bronte]]></option><option><![CDATA[Fanny Burney]]></option><option correct="1"><![CDATA[Jane Austen]]></option><option><![CDATA[Mary Shelley]]></option></options>
+<answer id="Jane Austen"><![CDATA[Jane Austen]]></answer></clue>
 <clue number="12"><output>
-<direction>Turn left into Old King Street, follow it around to the right, then continue straight on under the arch. Carry straight on along a little road called Trim Bridge and then turn left onto Upper Borough Walls.</direction>
-<question>What is the name of the hospital founded in 1738? It seems to suggest that Evian can cure all ills!  Select the person whose name includes the first letter of all four words in this building's name</question>
-</output><hint></hint>
-<extra></extra>
-<options><option>George Stubbs</option><option>Joshua Reynolds</option><option correct="1">Thomas Lawrence</option><option>William Blake</option><option>William Tate</option></options>
-<answer id="Royal Mineral Water Hospital = Thomas Lawrence">Royal Mineral Water Hospital = Thomas Lawrence</answer></clue>
+<direction><![CDATA[Turn left into Old King Street, then follow John Street around to the right, then continue straight on under the arch. ]]></direction>
+<direction><![CDATA[Carry straight on along a very short road called Trim Bridge and then turn left onto Upper Borough Walls and walk that way.]]></direction>
+<question><![CDATA[What is the name of the hospital founded in 1738? It seems to suggest that Evian can cure all ills!  Select the person whose name includes the first letter of all four words in this building's name]]></question>
+</output><hint><![CDATA[It is a large building on the right, the Royal xxxxxxx xxxxx Hospital]]></hint>
+<extra><![CDATA[The hospital was founded in 1738 to provide care for the “deserving poor” who came to Bath attracted by its healing waters.  Mineral waters was pumped into hydrotherapy baths within the hospital to assist in treating illnesses.  It is now an NHS trust specialising in Rheumatic diseases.]]></extra>
+<options><option><![CDATA[George Stubbs]]></option><option><![CDATA[Joshua Reynolds]]></option><option correct="1"><![CDATA[Thomas Lawrence]]></option><option><![CDATA[William Blake]]></option><option><![CDATA[William Tate]]></option></options>
+<answer id="Royal Mineral Water Hospital = Thomas Lawrence"><![CDATA[Royal Mineral Water Hospital = Thomas Lawrence]]></answer></clue>
 <clue number="13"><output>
-<direction>Turn left into Old Bond Street, which will take you onto Milsom Street – the main shopping road.  A little way up Milsom Street you can turn right into Green Street.  Follow it to the end.</direction>
-<question>Whose profile is depicted above a door?</question>
-</output><hint></hint>
-<extra>William Oliver invented the Bath Oliver biscuit.  Alexander Grant invented the Digestive biscuit.  The Earl Grey tea was named after Charles Grey (PM in the 19th century), Arnold Bennett omelette.  Cox's apple was named after Richard Cox</extra>
-<options><option>Alexander Grant</option><option>Arnold Bennet</option><option>Charles Grey</option><option>Richard Cox</option><option correct="1">William Oliver</option></options>
-<answer id="William Oliver">William Oliver</answer></clue>
+<direction><![CDATA[Turn left into Old Bond Street, which will take you onto Milsom Street – the main shopping road.  Just a little way up Milsom Street you can turn right into Green Street.  Follow it to the end.]]></direction>
+<question><![CDATA[Whose profile is depicted above a door?]]></question>
+</output><hint><![CDATA[Look above the door of the building on the left hand corner.]]></hint>
+<extra><![CDATA[William Oliver was a physician who invented the Bath Oliver biscuit sometime around 1750.  He had originally invented the Bath Buns, but found it to be too fattening for his rheumatic patients.  The biscuit, a hard, dry cracker, is often eaten with cheese.  Its recipe remains secret to this day.]]></extra>
+<options><option><![CDATA[Alexander Grant]]></option><option><![CDATA[Arnold Bennet]]></option><option><![CDATA[Charles Grey]]></option><option><![CDATA[Richard Cox]]></option><option correct="1"><![CDATA[William Oliver]]></option></options>
+<answer id="William Oliver"><![CDATA[William Oliver]]></answer></clue>
 <clue number="14"><output>
-<direction>Turn left into Broad Street.</direction>
-<question>Who designed the school?  Select the person whose surname rhymes with his surname!</question>
-</output><hint></hint>
-<extra></extra>
-<options><option>Mary Leakey</option><option correct="1">Mary Shelley</option><option>Mary Quant</option><option>Mary Seacole</option><option>Mary Wollstonecraft</option></options>
-<answer id="Thomas Jelly = Mary Shelley">Thomas Jelly = Mary Shelley</answer></clue>
+<direction><![CDATA[Turn left into Broad Street.]]></direction>
+<question><![CDATA[Who designed the school?  Select the person whose surname rhymes with his surname!]]></question>
+</output><hint><![CDATA[You are looking for King Edward school]]></hint>
+<extra><![CDATA[The school was founded in the 16th century.  It had since moved to the outskirts of the city. ]]></extra>
+<options><option><![CDATA[Mary Leakey]]></option><option correct="1"><![CDATA[Mary Shelley]]></option><option><![CDATA[Mary Quant]]></option><option><![CDATA[Mary Seacole]]></option><option><![CDATA[Mary Wollstonecraft]]></option></options>
+<answer id="Thomas Jelly = Mary Shelley"><![CDATA[Thomas Jelly = Mary Shelley]]></answer></clue>
 <clue number="15"><output>
-<direction>Continue up Broad Street, looking out for Broad Street Place, an alleyway on the right.  Take it.</direction>
-<question>Who designed this water feature?  Select the prime minister with the same initials</question>
-<image>BroadStPlaceGlobe.jpg</image>
-</output><hint></hint>
-<extra></extra>
-<options><option>Benjamin Disraeli</option><option>Robert Peel</option><option>Robert Walpole</option><option>William Gladstone</option><option correct="1">William Pitt the Younger</option></options>
-<answer id="William Pye = William Pitt the Younger">William Pye = William Pitt the Younger</answer></clue>
+<direction><![CDATA[Continue up Broad Street, looking out for Broad Street Place, an alleyway on the right.  Take it.]]></direction>
+<question><![CDATA[Who designed this water feature?  Select the prime minister with the same initials]]></question>
+<image><![CDATA[BroadStPlaceGlobe.jpg]]></image>
+</output><hint><![CDATA[The feature is in the middle of the small square here.]]></hint>
+<extra><![CDATA[It was while staying in Bath that William Pitt the Younger heard of Napoleon's victory in the Battle of Austerlitz.  The news struck him very hard and he died soon after.]]></extra>
+<options><option><![CDATA[Benjamin Disraeli]]></option><option><![CDATA[Robert Peel]]></option><option><![CDATA[Robert Walpole]]></option><option><![CDATA[William Gladstone]]></option><option correct="1"><![CDATA[William Pitt the Younger]]></option></options>
+<answer id="William Pye = William Pitt the Younger"><![CDATA[William Pye = William Pitt the Younger]]></answer></clue>
 <clue number="16"><output>
-<direction>Follow the steps down into Walcot Street (if steps are a problem, retrace your steps and go down Saracen Street onto Walcot Street instead. Turn right on Walcot Street and go straight on.</direction>
-<question>This decoration adorns which building?  Select the person whose invention benefited this establishment.</question>
-<image>HighStPostOffice.jpg</image>
-</output><hint></hint>
-<extra></extra>
-<options><option>Alexander Graham Bell, inventor of the telephone</option><option>Charles Macintosh, inventor of waterproof fabrics</option><option>John Lofting, inventor of the fire engine</option><option correct="1">John Palmer, Inventor of the mail coach</option><option>Melvil Dewey, inventor of the Dewey Decimal system</option></options>
-<answer id="Post Office = John Palmer">Post Office = John Palmer</answer></clue>
+<direction><![CDATA[Follow the steps down into Walcot Street (if steps are a problem, retrace your steps and go down Saracen Street onto Walcot Street instead). ]]></direction>
+<direction><![CDATA[Turn right on Walcot Street and walk on.]]></direction>
+<question><![CDATA[This decoration adorns which building?  Select the person whose invention benefited this establishment.]]></question>
+<image><![CDATA[HighStPostOffice.jpg]]></image>
+</output><hint><![CDATA[It is opposite the Podium.]]></hint>
+<extra><![CDATA[Walcot Street follows the course of the Fosse Way, one of the main Roman routes into the city.  Now it is home to several small independent businesses and artisans. ]]></extra>
+<options><option><![CDATA[Alexander Graham Bell, inventor of the telephone]]></option><option><![CDATA[Charles Macintosh, inventor of waterproof fabrics]]></option><option><![CDATA[John Lofting, inventor of the fire engine]]></option><option correct="1"><![CDATA[John Palmer, Inventor of the mail coach]]></option><option><![CDATA[Melvil Dewey, inventor of the Dewey Decimal system]]></option></options>
+<answer id="Post Office = John Palmer"><![CDATA[Post Office = John Palmer]]></answer></clue>
 <clue number="17"><output>
-<direction>Next, turn left into Bridge Street.</direction>
-<question>Whose statue was erected here on the year of their death? This person lived here in their youth but you need to select their predecessor by 300 years</question>
-</output><hint></hint>
-<extra></extra>
-<options><option>Francis Bacon, Philosopher</option><option>John Dee, Mystic</option><option correct="1">Elizabeth I, Queen</option><option>Walter Raleigh, Explorer</option><option>William Shakespeare, Playwright</option></options>
-<answer id="Victoria = Queen Elizabeth I">Victoria = Queen Elizabeth I</answer></clue>
+<direction><![CDATA[Next, turn left into Bridge Street.]]></direction>
+<question><![CDATA[Whose statue was erected here in the year of their death? This person lived here in their youth but you need to select someone who was doing their job 300 years ago.]]></question>
+</output><hint><![CDATA[Look for a white statue up on your right as you walk along.]]></hint>
+<extra><![CDATA[Elizabeth I ordered the restoration of Bath Abbey following a visit to the city in 1574.  In 1590 she further granted Bath city status.]]></extra>
+<options><option><![CDATA[Francis Bacon, Philosopher]]></option><option><![CDATA[John Dee, Mystic]]></option><option correct="1"><![CDATA[Elizabeth I, Queen]]></option><option><![CDATA[Walter Raleigh, Explorer]]></option><option><![CDATA[William Shakespeare, Playwright]]></option></options>
+<answer id="Victoria = Queen Elizabeth I"><![CDATA[Victoria = Queen Elizabeth I]]></answer></clue>
 <clue number="18"><output>
-<direction>Continue straight on.  Although there are shops on either side, you are actually walking across Pulteney Bridge.  There are only two other bridges in the world with shops on both sides. After the bridge continue on until you find a traditional old pharmacy.</direction>
-<question>When was the chemist established?  Select the royal who died two years earlier</question>
-</output><hint></hint>
-<extra></extra>
-<options><option>Christian VII of Denmark (d 1808)</option><option>Francis II of Germany (d 1835)</option><option>George IV of Britain (d 1830)</option><option correct="1">Louis XVIII of France (d 1824)</option><option>William I of the Netherlands (d 1843)</option></options>
-<answer id="1826">1826 = Louis XVIII of France</answer></clue>
+<direction><![CDATA[Continue straight on.  Although there are shops on either side, you are actually walking across Pulteney Bridge.  There are only two other bridges in the world with shops on both sides. After the bridge continue on until you find a traditional old pharmacy.]]></direction>
+<question><![CDATA[When was the chemist established?  Select the royal who died two years earlier]]></question>
+</output><hint><![CDATA[It is the last shop on the right before you reach the roundabout.]]></hint>
+<extra><![CDATA[The district of Bathwick lies on this side of the river.  It is characterised by wide streets lined by handsome Georgian houses.  The Holburne Museum, a short distance stroll, has an interesting art collection.  Entrance is free. ]]></extra>
+<options><option><![CDATA[Christian VII of Denmark (d 1808)]]></option><option><![CDATA[Francis II of Germany (d 1835)]]></option><option><![CDATA[George IV of Britain (d 1830)]]></option><option correct="1"><![CDATA[Louis XVIII of France (d 1824)]]></option><option><![CDATA[William I of the Netherlands (d 1843)]]></option></options>
+<answer id="1826 = Louis XVIII of France"><![CDATA[1826 = Louis XVIII of France]]></answer></clue>
 <clue number="19"><output>
-<direction>Now retrace your steps, but look out for an illusory window.</direction>
-<question>Who owned a bookstore and lending library here?  Select the person with the same first name</question>
-<image>FakeWindow.jpg</image>
-</output><hint></hint>
-<extra></extra>
-<options><option>Edward William Godwin</option><option correct="1">George Gilbert-Scott</option><option>Henry Goodridge</option><option>Isambard Kingdom Brunel</option><option>Robert Adam</option></options>
-<answer id="George Gregory = George Gilbert-Scott">George Gregory = George Gilbert-Scott</answer></clue>
+<direction><![CDATA[Now turn around to retrace your steps, but first look for a window that isn't quite what it seems.]]></direction>
+<question><![CDATA[Who owned a bookstore and lending library here?  Select the person with the same two initials]]></question>
+<image><![CDATA[FakeWindow.jpg]]></image>
+</output><hint><![CDATA[Look up high on the corner of Grove Street, you'll see a window that isn't real]]></hint>
+<extra><![CDATA[A prolific architect, George Gilbert-Scott was involved in the construction or renovation of over 800 buildings around the country, including of 25 cathedrals.  In Bath, he carried out major restoration work on the Abbey in the 1860s. ]]></extra>
+<options><option><![CDATA[Edward William Godwin]]></option><option correct="1"><![CDATA[George Gilbert-Scott]]></option><option><![CDATA[Henry Goodridge]]></option><option><![CDATA[Isambard Kingdom Brunel]]></option><option><![CDATA[Robert Adam]]></option></options>
+<answer id="George Gregory = George Gilbert-Scott"><![CDATA[George Gregory = George Gilbert-Scott]]></answer></clue>
 <clue number="20"><output>
-<direction>Return across Pulteney Bridge, and turn left into Grand Parade. Walk along by the river and then beside the gardens.  When you reach the junction with North Parade, turn right and cross the road then go straight on into North Parade Passage, tucked away in the corner.</direction>
-<question>Who lived here in 1680, in what is reputedly the oldest house in Bath?  Select the actress whose first name starts with the same letter</question>
-</output><hint></hint>
-<extra></extra>
-<options><option>Constance Crawley</option><option>Flora Finch</option><option>Lillie Langtry</option><option>Mary Mannering</option><option correct="1">Sarah Siddons</option></options>
-<answer id="Sally Lunn = Sarah Siddons">Sally Lunn = Sarah Siddons</answer></clue>
-<after><output><direction>At the end of the alley, turn right and you should find the abbey ahead of you again.  Well done!</direction></output></after>
-
+<direction><![CDATA[Return across Pulteney Bridge, and turn left into Grand Parade. Walk along by the river and then beside the gardens.  ]]></direction>
+<direction><![CDATA[When you reach the junction with North Parade, cross the road to the right and  then go straight on into North Parade Passage, tucked away in the corner.]]></direction>
+<question><![CDATA[Who lived here in 1680, in what is reputedly the oldest house in Bath?  Select the actress whose first name starts with the same letter]]></question>
+</output><hint><![CDATA[The house is now a tea room, on the right.]]></hint>
+<extra><![CDATA[Sally Lunn was a Hugeunot refugee who settled in Bath and invented the rich brioche bun which bears her name.  The bun became very popular.  Charles Dickens wrote about it and it even appeared in a Gilbert and Sullivan operetta.]]></extra>
+<options><option><![CDATA[Constance Crawley]]></option><option><![CDATA[Flora Finch]]></option><option><![CDATA[Lillie Langtry]]></option><option><![CDATA[Mary Mannering]]></option><option correct="1"><![CDATA[Sarah Siddons]]></option></options>
+<answer id="Sally Lunn = Sarah Siddons"><![CDATA[Sally Lunn = Sarah Siddons]]></answer></clue>
+<after><output><direction><![CDATA[At the end of the alley, turn right and you should find the abbey ahead of you again.  Well done!]]></direction></output></after>
 </clues>
 
 

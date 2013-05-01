@@ -159,25 +159,38 @@ class HuntsController < ApplicationController
 			render "reload.js"
 		elsif params[:submit_continue]	# this is used if they re-view the instructions then continue
 			redirect_to '/hunt_home/' + @hunt.id.to_s
+		elsif params[:submit_problem]
+			render "problem.js"
+		elsif params[:submit_problem_feedback]
+			# Tell the UserMailer to send an Email
+			UserMailer.problem_email(@hunt, params[:current_clue], params[:problem]).deliver
+			flash[:success] = "Thanks for your feedback!  We'll look into this straight-away."
+			redirect_to '/hunt_home/' + @hunt.id.to_s
+		elsif params[:submit_problem_cancel]
+			redirect_to '/hunt_home/' + @hunt.id.to_s			
 		else	# it is an attempted answer, so check it
-			f = File.open( XML_PATH + "products/#{@hunt.product.data_file}.xml" )
-			huntxml = Nokogiri::XML(f)
-			f.close
-			@clue_node = huntxml.xpath("//clues/clue[@number='#{@hunt.current_clue}']")
-			
-			#-- Parameter being returned is "option_#" where # is the position of the (clicked) answer within the node set (starting at 0)
-			correct_node = @clue_node.xpath("options/option[@correct='1']").first
-			correct_posn = correct_node.parent.children.index(correct_node).to_s
-			opt = "option_" + correct_posn
-			if params.has_key?(opt.to_sym)
-				@hunt.mark_time
-				@hunt.next_clue
-				@hunt.save
-				render "answer.js"
+			if params[:current_clue] == @hunt.current_clue.to_s
+				f = File.open( XML_PATH + "products/#{@hunt.product.data_file}.xml" )
+				huntxml = Nokogiri::XML(f)
+				f.close
+				@clue_node = huntxml.xpath("//clues/clue[@number='#{@hunt.current_clue}']")
+				
+				#-- Parameter being returned is "option_#" where # is the position of the (clicked) answer within the node set (starting at 0)
+				correct_node = @clue_node.xpath("options/option[@correct='1']").first
+				correct_posn = correct_node.parent.children.index(correct_node).to_s
+				opt = "option_" + correct_posn
+				if params.has_key?(opt.to_sym)
+					@hunt.mark_time
+					@hunt.next_clue
+					@hunt.save
+					render "answer.js"
+				else
+					@hunt.add_penalty 2		# 2 minutes for a wrong answer
+					@hunt.save
+					render "wrong.js"
+				end
 			else
-				@hunt.add_penalty 2		# 2 minutes for a wrong answer
-				@hunt.save
-				render "wrong.js"
+				return
 			end
 		end
 
