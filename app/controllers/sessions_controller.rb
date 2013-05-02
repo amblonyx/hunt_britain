@@ -151,7 +151,8 @@ class SessionsController < ApplicationController
 		end
 	end
 	
-	def success
+	def payment_success
+	
 	  session[:cart] = Array.new
 	end
 	
