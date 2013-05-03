@@ -18,7 +18,6 @@ class HuntsController < ApplicationController
 	  
 	def create
 		@hunt = Hunt.new(params[:hunt])
-		create_voucher_code true
 		if @hunt.save 
 			flash[:success] = "The new hunt has been saved"
 			redirect_to hunts_path
@@ -50,7 +49,7 @@ class HuntsController < ApplicationController
 	
 	def change_voucher
 		@hunt = Hunt.find(params[:id])
-		create_voucher_code true
+		change_voucher_code
 		if @hunt.save 
 			flash[:success] = "Voucher code has been changed"
 			redirect_to hunts_path
@@ -202,14 +201,8 @@ class HuntsController < ApplicationController
 
 	private
 
-	def create_voucher_code(force)
-		if force 
-			@hunt.voucher_code = SecureRandom.hex(5) 
-		else
-			if params[:voucher_code].blank? 
-				@hunt.voucher_code = SecureRandom.hex(5) 
-			end
-		end
+	def change_voucher_code
+		@hunt.voucher_code = SecureRandom.hex(5) 
 	end
 	
 	def admin_user

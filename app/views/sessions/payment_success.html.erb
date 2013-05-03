@@ -1,4 +1,13 @@
 <p>Thank you for your purchase!</p>
-We will send you an email confirmation shortly.
+We will send you a confirmation email shortly to <%= @purchase.user.email %>
 
-Your reference number is: 
+Your reference number is: <strong><%= @purchase.reference %></strong>
+
+<div class="row">
+	<div class="span10 offset1">
+		<section>
+			<h2>Purchase details</h2>
+			<%= render "shared/purchase_table", obj: @purchase, admin: false %>
+		</section>
+	</div>
+</div>

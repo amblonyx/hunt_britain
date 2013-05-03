@@ -1,5 +1,6 @@
 class UserMailer < ActionMailer::Base
-	default from: "huntbritain@gmail.com"
+ 	add_template_helper(UsersHelper) 
+	default from: "treasurehuntbritain@gmail.com"
 
 	def welcome_email(user)
 		@user = user
@@ -20,4 +21,11 @@ class UserMailer < ActionMailer::Base
 		@problem = problem
 		mail(to: "treasurehuntbritain@gmail.com", subject: 'Feedback about a hunt')		
 	end
+
+	def confirm_purchase(purchase)
+		@purchase = purchase
+		mail(to: purchase.user.email, subject: 'Thanks for your order')		
+	end
+
+
 end

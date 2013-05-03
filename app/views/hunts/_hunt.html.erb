@@ -19,7 +19,7 @@
 	<td><%= hunt.paused %></td>
 	<td><%= hunt.completed %></td>
 	<td><%= link_to "Edit", edit_hunt_path(hunt.id) %><br/>
-	<a href="/restart_hunt/<%=hunt.id.to_s%>" onclick="return confirm('Are you sure you want to PERMANENTLY delete this hunt?')">Delete</a></td>
+	<a href="/hunts/<%=hunt.id.to_s%>" data-method="delete" onclick="return confirm('Are you sure you want to PERMANENTLY delete this hunt?')">Delete</a></td>
 </tr>
 <tr>
 	<td></td>

@@ -1,0 +1,13 @@
+<h1>Edit purchase</h1>
+<div class="row">
+	<div class="span8 offset2 well">
+		<%= form_for(@purchase, html: { class: "form-horizontal" }) do |f| %>
+			<%= render 'fields', f: f %>
+			<div class="center">
+				<%= f.submit "Commit", class: "btn btn-large btn-primary" %>
+				<%= f.submit "Cancel", class: "btn btn-large btn-primary" %>
+			</div>
+		<% end %>
+	</div>
+	
+</div>

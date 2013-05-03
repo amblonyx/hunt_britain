@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130303192621) do
+ActiveRecord::Schema.define(:version => 20130503144600) do
 
   create_table "hunts", :force => true do |t|
     t.integer  "product_id"
@@ -26,9 +26,10 @@ ActiveRecord::Schema.define(:version => 20130303192621) do
     t.integer  "current_clue"
     t.string   "current_status"
     t.integer  "time_taken"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
     t.integer  "user_id"
+    t.integer  "purchase_item_id"
   end
 
   create_table "locations", :force => true do |t|
@@ -46,31 +47,33 @@ ActiveRecord::Schema.define(:version => 20130303192621) do
     t.string   "product_code"
     t.string   "name"
     t.string   "format"
-    t.integer  "price"
+    t.decimal  "price",        :precision => 8, :scale => 2
     t.string   "data_file"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",                                 :null => false
+    t.datetime "updated_at",                                 :null => false
     t.integer  "location_id"
+    t.boolean  "dormant"
   end
 
   create_table "purchase_items", :force => true do |t|
     t.integer  "product_id"
     t.integer  "purchase_id"
     t.integer  "quantity"
-    t.integer  "unit_price"
-    t.integer  "total_price"
+    t.decimal  "unit_price",  :precision => 8, :scale => 2
+    t.decimal  "total_price", :precision => 8, :scale => 2
     t.string   "description"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
   end
 
   create_table "purchases", :force => true do |t|
     t.datetime "date_purchased"
     t.string   "reference"
-    t.integer  "price_total"
+    t.decimal  "price_total",    :precision => 8, :scale => 2
     t.integer  "user_id"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.datetime "created_at",                                   :null => false
+    t.datetime "updated_at",                                   :null => false
+    t.datetime "dispatch_date"
   end
 
   create_table "users", :force => true do |t|
@@ -92,7 +95,6 @@ ActiveRecord::Schema.define(:version => 20130303192621) do
     t.boolean  "guest",           :default => false
   end
 
-  add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["remember_token"], :name => "index_users_on_remember_token", :unique => true
   add_index "users", ["user_name"], :name => "index_users_on_user_name", :unique => true
 

@@ -1,7 +1,8 @@
 class Product < ActiveRecord::Base
-  attr_accessible :data_file, :format, :name, :price, :product_code
+  attr_accessible :data_file, :format, :name, :price, :product_code, :dormant
   belongs_to :location
   has_many :hunts
+#  has_many :purchase_items
 
 end
 # == Schema Information
