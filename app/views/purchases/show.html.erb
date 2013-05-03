@@ -1,0 +1,13 @@
+<% provide(:title, @purchase.reference) %>
+
+<h1>Purchase: <%= @purchase.reference %></h1>
+
+<div class="row">
+	<div class="span10 offset1">
+		<section>
+			<h2>Purchase details</h2>
+			<%= @purchase.purchase_items.count %>
+			<%= render "shared/purchase_table", obj: @purchase, admin: true %>
+		</section>
+	</div>
+</div>

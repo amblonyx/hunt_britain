@@ -118,10 +118,10 @@ class SessionsController < ApplicationController
 					business: 'huntbritain@gmail.com',
 					cmd: '_cart',
 					upload: 1,
-					notify_url: '',
-					return: "#{request.protocol}#{request.host_with_port}#{request.fullpath}/payment_success",
+					notify_url: "#{request.protocol}#{request.host_with_port}/payment_success",
 					currency_code: 'GBP',
-					invoice: ''
+					invoice: '',
+					reference: create_purchase_reference
 				}
 
 				@cart.each_with_index do |cart_item, index|
@@ -129,7 +129,7 @@ class SessionsController < ApplicationController
 					product = Product.find(cart_item[:product_id])
 					
 					paypal_params.merge!({
-						"amount_#{real_index}" => "%.2f" % (product.price / 100.0),
+						"amount_#{real_index}" => "%.2f" % (product.price * cart_item[:num].to_i),
 						"item_name_#{real_index}" => product.name,
 						"item_number_#{real_index}" => product.id,
 						"quantity_#{real_index}" => cart_item[:num],
@@ -137,6 +137,10 @@ class SessionsController < ApplicationController
 				
 				end
 				@paypal_link = "https://www.sandbox.paypal.com/cgi-bin/webscr?" + paypal_params.to_query
+				
+				#-- for TESTING only: create a new purchase
+				@test_link = purchases_path + "?" + paypal_params.to_query
+				
 				render "cart", layout: pick_layout
 			else
 				# also must decide whether to require the address fields
@@ -152,8 +156,8 @@ class SessionsController < ApplicationController
 	end
 	
 	def payment_success
-	
-	  session[:cart] = Array.new
+		session[:cart] = Array.new
+		@purchase = Purchase.find_by_reference(params[:reference])
 	end
 	
 	def cart
@@ -203,6 +207,9 @@ class SessionsController < ApplicationController
 	end
 	
 	private
+	def create_purchase_reference
+		SecureRandom.hex(5) 
+	end
 	
 	def load_cart
 		if not session.has_key? :cart

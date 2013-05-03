@@ -15,5 +15,14 @@ end
 #  password_digest :string(255)
 #  remember_token  :string(255)
 #  admin           :boolean         default(FALSE)
+#  address_1       :string(255)
+#  address_2       :string(255)
+#  town            :string(255)
+#  county          :string(255)
+#  postcode        :string(255)
+#  country         :string(255)
+#  phone           :string(255)
+#  user_name       :string(255)
+#  guest           :boolean         default(FALSE)
 #
 

@@ -34,6 +34,12 @@
 					<span class="help-block"><%#= App_Constants::DATA_XML + "products/" %></span>
 				</div>
 			</div>
+			<div class="control-group">
+				<%= f.label :dormant, class: "control-label" %>
+				<div class="controls">
+					<%= f.check_box :dormant %>
+				</div>
+			</div>
 			<div class="center">
 				<%= f.submit "Commit", class: "btn btn_large btn_primary" %>
 				<%= f.submit "Cancel", class: "btn btn_large btn_primary"%>

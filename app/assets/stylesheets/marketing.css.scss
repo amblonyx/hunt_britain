@@ -99,13 +99,13 @@ header {
 	}
 }
 #boxes {
-	width: 80%;
+	/*width: 80%;*/
 	margin: 15px auto;
 	overflow: hidden;
 	text-align: center;
 	/* 3 and 5 columns based on 272px total product width (width + margin + borders + 8px)*/
 	min-width: 816px;
-	max-width: 1360px;
+	/*max-width: 1360px;*/
 	.box {
 		overflow: hidden;
 		margin: 0;

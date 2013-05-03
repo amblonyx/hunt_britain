@@ -6,6 +6,7 @@ HuntBritain::Application.routes.draw do
 		resources :purchase_items
 	end
   end
+  
   resources :sessions, only: [:new, :create, :destroy]
 
   resources :locations do
@@ -13,9 +14,12 @@ HuntBritain::Application.routes.draw do
 		resources :hunts
 	end
   end
+
+  resources :purchases do
+	resources :purchase_items
+  end
   
   resources :products 
-  
   resources :hunts
 	
   root to: 'marketing_pages#home'
@@ -44,6 +48,8 @@ HuntBritain::Application.routes.draw do
   match '/signin', to: 'sessions#new'
   match '/signout', to: 'sessions#destroy', via: :delete
   match '/identify', to: 'sessions#identify'
+  
+  match '/handle_payment', to: 'purchases#handle_payment'
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -1,0 +1,71 @@
+<table class="table table-bordered table-striped">
+	<thead>
+		<tr>
+			<th>Date of purchase</th>
+			<th>Reference</th>
+			<th>Total Price</th>
+			<th>Dispatch date</th>
+			<% if admin == true %>
+				<th>ID</th>
+				<th>User ID</th>
+				<th>User Name</th>
+				<th>User Email</th>
+				<th></th>
+			<% end %>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td><%= purchase.date_purchased.to_formatted_s(:long) %></td>
+			<td><%= purchase.reference %></td>
+			<td><%= "%.2f" % (purchase.price_total) %></td>
+			<td><%#= purchase.dispatch_date %></td>
+			<% if admin == true %>
+				<td><%= purchase.id %></td>
+				<td><%= link_to purchase.user.id, purchase.user %></td>
+				<td><%= purchase.user.name %></td>
+				<td><%= purchase.user.email %></td>
+				<td></td>
+			<% end %>
+		</tr>
+		<tr>
+			<td colspan="9">
+				<table class="table table-bordered table-striped">
+					<tr>
+						<% if admin == true %>
+							<td>ID</td>
+							<td>Product ID</td>
+						<% end %>
+						<td>Description</td>
+						<td>Unit price</td>
+						<td>Quantity</td>
+						<td>Total price</td>
+					</tr>
+					<% purchase.purchase_items.each do |item| %>
+						<tr>
+							<% if admin == true %>
+								<td><%= item.id %></td>
+								<td><%= item.product_id %></td>
+							<% end %>
+							<td><%= item.description %></td>
+							<td><%= item.unit_price %></td>
+							<td><%= item.quantity %></td>
+							<td><%= item.total_price %></td>
+						</tr>
+					<% end %>
+				</table>
+			</td>
+		</tr>
+		<% if admin == true %>
+			<tr>
+				<td colspan="9">
+					<%= link_to "Edit", edit_purchase_path(purchase) %><br/>
+					<a href="/purchases/<%=purchase.id.to_s%>" data-method="delete" onclick="return confirm('Are you sure you want to PERMANENTLY delete this purchase?')">Delete</a></td>
+
+					<%#= link_to "Delete", purchase, method: :delete  %>
+				</td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
+

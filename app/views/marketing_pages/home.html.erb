@@ -1,12 +1,14 @@
 <section id="boxes">
 	<ul class="box activeview" id="box">
 		<% @locations.each do |loc| %>
-			<%= link_to "accordion/#{loc.id}", remote: true do %>
-				<li data-hunt="<%= loc.name %>">
-					<span class="placelabel" style="background-color: <%= random_colour %>;"><%= loc.description %></span>
-					<span class="placename"><%= loc.description %></span>
-					<%= image_tag "places/"+loc.image, alt: loc.description, title: loc.description  %>
-				</li>
+			<% if loc.products.count - loc.dormant_products.count > 0 %>
+				<%= link_to "accordion/#{loc.id}", remote: true do %>
+					<li data-hunt="<%= loc.name %>">
+						<span class="placelabel" style="background-color: <%= random_colour %>;"><%= loc.description %></span>
+						<span class="placename"><%= loc.description %></span>
+						<%= image_tag "places/"+loc.image, alt: loc.description, title: loc.description  %>
+					</li>
+				<% end %>
 			<% end %>
 		<% end %>
 	</ul>
