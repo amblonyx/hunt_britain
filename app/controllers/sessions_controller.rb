@@ -139,7 +139,7 @@ class SessionsController < ApplicationController
 				@paypal_link = "https://www.sandbox.paypal.com/cgi-bin/webscr?" + paypal_params.to_query
 				
 				#-- for TESTING only: create a new purchase
-				@test_link = purchases_path + "?" + paypal_params.to_query
+				@test_link = handle_payment_path + "?" + paypal_params.to_query
 				
 				render "cart", layout: pick_layout
 			else

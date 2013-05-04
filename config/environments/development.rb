@@ -41,8 +41,8 @@ HuntBritain::Application.configure do
 	   address: "smtp.gmail.com",
 	   port: 587,
 	   domain: "gmail.com",
-	   user_name: "huntbritain@gmail.com",
-	   password: "abi4evin",
+	   user_name: "treasurehuntbritain@gmail.com",
+	   password: "weak4beam",
 	   authentication: "plain",
 		enable_starttls_auto: true
 	}

@@ -1,0 +1,17 @@
+<% payment_service_for 123, 
+	"huntbritain@gmail.com", 
+	:amount => "3.99", 
+	:currency => "GBP", 
+	:service => :paypal do |service|
+		service.customer :first_name => "Maureen", :last_name => "Hadert", :phone => "999", :email => "amblonyx@gmail.com"
+		service.billing_address :city => "Ludlow", :address1 => "34 Old Street", :state => "Shropshire", :country => "United Kingdom", :zip => "SY8 1NP"
+		service.item_name "Testing IPN"
+		service.invoice Integer rand(1000)
+		service.tax "0.00"
+
+		#service.notify_url url_for(:only_path => false,:controller => 'pay_pal', :action => 'notify')
+		service.return_url url_for(:only_path => false, :controller => 'pay_pal',:action => 'show')
+		service.cancel_return_url url_for(:only_path => false, :controller => 'pay_pal', :action => 'cancel') 
+	%>
+	<%= submit_tag 'Make Payment'%>
+<% end %>

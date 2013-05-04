@@ -52,6 +52,11 @@ HuntBritain::Application.routes.draw do
   
   match '/handle_payment', to: 'purchases#handle_payment'
   
+  match 'paypal_notify' => 'pay_pal#notify'
+  match 'paypal_show' => 'pay_pal#show'
+  match 'paypal_cancel' => 'pay_pal#cancel'
+  match 'paypal_create' => 'pay_pal#create'
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
