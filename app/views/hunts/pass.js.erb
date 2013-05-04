@@ -1,11 +1,12 @@
 var clue = 'pass'
-if ($("#giveup").attr("data-current") != clue) {
+if ($("#popup_confirm").attr("data-current") != clue) {
 
-	$('#giveup h2').text('Give up?')
-	$('#giveup p').text('Tried the hint? If you want to give up on this clue, click OK')
-		
-	$("#giveup").attr("data-current", clue)
+	$('#popup_confirm h2').text('Give up?')
+	$('#popup_confirm p').text('Tried the hint? If you want to give up on this clue, click OK')
+	$('#popup_confirm #popup_action').attr("value", 'giveup')
+
+	$("#popup_confirm").attr("data-current", clue)
 }
 
 $("#overlay").show()
-$("#giveup").show()
+$("#popup_confirm").show()

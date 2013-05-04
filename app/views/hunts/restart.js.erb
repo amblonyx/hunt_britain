@@ -1,0 +1,12 @@
+var clue = 'restart'
+if ($("#popup_confirm").attr("data-current") != clue) {
+
+	$('#popup_confirm h2').text('Restart the Hunt?')
+	$('#popup_confirm p').text('Are you sure you want to restart the hunt? You will begin again at clue 1, however to be fair the timer will not be reset to zero.')
+	$('#popup_confirm #popup_action').attr("value", 'restart')
+	
+	$("#popup_confirm").attr("data-current", clue)
+}
+
+$("#overlay").show()
+$("#popup_confirm").show()
