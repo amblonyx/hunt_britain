@@ -20,28 +20,32 @@ class PurchasesController < ApplicationController
 	end
 
 	def create
-		@purchase = Purchase.new
-		create_payment @purchase, params
-		if @purchase.save 
-			flash[:success] = "The new purchase has been saved"
-			
-			# Temporary - while testing
-			#-- redirect_to @purchase
-
-			# Inform user that payment was successful
-			redirect_to payment_success_path + "?reference=" + @purchase.reference
-						
-			# Send a confirmation email for purchase
-			UserMailer.confirm_purchase(@purchase).deliver
-			UserMailer.deliver_purchases(@purchase).deliver
-
-		else
-			render 'show', layout: pick_layout
-		end
 	end
 
 	def handle_payment
-		
+		if params[:item_number1] && !params[:item_number1].empty?
+			#paypal sends an IPN even when the transaction is voided.
+			#save the payment status along with the amount of the transaction.
+			if params[:payment_status] != 'Voided'
+			
+				@purchase = Purchase.new
+				create_payment @purchase, params
+				if @purchase.save 
+					flash[:success] = "The new purchase has been saved"
+
+					# Inform user that payment was successful
+					redirect_to payment_success_path + "?reference=" + @purchase.reference
+								
+					# Send a confirmation email for purchase
+					UserMailer.confirm_purchase(@purchase).deliver
+					# Deliver online and PDF hunts
+					UserMailer.deliver_purchases(@purchase).deliver
+					return
+				end
+				
+			end 
+		end		
+		redirect_to root_path
 	end 
 	
 	def edit

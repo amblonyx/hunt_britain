@@ -5,26 +5,18 @@ class UserMailer < ActionMailer::Base
 	def welcome_email(user)
 		@user = user
 		@url  = signin_path 
-		mail(to: user.email, bcc: "treasurehuntbritain@gmail.com", subject: 'Welcome to Hunt Britain')
+		#-- mail(to: user.email, bcc: "treasurehuntbritain@gmail.com", subject: 'Welcome to Hunt Britain')
+		
+		#DEVELOPMENT: In case we inadvertantly send out emails to unknown email addresses
+		mail(to: "shortclaws@gmail.com", bcc: "treasurehuntbritain@gmail.com", subject: 'Welcome to Hunt Britain')		
 	end
   
-	def feedback_email(name, email, message)
-		@name = name
-		@email = email
-		@message = message
-		mail(to: "treasurehuntbritain@gmail.com", subject: 'Feedback from Treasure Hunt Britain')		
-	end
-
-	def problem_email(hunt, clue, problem)
-		@hunt = hunt
-		@clue = clue
-		@problem = problem
-		mail(to: "treasurehuntbritain@gmail.com", subject: 'Feedback about a hunt')		
-	end
-
 	def confirm_purchase(purchase)
-		@purchase = purchase
-		mail(to: purchase.user.email, bcc: "treasurehuntbritain@gmail.com", subject: 'Thanks for your order')		
+		@purchase = purchase		
+		#-- mail(to: purchase.user.email, bcc: "treasurehuntbritain@gmail.com", subject: 'Thanks for your order')		
+		
+		#DEVELOPMENT: In case we inadvertantly send out emails to unknown email addresses
+		mail(to: "shortclaws@gmail.com", bcc: "treasurehuntbritain@gmail.com", subject: 'Thanks for your order')	
 	end
 	
 	def deliver_purchases(purchase)
@@ -38,7 +30,24 @@ class UserMailer < ActionMailer::Base
 				attachments[file_name] = File.read("#{DOWNLOAD_PATH}#{file_name}", mode: "rb")
 			end 
 		end
-		mail(to: purchase.user.email, bcc: "treasurehuntbritain@gmail.com", subject: 'Your Treasure Hunt')		
+		#-- mail(to: purchase.user.email, bcc: "treasurehuntbritain@gmail.com", subject: 'Your Treasure Hunt')		
+
+		#DEVELOPMENT: In case we inadvertantly send out emails to unknown email addresses
+		mail(to: "shortclaws@gmail.com", bcc: "treasurehuntbritain@gmail.com", subject: 'Your Treasure Hunt')		
+	end
+
+	def feedback_email(name, email, message)
+		@name = name
+		@email = email
+		@message = message
+		mail(to: "treasurehuntbritain@gmail.com", subject: 'Feedback from Treasure Hunt Britain')		
+	end
+
+	def problem_email(hunt, clue, problem)
+		@hunt = hunt
+		@clue = clue
+		@problem = problem
+		mail(to: "treasurehuntbritain@gmail.com", subject: 'Feedback about a hunt')		
 	end
 
 
