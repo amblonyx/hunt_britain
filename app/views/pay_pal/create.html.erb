@@ -1,5 +1,5 @@
 <% payment_service_for 123, 
-	"huntbritain@gmail.com", 
+	PAYPAL_ACCOUNT, 
 	:amount => "3.99", 
 	:currency => "GBP", 
 	:service => :paypal do |service|
@@ -9,7 +9,7 @@
 		service.invoice Integer rand(1000)
 		service.tax "0.00"
 
-		#service.notify_url url_for(:only_path => false,:controller => 'pay_pal', :action => 'notify')
+		service.notify_url url_for(:only_path => false,:controller => 'pay_pal', :action => 'notify')
 		service.return_url url_for(:only_path => false, :controller => 'pay_pal',:action => 'show')
 		service.cancel_return_url url_for(:only_path => false, :controller => 'pay_pal', :action => 'cancel') 
 	%>
