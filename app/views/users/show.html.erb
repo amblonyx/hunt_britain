@@ -21,15 +21,42 @@
 	<div class="span6">
 		<section>
 			<h2>Transactions: <%= @user.purchases.count %></h2>
-			<%= render "shared/purchase_table", obj: @user.purchases, admin: false %>
+			<% @user.purchases.each do |purchase| %>
+				<div style="margin-top: 60px">
+				Date: <strong><%= purchase.date_purchased.to_formatted_s(:long) %></strong>, Reference: <strong><%= purchase.reference %></strong>
+				<table class="table table-bordered table-condensed">
+					<thead>
+					<tr>
+						<th>Description</th>
+						<th>Price</th>
+						<th>Quantity</th>
+						<th>Sub total</th>
+					</tr>
+					</thead>
+					<tbody>
+						<% purchase.purchase_items.each do |item| %>
+							<tr>
+							<td><%= item.description %></td>
+							<td>£<%= item.product.price %></td>
+							<td><%= item.quantity %></td>
+							<td>£<%= item.total_price %></td>
+							</tr>
+						<% end %>
+						<tr>
+							<td colspan="4" class="right"><strong>Order total price £<%= purchase.price_total %><strong></td>
+						</tr>
+					</tbody>
+				</table>
+				</div>
+			<% end %>
 		</section>
 		
 		<section>
 			<h2>Hunt Library</h2>
-			<table class="table table-bordered table-striped">
+			<table class="table table-bordered table-striped table-condensed">
 				<thead>
 					<tr>
-						<th>Hunt</th>
+						<th>Online hunts</th>
 						<th>Voucher</th>
 						<th>Status</th>
 					</tr>
@@ -45,7 +72,28 @@
 
 				<tbody>
 			</table>
-		</section>
+
+			<table class="table table-bordered table-striped table-condensed">
+				<thead>
+					<tr>
+						<th>PDFs</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<% @user.purchases.each do |purchase| %>
+						<% purchase.purchase_items.each do |item| %>
+							<% if item.product.format == "Download" %>
+								<tr>  
+								  <td><%= item.description %></td>
+								  <td><%= link_to "Download", action: :download, id: @user.id, pid: item.product.id %></td>
+								</tr>		
+							<% end %>
+						<% end %>
+					<% end %>
+				<tbody>
+			</table>
+			</section>
 	</div>
 	
 </div>

@@ -28,12 +28,13 @@ class PurchasesController < ApplicationController
 			# Temporary - while testing
 			#-- redirect_to @purchase
 
-			# Send a confirmation email for purchase
-			UserMailer.confirm_purchase(@purchase).deliver
-
 			# Inform user that payment was successful
 			redirect_to payment_success_path + "?reference=" + @purchase.reference
 						
+			# Send a confirmation email for purchase
+			UserMailer.confirm_purchase(@purchase).deliver
+			UserMailer.deliver_purchases(@purchase).deliver
+
 		else
 			render 'show', layout: pick_layout
 		end

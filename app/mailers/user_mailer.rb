@@ -5,7 +5,7 @@ class UserMailer < ActionMailer::Base
 	def welcome_email(user)
 		@user = user
 		@url  = signin_path 
-		mail(to: user.email, subject: 'Welcome to Hunt Britain')
+		mail(to: user.email, bcc: "treasurehuntbritain@gmail.com", subject: 'Welcome to Hunt Britain')
 	end
   
 	def feedback_email(name, email, message)
@@ -24,7 +24,21 @@ class UserMailer < ActionMailer::Base
 
 	def confirm_purchase(purchase)
 		@purchase = purchase
-		mail(to: purchase.user.email, subject: 'Thanks for your order')		
+		mail(to: purchase.user.email, bcc: "treasurehuntbritain@gmail.com", subject: 'Thanks for your order')		
+	end
+	
+	def deliver_purchases(purchase)
+		@purchase = purchase
+		@purchase.purchase_items.each do |item|
+			if item.product.format == "Download"
+				file_name = item.product.data_file
+				#attachments[file_name] = File.read("#{DOWNLOAD_PATH}#{file_name}")
+				#attachments[file_name] = {data: File.read("#{DOWNLOAD_PATH}#{file_name}"), :mime_type => 'application/pdf' }
+				#attachment content_type: 'application/pdf', body: File.read("#{DOWNLOAD_PATH}#{file_name}"), filename: file_name, transfer_encoding: "base64" 
+				attachments[file_name] = File.read("#{DOWNLOAD_PATH}#{file_name}", mode: "rb")
+			end 
+		end
+		mail(to: purchase.user.email, bcc: "treasurehuntbritain@gmail.com", subject: 'Your Treasure Hunt')		
 	end
 
 
