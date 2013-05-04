@@ -4,28 +4,35 @@ class PayPalController < ApplicationController
 	before_filter :load_cart
 	
 	def create
-
-	#    _user = {:first_name => "saran", :last_name => "v", :email => "svigra_1317161804_per@gmail.com", :address1 => "awesome ln", :city => "Austin", :state => "TX", :zip => "78759", :country => "USA", :phone => "5120070070" }
-	#    @user = OpenStruct.new _user
-	#    @amount = "0.01"
-	#    @currency = "USD"
-	#a random invoice number for test
-	#    @invoice = Integer rand(1000)
-	#    @item_number = "123"
-	
 	end
   
 	def notify
 		#handle notification here - LOG IT?
 		notify = Paypal::Notification.new request.raw_post
+
 		# TODO: find the purchase in the DB?		
-		p notify
+
 		if notify.acknowledge
-		  p "Transaction ID is #{notify.transaction_id}"
-		  p "Notify is #{notify}"
-		  p "Notify status is #{notify.status}"
+			#convert notify to HASH
+			notify.instance_variables.each do |var| 
+				hash[var.to_s] = notify.instance_variable_get(var) 
+			end 
+			notification = Notification.new(hash)
+			notification.purchase_id = notify.item_id
+			if notification.save 
+			
+			end 
+			
+			if notify.complete? #and @order.price == BigDecimal.new( params[:mc_gross] )
+				# todo update purchase
+			end 
+			
+			render :nothing => true
+			
+		#rescue
+			#LOG Exceptions
 		end
-		render :nothing => true
+		
 	end
   
 	def show
