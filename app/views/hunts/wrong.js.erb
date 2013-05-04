@@ -2,7 +2,7 @@ var clue = 'wrong'
 if ($("#popup").attr("data-current") != clue) {
 
 	$('#popup h2').text('Try again')
-	$('#popup p').text('You picked the wrong answer, you will need to have another look')
+	$('#popup #p1').text('You picked the wrong answer, you will need to have another look')
 	$('#popup a').text('OK')
 	
 	$("#popup").attr("data-current", clue)

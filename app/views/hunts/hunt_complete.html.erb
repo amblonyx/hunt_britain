@@ -1,14 +1,13 @@
 <% xml_doc = load_xml("product", "#{@hunt.product.data_file}.xml") %>
-<h1>Congratulations</h1>
+<h2>Congratulations</h2>
 <div class="row">
 	<p><%= get_xml_node("product", "#{@hunt.product.data_file}.xml", "//outcome/congrat").inner_text.to_s.html_safe %></p>
+	<p>You completed the hunt in <span class="badge badge-warning badge-large"><%= hunt_time(@hunt) %></span></p>
 	<% xml_doc.xpath("//clues/after/output/*").each do |node| %>
 		<p><%= node.inner_text.to_s.html_safe %></p>
 	<% end %>
-	<p>You completed the hunt in <span class="badge badge-warning badge-large"><%= hunt_time(@hunt) %></span></p>
-	<p>Have a look on our website to see how your time measures up to others and start planning your next Treasure Hunt...</p>
+	<p>Have a look on our website and start planning your next Treasure Hunt...</p>
 	<%= form_tag(root_path, html: { class: "form" }) do %>
 		<%= submit_tag "www.TreasureHuntBritain.com", name: "submit_continue", class: "btn btn-block btn-primary" %>		
 	<% end %>
-	
 </div>
