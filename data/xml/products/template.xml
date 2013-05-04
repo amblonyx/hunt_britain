@@ -2,8 +2,9 @@
 <hunt id="">
 	<number_of_clues></number_of_clues>
 	<circular>Y/N</circular>
+	<style>elimination</style>
 	
-	<outcome type="elimination">
+	<outcome>
 		<intro></intro>
 		
 		<answer></answer>
@@ -19,17 +20,6 @@
 				<comment></comment>
 			</option>
 		</selection>
-	</outcome>	
-
-	<outcome type="string">
-		<intro></intro>
-		
-		<answer></answer>
-		
-		<terminology>
-			<correct></correct>
-			<incorrect></incorrect>
-		</terminology>		
 	</outcome>	
 	
 	<clues>
@@ -52,4 +42,13 @@
 			</output>
 		</after>
 	</clues>
+
+	<pubs>
+		<intro>If you need even more of a challenge, try to solve these cryptic clues as you follow the Treasure Hunt. Each clue is to a pub name that you should pass on the route of the Treasure Hunt.</intro>
+		<pub id="">
+			<name></name>
+			<clue></clue>
+		</pub>
+	</pubs>
+	
 </hunt>

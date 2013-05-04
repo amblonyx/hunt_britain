@@ -4,8 +4,7 @@ if ($("#popup").attr("data-current") != clue) {
 	<% xml_doc = load_xml("product", "#{@hunt.product.data_file}.xml") %>
 	<% clue_node = xml_doc.xpath("//clues/clue[@number='#{@hunt.current_clue + 1}']") %>
 	$('#popup h2').text('Next direction will be')
-	$('#popup p').html('<%= peek_text clue_node %>')
-	$('#popup p').html('<%= peek_text clue_node %>')
+	$('#popup #p1').html('<%= peek_text clue_node %>')
 	$('#popup a').text('OK')
 	
 	$("#popup").attr("data-current", clue)

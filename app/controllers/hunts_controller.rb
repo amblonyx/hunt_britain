@@ -125,24 +125,20 @@ class HuntsController < ApplicationController
 		
 		if params[:submit_team_name]
 			if @hunt.update_attributes(params[:hunt])
-				#flash[:success] = "Hunt details updated"
 				redirect_to '/hunt_home/' + @hunt.id.to_s
 			else
 				render 'set_team_name'
 			end		
 		elsif params[:submit_start_hunt]
 			@hunt.start
-			@hunt.save
 			redirect_to '/hunt_home/' + @hunt.id.to_s
 		elsif params[:submit_hint]
-			@hunt.add_penalty 2
-			@hunt.save
+			@hunt.take_hint
 			render "hint.js" 
 		elsif params[:submit_pass]
 			render "pass.js" 
 		elsif params[:submit_giveup]
 			@hunt.pass_on_clue
-			@hunt.save
 			render "giveup.js"
 		elsif params[:submit_nogiveup]
 			render "nogiveup.js"		
@@ -150,11 +146,9 @@ class HuntsController < ApplicationController
 			render "peek.js" 
 		elsif params[:submit_pause]		# pause the hunt for a break
 			@hunt.pause_hunt
-			@hunt.save
 			render "reload.js"
 		elsif params[:submit_resume]	# resume after a pause by triggering a reload
 			@hunt.resume_hunt
-			@hunt.save
 			render "reload.js"
 		elsif params[:submit_continue]	# this is used if they re-view the instructions then continue
 			redirect_to '/hunt_home/' + @hunt.id.to_s
@@ -163,12 +157,12 @@ class HuntsController < ApplicationController
 		elsif params[:submit_problem_feedback]
 			# Tell the UserMailer to send an Email
 			UserMailer.problem_email(@hunt, params[:current_clue], params[:problem]).deliver
-			flash[:success] = "Thanks for your feedback!  We'll look into this straight-away."
+			flash[:success] = "Thanks for your feedback!"
 			redirect_to '/hunt_home/' + @hunt.id.to_s
 		elsif params[:submit_problem_cancel]
 			redirect_to '/hunt_home/' + @hunt.id.to_s			
 		else	# it is an attempted answer, so check it
-			if params[:current_clue] == @hunt.current_clue.to_s
+			if params[:current_clue] == @hunt.current_clue.to_s		# this prevents double-clicks answering 2 clues
 				f = File.open( XML_PATH + "products/#{@hunt.product.data_file}.xml" )
 				huntxml = Nokogiri::XML(f)
 				f.close
@@ -178,14 +172,11 @@ class HuntsController < ApplicationController
 				correct_node = @clue_node.xpath("options/option[@correct='1']").first
 				correct_posn = correct_node.parent.children.index(correct_node).to_s
 				opt = "option_" + correct_posn
-				if params.has_key?(opt.to_sym)
-					@hunt.mark_time
-					@hunt.next_clue
-					@hunt.save
+				if params.has_key?(opt.to_sym)	# then the right answer was submitted
+					@hunt.right_answer
 					render "answer.js"
 				else
-					@hunt.add_penalty 2		# 2 minutes for a wrong answer
-					@hunt.save
+					@hunt.wrong_answer	
 					render "wrong.js"
 				end
 			else

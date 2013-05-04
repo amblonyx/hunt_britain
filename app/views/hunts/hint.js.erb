@@ -5,7 +5,7 @@ if ($("#popup").attr("data-current") != clue) {
 	<% clue_node = xml_doc.xpath("//clues/clue[@number='#{@hunt.current_clue}']") %>
 
 	$('#popup h2').text('Hint for this clue')
-	$('#popup p').html('<%= clue_node.xpath("hint").inner_text.to_s %>')
+	$('#popup #p1').html('<%= clue_node.xpath("hint").inner_text.to_s %>')
 	$('#popup a').text('OK')
 	
 	$("#popup").attr("data-current", clue)

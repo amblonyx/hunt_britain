@@ -34,9 +34,9 @@ module HuntsHelper
 		days = (hunt.time_taken/86400).floor
 		hours = ((hunt.time_taken - (days * 86400))/3600).floor
 		minutes = ((hunt.time_taken - (days * 86400) - (hours * 3600))/60).floor
-		output = hours.to_s + " hours " + minutes.to_s + " minutes"
+		output = pluralize(hours, "hour") + " " + pluralize(minutes, "minute")
 		if days > 0
-			output = days.to_s + " days " + output
+			output = pluralize(days, "day") + " " + output
 		end
 		return output
 		
