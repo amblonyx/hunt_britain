@@ -80,11 +80,13 @@
 		}
 		span.header {
 			font-size: 16px;
-			margin: 10px 0;
+			margin: 0 0 10px 0;
+			padding: 4px;
 			font-weight: bold;
 			text-align: left;
 			text-transform: uppercase;
 			display: block;
+			border: solid 4px;
 		}
 		ul {
 			list-style-position: outside;
@@ -96,13 +98,13 @@
 			}
 		}
 		&:first-child { 
-			background-color: #ff9900;
+			background-color: #FF9900;
 		}
 		&:nth-child(2) { 
 			background-color: #1010FF;
 		}
 		&:nth-child(3) { 
-			background-color: #00FF35;
+			background-color: #00FF00;
 		}
 		&:nth-child(4) { 
 			background-color: #FF0000;
@@ -124,12 +126,24 @@
 		
 #accordion article:first-child + article { 
 	background-color: #1010FF;
+	span.header {
+		color: #1010FF;
+		border-color: #1010FF;
+	}
 }
 #accordion article:first-child + article + article { 
-	background-color: #00FF35;
+	background-color: #00FF00;
+	span.header {
+		color: #00FF00;
+		border-color: #00FF00;
+	}
 }
 #accordion article:first-child + article + article + article { 
 	background-color: #FF0000;
+	span.header {
+		color: #FF0000;
+		border-color: #FF0000;
+	}
 }
 
 

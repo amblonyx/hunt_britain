@@ -35,13 +35,16 @@
 			<% end %>			
 			</div>
 			<div id="buttonbar">
+				<input name="current_clue" type="hidden" value="<%= @hunt.current_clue %>" />		
 				<div class="btn-group">
-					<input name="current_clue" type="hidden" value="<%= @hunt.current_clue %>" />		
-					<input class="btn" name="submit_hint" type="submit" value="Hint" />			
 					<input class="btn" name="submit_peek" type="submit" value="Peek" />			
-					<input class="btn" name="submit_pass" type="submit" value="Pass!" />			
-					<input class="btn" name="submit_pause" type="submit" value="Pause" />			
-					<input class="btn" name="submit_problem" type="submit" value="Problem!" />			
+					<input class="btn" name="submit_hint" type="submit" value="Hint" />			
+					<input class="btn" name="submit_pass" type="submit" value="Pass!" />
+					<button class="btn dropdown-toggle" data-toggle="dropdown" href="#">More <span class="caret"></span></button>
+					<ul class="dropdown-menu">
+						<li><a href="/hunt_trail/<%= @hunt.id.to_s %>?submit_pause=1" data-remote="true" data-method="post">Pause hunt</a></li>
+						<li><a href="/hunt_trail/<%= @hunt.id.to_s %>?submit_problem=1" data-remote="true" data-method="post">Clue broken</a></li>
+					</ul>					
 				</div>
 				<p><a href="/hunt_home/<%= @hunt.id.to_s %>?p=intro" class="whitelink">Instructions</a></p>
 			</div>
@@ -57,20 +60,21 @@
 	</div>
 	<section id="popup">
 		<h2></h2>
-		<p></p>
+		<p id="p1"></p>
+		<p id="p2"></p>
 		<div class="outer"><div class="inner"><div class="center">
 		<a id="closepopup" href="#" class="btn"></a>
 		</div></div></div>
 	</section>
 	<section id="popup_problem">
 		<h2>Problem with this clue?</h2>
-		<p>If you can give us any details that would be useful:</p>
+		<p>If you think this clue may be broken, click 'OK'. If you can add any more details, that would be useful</p>
 		<div class="outer"><div class="inner"><div class="center">
 		<%= form_tag("/hunt_trail/" + @hunt.id.to_s, class: "form", method: "post") do %>
-			<input name="problem" type="text" size="300" value="" />	
-			<input name="current_clue" type="hidden" value="<%= @hunt.current_clue %>" />	
-			<input class="btn" name="submit_problem_feedback" type="submit" value="Yes" />		
-			<input class="btn" name="submit_problem_cancel" type="submit" value="No" />		
+			<p><input name="problem" type="text" size="300" value="" />	
+			<input name="current_clue" type="hidden" value="<%= @hunt.current_clue %>" /></p>	
+			<p><input class="btn" name="submit_problem_feedback" type="submit" value="OK" />		
+			<input class="btn" name="submit_problem_cancel" type="submit" value="Cancel" /></p>		
 		<% end %>
 		</div></div></div>
 	</section>
