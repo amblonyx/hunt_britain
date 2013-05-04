@@ -118,7 +118,7 @@ class SessionsController < ApplicationController
 					business: 'huntbritain@gmail.com',
 					cmd: '_cart',
 					upload: 1,
-					notify_url: "#{request.protocol}#{request.host_with_port}/payment_success",
+					notify_url: "#{request.protocol}#{request.host_with_port}/handle_payment",
 					currency_code: 'GBP',
 					invoice: '',
 					reference: create_purchase_reference
