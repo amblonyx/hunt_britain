@@ -21,7 +21,10 @@ class Hunt < ActiveRecord::Base
 		self.completed = false
 		self.time_taken = 0
 		self.last_submitted = self.started_at # so the time_taken can be easily updated			
+		
+		self.save
 	end
+	
 	def restart
 		self.started = false
 		self.paused = false
@@ -33,9 +36,11 @@ class Hunt < ActiveRecord::Base
 		self.started_at = nil
 		self.last_submitted = nil		
 	end
+	
 	def add_penalty(minutes)
 		self.time_taken = self.time_taken + (minutes * 60)
 	end
+	
 	def mark_time
 		thetime = Time.now
 		thediff = thetime.to_i - self.last_submitted.to_i
@@ -45,6 +50,23 @@ class Hunt < ActiveRecord::Base
 		self.time_taken = self.time_taken + thediff
 		self.last_submitted = thetime 			
 	end
+	
+	def take_hint
+		add_penalty 2
+		self.save
+	end
+
+	def right_answer
+		mark_time
+		next_clue
+		self.save
+	end
+	
+	def wrong_answer
+		add_penalty 2		# 2 minutes for a wrong answer
+		self.save
+	end
+	
 	def next_clue
 		self.current_clue = self.current_clue + 1
 		f = File.open( XML_PATH + "products/#{self.product.data_file}.xml" )
@@ -54,21 +76,29 @@ class Hunt < ActiveRecord::Base
 			self.completed = true
 		end
 	end
+	
 	def pass_on_clue
 		self.current_status = "Passed"
 		next_clue
 		mark_time
-		add_penalty 5	# giving up carried a 5 minute penalty
+		add_penalty 8	# giving up carried an 8 minute penalty
+		self.save
 	end
+
 	def pause_hunt
 		self.paused = true
 		mark_time
 		add_penalty 2	# to stop people pausing while walking between clues
+		self.save
 	end
+	
 	def resume_hunt
 		self.paused = false
 		self.last_submitted = Time.now	# so the paused period is skipped by time_taken			
+		self.save
 	end
+
+	# this isn't used currently, because the answer is passed as part of a param key
 	def check_answer(suggested)
 		f = File.open( XML_PATH + "products/#{self.product.data_file}.xml" )
 		huntxml = Nokogiri::XML(f)

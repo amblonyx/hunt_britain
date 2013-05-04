@@ -7,7 +7,8 @@ if ($("#popup").attr("data-current") != clue) {
 	<% clue_node = xml_doc.xpath("//clues/clue[@number='#{@hunt.current_clue - 1}']") %>
 
 	$('#popup h2').text('The answer was...')
-	$('#popup p').text('<%= clue_node.xpath("answer").inner_html %>')
+	$('#popup #p1').text('<%= clue_node.xpath("answer").inner_text.to_s %>')
+	$('#popup #p2').html('<%= clue_node.xpath("extra").inner_text.to_s %>')
 	$('#popup a').text('Continue')
 		
 	$("#popup").attr("data-current", clue)

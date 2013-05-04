@@ -1,10 +1,10 @@
 <% xml_doc = load_xml("product", "#{@hunt.product.data_file}.xml") %>
 <% clue_node = xml_doc.xpath("//clues/clue[@number='#{@hunt.current_clue}']") %>
 
-<h3>Take A Break</h3>
+<h2>Take A Break</h2>
 
 <div class="row">
-	<p>Hope you are enjoying your Treasure Hunt. Enjoy a well-earned break and click "Continue hunt" when you're ready to get going again with clue <%= @hunt.current_clue %>.</p>
+	<p>Hope you are enjoying your Treasure Hunt. Take a well-earned break and click "Continue hunt" when you're ready to get going again with clue <%= @hunt.current_clue %>.</p>
 	<%= form_tag("/hunt_trail/" + @hunt.id.to_s, remote: true, class: "form", method: "post") do %>
 	<%# form_for(@hunt, remote: true, html: { class: "form" }) do |f| %>
 		<div id="buttonbar">
