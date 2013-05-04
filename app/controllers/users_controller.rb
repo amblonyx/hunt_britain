@@ -112,6 +112,13 @@ class UsersController < ApplicationController
 		redirect_to @user
 	end
 	
+	def download 
+		@user = User.find(params[:id])
+		@product = Product.find(params[:pid])
+		send_file  "#{DOWNLOAD_PATH}#{@product.data_file}", filename: @product.data_file,  type: "application/pdf", disposition: 'attachment'
+		flash[:notice] = "Your file has been downloaded"
+	end 
+	
 	private
 	
 	def signed_in_user

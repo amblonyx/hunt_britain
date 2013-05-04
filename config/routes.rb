@@ -48,6 +48,7 @@ HuntBritain::Application.routes.draw do
   match '/signin', to: 'sessions#new'
   match '/signout', to: 'sessions#destroy', via: :delete
   match '/identify', to: 'sessions#identify'
+  match 'download', to: 'users#download'
   
   match '/handle_payment', to: 'purchases#handle_payment'
   
