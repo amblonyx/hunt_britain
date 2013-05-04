@@ -1,6 +1,5 @@
 class PurchasesController < ApplicationController
     include PurchasesHelper
-	before_filter :load_cart
 	before_filter :admin_user, only: [:index, :edit, :new, :destroy]
 	before_filter :check_for_cancel, only: [:update]
 	
@@ -21,7 +20,10 @@ class PurchasesController < ApplicationController
 	end
 
 	def create
-		if params[:item_number1] && !params[:item_number1].empty?
+	end
+
+	def handle_payment
+		if params[:item_number_1] && !params[:item_number_1].empty?
 			#paypal sends an IPN even when the transaction is voided.
 			#save the payment status along with the amount of the transaction.
 			if params[:payment_status] != 'Voided'
@@ -42,21 +44,8 @@ class PurchasesController < ApplicationController
 				end
 				
 			end 
-		end
-	end
-
-	def handle_payment
-		if params.has_key?(:VERIFIED)
-			flash[:success] = "Payment made"
-		elsif params.has_key?(:INVALID)
-			flash[:error] = "Invalid"
-		else
-			@paypal_verify = "https://www.sandbox.paypal.com/cgi-bin/webscr?" + "cmd=_notify-validate&" + request.query_string
-			#flash[:success] = @paypal_verify
-			redirect_to @paypal_verify
 		end		
-		
-		#redirect_to root_path
+		redirect_to root_path
 	end 
 	
 	def edit
@@ -90,11 +79,5 @@ class PurchasesController < ApplicationController
 		if params[:commit] == "Cancel"
 			redirect_to hunts_path
 		end
-	end
-	def load_cart
-		if not session.has_key? :cart
-			session[:cart] = Array.new
-		end
-		@cart = session[:cart]
 	end
 end

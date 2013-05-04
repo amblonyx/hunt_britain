@@ -137,16 +137,25 @@ class HuntsController < ApplicationController
 			render "hint.js" 
 		elsif params[:submit_pass]
 			render "pass.js" 
-		elsif params[:submit_giveup]
-			@hunt.pass_on_clue
-			render "giveup.js"
-		elsif params[:submit_nogiveup]
-			render "nogiveup.js"		
+		elsif params[:submit_ok]
+			if params[:popaction] == "giveup"
+				@hunt.pass_on_clue
+				render "giveup.js"
+			else	# restart is the only other action
+				@hunt.restart
+				@hunt.save 
+				flash[:success] = "Hunt status changed"
+				redirect_to '/hunt_home/' + @hunt.id.to_s
+			end
+		elsif params[:submit_cancel]
+			render "cancel.js"		
 		elsif params[:submit_peek]
 			render "peek.js" 
 		elsif params[:submit_pause]		# pause the hunt for a break
 			@hunt.pause_hunt
 			render "reload.js"
+		elsif params[:submit_restart]
+			render "restart.js" 
 		elsif params[:submit_resume]	# resume after a pause by triggering a reload
 			@hunt.resume_hunt
 			render "reload.js"

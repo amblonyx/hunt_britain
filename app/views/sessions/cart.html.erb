@@ -1,6 +1,10 @@
 ﻿<% provide(:title, "Shopping cart") %>
 
-<h1>Shopping Cart</h1>
+<% if @action == "checkout" %>
+	<h1>Confirm your details</h1>
+<% else %>
+	<h1>Shopping Cart</h1>
+<% end %>
 <div class="row">
 	<div class="span10 offset1">
 	
@@ -14,20 +18,16 @@
 			
 			<% if @action == "checkout" %>
 				<% if !@user.guest? %>
-					Name: <%= @user.name %><br/>
+					<div class="row">
+						<p class="span6"><%= @user.name %></p>
+					</div>
 				<% end %>
-				Email: <%= @user.email %><br/>
-				<%= output_phone(@user.phone) %><br/>
-				
-				<% if has_purchase_format(@cart, "Paper") %>
-					<p><strong>Paper hunts will be sent to:</strong><br/>
-					<%= output_address(@user) %></p>
-				<% end %>
-				
-				<% if has_purchase_format(@cart, "Online") %>
-					<p><strong>PDFs and Links to the online hunt will be sent to:</strong><br/>
-					<%= @user.email %></p>
-				<% end %>
+				<div class="row">
+					<p class="span6"><%= @user.email %></p>
+				</div>
+				<div class="row">
+					<p class="span6"><%= output_phone(@user.phone) %></p>
+				</div>				
 			<% end %>
 
 			<%= form_tag("/update_cart", id: "updateCartForm", method: "put") do %>
@@ -54,7 +54,7 @@
 						
 						<% @cart.each do |cart_item| %>
 							<% product = Product.find(cart_item[:product_id]) %>
-							<% total_price += product.price * cart_item[:num].to_f %>
+							<% total_price += calc_price(cart_item[:num].to_f, product) %>
 							<tr>
 								<td><%= product.name %></td>
 								<% if @action == "cart" %>
@@ -68,11 +68,18 @@
 									<td><%= cart_item[:num] %></td>
 								<% end %>
 								<td>£<%= "%.2f" % (product.price) %></td>
-								<td>£<%= "%.2f" % (cart_item[:num].to_f * product.price) %></td>
+								<td>£<%= "%.2f" % (calc_price(cart_item[:num].to_f, product)) %></td>
 								<% if @action == "cart" %>
 									<td><%= link_to "Remove", remove_from_cart_path(product_id: product.id), method: :post %></td>
 								<% end %>
 							</tr>
+							<% if @action == "cart" && product.format == "Online" %>
+								<tr>
+									<td colspan="6">
+										If you want to play a team hunt, increase the quantity to one per team. It costs £1.50 for each team after the first.
+									</td>
+								</tr>
+							<% end %>
 						<% end %>
 						<tr> 
 							<% if @action == "cart" %>
@@ -86,6 +93,20 @@
 						</tr>
 					<tbody>
 				</table>				
+			<% end %>
+
+			<% if @action == "checkout" %>
+				<% if has_purchase_format(@cart, "Paper") %>
+					<div class="row">
+						<p class="span3">Paper hunts will be sent to</p><p class="span6"><%= output_address(@user) %></p>
+					</div>
+				<% end %>
+				
+				<% if has_purchase_format(@cart, "Online") %>
+					<div class="row">
+						<p class="span3">PDFs and online hunts will be sent to</p><p class="span6"><%= @user.email %></p>
+					</div>
+				<% end %>
 			<% end %>
 
 			<div class="pull-right">

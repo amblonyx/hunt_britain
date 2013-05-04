@@ -21,6 +21,14 @@ module ApplicationHelper
 		end
 		false
 	end
+	
+	def calc_price(quantity, product)
+		additional = quantity - 1
+		price = product.price
+		if additional > 0
+			price = price + (additional * 1.5)
+		end
+	end
 
 	def clear_state
 		@return_to = session[:return_to]

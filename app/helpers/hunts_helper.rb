@@ -48,7 +48,7 @@ module HuntsHelper
 		clue_node.xpath("output/*").each do |node|
 			if node.name() == "direction"	# first node should always be direction
 				if found_dir		# two directions in a row, just return first
-					return "peek_text"
+					return peek_text
 				else
 					peek_text = node.inner_text.to_s
 					found_dir = true
