@@ -44,16 +44,17 @@
 					<ul class="dropdown-menu">
 						<li><a href="/hunt_trail/<%= @hunt.id.to_s %>?submit_pause=1" data-remote="true" data-method="post">Pause hunt</a></li>
 						<li><a href="/hunt_trail/<%= @hunt.id.to_s %>?submit_problem=1" data-remote="true" data-method="post">Clue broken</a></li>
-					</ul>					
+						<li><a href="/hunt_trail/<%= @hunt.id.to_s %>?submit_restart=1" data-remote="true" data-method="post">Restart hunt</a></li>					</ul>					
 				</div>
 				<p><a href="/hunt_home/<%= @hunt.id.to_s %>?p=intro" class="whitelink">Instructions</a></p>
 			</div>
-			<section id="giveup">
+			<section id="popup_confirm">
 				<h2></h2>
 				<p></p>
 				<div class="outer"><div class="inner"><div class="center">
-					<input class="btn" name="submit_giveup" type="submit" value="OK" />			
-					<input class="btn" name="submit_nogiveup" type="submit" value="Cancel" />			
+					<input class="btn" name="submit_ok" type="submit" value="OK" />			
+					<input class="btn" name="submit_cancel" type="submit" value="Cancel" />			
+					<input name="popaction" id="popup_action" type="hidden" />
 				</div></div></div>
 			</section>
 		<% end %>
@@ -91,11 +92,11 @@
 		})
 		$('#okgiveup').click(function(){
 			$("#overlay").hide()
-			$("#giveup").hide()	
+			$("#popup_confirm").hide()	
 			window.location.replace(<%= @hunt.id.to_s %>);
 		})
 		$('#cancelgiveup').click(function(){
 			$("#overlay").hide()
-			$("#giveup").hide()	
+			$("#popup_confirm").hide()	
 		})
 	</script>

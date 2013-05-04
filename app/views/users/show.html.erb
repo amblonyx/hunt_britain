@@ -1,6 +1,7 @@
 <% provide(:title, @user.name) %>
 
 <div class="row" >
+
 	<aside class="span3 offset1 well">
 			<%= link_to "Log out", signout_path, method: "delete", class: "pull-right" %>
 		<section>
@@ -20,31 +21,40 @@
 	</aside>
 	<div class="span6">
 		<section>
-			<h2>Transactions: <%= @user.purchases.count %></h2>
-			<% @user.purchases.each do |purchase| %>
-				<div style="margin-top: 60px">
-				Date: <strong><%= purchase.date_purchased.to_formatted_s(:long) %></strong>, Reference: <strong><%= purchase.reference %></strong>
+			<h2>Transactions</h2>
+			<% if @user.purchases.count == 0 %>
+				<table class="table table-bordered table-condensed">
+					<tbody><tr><td>None</td></tr></tbody>
+				</table>
+			<% else %>
+				<div>
 				<table class="table table-bordered table-condensed">
 					<thead>
 					<tr>
 						<th>Description</th>
 						<th>Price</th>
 						<th>Quantity</th>
-						<th>Sub total</th>
+						<th>Value</th>
 					</tr>
 					</thead>
 					<tbody>
-						<% purchase.purchase_items.each do |item| %>
-							<tr>
-							<td><%= item.description %></td>
-							<td>£<%= item.product.price %></td>
-							<td><%= item.quantity %></td>
-							<td>£<%= item.total_price %></td>
-							</tr>
-						<% end %>
+				<% @user.purchases.each do |purchase| %>
+					<tr class="warning">
+						<td colspan="4">Order reference: <strong><%= purchase.reference %></strong>, Date: <strong><%= purchase.date_purchased.to_formatted_s(:long) %></strong></td>
+					</tr>
+					<% purchase.purchase_items.each do |item| %>
 						<tr>
-							<td colspan="4" class="right"><strong>Order total price £<%= purchase.price_total %><strong></td>
+						<td><%= item.description %></td>
+						<td>£<%= item.product.price %></td>
+						<td><%= item.quantity %></td>
+						<td>£<%= item.total_price %></td>
 						</tr>
+					<% end %>
+						<tr>
+							<td colspan="3"><strong>Order total price</strong></td>
+							<td><strong>£<%= purchase.price_total %></strong></td>
+						</tr>
+				<% end %>
 					</tbody>
 				</table>
 				</div>
@@ -53,47 +63,57 @@
 		
 		<section>
 			<h2>Hunt Library</h2>
-			<table class="table table-bordered table-striped table-condensed">
-				<thead>
-					<tr>
-						<th>Online hunts</th>
-						<th>Voucher</th>
-						<th>Status</th>
-					</tr>
-				</thead>
-				<tbody>
-					<% @user.hunts.each do |hunt| %>
-						<tr>  
-						  <td><%= hunt.product.name %></td>
-						  <td><%= link_to hunt.voucher_code, "/hunt_login?voucher=" + hunt.voucher_code %></td>
-						  <td><%= status_string(hunt) %></td>
-						</tr>			
-					<% end %>
+			<% if @user.hunts.count == 0 && @user.purchases.count == 0 %>
+				<table class="table table-bordered table-condensed">
+					<tbody><tr><td>None</td></tr></tbody>
+				</table>
+			<% else %>
+				<table class="table table-bordered table-striped table-condensed">
+					<thead>
+						<tr>
+							<th>Online hunts</th>
+							<th>Voucher</th>
+							<th>Status</th>
+						</tr>
+					</thead>
+					<tbody>
+						<% @user.hunts.each do |hunt| %>
+							<tr>  
+							  <td><%= hunt.product.name %></td>
+							  <td><%= hunt.voucher_code %></td>
+								<% if !hunt.started %>
+									<td><a href="/hunt_login?voucher=<%= hunt.voucher_code %>" class="btn btn-danger btn-small">Start Hunt</a></td>
+								<% else %>
+									<td><a href="/hunt_login?voucher=<%= hunt.voucher_code %>"><%= status_string(hunt) %></a></td>
+								<% end %>
+							</tr>			
+						<% end %>
 
-				<tbody>
-			</table>
+					<tbody>
+				</table>
 
-			<table class="table table-bordered table-striped table-condensed">
-				<thead>
-					<tr>
-						<th>PDFs</th>
-						<th></th>
-					</tr>
-				</thead>
-				<tbody>
-					<% @user.purchases.each do |purchase| %>
-						<% purchase.purchase_items.each do |item| %>
-							<% if item.product.format == "Download" %>
-								<tr>  
-								  <td><%= item.description %></td>
-								  <td><%= link_to "Download", action: :download, id: @user.id, pid: item.product.id %></td>
-								</tr>		
+				<table class="table table-bordered table-striped table-condensed">
+					<thead>
+						<tr>
+							<th>PDFs</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<% @user.purchases.each do |purchase| %>
+							<% purchase.purchase_items.each do |item| %>
+								<% if item.product.format == "Download" %>
+									<tr>  
+									  <td><%= item.description %></td>
+									  <td><%= link_to "Download", action: :download, id: @user.id, pid: item.product.id %></td>
+									</tr>		
+								<% end %>
 							<% end %>
 						<% end %>
-					<% end %>
-				<tbody>
-			</table>
-			</section>
+					<tbody>
+				</table>
+			<% end %>
+		</section>
 	</div>
 	
 </div>

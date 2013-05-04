@@ -38,28 +38,12 @@ class UsersController < ApplicationController
 		@user = User.new(params[:user])
 
 		if @user.save 
-			# Tell the UserMailer to send a welcome Email after save
-			#-----UserMailer.welcome_email(@user).deliver
 			sign_in @user
 			flash[:success] = "Welcome to Hunt Britain"
 			redirect_back_or(@user)
 		else
 			render 'new', layout: pick_layout
 		end
-
-#		respond_to do |format|
-#			if @user.save 
-				# Tell the UserMailer to send a welcome Email after save
-				#-----UserMailer.welcome_email(@user).deliver
-#				sign_in @user
-#				flash[:success] = "Welcome to Hunt Britain"
-#				format.html { redirect_back_or(@user) }
-#				format.json { render json: @user, status: :created, location: @user }
-#			else
-#				format.html { render action: 'new' }
-#				format.json { render json: @user.errors, status: :unprocessable_entity }			
-#			end
-#		end
 	end
 
 	def edit
@@ -82,7 +66,7 @@ class UsersController < ApplicationController
 		else
 			if @user.update_attributes(params[:user])
 				flash[:success] = "Profile updated"
-				# I don't know why, but update_attributes seems to sign out the user, so...
+				# I don't know why yet, but update_attributes seems to sign out the user, so...
 				sign_in @user
 				# Back to show user, or to checkout if recording address from there
 				redirect_back_or @user

@@ -129,7 +129,7 @@ class SessionsController < ApplicationController
 					product = Product.find(cart_item[:product_id])
 					
 					paypal_params.merge!({
-						"amount_#{real_index}" => "%.2f" % (product.price * cart_item[:num].to_i),
+						"amount_#{real_index}" => "%.2f" % (calc_price(cart_item[:num].to_i, product)),
 						"item_name_#{real_index}" => product.name,
 						"item_number_#{real_index}" => product.id,
 						"quantity_#{real_index}" => cart_item[:num],
@@ -139,7 +139,7 @@ class SessionsController < ApplicationController
 				@paypal_link = "https://www.sandbox.paypal.com/cgi-bin/webscr?" + paypal_params.to_query
 				
 				#-- for TESTING only: create a new purchase
-				@test_link = handle_payment_path + "?" + paypal_params.to_query
+				@test_link = "/handle_payment?" + paypal_params.to_query
 				
 				render "cart", layout: pick_layout
 			else
