@@ -115,7 +115,7 @@ class SessionsController < ApplicationController
 				session.delete(:country)
 
 				paypal_params = {
-					business: 'huntbritain@gmail.com',
+					business: 'huntbritain@amblonyx.com',
 					cmd: '_cart',
 					upload: 1,
 					notify_url: "#{request.protocol}#{request.host_with_port}/handle_payment",
