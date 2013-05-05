@@ -130,11 +130,6 @@ class SessionsController < ApplicationController
 		end
 	end
 	
-	def payment_success
-		session[:cart] = Array.new
-		@purchase = Purchase.find_by_reference(params[:reference])
-	end
-	
 	def cart
 		@action = "cart"
 		paypal_params = {

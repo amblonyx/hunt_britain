@@ -1,6 +1,6 @@
 module PurchaseHandler
 	
-	def generate_paypal_link()
+	def generate_paypal_link
 	
 		paypal_params = {
 			business: PAYPAL_ACCOUNT,
