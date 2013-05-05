@@ -13,7 +13,6 @@
 		<% end %>
 
 		<%= form_tag("/hunt_trail/" + @hunt.id.to_s, remote: true, class: "form", method: "post") do %>
-		<%# form_for(@hunt, remote: true, html: { class: "form" }) do |f| %>
 			<div id="answerbox">
 			<% if xml_doc.xpath("//style").inner_html == "elimination" %>
 				<% answers = five_answers(xml_doc, clue_node.xpath("answer").first.get_attribute("id")) %>
@@ -69,9 +68,9 @@
 	</section>
 	<section id="popup_problem">
 		<h2>Problem with this clue?</h2>
-		<p>If you think this clue may be broken, click 'OK'. If you can add any more details, that would be useful</p>
+		<p>If you think this clue may be broken, click 'OK' then either guess the answer or 'Pass' the clue. If you can add any more details here, that would be very useful</p>
 		<div class="outer"><div class="inner"><div class="center">
-		<%= form_tag("/hunt_trail/" + @hunt.id.to_s, class: "form", method: "post") do %>
+		<%= form_tag("/hunt_trail/" + @hunt.id.to_s, remote: true, class: "form", method: "post") do %>
 			<p><input name="problem" type="text" size="300" value="" />	
 			<input name="current_clue" type="hidden" value="<%= @hunt.current_clue %>" /></p>	
 			<p><input class="btn" name="submit_problem_feedback" type="submit" value="OK" />		

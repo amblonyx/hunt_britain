@@ -25,7 +25,7 @@
 	</div>
 </header>
 <div id="topnote"></div>
-<div class="container" id="process_step">
+<div class="container-fluid" id="process_step">
 	<% flash.each do |key, value| %>
 		<%= content_tag(:div, value, class: "alert alert-#{key}") %>
 	<% end %>
