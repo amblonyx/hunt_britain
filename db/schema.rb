@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130504203731) do
+ActiveRecord::Schema.define(:version => 20130505104638) do
 
   create_table "hunts", :force => true do |t|
     t.integer  "product_id"
@@ -32,18 +32,7 @@ ActiveRecord::Schema.define(:version => 20130504203731) do
     t.integer  "purchase_item_id"
   end
 
-  create_table "locations", :force => true do |t|
-    t.string   "name"
-    t.string   "description"
-    t.string   "hunt_mode"
-    t.string   "image"
-    t.string   "region"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
-    t.string   "data_file"
-  end
-
-  create_table "notifications", :force => true do |t|
+  create_table "ipn_logs", :force => true do |t|
     t.integer  "purchase_id"
     t.integer  "transaction_id"
     t.boolean  "complete"
@@ -58,6 +47,17 @@ ActiveRecord::Schema.define(:version => 20130504203731) do
     t.string   "type"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
+  end
+
+  create_table "locations", :force => true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.string   "hunt_mode"
+    t.string   "image"
+    t.string   "region"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.string   "data_file"
   end
 
   create_table "products", :force => true do |t|
