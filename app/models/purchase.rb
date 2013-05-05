@@ -1,5 +1,5 @@
 class Purchase < ActiveRecord::Base
-	attr_accessible :date_purchased, :price_total, :reference, :user_id
+	attr_accessible :date_purchased, :price_total, :reference, :user_id, :status
   	has_many :purchase_items, dependent: :destroy
   	has_many :ipn_logs, dependent: :destroy
   	belongs_to :user

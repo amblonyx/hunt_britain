@@ -13,48 +13,48 @@ class PayPalController < ApplicationController
 		#handle PAYPAL notification
 		notify = Paypal::Notification.new request.raw_post
 
-		# TODO: find the purchase in the DB?		
-
-		#if notify.acknowledge
-			notification = IpnLog.new
-			notification.purchase_id = notify.item_id
-			notification.item_id = notify.item_id
-			notification.transaction_id = notify.transaction_id
-			notification.currency = notify.currency
-			notification.fee = notify.fee
-			notification.gross = notify.gross
-			notification.invoice = notify.invoice
-		#	notification.received_at = notify.received_at
-			notification.status = notify.status
-			notification.type = notify.type
-			
-			if notify.complete? then notification.complete = true end
-			if notify.test? then notification.test = true end
-			
-			if notification.save 
-			
-			end 
-
-			if notify.test?
-			
-			end 
-			
-			if notify.complete? #and @order.price == BigDecimal.new( params[:mc_gross] )
-				# todo update purchase
-			end 
-			
-		#	render :nothing => true
+		notification = IpnLog.new
+		notification.purchase_id = notify.item_id
+		notification.item_id = notify.item_id
+		notification.transaction_id = notify.transaction_id
+		notification.currency = notify.currency
+		notification.fee = notify.fee
+		notification.gross = notify.gross
+		notification.invoice = notify.invoice
+		notification.received_at = notify.received_at
+		notification.status = notify.status
+		notification.type = notify.type
 		
-		#else
-			#LOG hacking attempt?
+		if notify.complete? then notification.complete = true end
+		if notify.test? then notification.test = true end
+		
+		if notify.acknowledge
+			# Find the purchase and set it to PAID	
+			@purchase = Purchase.find_by_id(notify.item_id)
 			
-		#end
+			if notify.complete? and @purchase.total_price == notify.gross 
+				@purchase.status = "Paid"
+				@purchase.save
+			end 
+			
+		else 
+			notification.status = "HACKING ATTEMPT"
+		end
+
+		notification.save 
+		render :nothing => true
 		
 	end
   
 	def show
-
+		@purchase = Purchase.find_by_id(params[:item_number].to_i)
+		if @purchase.nil?
+			redirect_to root_path
+		else
+			render layout: pick_layout
+		end 
 	end
+	
 	def cancel
 	
 	end

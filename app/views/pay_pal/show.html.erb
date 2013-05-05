@@ -1,1 +1,28 @@
-Successful!
+<div class="row">
+	<div class="span10 offset1">
+	
+	<h1>Thanks for your purchase!</h1>
+	<p>We will send a confirmation email to <%= @purchase.user.email %></p>
+	<p>Your reference number is: <strong><%= @purchase.reference %></strong></p>
+	
+		<table class="table table-bordered table-striped">
+			<thead>
+				<th>Description</th>
+				<th>Price</th>
+				<th>Quantity</th>
+				<th>Sub total</th>
+			</tr>
+			<% @purchase.purchase_items.each do |item| %>
+				<tr>
+					<td><%= item.description %></td>
+					<td>£<%= item.unit_price %></td>
+					<td><%= item.quantity %></td>
+					<td>£<%= item.total_price %></td>
+				</tr>
+			<% end %>
+			<tr>
+				<td colspan="4" style="text-align:right;font-weight:bold">Order total price £<%= @purchase.price_total %></td>
+			</tr>
+		</table>
+	</div>
+</div>
