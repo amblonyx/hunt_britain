@@ -48,22 +48,22 @@ class MarketingPagesController < ApplicationController
 	def faq
 		@info = "faq"
 		@title = "FAQ" 
-		render "info", layout: "marketing"
+		render "info"
 	end
 	def about
 		@info = "about"
 		@title = "About Us" 
-		render "info", layout: "marketing"
+		render "info"
 	end
 	def contact
 		@info = "contact"
 		@title = "Contact Us" 
-		render "info", layout: "marketing"
+		render "info"
 	end
 	def copyright
 		@info = "copyright"
 		@title = "Copyright" 
-		render "info", layout: "marketing"
+		render "info"
 	end
 	
 	private
