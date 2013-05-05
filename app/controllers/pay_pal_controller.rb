@@ -13,21 +13,23 @@ class PayPalController < ApplicationController
 		# TODO: find the purchase in the DB?		
 
 		if notify.acknowledge
-			notification = Notification.new
+			notification = IpnLog.new
 			notification.purchase_id = notify.item_id
 			notification.item_id = notify.item_id
 			notification.transaction_id = notify.transaction_id
-			notification.complete = notify.complete
 			notification.currency = notify.currency
 			notification.fee = notify.fee
 			notification.gross = notify.gross
 			notification.invoice = notify.invoice
-			notification.received_at = notify.received_at
+			notification.received_at = DateTime.now
 			notification.status = notify.status
-			notification.test = notify.test
 			notification.type = notify.type
 			
 			if notification.save 
+			
+			end 
+
+			if notify.test?
 			
 			end 
 			
