@@ -114,8 +114,7 @@ class SessionsController < ApplicationController
 				session.delete(:postcode)
 				session.delete(:country)
 
-				#-- for TESTING only: create a new purchase
-				@test_link = handle_payment_path
+				@paypal_link = handle_payment_path
 				
 				render "cart", layout: pick_layout
 			else
