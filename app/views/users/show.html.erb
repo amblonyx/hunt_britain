@@ -2,65 +2,28 @@
 
 <div class="row" >
 
-	<aside class="span3 offset1 well">
-			<%= link_to "Log out", signout_path, method: "delete", class: "pull-right" %>
-		<section>
-			<h1><%= @user.name %></h1>
-			<em><%= @user.email %></em>
-			<address>
-				<%= output_address_line(@user.address_1) %>
-				<%= output_address_line(@user.address_2) %>
-				<%= output_address_line(@user.town) %>
-				<%= output_address_line(@user.county) %>
-				<%= output_address_line(@user.postcode) %>
-				<%= output_address_line(@user.country) %>
-				<%= output_phone(@user.phone) %>
-			</address>
-			<%= link_to "Edit my address", edit_user_path %><br/>
-		</section>
-	</aside>
-	<div class="span6">
-		<section>
-			<h2>Transactions</h2>
-			<% if @user.purchases.count == 0 %>
-				<table class="table table-bordered table-condensed">
-					<tbody><tr><td>None</td></tr></tbody>
-				</table>
-			<% else %>
-				<div>
-				<table class="table table-bordered table-condensed">
-					<thead>
-					<tr>
-						<th>Description</th>
-						<th>Price</th>
-						<th>Quantity</th>
-						<th>Value</th>
-					</tr>
-					</thead>
-					<tbody>
-				<% @user.purchases.each do |purchase| %>
-					<tr class="warning">
-						<td colspan="4">Order reference: <strong><%= purchase.reference %></strong>, Date: <strong><%= purchase.date_purchased.to_formatted_s(:long) %></strong></td>
-					</tr>
-					<% purchase.purchase_items.each do |item| %>
-						<tr>
-						<td><%= item.description %></td>
-						<td>£<%= item.product.price %></td>
-						<td><%= item.quantity %></td>
-						<td>£<%= item.total_price %></td>
-						</tr>
-					<% end %>
-						<tr>
-							<td colspan="3"><strong>Order total price</strong></td>
-							<td><strong>£<%= purchase.price_total %></strong></td>
-						</tr>
-				<% end %>
-					</tbody>
-				</table>
-				</div>
-			<% end %>
-		</section>
-		
+	<div class="span3 offset1">
+		<aside class="well span3">
+				<%= link_to "Log out", signout_path, method: "delete", class: "pull-right" %>
+			<section>
+				<h1><%= @user.name %></h1>
+				<p><strong><%= @user.email %></strong></p>
+				<address>
+					<%= output_address_line(@user.address_1) %>
+					<%= output_address_line(@user.address_2) %>
+					<%= output_address_line(@user.town) %>
+					<%= output_address_line(@user.county) %>
+					<%= output_address_line(@user.postcode) %>
+					<%= output_address_line(@user.country) %>
+					<%= output_phone(@user.phone) %>
+				</address>
+				<%= link_to "Edit my address", edit_user_path %><br/>
+			</section>
+		</aside>
+		<div class="span3"><%= link_to "Treasure Hunts", root_path, class: "btn btn-block btn-primary" %></div>
+	</div>
+	
+	<div class="span6 offset1">
 		<section>
 			<h2>Hunt Library</h2>
 			<% if @user.hunts.count == 0 && @user.purchases.count == 0 %>
@@ -114,6 +77,49 @@
 				</table>
 			<% end %>
 		</section>
+		
+		<section>
+			<h2>Order history</h2>
+			<% if @user.purchases.count == 0 %>
+				<table class="table table-bordered table-condensed">
+					<tbody><tr><td>None</td></tr></tbody>
+				</table>
+			<% else %>
+				<div>
+				<table class="table table-bordered table-condensed">
+					<thead>
+					<tr>
+						<th>Description</th>
+						<th>Price</th>
+						<th>Quantity</th>
+						<th>Value</th>
+					</tr>
+					</thead>
+					<tbody>
+				<% @user.purchases.each do |purchase| %>
+					<tr class="warning">
+						<td colspan="4">Order reference: <strong><%= purchase.reference %></strong>, Date: <strong><%= purchase.date_purchased.to_formatted_s(:long) %></strong></td>
+					</tr>
+					<% purchase.purchase_items.each do |item| %>
+						<tr>
+						<td><%= item.description %></td>
+						<td>£<%= item.product.price %></td>
+						<td><%= item.quantity %></td>
+						<td>£<%= item.total_price %></td>
+						</tr>
+					<% end %>
+						<tr>
+							<td colspan="3"><strong>Order total price</strong></td>
+							<td><strong>£<%= purchase.price_total %></strong></td>
+						</tr>
+				<% end %>
+					</tbody>
+				</table>
+				</div>
+			<% end %>
+		</section>
+		
+
 	</div>
 	
 </div>
