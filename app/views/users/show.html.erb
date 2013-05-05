@@ -1,9 +1,9 @@
 <% provide(:title, @user.name) %>
 
-<div class="row" >
+<div class="row-fluid" >
 
-	<div class="span3 offset1">
-		<aside class="well span3">
+	<div class="span4 offset1">
+		<aside class="well">
 				<%= link_to "Log out", signout_path, method: "delete", class: "pull-right" %>
 			<section>
 				<h1><%= @user.name %></h1>
@@ -20,10 +20,10 @@
 				<%= link_to "Edit my address", edit_user_path %><br/>
 			</section>
 		</aside>
-		<div class="span3"><%= link_to "Treasure Hunts", root_path, class: "btn btn-block btn-primary" %></div>
+		<div><%= link_to "Treasure Hunts", root_path, class: "btn btn-block btn-primary" %></div>
 	</div>
 	
-	<div class="span6 offset1">
+	<div class="span6">
 		<section>
 			<h2>Hunt Library</h2>
 			<% if @user.hunts.count == 0 && @user.purchases.count == 0 %>

@@ -74,7 +74,7 @@ class HuntsController < ApplicationController
 	end 
 	
 	def hunt_login
-		if !honeypot #Catch BOTS.  In applicationHelper
+		if !honeypot #Catch BOTS.  In ApplicationHelper
 			if params.has_key?(:voucher)
 				voucher = params[:voucher]
 				@hunt = Hunt.find_by_voucher_code(voucher)
@@ -87,8 +87,9 @@ class HuntsController < ApplicationController
 					redirect_to '/hunt_login/'
 				end
 			else
+				load_cart	# for correct header display
 				@hunt = Hunt.new
-				render "hunt_login", layout: "hunt"
+				render "hunt_login"
 			end
 		end
 	end
@@ -214,5 +215,12 @@ class HuntsController < ApplicationController
 		if params[:commit] == "Cancel"
 			redirect_to hunts_path
 		end
+	end
+	
+	def load_cart
+		if not session.has_key? :cart
+			session[:cart] = Array.new
+		end
+		@cart = session[:cart]
 	end
 end
