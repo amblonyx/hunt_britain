@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130503144600) do
+ActiveRecord::Schema.define(:version => 20130504203731) do
 
   create_table "hunts", :force => true do |t|
     t.integer  "product_id"
@@ -41,6 +41,23 @@ ActiveRecord::Schema.define(:version => 20130503144600) do
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
     t.string   "data_file"
+  end
+
+  create_table "notifications", :force => true do |t|
+    t.integer  "purchase_id"
+    t.integer  "transaction_id"
+    t.boolean  "complete"
+    t.string   "currency"
+    t.string   "fee"
+    t.decimal  "gross"
+    t.string   "invoice"
+    t.integer  "item_id"
+    t.datetime "received_at"
+    t.string   "status"
+    t.boolean  "test"
+    t.string   "type"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
   end
 
   create_table "products", :force => true do |t|
@@ -95,7 +112,6 @@ ActiveRecord::Schema.define(:version => 20130503144600) do
     t.boolean  "guest",           :default => false
   end
 
-  add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["remember_token"], :name => "index_users_on_remember_token", :unique => true
   add_index "users", ["user_name"], :name => "index_users_on_user_name", :unique => true
 
