@@ -34,17 +34,6 @@ class PurchasesController < ApplicationController
 			if @purchase.save 
 				@paypal_link = generate_paypal_link
 				
-#				flash[:success] = "The new purchase has been saved"
-#
-#				# Inform user that payment was successful
-#				redirect_to payment_success_path + "?reference=" + @purchase.reference
-#							
-#				# Send a confirmation email for purchase
-#				UserMailer.confirm_purchase(@purchase).deliver
-#				# Deliver online and PDF hunts
-#				UserMailer.deliver_purchases(@purchase).deliver
-#				return
-
 				session[:cart] = Array.new
 				redirect_to @paypal_link
 			else
@@ -60,13 +49,6 @@ class PurchasesController < ApplicationController
 	end
 	
 	def update
-#		@purchase = Purchase.find(params[:id])
-#		if @purchase.update_attributes(params[:purchase])
-#			flash[:success] = "Update successful"
-#			redirect_to @purchase.location
-#		else
-			render 'edit', layout: pick_layout
-#		end
 	end
 	
 	def destroy
