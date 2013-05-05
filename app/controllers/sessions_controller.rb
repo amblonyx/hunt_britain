@@ -114,32 +114,8 @@ class SessionsController < ApplicationController
 				session.delete(:postcode)
 				session.delete(:country)
 
-				paypal_params = {
-					business: 'huntbritain@amblonyx.com',
-					cmd: '_cart',
-					upload: 1,
-					notify_url: "#{request.protocol}#{request.host_with_port}/handle_payment",
-					currency_code: 'GBP',
-					invoice: '',
-					reference: create_purchase_reference
-				}
-
-				@cart.each_with_index do |cart_item, index|
-					real_index = index + 1
-					product = Product.find(cart_item[:product_id])
-					
-					paypal_params.merge!({
-						"amount_#{real_index}" => "%.2f" % (calc_price(cart_item[:num].to_i, product)),
-						"item_name_#{real_index}" => product.name,
-						"item_number_#{real_index}" => product.id,
-						"quantity_#{real_index}" => cart_item[:num],
-					})
-				
-				end
-				@paypal_link = "https://www.sandbox.paypal.com/cgi-bin/webscr?" + paypal_params.to_query
-				
 				#-- for TESTING only: create a new purchase
-				@test_link = "/handle_payment?" + paypal_params.to_query
+				@test_link = handle_payment_path
 				
 				render "cart", layout: pick_layout
 			else
@@ -207,9 +183,6 @@ class SessionsController < ApplicationController
 	end
 	
 	private
-	def create_purchase_reference
-		SecureRandom.hex(5) 
-	end
 	
 	def load_cart
 		if not session.has_key? :cart

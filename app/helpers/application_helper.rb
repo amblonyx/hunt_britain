@@ -25,9 +25,7 @@ module ApplicationHelper
 	def calc_price(quantity, product)
 		additional = quantity - 1
 		price = product.price
-		if additional > 0
-			price = price + (additional * 1.5)
-		end
+		price = price + (additional * 1.5)
 	end
 
 	def clear_state

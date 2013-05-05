@@ -1,5 +1,6 @@
 class PurchasesController < ApplicationController
-    include PurchasesHelper
+	include PurchaseHandler
+
 	before_filter :admin_user, only: [:index, :edit, :new, :destroy]
 	before_filter :check_for_cancel, only: [:update]
 	
@@ -23,29 +24,34 @@ class PurchasesController < ApplicationController
 	end
 
 	def handle_payment
-		if params[:item_number_1] && !params[:item_number_1].empty?
-			#paypal sends an IPN even when the transaction is voided.
-			#save the payment status along with the amount of the transaction.
-			if params[:payment_status] != 'Voided'
+		if session[:cart].length == 0 
+			redirect_to "/cart"
+		else			
+			@purchase = Purchase.new
+			@cart = session[:cart]
+			create_purchase @purchase, @cart
 			
-				@purchase = Purchase.new
-				create_payment @purchase, params
-				if @purchase.save 
-					flash[:success] = "The new purchase has been saved"
-
-					# Inform user that payment was successful
-					redirect_to payment_success_path + "?reference=" + @purchase.reference
-								
-					# Send a confirmation email for purchase
-					UserMailer.confirm_purchase(@purchase).deliver
-					# Deliver online and PDF hunts
-					UserMailer.deliver_purchases(@purchase).deliver
-					return
-				end
+			if @purchase.save 
+				@paypal_link = generate_paypal_link
 				
-			end 
+#				flash[:success] = "The new purchase has been saved"
+#
+#				# Inform user that payment was successful
+#				redirect_to payment_success_path + "?reference=" + @purchase.reference
+#							
+#				# Send a confirmation email for purchase
+#				UserMailer.confirm_purchase(@purchase).deliver
+#				# Deliver online and PDF hunts
+#				UserMailer.deliver_purchases(@purchase).deliver
+#				return
+
+				session[:cart] = Array.new
+				redirect_to @paypal_link
+			else
+				flash[:error] = "There was an error with your purchase"
+				redirect_to "/cart"
+			end
 		end		
-		redirect_to root_path
 	end 
 	
 	def edit

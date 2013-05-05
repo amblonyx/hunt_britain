@@ -122,8 +122,7 @@
 			<% if Rails.env.development? %>	
 				<div class="well">
 					<strong>Development console:</strong><br/>
-					<% if @action == "cart" %>
-					<% else %>
+					<% if @action == "checkout" %>
 						<%= link_to "Create Purchase", @test_link, method: :post %>		
 					<% end %>
 				</div>
