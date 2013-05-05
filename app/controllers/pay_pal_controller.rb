@@ -7,18 +7,26 @@ class PayPalController < ApplicationController
 	end
   
 	def notify
-		#handle notification here - LOG IT?
+		#handle PAYPAL notification
 		notify = Paypal::Notification.new request.raw_post
 
 		# TODO: find the purchase in the DB?		
 
 		if notify.acknowledge
-			#convert notify to HASH
-			notify.instance_variables.each do |var| 
-				hash[var.to_s] = notify.instance_variable_get(var) 
-			end 
-			notification = Notification.new(hash)
+			notification = Notification.new
 			notification.purchase_id = notify.item_id
+			notification.item_id = notify.item_id
+			notification.transaction_id = notify.transaction_id
+			notification.complete = notify.complete
+			notification.currency = notify.currency
+			notification.fee = notify.fee
+			notification.gross = notify.gross
+			notification.invoice = notify.invoice
+			notification.received_at = notify.received_at
+			notification.status = notify.status
+			notification.test = notify.test
+			notification.type = notify.type
+			
 			if notification.save 
 			
 			end 
