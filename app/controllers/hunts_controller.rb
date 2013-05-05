@@ -94,7 +94,9 @@ class HuntsController < ApplicationController
 	end
 	
 	def hunt_home
+	
 		@hunt = Hunt.find_by_id(params[:id])
+		
 		if @hunt.nil?
 			flash[:error] = "Invalid hunt"
 			redirect_to hunt_login_path
@@ -121,8 +123,10 @@ class HuntsController < ApplicationController
 	end
 
 	def hunt_trail
+	
 		@hunt = Hunt.find(params[:id])
-		
+	
+		# There are a lot of actions that could be taken, submitting a clue answer is the final "else"
 		if params[:submit_team_name]
 			if @hunt.update_attributes(params[:hunt])
 				redirect_to '/hunt_home/' + @hunt.id.to_s
@@ -132,44 +136,42 @@ class HuntsController < ApplicationController
 		elsif params[:submit_start_hunt]
 			@hunt.start
 			redirect_to '/hunt_home/' + @hunt.id.to_s
+		elsif params[:submit_peek]
+			render "peek.js" 
 		elsif params[:submit_hint]
 			@hunt.take_hint
 			render "hint.js" 
 		elsif params[:submit_pass]
 			render "pass.js" 
-		elsif params[:submit_ok]
+		elsif params[:submit_pause]		# pause the hunt for a break
+			@hunt.pause_hunt
+			render "reload.js"			# will redirect to the paused page
+		elsif params[:submit_problem]
+			render "problem.js"
+		elsif params[:submit_restart]
+			render "restart.js" 
+		elsif params[:submit_ok]		# from a popup with OK/Cancel buttons
 			if params[:popaction] == "giveup"
 				@hunt.pass_on_clue
 				render "giveup.js"
 			else	# restart is the only other action
 				@hunt.restart
 				@hunt.save 
-				flash[:success] = "Hunt status changed"
-				redirect_to '/hunt_home/' + @hunt.id.to_s
+				render "reload.js"
 			end
-		elsif params[:submit_cancel]
+		elsif params[:submit_cancel]	# from a popup with OK/Cancel buttons
 			render "cancel.js"		
-		elsif params[:submit_peek]
-			render "peek.js" 
-		elsif params[:submit_pause]		# pause the hunt for a break
-			@hunt.pause_hunt
-			render "reload.js"
-		elsif params[:submit_restart]
-			render "restart.js" 
-		elsif params[:submit_resume]	# resume after a pause by triggering a reload
+		elsif params[:submit_resume]	# resume after a pause by just triggering a reload
 			@hunt.resume_hunt
 			render "reload.js"
 		elsif params[:submit_continue]	# this is used if they re-view the instructions then continue
 			redirect_to '/hunt_home/' + @hunt.id.to_s
-		elsif params[:submit_problem]
-			render "problem.js"
-		elsif params[:submit_problem_feedback]
-			# Tell the UserMailer to send an Email
+		elsif params[:submit_problem_feedback]	# if they submit feedback in the popup
 			UserMailer.problem_email(@hunt, params[:current_clue], params[:problem]).deliver
 			flash[:success] = "Thanks for your feedback!"
-			redirect_to '/hunt_home/' + @hunt.id.to_s
+			render "reload.js"		# flash won't appear unless we reload
 		elsif params[:submit_problem_cancel]
-			redirect_to '/hunt_home/' + @hunt.id.to_s			
+			render "cancel.js"
 		else	# it is an attempted answer, so check it
 			if params[:current_clue] == @hunt.current_clue.to_s		# this prevents double-clicks answering 2 clues
 				f = File.open( XML_PATH + "products/#{@hunt.product.data_file}.xml" )
