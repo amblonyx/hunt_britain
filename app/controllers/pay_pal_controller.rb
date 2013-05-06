@@ -3,9 +3,6 @@ class PayPalController < ApplicationController
 	protect_from_forgery :except => [:create, :paypal_return] 
 	before_filter :load_cart
 	
-	def create
-	end
-  
 	def notify
 		#Resource on IPN: https://cms.paypal.com/uk/cgi-bin/?cmd=_render-content&content_ID=developer/e_howto_admin_IPNIntro
 			

@@ -4,66 +4,80 @@ class SessionsController < ApplicationController
 
 	def new			
 		@user = User.new
+		@mode = params[:mode]
 		set_state	# keep state if we're here from checkout
 		render layout: pick_layout
 	end
 	
 	def create
+		@mode = params[:mode]
 		if !params[:honey].blank?
 			# BOT alert!
 			flash[:error] = "Are you a BOT?"
 			redirect_to root_path
 			return
 		end
-		@user = User.new
-		if params[:guest_user]
-			if @user.is_valid_email?(params[:session][:email])
-				if need_address?
-					if !params[:session][:address_1].blank?
-						if !params[:session][:postcode].blank? 
-							all_valid = true
-						else
-							flash[:error] = "Please enter a postcode"
-							all_valid = false
-						end 
-					else
-						flash[:error] = "Please enter an address"
-						all_valid = false
-					end
-				else
-					all_valid = true
-				end 
+		if params.has_key?(:reset_password)
+			@user = User.find_by_user_name(params[:session][:user_name])
+			if @user 
+				UserMailer.reset_password(@user).deliver
+				flash[:success] = "We've sent an email to #{@user.email} with the link to reset the password. "
+				redirect_to new_session_path
 			else
-				flash[:error] = "Please enter a valid email"
-				all_valid = false
-			end			
-			if all_valid
-				session[:guest] = params[:session][:email]	# keep the guest email until ready to pay
-				session[:address_1] = params[:session][:address_1]
-				session[:address_2] = params[:session][:address_2]
-				session[:town] = params[:session][:town]
-				session[:county] = params[:session][:county]
-				session[:postcode] = params[:session][:postcode]
-				session[:country] = params[:session][:country]
-				redirect_to return_to
-			else
-				set_state	# keep track of location and need address
-				redirect_to signin_path
-			end
+				flash[:error] = "Invalid email address"
+				redirect_to new_session_path(mode: "forgot_password")
+			end 
 		else
-			user = User.find_by_user_name(params[:session][:user_name])
-			if user && user.authenticate(params[:session][:password]) 
-				# SessionsHelper functions...
-				#	sign_in 1) sets the cookies remember_token  2) sets current_user
-				sign_in user
-				set_state	# keep location and need for addy
-				redirect_back_or user
+			@user = User.new
+			if params[:guest_user]
+				if @user.is_valid_email?(params[:session][:email])
+					if need_address?
+						if !params[:session][:address_1].blank?
+							if !params[:session][:postcode].blank? 
+								all_valid = true
+							else
+								flash[:error] = "Please enter a postcode"
+								all_valid = false
+							end 
+						else
+							flash[:error] = "Please enter an address"
+							all_valid = false
+						end
+					else
+						all_valid = true
+					end 
+				else
+					flash[:error] = "Please enter a valid email"
+					all_valid = false
+				end			
+				if all_valid
+					session[:guest] = params[:session][:email]	# keep the guest email until ready to pay
+					session[:address_1] = params[:session][:address_1]
+					session[:address_2] = params[:session][:address_2]
+					session[:town] = params[:session][:town]
+					session[:county] = params[:session][:county]
+					session[:postcode] = params[:session][:postcode]
+					session[:country] = params[:session][:country]
+					redirect_to return_to
+				else
+					set_state	# keep track of location and need address
+					redirect_to signin_path
+				end
 			else
-				flash[:error] = "Invalid email/password combination"
-				set_state	# keep location and need for addy
-				redirect_to signin_path
+				user = User.find_by_user_name(params[:session][:user_name])
+				if user && user.authenticate(params[:session][:password]) 
+					# SessionsHelper functions...
+					#	sign_in 1) sets the cookies remember_token  2) sets current_user
+					sign_in user
+					set_state	# keep location and need for addy
+					redirect_back_or user
+				else
+					flash[:error] = "Invalid email/password combination"
+					set_state	# keep location and need for addy
+					redirect_to signin_path
+				end
 			end
-		end
+		end 
 	end
 	
 	def destroy
@@ -171,6 +185,22 @@ class SessionsController < ApplicationController
 		redirect_to "/cart"
 	end
 	
+	def reset_password
+		# Link
+		if params.has_key?(:token)
+			@token = params[:token]
+			if params.has_key?(:password) && params.has_key(:confirm_password)
+				# Update password
+				
+				flash[:success] = "Your password has been updated.  Welcome back."
+				redirect_to @user
+			end 
+		else
+			redirect_to root_path
+		end 
+	end
+	
+
 	private
 	
 	def load_cart

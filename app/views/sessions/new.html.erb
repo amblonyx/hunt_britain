@@ -3,65 +3,77 @@
 <% else %>
 	<h1>Sign in</h1>
 <% end %>
-	<div class="row">
-		<div class="span8 offset2">
-			<% if signed_in? %>
-				<%= render 'shared/already_signed_in', signin: true, signup: false %>
-			<% else %>
-				<%= form_for(:session, url: "sessions", html: { class: "form-horizontal" } ) do |f| %>
-					<%= render "shared/error_messages", object: @user %>
 
-					<div class="form_group well">
+<div class="row">
+	<div class="span8 offset2">
+		<% if signed_in? %>
+			<%= render 'shared/already_signed_in', signin: true, signup: false %>
+		<% else %>
+			<%= form_for(:session, url: "sessions", html: { class: "form-horizontal" } ) do |f| %>
+				<%= render "shared/error_messages", object: @user %>
+
+				<div class="form_group well">
+					<% if @mode == "forgot_password" %>
+						Reset password
+					<% else %>
 						I have an account already
-						<div class="control-group">
-							<label class="control-label" for="session_user_name">Email</label>
-							<div class="controls">
-								<%= f.text_field :user_name %>
-							</div>
+					<% end %>
+					<div class="control-group">
+						<label class="control-label" for="session_user_name">Email</label>
+						<div class="controls">
+							<input name="honey" class="input_honey"/>
+							<%= f.text_field :user_name %>
 						</div>
-				
+					</div>
+
+					<% if @mode != "forgot_password" %>
 						<div class="control-group">
 							<%= f.label :password, class: "control-label" %>
 							<div class="controls">
 								<%= f.password_field :password %>
-								<input name="honey" class="input_honey"/>
 								<%= f.button "Sign in", name: "known_user", class: "btn btn-primary" %>
 							</div>
 						</div>		
-
-						<%= link_to "Register with Hunt Britain", signup_path %>
-		
-					</div>
-
-					<% if in_checkout? %>
-
-						<div class="form_group well">
-							Continue as guest
-							<p><small>We will need your email to send a confirmation <% if need_address? %>and your address to send the Treasure Hunt<% end %></small></p>
-
-							<div class="control-group">
-								<label class="control-label" for="session_email">Email</label>
-								<div class="controls">
-									<%= f.text_field :email %>
-								</div>
+						<%= link_to "Lost password?", signin_path(mode: "forgot_password") %> | <%= link_to "Register with Hunt Britain", signup_path %>
+					<% else %>
+						<div class="control-group">
+							<div class="controls">
+								<%= f.button "Email me a link to reset password", name: "reset_password", class: "btn btn-primary" %>
 							</div>
-							<% if need_address? %>
-								<%= render 'shared/contact_fields', f: f, guest: true %>
-							<% end %>
-							<div class="control-group">
-								<div class="controls">
-									<%= f.button "Continue as guest", name: "guest_user", class: "btn btn-primary" %>
-								</div>
-							</div>
-
-						</div>
-						
+						</div>		
+					
 					<% end %>
+							
+				</div>
+
+				<% if in_checkout? %>
+
+					<div class="form_group well">
+						Continue as guest
+						<p><small>We will need your email to send a confirmation <% if need_address? %>and your address to send the Treasure Hunt<% end %></small></p>
+
+						<div class="control-group">
+							<label class="control-label" for="session_email">Email</label>
+							<div class="controls">
+								<%= f.text_field :email %>
+							</div>
+						</div>
+						<% if need_address? %>
+							<%= render 'shared/contact_fields', f: f, guest: true %>
+						<% end %>
+						<div class="control-group">
+							<div class="controls">
+								<%= f.button "Continue as guest", name: "guest_user", class: "btn btn-primary" %>
+							</div>
+						</div>
+
+					</div>
+					
 				<% end %>
-				
-				
 			<% end %>
-		</div>
-		
+			
+			
+		<% end %>
 	</div>
+	
 </div>

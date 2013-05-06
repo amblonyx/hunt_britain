@@ -56,5 +56,13 @@ class UserMailer < ActionMailer::Base
 		mail(to: GMAIL_SMTP_USER, subject: 'Feedback about a hunt')		
 	end
 
+	def reset_password(user)
+		@user = user
+		#if Rails.env.development? 
+			mail(to: GMAIL_TEST_RECIPIENT, bcc: GMAIL_SMTP_USER, subject: 'You requested a new Treasure Hunt Britain password')		
+		#else
+		#	mail(to: user.email, bcc: GMAIL_SMTP_USER, subject: 'Welcome to Hunt Britain')
+		#end 
 
+	end 
 end
