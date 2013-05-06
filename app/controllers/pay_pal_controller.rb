@@ -29,22 +29,24 @@ class PayPalController < ApplicationController
 		notification.test = notify.test?
 		
 		if notify.acknowledge
-			# Find the purchase 	
-			@purchase = Purchase.find_by_id(notify.item_id)
-			
-			# Perform additional checks to make sure that notify is legitimate and not already processed
-			if notify.complete? and @purchase.total_price == notify.gross and @purchase.id == notify.item_id and @purchase.reference == notify.invoice and @purchase.status != "Paid"
-				@purchase.status = "Paid"
-				@purchase.save
+			if notify.test?
+			else 
+				# Find the purchase 	
+				@purchase = Purchase.find_by_id(notify.item_id)
+				
+				# Perform additional checks to make sure that notify is legitimate and not already processed
+				if notify.complete? and @purchase.price_total == notify.gross and @purchase.id == notify.item_id and @purchase.reference == notify.invoice and @purchase.status != "Paid"
+					@purchase.status = "Paid"
+					@purchase.save
 
-				# Send a confirmation email for purchase
-				UserMailer.confirm_purchase(@purchase).deliver
-				# Deliver online and PDF hunts
-				UserMailer.deliver_purchases(@purchase).deliver
-			else
-				notification.status = "ANOMALY"
+					# Send a confirmation email for purchase
+					UserMailer.confirm_purchase(@purchase).deliver
+					# Deliver online and PDF hunts
+					UserMailer.deliver_purchases(@purchase).deliver
+				else
+					notification.status = "ANOMALY"
+				end 
 			end 
-			
 		else 
 			notification.status = "HACKING ATTEMPT"
 		end
