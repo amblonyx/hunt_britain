@@ -30,19 +30,52 @@ class PayPalController < ApplicationController
 			@purchase = Purchase.find_by_id(notify.item_id)
 			
 			# Perform additional checks to make sure that notify is legitimate and not already processed
-			puts "Purchase price: #{@purchase.price_total.to_s}, Notify gross: #{notify.gross.to_s}"
-			puts "Purchase id: #{@purchase.id.to_s}, Notify item_id: #{notify.item_id.to_s}"
-			puts "Purchase reference: #{@purchase.reference}, Notify invoice: #{notify.invoice}"
-			puts "Purchase status: #{@purchase.status}"
+			if @purchase.price_total == notify.gross 
+				puts "Purchase price: #{@purchase.price_total.to_s}, Notify gross: #{notify.gross.to_s}."
+			end 
+			if @purchase.id.to_s == notify.item_id.to_s 
+				puts "Purchase id: #{@purchase.id.to_s}, Notify item_id: #{notify.item_id.to_s}."
+			end
+			if @purchase.reference == notify.invoice 
+				puts "Purchase reference: #{@purchase.reference}, Notify invoice: #{notify.invoice}."
+			end
+			if @purchase.status != "Paid"
+				puts "Purchase status: #{@purchase.status}."
+			end 
 			
-			if notify.complete? && @purchase.price_total == notify.gross && @purchase.id.to_s == notify.item_id.to_s && @purchase.reference == notify.invoice && @purchase.status != "Paid"
+			if notify.complete? 
+				puts "Complete"
+				
 				@purchase.status = "Paid"
 				@purchase.save
 
 				# Send a confirmation email for purchase
 				UserMailer.confirm_purchase(@purchase).deliver
+
+				# Create online hunts  
+				has_paper = false 
+				@purchase.purchase_items.each do |item|
+					num = 1
+					if item.product.format == "Online"
+						for num in 1..item.quantity
+							hunt = Hunt.new
+							hunt.product = item.product
+							hunt.user = @purchase.user
+							hunt.save
+						end 
+					elsif item.product.format == "Paper"
+						has_paper = true 
+					end
+				end
+
 				# Deliver online and PDF hunts
 				UserMailer.deliver_purchases(@purchase).deliver
+				
+				# If we don't need to send out paper booklets, set dispatch date
+				if !has_paper
+					@purchase.dispatch_date = DateTime.now
+					@purchase.save
+				end 
 			else
 				notification.status = "ANOMALY"
 			end 
