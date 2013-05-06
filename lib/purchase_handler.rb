@@ -23,9 +23,8 @@ module PurchaseHandler
 			
 			notify_url: "#{request.protocol}#{request.host_with_port}/paypal_notify",
 			return: "#{request.protocol}#{request.host_with_port}/paypal_show",
-			cancel_return: "#{request.protocol}#{request.host_with_port}/paypal_cancel"
+			cancel_return: "#{request.protocol}#{request.host_with_port}/cart"
 		}
-
 		"https://www.sandbox.paypal.com/cgi-bin/webscr?" + paypal_params.to_query
 				
 	end 
