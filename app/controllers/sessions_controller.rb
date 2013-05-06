@@ -220,7 +220,6 @@ class SessionsController < ApplicationController
 						return
 					end 
 				else
-					flash[:error] = "Please enter your new password"
 					render layout: pick_layout
 					return
 				end 

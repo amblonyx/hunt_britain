@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130506174116) do
+ActiveRecord::Schema.define(:version => 20130506215614) do
 
   create_table "hunts", :force => true do |t|
     t.integer  "product_id"
@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(:version => 20130506174116) do
     t.string   "type"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
-    t.string   "ipn_string"
+    t.text     "ipn_string"
   end
 
   create_table "locations", :force => true do |t|
