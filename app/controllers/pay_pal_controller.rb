@@ -25,27 +25,19 @@ class PayPalController < ApplicationController
 		notification.complete = notify.complete?
 		notification.test = notify.test?
 		
+		# TODO: ADD CHECK ON IPN TRACKING ID (ipn_track_id) TO AVOID PROCESSING DUPLICATE NOTIFICATIONS
+		
 		if notify.acknowledge									# comment out to test locally
 			# Find the purchase 	
 			@purchase = Purchase.find_by_id(notify.item_id)		# replace with @purchase = Purchase.last to test locally
 			
 			# Perform additional checks to make sure that notify is legitimate and not already processed
-			if @purchase.price_total.to_s == notify.gross.to_s
-				puts "Purchase price: #{@purchase.price_total.to_s}, Notify gross: #{notify.gross.to_s}."
-			end 
-			if @purchase.id.to_s == notify.item_id.to_s 
-				puts "Purchase id: #{@purchase.id.to_s}, Notify item_id: #{notify.item_id.to_s}."
-			end
-			if @purchase.reference == notify.invoice 
-				puts "Purchase reference: #{@purchase.reference}, Notify invoice: #{notify.invoice}."
-			end
-			if @purchase.status != "Paid"
-				puts "Purchase status: #{@purchase.status}."
-			end 
+			if notify.complete? &&  							# comment out to test locally
+					@purchase.price_total.to_s == notify.gross.to_s && 
+					@purchase.id.to_s == notify.item_id.to_s && 
+					@purchase.reference == notify.invoice && 
+					@purchase.status != "Paid"			
 			
-			if notify.complete?  								# comment out to test locally
-				puts "Complete"
-				
 				@purchase.status = "Paid"
 				@purchase.save
 
