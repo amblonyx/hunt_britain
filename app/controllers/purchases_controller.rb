@@ -33,8 +33,6 @@ class PurchasesController < ApplicationController
 			
 			if @purchase.save 
 				@paypal_link = generate_paypal_link
-				
-				session[:cart] = Array.new
 				redirect_to @paypal_link
 			else
 				flash[:error] = "There was an error with your purchase"
