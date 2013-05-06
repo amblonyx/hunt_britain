@@ -55,6 +55,8 @@ class PayPalController < ApplicationController
 	end
   
 	def show
+		# HANDLE SUCCESSFUL PAYMENT TRANSACTION
+		session[:cart] = Array.new
 		@purchase = Purchase.find_by_id(params[:item_number].to_i)
 		if @purchase.nil?
 			redirect_to root_path
