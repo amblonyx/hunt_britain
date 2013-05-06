@@ -15,6 +15,7 @@
 /tmp
 
 # Ignore data files
+/data/pdf/*.pdf
 /data/xml/products/*.xml
 !/data/xml/products/template/xml
 
