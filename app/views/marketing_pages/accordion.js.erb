@@ -21,8 +21,7 @@ if ($("#popup").attr("data-current") != hunt) {
 		$newtab.find("span").addClass("label")
 		$newtab.find(".label").html(label)
 		
-		if( '<%= node.get_attribute("type") %>' == "text" ) {
-			
+		if( '<%= node.get_attribute("type") %>' == "text" ) {			
 			$newtab.find(".label").after("<p/>")
 			$newtab.find("p").html("<span class='header'>"+label+'</span>'+content)
 		}
