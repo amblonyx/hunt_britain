@@ -15,8 +15,10 @@ class UsersController < ApplicationController
 		@user = User.find(params[:id])
 		if params[:email] == "welcome"
 			send_welcome_email
+			redirect_to @user
+		else
+			render layout: pick_layout
 		end
-		render layout: pick_layout
 	end
 
 	def new
@@ -40,6 +42,7 @@ class UsersController < ApplicationController
 		if @user.save 
 			sign_in @user
 			flash[:success] = "Welcome to Hunt Britain"
+			send_welcome_email
 			redirect_back_or(@user)
 		else
 			render 'new', layout: pick_layout
@@ -89,11 +92,8 @@ class UsersController < ApplicationController
 	end
 	
 	def send_welcome_email 
-		@user = User.find(params[:id])
 		UserMailer.welcome_email(@user).deliver
-		
-		flash[:success] = "Sent"
-		redirect_to @user
+		flash[:success] = "Email sent"
 	end
 	
 	def download 
