@@ -28,14 +28,17 @@
 			<% @purchase.purchase_items.each do |item| %>
 				<% if item.product.format == "Online" %>
 					<% has_online = true %>
-					<% hunt = Hunt.find_by_purchase_item_id(item.id) %>
-					<tr>
-						<td style="text-align:left; padding:5px;border:1px #d6d6d6 solid;"><%= item.description %></td>
-						<td style="text-align:right; padding:5px;border:1px #d6d6d6 solid;"><%= hunt.voucher_code %></td>
-						<td style="text-align:right; padding:5px;border:1px #d6d6d6 solid;">
-							<a href="<%= "#{root_url}/hunt_login?voucher=#{hunt.voucher_code}" %>"><%= "#{root_url}/hunt_login?voucher=#{hunt.voucher_code}" %></a>
-						</td>
-					</tr>
+
+					<% item.hunts.each do |hunt| %>
+						<tr>
+							<td style="text-align:left; padding:5px;border:1px #d6d6d6 solid;"><%= item.description %></td>
+							<td style="text-align:right; padding:5px;border:1px #d6d6d6 solid;"><%= hunt.voucher_code %></td>
+							<td style="text-align:right; padding:5px;border:1px #d6d6d6 solid;">
+								<a href="<%= "#{root_url}/hunt_login?voucher=#{hunt.voucher_code}" %>"><%= "#{root_url}/hunt_login?voucher=#{hunt.voucher_code}" %></a>
+							</td>
+						</tr>
+					<% end %>
+					
 				<% elsif item.product.format == "Download" %>
 					<tr>
 						<td style="text-align:left; padding:5px;border:1px #d6d6d6 solid;"><%= item.description %></td>
@@ -46,6 +49,7 @@
 			<% end %>
 		</tbody>
 	</table>
+	<p style="line-height:1.5em">If you have bought a Treasure Hunt in booklet format, these will be sent to you by post.</p>
 	
 	<% if has_online %>
 		<p><strong>Some notes on your online Treasure Hunt:</strong></p>

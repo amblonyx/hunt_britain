@@ -25,12 +25,12 @@ class PayPalController < ApplicationController
 		notification.complete = notify.complete?
 		notification.test = notify.test?
 		
-		if notify.acknowledge
+		if notify.acknowledge									# comment out to test locally
 			# Find the purchase 	
-			@purchase = Purchase.find_by_id(notify.item_id)
+			@purchase = Purchase.find_by_id(notify.item_id)		# replace with @purchase = Purchase.last to test locally
 			
 			# Perform additional checks to make sure that notify is legitimate and not already processed
-			if @purchase.price_total == notify.gross 
+			if @purchase.price_total.to_s == notify.gross.to_s
 				puts "Purchase price: #{@purchase.price_total.to_s}, Notify gross: #{notify.gross.to_s}."
 			end 
 			if @purchase.id.to_s == notify.item_id.to_s 
@@ -43,7 +43,7 @@ class PayPalController < ApplicationController
 				puts "Purchase status: #{@purchase.status}."
 			end 
 			
-			if notify.complete? 
+			if notify.complete?  								# comment out to test locally
 				puts "Complete"
 				
 				@purchase.status = "Paid"
@@ -61,6 +61,7 @@ class PayPalController < ApplicationController
 							hunt = Hunt.new
 							hunt.product = item.product
 							hunt.user = @purchase.user
+							hunt.purchase_item = item 
 							hunt.save
 						end 
 					elsif item.product.format == "Paper"
@@ -76,12 +77,12 @@ class PayPalController < ApplicationController
 					@purchase.dispatch_date = DateTime.now
 					@purchase.save
 				end 
-			else
-				notification.status = "ANOMALY"
-			end 
-		else 
-			notification.status = "HACKING ATTEMPT"
-		end
+			else 											# comment out to test locally
+				notification.status = "ANOMALY" 			# comment out to test locally
+			end  											# comment out to test locally
+		else 												# comment out to test locally
+			notification.status = "HACKING ATTEMPT"			# comment out to test locally
+		end													# comment out to test locally
 
 		notification.save 
 		render nothing: true
