@@ -132,12 +132,6 @@ class SessionsController < ApplicationController
 	
 	def cart
 		@action = "cart"
-		paypal_params = {
-			business: 'huntbr_1361011425_biz@gmail.com',
-			cmd: '_cart',
-			upload: 1,
-			return: '/payment_success',
-		}
 		render layout: pick_layout
 	end
 	
@@ -171,9 +165,10 @@ class SessionsController < ApplicationController
 				cart_items.first[:num] = value
 			end 
 		end
+		# remove items where quantity have been set to zero
+		@cart.reject! { |item| item[:num].to_i == 0  }
+
 		redirect_to "/cart"
-#		@action = "cart"
-#		render "cart", layout: "processing"
 	end
 	
 	private

@@ -62,10 +62,6 @@ class PayPalController < ApplicationController
 			render layout: pick_layout
 		end 
 	end
-	
-	def cancel
-	
-	end
   
 	private
  	def load_cart
