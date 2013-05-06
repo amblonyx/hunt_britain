@@ -9,7 +9,7 @@
 		<% if signed_in? %>
 			<%= render 'shared/already_signed_in', signin: true, signup: false %>
 		<% else %>
-			<%= form_for(:session, url: "sessions", html: { class: "form-horizontal" } ) do |f| %>
+			<%= form_for(:session, url: "sessions",  html: { class: "form-horizontal" } ) do |f| %>
 				<%= render "shared/error_messages", object: @user %>
 
 				<div class="form_group well">

@@ -20,12 +20,16 @@ class SessionsController < ApplicationController
 		if params.has_key?(:reset_password)
 			@user = User.find_by_user_name(params[:session][:user_name])
 			if @user 
+				@user.create_password_token
+				@user.save
+				
+				#-- send email to user
 				UserMailer.reset_password(@user).deliver
 				flash[:success] = "We've sent an email to #{@user.email} with the link to reset the password. "
 				redirect_to new_session_path
 			else
 				flash[:error] = "Invalid email address"
-				redirect_to new_session_path(mode: "forgot_password")
+				redirect_to signin_path(mode: "forgot_password")
 			end 
 		else
 			@user = User.new
@@ -186,18 +190,43 @@ class SessionsController < ApplicationController
 	end
 	
 	def reset_password
-		# Link
+		if !params[:honey].blank?
+			# BOT alert!
+			flash[:error] = "Are you a BOT?"
+			redirect_to root_path
+			return
+		end
+
+		# Link should contain token
 		if params.has_key?(:token)
 			@token = params[:token]
-			if params.has_key?(:password) && params.has_key(:confirm_password)
-				# Update password
-				
-				flash[:success] = "Your password has been updated.  Welcome back."
-				redirect_to @user
-			end 
-		else
-			redirect_to root_path
+			@user = User.find_by_token(@token)
+			
+			if @user 
+				if !params[:password].blank? && !params[:confirm_password].blank?
+					if params[:password] == params[:confirm_password]
+						# Update password
+						@user.password = params[:password]
+						@user.token = nil
+						@user.save
+						sign_in @user
+						
+						flash[:success] = "Your password has been updated.  Welcome back."
+						redirect_to @user
+						return
+					else	
+						flash[:error] = "The entries in the password and confirmation fields did not match"
+						render layout: pick_layout
+						return
+					end 
+				else
+					flash[:error] = "Please enter your new password"
+					render layout: pick_layout
+					return
+				end 
+			end
 		end 
+		redirect_to new_session_path(mode: "forgot_password")
 	end
 	
 

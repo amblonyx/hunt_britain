@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
 	VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 	
 	attr_accessible :user_name, :email, :name, :password, :password_confirmation, 
-					:address_1, :address_2, :town, :county, :postcode, :country, :phone
+					:address_1, :address_2, :town, :county, :postcode, :country, :phone, :token
 	has_secure_password
 	has_many :hunts
 	has_many :purchases
@@ -64,6 +64,10 @@ class User < ActiveRecord::Base
 		self.guest = true 	
 		self.remember_token = "guest"
 	end 
+	
+	def create_password_token
+		self.token = SecureRandom.urlsafe_base64
+	end
 	
 	def is_valid_email?(email)
 		(email =~ VALID_EMAIL_REGEX)

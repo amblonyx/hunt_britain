@@ -20,7 +20,7 @@ class PayPalController < ApplicationController
 		notification.received_at = DateTime.now #notify.received_at
 		notification.status = notify.status
 		notification.type = notify.type
-		notification.ipn_string = request.query_string
+		notification.ipn_string = request.raw_post
 		
 		notification.complete = notify.complete?
 		notification.test = notify.test?
@@ -30,7 +30,12 @@ class PayPalController < ApplicationController
 			@purchase = Purchase.find_by_id(notify.item_id)
 			
 			# Perform additional checks to make sure that notify is legitimate and not already processed
-			if notify.complete? and @purchase.price_total == notify.gross and @purchase.id == notify.item_id and @purchase.reference == notify.invoice and @purchase.status != "Paid"
+			puts "Purchase price: #{@purchase.price_total.to_s}, Notify gross: #{notify.gross.to_s}"
+			puts "Purchase id: #{@purchase.id.to_s}, Notify item_id: #{notify.item_id.to_s}"
+			puts "Purchase reference: #{@purchase.reference}, Notify invoice: #{notify.invoice}"
+			puts "Purchase status: #{@purchase.status}"
+			
+			if notify.complete? && @purchase.price_total == notify.gross && @purchase.id.to_s == notify.item_id.to_s && @purchase.reference == notify.invoice && @purchase.status != "Paid"
 				@purchase.status = "Paid"
 				@purchase.save
 
