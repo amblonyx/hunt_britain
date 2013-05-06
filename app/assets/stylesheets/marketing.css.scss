@@ -16,7 +16,7 @@ body {
 }
 header {
 	height: 200px;
-	background-image: url('Header2.jpg');
+	background-image: url('Header.jpg');
 	background-position: top center;
 	background-repeat: repeat;
 	
@@ -64,12 +64,19 @@ header {
 	-moz-transition: all .8s ease-in-out;
 	-o-transition: all .8s ease-in-out;
 	transition: all .8s ease-in-out;
-	
+
+	.container-about {
+		margin-left: 20px;
+		margin-right: 20px;
+	}
 	.panel {
 		display: none;
 		overflow: hidden;
 		font-size: 1.0em/1.2em;
 		font-family: 'Wellfleet', cursive;
+		h2 {
+			text-align: center;
+		}
 	}
 	.content {
 		background: #FFE900;
@@ -85,7 +92,7 @@ header {
 	}
 	.closetopnote {
 		padding-right: 10px;
-		margin: 0;
+		margin: 4px 0 0 0;
 		font-weight: bold;
 		font-color: black;
 	}

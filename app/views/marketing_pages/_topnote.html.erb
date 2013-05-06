@@ -1,35 +1,32 @@
-﻿	<a class="pull-right closetopnote" href="#" >Close</a>
+﻿<a class="pull-right closetopnote" href="#" >Close</a>
+<div class="container-about container-fluid">
 
-	<!-- About -->
-	<div id="about" class="panel">
+	<div id="about" class="panel row-fluid">
 		<%= render 'shared/about' %>
 	</div>
 	
-	<div id="how" class="panel">
-		<div class="content span6 well">
-		<h2>Here on our website</h2>
-		<ol>
-			<li>Choose where you'd like to do a treasure hunt from our catalogue below</li>
-			<li>Decide whether you want to play on your phone/tablet, or have a paper booklet to follow</li>
-			<li>You can get the booklet as a PDF to print yourself, or we can send you one in the post</li>
-			<li>If several teams are going to compete, order one copy of the hunt for each team *</li>
-		</ol>
-		<p class="note">* - for phone/tablet play. Feel free to copy the paper booklet!</p>
+	<div id="how" class="panel row-fluid">
+		<div class="content span4">
+			<h2>Play online</h2>
+			<p>Armed with your 3G phone or tablet, take advantage of online hints and play against the clock if you like!</p>
+			<a class="label label-info" href="#" >See an example</a>
 		</div>
-		<div class="content span6 well">
-		<h2>On the day of the hunt</h2>
-		<ol>
-			<li>Follow the directions to find the answers to a series of clues</li>
-			<li>Relax and play at your own pace, or with the online hunt you can play against the clock!</li>
-			<li>Take breaks whenever you wish and take time to learn more about the area</li>
-			<li>Solve the last clue and you'll have the final answer. No prizes, but a fun day out!</li>
-		</ol>
-		<a class="center seeexample btn btn-primary" href="#" >See an example</a>
-		<a href="/faq" class="center seeexample btn btn-primary" href="#" >FAQ</a>
+		<div class="content span4">
+			<h2>&lt; Two ways to play &gt;</h2>
+			<p>The directions lead you on an enlightening trail around the area</p>
+			<p>On the way you'll need to stay sharp and find answers to a series of clues</p>
+			<p>Answer a clue correctly, and you'll learn something more about the place</p>
+			<p>Relax and play at your own pace, or play in teams and make a contest of it!</p>
+			<p>See the <a href="/faq" class="label label-info" href="#" >FAQ</a> page for more help</p>
+		</div>
+		<div class="content span4">
+			<h2>Play on paper</h2>
+			<p>Download a PDF to print yourself, or have us send you a copy. Some include bonus puzzles.</p>
+			<a class="label label-info pull-right" href="#" >See an example</a>
 		</div>
 	</div>
 	
-	<div id="contact" class="panel">
+	<div id="contact" class="panel row-fluid">
 		<%= render 'shared/contact' %>
 	</div>
-	<!-- /About -->
+</div>
