@@ -123,6 +123,13 @@
 	</div>
 	
 </div>
+<% if Rails.env.development? %>	
+	<div class="well">
+		<strong>Development console:</strong><br/>
+		<%= link_to "Send welcome email", user_path( email: "welcome" ) %><br/>
+		<%= "GMAIL_TEST_RECIPIENT = #{GMAIL_TEST_RECIPIENT}" %></br>
+		<%= "GMAIL_SMTP_USER = #{GMAIL_SMTP_USER}" %></br>
+	</div>
+<% end %>
 
 
-<%= link_to "Send welcome email", user_path( email: "welcome" ) %>
