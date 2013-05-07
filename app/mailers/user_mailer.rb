@@ -24,6 +24,9 @@ class UserMailer < ActionMailer::Base
 	end
 	
 	def deliver_purchases(purchase)
+		@deliver = true
+		@problem = Array.new
+		
 		@purchase = purchase
 		@purchase.purchase_items.each do |item|
 			if item.product.format == "Download"
@@ -31,15 +34,25 @@ class UserMailer < ActionMailer::Base
 				#attachments[file_name] = File.read("#{DOWNLOAD_PATH}#{file_name}")
 				#attachments[file_name] = {data: File.read("#{DOWNLOAD_PATH}#{file_name}"), :mime_type => 'application/pdf' }
 				#attachment content_type: 'application/pdf', body: File.read("#{DOWNLOAD_PATH}#{file_name}"), filename: file_name, transfer_encoding: "base64" 
-				attachments[file_name] = File.read("#{DOWNLOAD_PATH}#{file_name}", mode: "rb")
+				file_path = "#{DOWNLOAD_PATH}#{file_name}"
+				if File.exist?(file_path)
+					attachments[file_name] = File.read(file_path, mode: "rb")
+				else
+					@deliver = false 
+					@problem.push(file_path)
+				end 
 			end 
 		end
 
-		#if Rails.env.development? 
-			mail(to: GMAIL_TEST_RECIPIENT, bcc: GMAIL_SMTP_USER, subject: 'Your Treasure Hunt')	
-		#else
-		#	mail(to: purchase.user.email, bcc: GMAIL_SMTP_USER, subject: 'Your Treasure Hunt')	
-		#end 
+		if @problem.any? 
+			mail(to: GMAIL_SMTP_USER, subject: 'PROBLEM trying to deliver purchases')	
+		else
+			#if Rails.env.development? 
+				mail(to: GMAIL_TEST_RECIPIENT, bcc: GMAIL_SMTP_USER, subject: 'Your Treasure Hunt')	
+			#else
+			#	mail(to: purchase.user.email, bcc: GMAIL_SMTP_USER, subject: 'Your Treasure Hunt')	
+			#end 			
+		end 
 	end
 
 	def feedback_email(name, email, message)
