@@ -27,17 +27,17 @@ class PayPalController < ApplicationController
 		
 		# TODO: ADD CHECK ON IPN TRACKING ID (ipn_track_id) TO AVOID PROCESSING DUPLICATE NOTIFICATIONS
 		
-#		if notify.acknowledge									# comment out to test locally
+		if notify.acknowledge									# comment out to test locally
 			# Find the purchase 	
-#			@purchase = Purchase.find_by_id(notify.item_id)		# replace with @purchase = Purchase.last to test locally
-			@purchase = Purchase.last
+			@purchase = Purchase.find_by_id(notify.item_id)		# replace with @purchase = Purchase.last to test locally
+#			@purchase = Purchase.last
 			
 			# Perform additional checks to make sure that notify is legitimate and not already processed
-#			if notify.complete? &&  							# comment out to test locally
-#					@purchase.price_total.to_s == notify.gross.to_s && 
-#					@purchase.id.to_s == notify.item_id.to_s && 
-#					@purchase.reference == notify.invoice && 
-#					@purchase.status != "Paid"			
+			if notify.complete? &&  							# comment out to test locally
+					@purchase.price_total.to_s == notify.gross.to_s && 
+					@purchase.id.to_s == notify.item_id.to_s && 
+					@purchase.reference == notify.invoice && 
+					@purchase.status != "Paid"			
 			
 				@purchase.status = "Paid"
 				@purchase.save
@@ -70,12 +70,12 @@ class PayPalController < ApplicationController
 					@purchase.dispatch_date = DateTime.now
 					@purchase.save
 				end 
-#			else 											# comment out to test locally
-#				notification.status = "ANOMALY" 			# comment out to test locally
-#			end  											# comment out to test locally
-#		else 												# comment out to test locally
-#			notification.status = "HACKING ATTEMPT"			# comment out to test locally
-#		end													# comment out to test locally
+			else 											# comment out to test locally
+				notification.status = "ANOMALY" 			# comment out to test locally
+			end  											# comment out to test locally
+		else 												# comment out to test locally
+			notification.status = "HACKING ATTEMPT"			# comment out to test locally
+		end													# comment out to test locally
 
 		notification.save 
 		render nothing: true
