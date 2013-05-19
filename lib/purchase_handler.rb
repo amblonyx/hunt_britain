@@ -25,7 +25,11 @@ module PurchaseHandler
 			return: "#{request.protocol}#{request.host_with_port}/paypal_show",
 			cancel_return: "#{request.protocol}#{request.host_with_port}/cart"
 		}
-		"https://www.sandbox.paypal.com/cgi-bin/webscr?" + paypal_params.to_query
+		if Rails.env.development?
+			"https://www.sandbox.paypal.com/cgi-bin/webscr?" + paypal_params.to_query
+		else
+			"https://www.sandbox.paypal.com/cgi-bin/webscr?" + paypal_params.to_query		
+		end
 				
 	end 
 	

@@ -109,7 +109,7 @@
 				<% end %>
 			<% end %>
 
-			<div class="pull-right">
+			<div class="pull-right bottom-margin">
 				<%= link_to "Continue shopping", root_path, class: "btn" %>
 				
 				<% if @action == "cart" %>
@@ -118,6 +118,7 @@
 					<%= link_to "Pay with Paypal", @paypal_link, class: "btn btn-primary" %>
 				<% end %>
 			</div>
+			<div style="clear:both"></div>
 			
 			<% if Rails.env.development? %>	
 				<div class="well">

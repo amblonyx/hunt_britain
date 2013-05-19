@@ -11,7 +11,9 @@
 	
     <h1 style="font-size: 1.5em;color:green">Thanks for your order: <%= @purchase.reference %></h1>
 	
-    <p style="line-height:1.5em">Dear <%= @purchase.user.name %></p>
+	<% if !@purchase.user.name.blank? %>
+		<p style="line-height:1.5em">Dear <%= @purchase.user.name %></p>
+	<% end %>
 	<p style="line-height:1.5em">Thanks for your order, reference <strong><%= @purchase.reference %></strong>, 
 		placed on <strong><%= @purchase.date_purchased.to_formatted_s(:long) %></strong></p>
 	<p style="line-height:1.5em">The details of your order are as follows:</p>
@@ -43,7 +45,7 @@
 	</table>
 	
 	<% if has_online %>
-		<p>PDFs and/or links to online hunts will be emailed to you shortly.</p>
+		<p>PDFs and/or links to online hunts will be sent in a separate email.</p>
 	<% end %>
 
 	<% if has_paper %>

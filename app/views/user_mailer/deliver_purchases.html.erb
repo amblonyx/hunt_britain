@@ -13,7 +13,9 @@
 
 		<h1 style="font-size: 1.5em;color:green">Your Treasure Hunt is here!</h1>
 		
-		<p style="line-height:1.5em">Dear <%= @purchase.user.name %></p>
+		<% if !@purchase.user.name.blank? %>
+			<p style="line-height:1.5em">Dear <%= @purchase.user.name %></p>
+		<% end %>
 		<p style="line-height:1.5em">Thanks for your recent order, reference <strong><%= @purchase.reference %></strong>.</p>
 		<p style="line-height:1.5em">Here are your Treasure Hunts.</p>
 
@@ -56,11 +58,11 @@
 		<% if has_online %>
 			<p><strong>Some notes on your online Treasure Hunt:</strong></p>
 			<ul>
-				<li style="line-height: 1.5em;margin-top: 1em">Click on the link to access your treasure hunt.  Alternatively go to <a href="http://localhost:3000/hunt_login">http://localhost:3000/hunt_login</a> 
-					and manually type in the voucher code for the Treasure Hunt</li>
-				<li style="line-height: 1.5em;margin-top: 1em">If you are feeling competitive, you can time yourself!  The clock starts ticking once you clicked on "Start the Hunt"</li>
-				<li style="line-height: 1.5em;margin-top: 1em">Something about data usage</li>
-				<li style="line-height: 1.5em;margin-top: 1em">Something about mobile reception</li>
+				<li style="line-height: 1.5em;margin-top: 1em">Click on the link to access your treasure hunt.  Alternatively go to <a href="<%= hunt_login_url %>"><%= hunt_login_url %></a> 
+					and enter the voucher code for the Treasure Hunt</li>
+				<li style="line-height: 1.5em;margin-top: 1em">If you are feeling competitive, you can time yourself!  The clock starts ticking once you click on "Start the Hunt"</li>
+				<li style="line-height: 1.5em;margin-top: 1em">This treasure hunt should use less than 1MB of your data allowance.</li>
+				<li style="line-height: 1.5em;margin-top: 1em">Treasure Hunt Britain cannot guarantee mobile phone reception, although all our hunts are set in areas with good mobile network coverage.</li>
 			</ul>
 		<% end %>
 
