@@ -93,6 +93,8 @@ h3 {
 	background-image: -o-linear-gradient(top, #fff777, #eee744); 
 /*	border: 1px solid gray;*/
 	box-shadow: 0px 4px 9px #cc7700, 0px 3px 4px #ffffff inset;
+	-moz-box-shadow: 0px 4px 9px #cc7700, 0px 3px 4px #ffffff inset;
+	-o-box-shadow: 0px 4px 9px #cc7700, 0px 3px 4px #ffffff inset;
 	border-radius: 50%;
 	background-color: #fff777;
 }		
@@ -149,6 +151,8 @@ input, textarea, select, .uneditable-input {
 	padding: 0em 0.3em 0em 0.3em;
 	border: 1px solid #1111ff;
 	box-shadow: 1px 2px 3px #111199 inset, -1px -1px 3px #111199 inset;
+	-moz-box-shadow: 1px 2px 3px #111199 inset, -1px -1px 3px #111199 inset;
+	-o-box-shadow: 1px 2px 3px #111199 inset, -1px -1px 3px #111199 inset;
 	border-radius: 0.3em;
 	background-color: #6666ff;
 	.btn {
@@ -161,6 +165,8 @@ input, textarea, select, .uneditable-input {
 	padding: 0.4em;
 	border: 1px solid #009900;
 	box-shadow: 1px 2px 3px #117711 inset, -1px -1px 3px #117711 inset;
+	-moz-box-shadow: 1px 2px 3px #117711 inset, -1px -1px 3px #117711 inset;
+	-o-box-shadow: 1px 2px 3px #117711 inset, -1px -1px 3px #117711 inset;
 	border-radius: 0.3em;
 	background-color: #00cc00;
 	.whitelink {
@@ -258,20 +264,23 @@ footer {
 		}
 	}
 }
-#popup, #popup_problem {
-	background: #000;
-	color: #fff;
-	padding: 10px;
 
-	box-shadow: 0 3px 25px #000;
-	-moz-box-shadow: 0 3px 25px #000;
-	-o-box-shadow: 0 3px 25px #000;
+#popup, #popup_problem, #popup_confirm {
+	background: #111111;
+	color: #ffffff;
+	padding: 10px;
+	border: 2px solid #EEEEFF;
+	border-radius: 10px;
+
+	box-shadow: 0px 3px 20px #000000, 0px 0px 4px 2px #000000 inset;
+	-moz-box-shadow: 0px 3px 20px #000000, 0px 0px 4px 2px #000000 inset;
+	-o-box-shadow: 0px 3px 20px #000000, 0px 0px 4px 2px #000000 inset;
 	
 	position: fixed;
 	top: 50%;
-	width: 100%;
+	width: 90%;
+	left: 2.5%;
 	margin-top: -100px;
-/*	margin-left: -20px;*/
 	z-index: 9999;
 	display: none;
 	
@@ -285,44 +294,7 @@ footer {
 		padding: 0;
 		font-size: 1.2em;
 		font-weight: bold;
-	}
-	p {
-		text-align: center;
-		padding-right: 20px;
-		font-size: 0.9em;
-	}
-	#closepopup {
-		float: center;
-	}
-}
-
-#popup_confirm {
-	background: #000;
-	color: #fff;
-	padding: 10px;
-
-	box-shadow: 0 3px 25px #000;
-	-moz-box-shadow: 0 3px 25px #000;
-	-o-box-shadow: 0 3px 25px #000;
-	
-	position: fixed;
-	top: 50%;
-	width: 100%;
-	margin-top: -100px;
-	margin-left: -20px;
-	z-index: 9999;
-	display: none;
-	
-	-webkit-transition: all .1s ease-in-out;
-	-moz-transition: all .1s ease-in-out;
-	-o-transition: all .1s ease-in-out;
-	transition: all .1s ease-in-out;
-
-	h2 {
-		text-align: center;
-		padding: 0;
-		font-size: 1.2em;
-		font-weight: bold;
+		color: #EEEEFF;
 	}
 	p {
 		text-align: center;
@@ -346,6 +318,7 @@ footer {
 	opacity: 0.6;
 	filter: alpha(opacity=60); /* IE6+ */
 }
+
 /* Over-ride Bootstrap's default 20px padding when viewed on phones */
 @media (max-width: 767px) {
   body {

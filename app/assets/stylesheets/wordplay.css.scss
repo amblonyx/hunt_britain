@@ -1,15 +1,16 @@
 #wordplay {
 	position: absolute;
-	left: 320px;
-	top: 20px;
-	width: 400px;
+	left: 30%;
+	top: 30px;
+	width: 60%;
 	.try {
 		position: relative;
 		margin: 0; 
 		padding: 0;
-		width: 400px;
+		width: 75%;
 		left: 120px;
-		top: 100px;
+		top: 105px;
+		z-index: 99;
 	}
 }
 
@@ -17,7 +18,7 @@
 	position: absolute;
 	left: 0px;
 	top: 0px;
-	width: 200px;
+	width: 60%;
 	height: auto;
 	margin: 0; 
 	padding: 0;
@@ -26,18 +27,19 @@
 		position: relative;
 		margin: 0; 
 		padding: 0;
-		width: 250px;
+		width: 50%;
+		height: 50px;
 	}
 	
 	.alternates {
 		position: relative;
-		left: 80px;
+		left: 25%;
 		img {
 			position: absolute;
 			opacity: 0;
 			top: 0;
 			left: 0;
-			width: 200px;
+			width: 50%;
 			height: 60px;
 			
 			-webkit-animation: rotateWordsFirst 12s linear infinite 0s;
