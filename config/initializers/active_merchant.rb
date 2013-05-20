@@ -1,7 +1,8 @@
+PAYPAL_ACCOUNT = ENV["PAYPAL_ACCOUNT"]
 if Rails.env.production?
-	PAYPAL_ACCOUNT = ENV["PAYPAL_ACCOUNT"]
-	ActiveMerchant::Billing::Base.mode = :test
+	PAYPAL_LINK = "https://www.paypal.com/cgi-bin/webscr?"
+	ActiveMerchant::Billing::Base.mode = :production
 else
-	PAYPAL_ACCOUNT = ENV["PAYPAL_ACCOUNT"]
+	PAYPAL_LINK = "https://www.sandbox.paypal.com/cgi-bin/webscr?"
 	ActiveMerchant::Billing::Base.mode = :test
 end
