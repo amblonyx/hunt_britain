@@ -10,9 +10,13 @@
 # Ignore the default SQLite database.
 /db/*.sqlite3
 
-# Ignore all logfiles and tempfiles.
+# Ignore all logfiles and tempfiles, and bat files.
 /log/*.log
 /tmp
+*.bat
+
+# Ignore the database config file
+/config/database.yml
 
 # Ignore data files
 /data/pdf/*.pdf
