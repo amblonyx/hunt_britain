@@ -33,7 +33,7 @@ HuntBritain::Application.configure do
   config.assets.debug = true
  
 	# NOW USING GMAIL_SMTP PLUGIN - SO OBSOLETE
-	config.action_mailer.default_url_options = { host: 'localhost:3000' }
+	config.action_mailer.default_url_options = { host: EMAIL_HOST }
 #	config.action_mailer.raise_delivery_errors = true
 #	config.action_mailer.perform_deliveries = true
 #	config.action_mailer.delivery_method = :smtp

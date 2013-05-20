@@ -8,9 +8,9 @@ development:
   encoding: unicode
   database: huntbritain_development
   pool: 5
-  username: postgres
-  password: abi4evin
-  host: localhost
+  username: DB_USER
+  password: DB_PASSWORD
+  host: DB_HOST
   port: 5432
 
 # Warning: The database defined as "test" will be erased and
@@ -21,9 +21,9 @@ test:
   encoding: unicode
   database: huntbritain_test
   pool: 5
-  username: postgres
-  password: abi4evin
-  host: localhost
+  username: DB_USER
+  password: DB_PASSWORD
+  host: DB_HOST
   port: 5432
 
 production:
@@ -31,7 +31,7 @@ production:
   encoding: unicode
   database: huntbritain_prod
   pool: 5
-  username: postgres
-  password: abi4evin
-  host: localhost
+  username: DB_USER
+  password: DB_PASSWORD
+  host: DB_HOST
   port: 5432

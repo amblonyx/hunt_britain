@@ -68,13 +68,13 @@ HuntBritain::Application.configure do
 	# for HEROKU
 	config.action_mailer.delivery_method = :smtp
 	config.action_mailer.raise_delivery_errors = true
-	config.action_mailer.default_url_options = { host: 'huntbritain.herokuapp.com' }
+	config.action_mailer.default_url_options = { host: EMAIL_HOST }
 
 	ActionMailer::Base.smtp_settings = {
 		address: "smtp.gmail.com",
 		port: 25,
-		user_name: ENV['GMAIL_SMTP_USER'], 
-		password: ENV['GMAIL_SMTP_PASSWORD'],
+		user_name: GMAIL_SMTP_USER, 
+		password: GMAIL_SMTP_PASSWORD,
 		authentication: :login
 	}	
 end
