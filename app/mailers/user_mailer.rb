@@ -5,21 +5,21 @@ class UserMailer < ActionMailer::Base
 	def welcome_email(user)
 		@user = user
 		@url  = signin_path 
-		#if Rails.env.development? 
+		if Rails.env.production? 
+			mail(to: user.email, bcc: GMAIL_SMTP_USER, subject: 'Welcome to Hunt Britain')
+		else
 			mail(to: GMAIL_TEST_RECIPIENT, bcc: GMAIL_SMTP_USER, subject: 'Welcome to Hunt Britain')		
-		#else
-		#	mail(to: user.email, bcc: GMAIL_SMTP_USER, subject: 'Welcome to Hunt Britain')
-		#end 
+		end 
 	end
   
 	def confirm_purchase(purchase)
 		@purchase = purchase		
 		
-		#if Rails.env.development? 
+		if Rails.env.production? 
+			mail(to: purchase.user.email, bcc: GMAIL_SMTP_USER, subject: 'Thanks for your order')	
+		else
 			mail(to: GMAIL_TEST_RECIPIENT, bcc: GMAIL_SMTP_USER, subject: 'Thanks for your order')	
-		#else
-		#	mail(to: purchase.user.email, bcc: GMAIL_SMTP_USER, subject: 'Thanks for your order')	
-		#end 
+		end 
 
 	end
 	
@@ -47,11 +47,11 @@ class UserMailer < ActionMailer::Base
 		if @problem.any? 
 			mail(to: GMAIL_SMTP_USER, subject: 'PROBLEM trying to deliver purchases')	
 		else
-			#if Rails.env.development? 
+			if Rails.env.production? 
+				mail(to: purchase.user.email, bcc: GMAIL_SMTP_USER, subject: 'Your Treasure Hunt')	
+			else
 				mail(to: GMAIL_TEST_RECIPIENT, bcc: GMAIL_SMTP_USER, subject: 'Your Treasure Hunt')	
-			#else
-			#	mail(to: purchase.user.email, bcc: GMAIL_SMTP_USER, subject: 'Your Treasure Hunt')	
-			#end 			
+			end 			
 		end 
 	end
 
@@ -71,11 +71,11 @@ class UserMailer < ActionMailer::Base
 
 	def reset_password(user)
 		@user = user
-		#if Rails.env.development? 
+		if Rails.env.production? 
+			mail(to: user.email, subject: 'You requested a new Treasure Hunt Britain password')
+		else
 			mail(to: GMAIL_TEST_RECIPIENT, subject: 'You requested a new Treasure Hunt Britain password')		
-		#else
-		#	mail(to: user.email, subject: 'You requested a new Treasure Hunt Britain password')
-		#end 
+		end 
 
 	end 
 end
