@@ -23,24 +23,25 @@ header {
 	#topnotebar {
 		margin: 0;
 		position: absolute;
-		bottom: 0;
+		bottom: -15px;
 
 		ul {
 			counter-reset: li;
 			li a {
 				text-transform: uppercase;
 				text-decoration: none;
-				font-size: 1.2em;
+				font-size: 1.20em;
 				text-shadow: none;
 				font-family: Helvetica, cursive;
-				color: #F5F0A6; 
+				font-weight: bold;
+				color: #FFE900; 
 
 				&:hover {
-					/*	color: #aaa;*/
+					color: #FFFFBB;
 				}
 			}
 			li.activelink a {
-				color: yellow;
+				color: #FFFFBB;
 			}
 		}			
 	}
@@ -52,7 +53,7 @@ header {
 }
 #topnote {
 	width: 100%;
-	height: 5px;
+	height: 4px;
 	overflow: hidden;
 	position: relative;
 	margin: 0; padding: 0;
@@ -159,6 +160,7 @@ header {
 			}
 			.placelabel {
 				opacity: .75;
+				font-weight: bold;
 
 				-webkit-border-radius: 10px 0 10px 0;
 				-moz-border-radius: 10px 0 10px 0;
@@ -168,6 +170,7 @@ header {
 				background: transparent;
 				color: #ffffff;
 				opacity: 1;
+				font-weight: bold;
 			}
 		}
 	} 
