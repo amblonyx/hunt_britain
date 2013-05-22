@@ -8,13 +8,15 @@
 		<div class="span6 offset3">
 			<%= form_for(@user, html: { class:"form-horizontal well"} ) do |f| %>
 				<%= render 'shared/contact_fields', f: f, confirm: "Confirm password", guest: false %>
-				<div class="center">
-					<% if in_checkout? %>
-						<%= f.submit "Continue", class: "btn btn-large btn-primary" %>
-					<% else %>
-						<%= f.submit "Update", class: "btn btn-large btn-primary" %>
-						<%= submit_tag "Cancel", class: "btn btn-large" %>
-					<% end %>
+				<div class="control-group">
+					<div class="controls">
+						<% if in_checkout? %>
+							<%= f.submit "Continue", class: "btn btn-primary" %>
+						<% else %>
+							<%= f.submit "Update", class: "btn btn-primary" %>
+							<%= submit_tag "Cancel", class: "btn" %>
+						<% end %>
+					</div>
 				</div>
 			<% end %>
 		</div>

@@ -1,7 +1,23 @@
 <h1>Products</h1>
 <div class="row">
 	<div class="span10 offset1">
-		<%= render "shared/product_table", obj: @products %>
-		<%= will_paginate %>
+	
+		<%= form_for(@product, url: { action: "index" }, method: :get, html: { class: "search-form form-inline" }) do |f| %>
+			<%= render 'shared/error_messages', object: f.object %>
+			<div class="well">
+				<%#= hidden_field_tag "sort" %>
+				<%= f.text_field :name, class: "input-medium", placeholder: "Name" %>
+				<%= f.text_field :product_code, class: "input-medium", placeholder: "Product code" %>
+				<%= f.select :format, ["", "Online", "Download", "Paper"], html: {class: "span2", placeholder: "Format"}  %>
+				<label class="checkbox">
+					<%= f.check_box :dormant %>Dormant
+				</label>
+				<%= f.submit "Search", name: "search", class: "btn" %>
+				<%= f.submit "Clear", type: "reset", class: "btn" %>
+			</div>
+			
+			<%= render "shared/product_table", obj: @products %>
+			<%#= will_paginate %>
+		<% end %>
 	</div>
 </div>

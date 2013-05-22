@@ -5,7 +5,6 @@
 	color:#fff;   
 	background:#000;   
 	padding: 0; 
-	
 	article{   
 		float:left;  
 		position: relative;
@@ -145,5 +144,10 @@
 		border-color: #FF0000;
 	}
 }
-
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {  
+   /* IE10-specific styles go here */   
+	#accordion article span.label {  
+		margin-bottom: -265px;	
+	}	
+}
 

@@ -3,8 +3,15 @@ class ProductsController < ApplicationController
 	before_filter :check_for_cancel, only: [:create, :update]
 
 	def index
-		@products = Product.paginate(page: params[:page])
-		@product = Product.new
+		if params.has_key?("search")
+			#@products = Product.paginate(page: params[:page])
+
+			@products = Product.filtered(params[:product])			
+			@product = Product.new(params[:product])
+		else
+			@products = Product.all
+			@product = Product.new
+		end
 		render layout: pick_layout
 	end
 
