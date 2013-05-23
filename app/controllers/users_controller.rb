@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 #	before_filter :check_for_cancel, :only => [:create, :update]
 	before_filter :signed_in_user, only: [:index, :edit, :update, :destroy]
-	before_filter :correct_user, only: [:edit, :update]
+	before_filter :correct_user, only: [:show, :edit, :update]
 	before_filter :admin_user, only: [:index, :destroy]
 	before_filter :load_cart
 	before_filter :clear_state
@@ -111,7 +111,7 @@ class UsersController < ApplicationController
 	
 	def correct_user
 		@user = User.find(params[:id])
-		redirect_to root_path unless correct_user?(@user)
+		redirect_to root_path unless correct_user?(@user) || current_user.admin?
 	end
 	
 	def admin_user

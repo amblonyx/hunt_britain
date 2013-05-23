@@ -13,7 +13,7 @@
 		background: #fff;   
 		margin:0px;
 		padding: 0px;
-		width:6%;   
+		width: 6%;   
 		height: 320px;
 
 		-moz-transition: width 0.8s ease-out;   
@@ -27,7 +27,7 @@
 			object-fit: cover;
 			position:absolute;
 			top: 0;
-			left: 40px;
+			left: 39px;
 			height: 100%;
 			margin: 0px;
 			overflow: hidden;
@@ -36,12 +36,11 @@
 			display:none;
 			position:absolute;
 			top: 0;
-			left: 35px;
+			left: 38px;
 			height: 290px;
 			background-color: white;
 			margin: 0px;
-			padding: 15px;
-			font: 14px/20px Helvetica, sans-serif; 
+			padding: 1.2em;
 			overflow: hidden;
 		}  
 		span.label {   
@@ -65,27 +64,26 @@
 			width: 380px;  
 			bottom: -30px;
 			bottom: 230px\9;
-			padding: 10px 5px 5px 15px;
+			padding: 0.5em 0.5em 0.5em 0.5em;
 			margin: 0px;
 			cursor: pointer; 
 			background: transparent;
 
 			text-transform: uppercase;
-			font-size: 20px;   
+			font-size: 1.8em;   
 			font-weight: bold;  
-			font-family: Helvetica;
 			color: #fff;   
 			text-decoration: none;  
 		}
 		span.header {
-			font-size: 16px;
+			font-size: 1.2em;
 			margin: 0 0 10px 0;
-			padding: 4px;
+			padding: 0.2em;
 			font-weight: bold;
 			text-align: left;
 			text-transform: uppercase;
 			display: block;
-			border: solid 4px;
+			border: solid 0.2em;
 		}
 		ul {
 			list-style-position: outside;
@@ -112,13 +110,76 @@
 	article.tabopen {
 		width: 82%;
 		span.label {
-			width:380px;  
+			width: 380px;  
 		}
 		p {
 			display: block;	
 		}
 		img {
 			display: block;	
+		}
+	}
+}
+@media (max-width: 630px) { 
+	#popup {
+		margin-left: -265px;
+		margin-top: -160px;
+		.input-large {
+			width: 350px !important;
+		}
+	}
+	#accordion {
+		width: 500px;
+		article {
+			font-size: 0.8em;
+			height: 260px;
+			p {
+				height: 240px;
+				left: 30px;
+			}
+			img {
+				left: 30px;
+			}
+			span.label {
+				padding: 0.4em 0.4em 0.4em 0.4em;
+			}
+		}
+		article.tabopen {
+			span.label {
+				width: 300px;
+			}
+		}
+	}
+}
+
+@media (max-width: 500px) { 
+	#popup {
+		margin-left: -210px;
+		margin-top: -110px;
+		.input-large {
+			width: 250px !important;
+		}
+	}
+	#accordion {
+		width: 400px;
+		article {
+			font-size: 0.7em;
+			height: 210px;
+			p {
+				height: 200px;
+				left: 24px;
+			}
+			img {
+				left: 24px;
+			}
+			span.label {
+				padding: 0.3em 0.3em 0.3em 0.3em;
+			}
+		}
+		article.tabopen {
+			span.label {
+				width: 240px;
+			}
 		}
 	}
 }

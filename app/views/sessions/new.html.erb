@@ -1,4 +1,6 @@
-<% if in_checkout? %>
+<% if @mode == "forgot_password" %>
+	<h1>Forgotten your password?</h1>
+<% elsif in_checkout? %>
 	<h1>Enter your details</h1>
 <% else %>
 	<h1>Sign in</h1>
@@ -16,7 +18,9 @@
 					<% if @mode == "forgot_password" %>
 						Reset password
 					<% else %>
-						I have an account already
+						<% if in_checkout? %>
+							<p>I have an account already</p>
+						<% end %>
 					<% end %>
 					<div class="control-group">
 						<label class="control-label" for="session_user_name">Email</label>
@@ -34,11 +38,11 @@
 								<%= f.button "Sign in", name: "known_user", class: "btn btn-primary" %>
 							</div>
 						</div>		
-						<%= link_to "Lost password?", signin_path(mode: "forgot_password") %> | <%= link_to "Register with Hunt Britain", signup_path %>
+						<%= link_to "Forgotten your password?", signin_path(mode: "forgot_password") %> | <%= link_to "Register with Treasure Hunt Britain", signup_path %>
 					<% else %>
 						<div class="control-group">
 							<div class="controls">
-								<%= f.button "Email me a link to reset password", name: "reset_password", class: "btn btn-primary" %>
+								<%= f.button "Email me a link to reset my password", name: "reset_password", class: "btn btn-primary" %>
 							</div>
 						</div>		
 					
@@ -46,11 +50,10 @@
 							
 				</div>
 
-				<% if in_checkout? %>
+				<% if in_checkout? && @mode != "forgot_password"%>
 
 					<div class="form_group well">
-						Continue as guest
-						<p><small>We will need your email to send a confirmation <% if need_address? %>and your address to send the Treasure Hunt<% end %></small></p>
+						<p>Continue as guest<br/><small>We will need your email address to send a confirmation <% if need_address? %>and your address to send the Treasure Hunt to<% end %></small></p>
 
 						<div class="control-group">
 							<label class="control-label" for="session_email">Email</label>

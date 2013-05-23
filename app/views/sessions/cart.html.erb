@@ -1,7 +1,7 @@
 ﻿<% provide(:title, "Shopping cart") %>
 
 <% if @action == "checkout" %>
-	<h1>Confirm your details</h1>
+	<h1>Confirm your order details</h1>
 <% else %>
 	<h1>Shopping Cart</h1>
 <% end %>
@@ -10,26 +10,13 @@
 	
 		<% if @cart.length == 0 %>
 			<!-- ########## Cart is empty ########## -->
-			Your shopping cart is empty.<br/>
-			<%= link_to "Continue shopping", root_path %>
-		
+			<p>Your shopping cart is empty.</p>
+			<div class="bottom-margin">
+				<%= link_to "Continue shopping", root_path, class: "btn" %>
+			</div>
 		<% else %>
 			<!-- ########## Cart is NOT empty ########## -->
 			
-			<% if @action == "checkout" %>
-				<% if !@user.guest? %>
-					<div class="row">
-						<p class="span6"><%= @user.name %></p>
-					</div>
-				<% end %>
-				<div class="row">
-					<p class="span6"><%= @user.email %></p>
-				</div>
-				<div class="row">
-					<p class="span6"><%= output_phone(@user.phone) %></p>
-				</div>				
-			<% end %>
-
 			<%= form_tag("/update_cart", id: "updateCartForm", method: "put") do %>
 
 				<table class="table table-bordered table-striped">
@@ -51,36 +38,49 @@
 					</thead>
 					<tbody>
 						<% total_price = 0 %>
-						
+						<% qty_note = false %>
 						<% @cart.each do |cart_item| %>
 							<% product = Product.find(cart_item[:product_id]) %>
 							<% total_price += calc_price(cart_item[:num].to_f, product) %>
 							<tr>
 								<td><%= product.name %></td>
 								<% if @action == "cart" %>
-									<td class="merge-right">
-										<%= text_field_tag "product[" + cart_item[:product_id] + "]", cart_item[:num], class: "input-small" %>
-									</td>
-									<td class="merge-left">
-										<%= submit_tag "Update", class: "btn" %>
-									</td>
+									<% if product.format != "Download" %>
+										<td class="merge-right">
+											<%= text_field_tag "product[" + cart_item[:product_id] + "]", cart_item[:num], class: "input-small" %>
+										</td>
+										<td class="merge-left">
+											<%= submit_tag "Update", class: "btn" %>
+										</td>
+									<% else %>
+										<td colspan="2">
+											<%= cart_item[:num] %>
+										</td>
+									<% end %>
 								<% else %>
 									<td><%= cart_item[:num] %></td>
 								<% end %>
-								<td>£<%= "%.2f" % (product.price) %></td>
+								<% if product.format != "Download" %>
+									<td>£<%= "%.2f" % (product.price) %> + £1.50</td>
+								<% else %>
+									<td>£<%= "%.2f" % (product.price) %></td>
+								<% end %>
 								<td>£<%= "%.2f" % (calc_price(cart_item[:num].to_f, product)) %></td>
 								<% if @action == "cart" %>
 									<td><%= link_to "Remove", remove_from_cart_path(product_id: product.id), method: :post %></td>
 								<% end %>
 							</tr>
-							<% if @action == "cart" && product.format == "Online" %>
+							<% if @action == "cart" && product.format != "Download" %>
+								<% qty_note = true %>
+							<% end %>
+						<% end %>
+							<% if qty_note %>
 								<tr>
 									<td colspan="6">
-										If you want to play a team hunt, increase the quantity to one per team. It costs £1.50 for each team after the first.
+										If you want to play a team hunt, increase the quantity by one per team. It costs £1.50 for each team after the first.
 									</td>
 								</tr>
 							<% end %>
-						<% end %>
 						<tr> 
 							<% if @action == "cart" %>
 								<td colspan="4"><strong>Grand Total:</strong></td>
@@ -98,16 +98,19 @@
 			<% if @action == "checkout" %>
 				<% if has_purchase_format(@cart, "Paper") %>
 					<div class="row">
-						<p class="span3">Paper hunts will be sent to</p><p class="span6"><%= output_address(@user) %></p>
+						<p class="span4">Paper hunts will be sent to:</p><%= output_address(@user,7) %>
 					</div>
 				<% end %>
-				
-				<% if has_purchase_format(@cart, "Online") %>
+				<% if has_purchase_format(@cart, "Online") || has_purchase_format(@cart, "Download") %>
 					<div class="row">
-						<p class="span3">PDFs and online hunts will be sent to</p><p class="span6"><%= @user.email %></p>
+						<p class="span4">PDFs and online hunts will be sent to:</p><p class="span7"><%= @user.email %></p>
 					</div>
 				<% end %>
+				<div class="row">
+					<p class="span4">Contact details we have for you:</p><p class="span7"><%= output_email(@user.email) %><%= output_phone(@user.phone) %></p>
+				</div>
 			<% end %>
+
 
 			<div class="pull-right bottom-margin">
 				<%= link_to "Continue shopping", root_path, class: "btn" %>

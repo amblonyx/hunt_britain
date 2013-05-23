@@ -180,7 +180,17 @@ class SessionsController < ApplicationController
 		params[:product].each do |key, value|
 			cart_items = @cart.select { |item| item[:product_id] == key }
 			if cart_items.length > 0
-				cart_items.first[:num] = value
+				if value.to_i.to_s != value.to_s			# check for non-integer value
+					flash[:error] = "Invalid quantity entered"
+					redirect_to "/cart"
+					return
+				elsif value.to_i > 20
+					flash[:error] = "You should not need more than 20 copies!"
+					redirect_to "/cart"
+					return				
+				else
+					cart_items.first[:num] = value
+				end
 			end 
 		end
 		# remove items where quantity have been set to zero

@@ -1,7 +1,15 @@
 module PurchaseHandler
 	
 	def generate_paypal_link
-	
+
+		if @purchase.purchase_items.count > 1
+			iname = "Your Treasure Hunts"
+			iqty = 1
+		else
+			iname = @purchase.purchase_items.first.description
+			iqty = @purchase.purchase_items.first.quantity
+		end
+		
 		paypal_params = {
 			business: PAYPAL_ACCOUNT,
 			currency_code: "GBP",
@@ -12,8 +20,8 @@ module PurchaseHandler
 			item_number: @purchase.id,
 			custom: @purchase.id,
 			amount: @purchase.price_total,
-			quantity: 1,
-			item_name: "Your Treasure Hunt purchase",
+			quantity: iqty,
+			item_name: iname,
 			no_shipping: "1",
 			no_note: "1",
 			charset: "utf-8",

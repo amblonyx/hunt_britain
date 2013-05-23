@@ -3,7 +3,9 @@
 	<div class="navbar pull-right" id="appbar">
 		<div class="navbar-inner">
 			<ul class="nav">
-				<li><%= link_to "Cart (#{@cart.length})", cart_path %></li>
+				<% if session[:cart].length > 0 %>
+					<li><%= link_to "Cart (#{@cart.length})", cart_path %></li>
+				<% end %>
 				<li><%= link_to "Voucher", hunt_login_path %></li>
 				<% if signed_in? %>
 					<li><%= link_to "My account", user_path(current_user) %></li>

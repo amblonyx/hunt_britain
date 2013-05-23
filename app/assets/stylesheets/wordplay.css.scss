@@ -8,7 +8,8 @@
 		margin: 0; 
 		padding: 0;
 		width: 75%;
-		left: 120px;
+		max-width: 550px;
+		left: 20%;
 		top: 105px;
 		z-index: 99;
 	}
@@ -33,7 +34,7 @@
 	
 	.alternates {
 		position: relative;
-		left: 25%;
+		left: 20%;
 		img {
 			position: absolute;
 			opacity: 0;
