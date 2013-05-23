@@ -78,29 +78,33 @@ class Hunt < ActiveRecord::Base
 	end
 	
 	def start
+	
 		self.started = true
-		self.started_at = Time.now
 		self.current_clue = 1
-		self.current_status = "Fresh"
-		
+		self.current_status = "Fresh"		
 		self.paused = false
 		self.completed = false
-		self.time_taken = 0
-		self.last_submitted = self.started_at # so the time_taken can be easily updated			
+
+		self.last_submitted = Time.now
+		self.started_at = self.last_submitted if self.started_at.nil?	# restarts leave started_at
+		self.time_taken = 0 if self.time_taken.nil?	# restarts shouldn't set back to zero
 		
 		self.save
+		
 	end
 	
 	def restart
+	
 		self.started = false
 		self.paused = false
 		self.completed = false
 
 		self.current_clue = nil
 		self.current_status = nil
-		self.time_taken = nil
-		self.started_at = nil
 		self.last_submitted = nil		
+		
+		# we leave started_at and time_taken as they were, so people can't cheat
+		
 	end
 	
 	def add_penalty(minutes)
