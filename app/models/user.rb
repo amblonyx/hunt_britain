@@ -130,6 +130,10 @@ class User < ActiveRecord::Base
 	def has_voucher?(voucher)
 		hunts.find_by_voucher_code(voucher)
 	end
+
+	def paid_purchases
+		purchases.select { |purchase| purchase.status == "Paid" }
+	end
 	
 	private
 	def not_guest?

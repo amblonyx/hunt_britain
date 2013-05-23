@@ -3,6 +3,11 @@ class Purchase < ActiveRecord::Base
   	has_many :purchase_items, dependent: :destroy
   	has_many :ipn_logs, dependent: :destroy
   	belongs_to :user
+
+  	def download_items
+		purchase_items.select { |purchase_item| purchase_item.product.format == "Download" }
+	end
+	
 end
 # == Schema Information
 #
