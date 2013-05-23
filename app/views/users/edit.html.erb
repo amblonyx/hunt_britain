@@ -1,24 +1,24 @@
-<% provide :title, 'Edit' %>
 <% if in_checkout? %>
 	<h1>Please provide an address where we can send your Treasure Hunt</h1>
 <% else %>
 	<h1>Update my details</h1>
 <% end %>
-	<div class="row">
-		<div class="span6 offset3">
-			<%= form_for(@user, html: { class:"form-horizontal well"} ) do |f| %>
-				<%= render 'shared/contact_fields', f: f, confirm: "Confirm password", guest: false %>
-				<div class="control-group">
-					<div class="controls">
-						<% if in_checkout? %>
-							<%= f.submit "Continue", class: "btn btn-primary" %>
-						<% else %>
-							<%= f.submit "Update", class: "btn btn-primary" %>
-							<%= submit_tag "Cancel", class: "btn" %>
-						<% end %>
-					</div>
+
+<div class="row">
+	<div class="span6 offset3">
+		<%= form_for(@user, html: { class:"form-horizontal well form-validate"} ) do |f| %>
+			<%= render 'shared/contact_fields', f: f, confirm: "Confirm password", guest: false %>
+			<div class="control-group">
+				<div class="controls">
+					<% if in_checkout? %>
+						<%= f.submit "Continue", class: "btn btn-primary" %>
+					<% else %>
+						<%= f.submit "Update", class: "btn btn-primary" %>
+						<%= link_to "Cancel", @user, class: "btn", commit: "Cancel" %>
+					<% end %>
 				</div>
-			<% end %>
-		</div>
-		
+			</div>
+		<% end %>
 	</div>
+	
+</div>

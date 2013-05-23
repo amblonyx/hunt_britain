@@ -10,7 +10,73 @@ class Hunt < ActiveRecord::Base
 	belongs_to :purchase_item
 
 	before_save :create_voucher_code
+	
+	def status 
+		if !self.started?
+			"Fresh"
+		elsif self.completed?
+			"Completed"
+		elsif self.started? && !self.completed?
+			"Ongoing"
+		end 
+	end 
+	
+	def self.filtered( opts = {}, sort = {} )
+		fields = Array.new
+		criteria = Hash.new
+		status = Array.new
 
+		if opts.has_key?(:product)
+			if !opts[:product].empty?
+				fields.push("products.name ilike :product")
+				criteria[:product] = "%#{opts[:product]}%"
+			end 
+		end
+		if opts.has_key?(:user)
+			if !opts[:product].empty?
+				fields.push("users.email ilike :user")
+				criteria[:user] = "%#{opts[:user]}%"
+			end
+		end
+		if opts.has_key?(:voucher_code)
+			if !opts[:voucher_code].empty?
+				fields.push("voucher_code ilike :voucher_code")
+				criteria[:voucher_code] = "%#{opts[:voucher_code]}%"
+			end
+		end
+		
+		if opts.has_key?(:status_fresh)
+			if opts[:status_fresh].to_s == "1"
+				status.push("(started = false)")
+			end 
+		end
+		if opts.has_key?(:status_on_going)
+			if opts[:status_on_going].to_s == "1"
+				status.push("(started = true AND completed = false)")
+			end
+		end
+		if opts.has_key?(:status_paused)
+			if opts[:status_paused].to_s == "1"
+				status.push("(paused = true)")
+			end
+		end
+		if opts.has_key?(:status_completed)
+			if opts[:status_completed].to_s == "1"
+				status.push("(completed = true)")
+			end
+		end
+
+		status_string = status.join(" OR ")
+		if !status_string.empty?
+			fields.push("(#{status_string})")
+		end
+		field_string = fields.join(" AND ")
+		
+		result = self.joins(:product).joins(:user).where( field_string, criteria ).order( "#{sort[:field]} #{sort[:dir]}" )
+
+		return result
+	end
+	
 	def start
 		self.started = true
 		self.started_at = Time.now

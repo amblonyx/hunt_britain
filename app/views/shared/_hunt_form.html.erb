@@ -1,8 +1,19 @@
 ﻿<div class="row">
 	<div class="span8 offset2">
-		<%= form_for([hunt], html: { class: "form-horizontal well" }) do |f| %>
+			<% if !hunt.id.blank? %>
+				<ul class="nav nav-pills">
+					<li class="active"><%= link_to "Hunt index", hunts_path %></li>
+					<li class="active"><a href="/hunts/<%=hunt.id.to_s%>" data-method="delete" onclick="return confirm('Are you sure you want to PERMANENTLY delete this hunt?')">Delete</a></li>
+					<li class="active"><a href="/change_voucher/<%=hunt.id.to_s%>" onclick="return confirm('Are you sure?')">Change voucher code</a></li>
+					<% if hunt.started? %>
+						<li class="active"><a href="/restart_hunt/<%=hunt.id.to_s%>" onclick="return confirm('Are you sure?')">Restart</a></li>
+					<% end %>
+				</ul>
+			<% end %>
+			<%= form_for([hunt], html: { class: "form-horizontal well" }) do |f| %>
 			<%= render 'shared/error_messages', object: f.object %>
 			
+
 			<div class="control-group">
 				<label class="control-label" for="product_id">Product</label>
 				<div class="controls">
@@ -73,17 +84,12 @@
 						<%= f.text_field :current_clue %> 
 					</div>
 				</div>
-				<div class="control-group">
-					<label class="control-label" for="current_status">Current status</label>
-					<div class="controls">
-						<%= f.text_field :current_status %> 
-					</div>
-				</div>			
 			<% end %>
 			<div class="center">
 				<%= f.submit "Commit", class: "btn btn_large btn_primary" %>
 				<%= f.submit "Cancel", class: "btn btn_large btn_primary"%>
 			</div>
 		<% end %>
+
 	</div>
 </div>

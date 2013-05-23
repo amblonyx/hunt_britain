@@ -3,14 +3,16 @@ class ProductsController < ApplicationController
 	before_filter :check_for_cancel, only: [:create, :update]
 
 	def index
+		@sort_fields = [["Product Code","product_code"], ["Location","locations.name"], ["Name","products.name"], ["Format","format"], ["Price","price"], ["Data file","data_file"], ["Dormant","dormant"]]
+		
 		if params.has_key?("search")
-			#@products = Product.paginate(page: params[:page])
-
-			@products = Product.filtered(params[:product])			
-			@product = Product.new(params[:product])
+			@filter = params[:filter]
+			@sort = params[:sort]
+			@products = Product.filtered(params[:filter], params[:sort])			
 		else
-			@products = Product.all
-			@product = Product.new
+			@filter = Hash.new
+			@sort = Hash.new
+			@products = Product.active
 		end
 		render layout: pick_layout
 	end

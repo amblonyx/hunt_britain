@@ -11,23 +11,23 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130506215614) do
+ActiveRecord::Schema.define(:version => 20130522224158) do
 
   create_table "hunts", :force => true do |t|
     t.integer  "product_id"
     t.string   "voucher_code"
     t.string   "team_name"
     t.string   "email"
-    t.boolean  "started"
-    t.boolean  "paused"
-    t.boolean  "completed"
+    t.boolean  "started",          :default => false
+    t.boolean  "paused",           :default => false
+    t.boolean  "completed",        :default => false
     t.datetime "started_at"
     t.datetime "last_submitted"
     t.integer  "current_clue"
     t.string   "current_status"
     t.integer  "time_taken"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
     t.integer  "user_id"
     t.integer  "purchase_item_id"
   end
@@ -67,10 +67,10 @@ ActiveRecord::Schema.define(:version => 20130506215614) do
     t.string   "format"
     t.decimal  "price",        :precision => 8, :scale => 2
     t.string   "data_file"
-    t.datetime "created_at",                                 :null => false
-    t.datetime "updated_at",                                 :null => false
+    t.datetime "created_at",                                                    :null => false
+    t.datetime "updated_at",                                                    :null => false
     t.integer  "location_id"
-    t.boolean  "dormant"
+    t.boolean  "dormant",                                    :default => false
   end
 
   create_table "purchase_items", :force => true do |t|

@@ -1,34 +1,48 @@
 class Product < ActiveRecord::Base
-  attr_accessible :data_file, :format, :name, :price, :product_code, :dormant
-  belongs_to :location
-  has_many :hunts
-#  has_many :purchase_items
+	attr_accessible :data_file, :format, :name, :price, :product_code, :dormant
+	belongs_to :location
+	has_many :hunts
+	#  has_many :purchase_items
 
-	def self.filtered( opts = {} )
+	scope :dormant, where(dormant: true)
+	scope :active, where(dormant: false)
+
+	def self.filtered( opts = {}, sort = {} )
 		fields = Array.new
 		criteria = Hash.new
-		
-		if !opts[:format].empty?
-			fields.push("format = :format")
-			criteria[:format] = opts[:format]
-		end
-		if !opts[:name].empty?
-			fields.push("name ilike :name")
-			criteria[:name] = "%#{opts[:name]}%"
-		end
-		if !opts[:product_code].empty?
-			fields.push("product_code ilike :product_code")
-			criteria[:product_code] = "%#{opts[:product_code]}%"
-		end
-		if !opts[:dormant].empty?
-			fields.push("dormant = :dormant")
-			criteria[:dormant] = opts[:dormant]
-		end
 
-		field_string = fields.join(" AND ")
-		x = self.where( field_string, criteria ) 
-		return x
+		if opts.has_key?(:location)
+			if !opts[:location].empty?
+				fields.push("locations.name ilike :location")
+				criteria[:location] = "%#{opts[:location]}%"
+			end 
+		end
+		if opts.has_key?(:format)
+			if !opts[:format].empty?
+				fields.push("format = :format")
+				criteria[:format] = opts[:format]
+			end
+		end
+		if opts.has_key?(:name)
+			if !opts[:name].empty?
+				fields.push("products.name ilike :name")
+				criteria[:name] = "%#{opts[:name]}%"
+			end
+		end
+		if opts.has_key?(:product_code)
+			if !opts[:product_code].empty?
+				fields.push("product_code ilike :product_code")
+				criteria[:product_code] = "%#{opts[:product_code]}%"
+			end
+		end
+		if opts[:dormant].to_i != 1
+			fields.push("dormant = false")
+		end
 		
+		field_string = fields.join(" AND ")
+		result = self.joins(:location).where( field_string, criteria ).order( "#{sort[:field]} #{sort[:dir]}" )
+
+		return result
 	end
 
 end

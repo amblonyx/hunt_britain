@@ -4,7 +4,7 @@
 		<% if signed_in? %>
 			<%= render 'shared/already_signed_in', signin: false, signup: true %>
 		<% else %>
-			<%= form_for(@user, html: { class: "form-horizontal" }) do |f| %>
+			<%= form_for(@user, html: { id: "signupForm", class: "form-horizontal form-validate" }) do |f| %>
 				<%= render 'fields', f: f, confirm: "Confirm password" %>
 				<input name="honey" class="input_honey"/>
 				<div class="control-group">

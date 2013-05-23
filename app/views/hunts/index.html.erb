@@ -4,7 +4,34 @@
 <div class="row">
 	<div class="span10 offset1">
 		<%= link_to "Add a new hunt", new_hunt_path %>
+
+		<%= form_tag hunts_path, url: { action: "index" }, method: :get, html: { class: "search-form form-inline" } do %>
+			<div class="well">
+				<div class="form-inline">
+					Filter: 
+					<%= text_field_tag "filter[product]", @filter["product"], class: "input-medium", placeholder: "Product" %>
+					<%= text_field_tag "filter[voucher_code]", @filter["voucher_code"], class: "input-medium", placeholder: "Voucher code" %>
+					<%= text_field_tag "filter[user]", @filter["user"], class: "input-medium", placeholder: "User email" %>
+				</div><br/>
+				<div class="form-inline">
+					Status: 
+					<label class="checkbox inline"><%= check_box_tag "filter[status_fresh]", "1", @filter["status_fresh"] %> Fresh</label>			
+					<label class="checkbox inline"><%= check_box_tag "filter[status_on_going]", "1", @filter["status_on_going"] %> On-going</label>						
+					<label class="checkbox inline"><%= check_box_tag "filter[status_paused]", "1", @filter["status_paused"] %> Paused</label>						
+					<label class="checkbox inline"><%= check_box_tag "filter[status_completed]", "1", @filter["status_completed"] %> Completed</label>
+				</div><br/>			
+					
+				<div class="form-inline">
+					Sort: 
+					<%= select_tag "sort[field]", options_for_select(@sort_fields, @sort["field"]), class: "input-medium"  %>
+					<%= select_tag "sort[dir]", options_for_select(["ASC","DESC"], @sort["dir"]), class: "input-small"   %>
+					<%= submit_tag "Filter", name: "search", class: "btn" %>
+					<%= submit_tag "Reset", type: "reset", class: "btn" %> : <%= pluralize(@hunts.count, "hunt") %>
+				</div>
+			</div>
+		<% end %>
+
 		<%= render "shared/hunt_table", obj: @hunts %>
-		<%= will_paginate %>
+		<%#= will_paginate %>
 	</div>
 </div>

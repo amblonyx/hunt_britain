@@ -3,8 +3,32 @@
 <h1>Users</h1>
 <div class="row">
 	<div class="span8 offset2">
+		<%= form_tag users_path, url: { action: "index" }, method: :get, html: { class: "search-form form-inline" } do %>
+			<div class="well">
+				<div class="form-inline">
+					Filter: 
+					<%= text_field_tag "filter[user_name]", @filter["user_name"], class: "input-medium", placeholder: "User name" %>
+					<%= text_field_tag "filter[email]", @filter["email"], class: "input-medium", placeholder: "Email" %>
+					<%= text_field_tag "filter[name]", @filter["name"], class: "input-medium", placeholder: "Name" %>
+				</div><br/>
+				<div class="form-inline">
+					Status: 
+					<label class="checkbox"><%= check_box_tag "filter[admin]", "1", @filter["admin"] %> Admin</label>			
+					<label class="checkbox"><%= check_box_tag "filter[guest]", "1", @filter["guest"] %> Guest</label>						
+					<label class="checkbox"><%= check_box_tag "filter[registered]", "1", @filter["registered"] %> Registered</label>			
+				</div><br/>			
+					
+				<div class="form-inline">
+					Sort: 
+					<%= select_tag "sort[field]", options_for_select(@sort_fields, @sort["field"]), class: "input-medium"  %>
+					<%= select_tag "sort[dir]", options_for_select(["ASC","DESC"], @sort["dir"]), class: "input-small"   %>
+					<%= submit_tag "Filter", name: "search", class: "btn" %>
+					<%= submit_tag "Reset", type: "reset", class: "btn" %> : <%= pluralize(@users.count, "user") %>
+				</div>
+			</div>
+		<% end %>
+
 		<%= render "user_table", obj: @users %>
-		<%= will_paginate %>
 	</div>
 </div>
 

@@ -3,34 +3,30 @@
 	<td><%= link_to hunt.product.product_code, hunt.product %></td>
 	<td>
 		<% unless hunt.user.nil? %>
-			<%= link_to hunt.user.name, hunt.user  %>
+			<%= link_to hunt.user.email, hunt.user  %>
 		<% end %>
 	</td>
-	<td><%= hunt.voucher_code %><br/>
-		<a href="/change_voucher/<%=hunt.id.to_s%>" onclick="return confirm('Are you sure?')">Change</a>
+	<td><%= link_to hunt.voucher_code, "#{hunt_login_url}?voucher=#{hunt.voucher_code}" %></td>
+	<td><%= hunt.status %><% if hunt.status == "Ongoing" && hunt.paused %>, paused<% end %>
+		<% if hunt.status == "Ongoing" %> [<%= hunt.current_clue %>]<% end %>
 	</td>
-	<td><%= hunt.team_name %></td>
-	<td><%= hunt.email %></td>
-	<td><%= hunt.started %>
-		<% if hunt.started? %>
-			<br/><a href="/restart_hunt/<%=hunt.id.to_s%>" onclick="return confirm('Are you sure?')">Restart</a>
-		<% end %>
-	</td>
-	<td><%= hunt.paused %></td>
-	<td><%= hunt.completed %></td>
 	<td><%= link_to "Edit", edit_hunt_path(hunt.id) %><br/>
-	<a href="/hunts/<%=hunt.id.to_s%>" data-method="delete" onclick="return confirm('Are you sure you want to PERMANENTLY delete this hunt?')">Delete</a></td>
 </tr>
+<% if hunt.started? %>
 <tr>
 	<td></td>
 	<td colspan="9">
 		<% if !hunt.id.blank? %>
-			<strong>Started at:</strong> <%= hunt.started_at %>,
-			<strong>Last submitted:</strong> <%= hunt.last_submitted %>,
-			<strong>Time taken:</strong> <%= hunt.time_taken %>,
-			<strong>Current clue:</strong> <%= hunt.current_clue %>,
-			<strong>Current status:</strong> <%= hunt.current_status %>,
+			<% if !hunt.started_at.nil? %>
+				<em>Started at:</em> <%= hunt.started_at.to_formatted_s(:long) %>,
+			<% end %>
+			<% if !hunt.last_submitted.nil? %>
+				<em>Last submitted:</em> <%= hunt.last_submitted.to_formatted_s(:long) %>,
+			<% end %>
+			<% if !hunt.time_taken.nil? %>
+				<em>Time taken:</em> <%= hunt.time_taken %>
+			<% end %>
 		<% end %>
-		<%= link_to "#{hunt_login_url}?voucher=#{hunt.voucher_code}", "#{hunt_login_url}?voucher=#{hunt.voucher_code}" %>
 	</td>
 </tr>
+<% end %>
