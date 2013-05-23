@@ -1,54 +1,36 @@
 <%#= render 'shared/error_messages', object: f.object %>
-
-	<% err =  f.object.errors[:name].any? ? "error" : "" %>
-	<div class="control-group <%= err %>">
+	<% err =  f.object.errors.any? ? "error" : "" %>
+	<% if err == "error" %>
+		<span class="help-inline">
+			<%= f.object.errors.first %>
+		</span>
+	<% end %>
+	
+	<div class="control-group">
 		<%= f.label :name, class: "control-label" %>
 		<div class="controls">
 			<%= f.text_field :name %>
-			<% if err == "error" %>
-				<span class="help-inline">
-					<%= f.object.errors[:name].first %>
-				</span>
-			<% end %>
 		</div>
 	</div>
 
-	<% err =  f.object.errors[:user_name].any? ? "error" : "" %>
-	<div class="control-group <%= err %>">
+	<div class="control-group">
 		<label class="control-label" for="user_name">Email</label>
 		<div class="controls">
-			<%= f.text_field :user_name %>
-			<% if err == "error" %>
-				<span class="help-inline">
-					<%= f.object.errors[:user_name].first %>
-				</span>
-			<% end %>
+			<%= f.email_field :user_name %>
 		</div>
 	</div>
 
-	<% err =  f.object.errors[:password].any? ? "error" : "" %>
-	<div class="control-group <%= err %>">
+	<div class="control-group">
 		<%= f.label :password, class: "control-label" %>
 		<div class="controls">
 			<%= f.password_field :password %>
-			<% if err == "error" %>
-				<span class="help-inline">
-					<%= f.object.errors[:password].first %>
-				</span>
-			<% end %>
 		</div>
 	</div>
 
-	<% err =  f.object.errors[:password_confirmation].any? ? "error" : "" %>
-	<div class="control-group <%= err %>">
+	<div class="control-group">
 		<%= f.label :password_confirmation, confirm , class: "control-label" %>
 		<div class="controls">
 			<%= f.password_field :password_confirmation %>
-			<% if err == "error" %>
-				<span class="help-inline">
-					<%= f.object.errors[:password_confirmation].first %>
-				</span>
-			<% end %>
 		</div>
 	</div>
 	

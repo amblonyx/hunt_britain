@@ -3,7 +3,17 @@ class HuntsController < ApplicationController
 	before_filter :check_for_cancel, only: [:create, :update]
 	
 	def index
-		@hunts = Hunt.paginate(page: params[:page])
+		@sort_fields = [["Product name","products.name"], ["User email","users.email"], ["Voucher code","voucher_code"], ["Started at", "started_at"],["Last submitted", "last_submitted"]]
+		
+		if params.has_key?("search")
+			@filter = params[:filter]
+			@sort = params[:sort]
+		else
+			@filter = Hash.new
+			@filter = {"status_fresh" => "1", "status_on_going" => "1", "status_paused" => "1", "status_completed" => "1" }
+			@sort = Hash.new
+		end
+		@hunts = Hunt.filtered(@filter, @sort)		
 		render layout: pick_layout
 	end
 

@@ -56,7 +56,57 @@ class User < ActiveRecord::Base
 	#validates :password_confirmation, presence: true, 
 	#			if: :password_digest_changed?,
 	#			unless: :guest?  
+	
+	def self.filtered( opts = {}, sort = {} )
+		fields = Array.new
+		criteria = Hash.new
+		status = Array.new
 
+		if opts.has_key?(:user_name)
+			if !opts[:user_name].empty?
+				fields.push("user_name ilike :user_name")
+				criteria[:user_name] = "%#{opts[:user_name]}%"
+			end 
+		end
+		if opts.has_key?(:email)
+			if !opts[:email].empty?
+				fields.push("email ilike :email")
+				criteria[:email] = "%#{opts[:email]}%"
+			end
+		end
+		if opts.has_key?(:name)
+			if !opts[:name].empty?
+				fields.push("name ilike :name")
+				criteria[:name] = "%#{opts[:name]}%"
+			end
+		end
+		if opts.has_key?(:admin)
+			if opts[:admin].to_s == "1"
+				status.push("(admin = true)")
+			end 
+		end
+		if opts.has_key?(:guest)
+			if opts[:guest].to_s == "1"
+				status.push("(guest = true)")
+			end
+		end
+		if opts.has_key?(:registered)
+			if opts[:registered].to_s == "1"
+				status.push("(admin = false AND guest = false)")
+			end
+		end
+		
+		status_string = status.join(" OR ")
+		if !status_string.empty?
+			fields.push("(#{status_string})")
+		end
+
+		field_string = fields.join(" AND ")		
+		result = self.where( field_string, criteria ).order( "#{sort[:field]} #{sort[:dir]}" )
+
+		return result
+	end
+	
 	def create_as_guest(id)
 		self.email = id
 		self.user_name = SecureRandom.hex(10)

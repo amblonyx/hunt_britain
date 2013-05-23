@@ -7,7 +7,17 @@ class UsersController < ApplicationController
 	before_filter :clear_state
 	 
 	def index
-		@users = User.paginate(page: params[:page])
+		@sort_fields = [["User name","user_name"], ["Email","email"], ["Name","name"]]
+		
+		if params.has_key?("search")
+			@filter = params[:filter]
+			@sort = params[:sort]
+		else
+			@filter = Hash.new
+			@filter = {"guest" => "1", "admin" => "1", "registered" => "1" }
+			@sort = Hash.new
+		end
+		@users = User.filtered(@filter, @sort)
 		render layout: pick_layout
 	end
 	
@@ -45,6 +55,7 @@ class UsersController < ApplicationController
 			send_welcome_email
 			redirect_back_or(@user)
 		else
+			flash[:error] = @user.errors.first
 			render 'new', layout: pick_layout
 		end
 	end
@@ -116,16 +127,6 @@ class UsersController < ApplicationController
 	
 	def admin_user
 		redirect_to root_path unless current_user.admin?
-	end
-	
-	def check_for_cancel
-#		if params[:commit] == "Cancel"
-#			if action = "create"
-#				redirect_back_or root_path
-#			else
-#				redirect_back_or current_user
-#			end
-#		end
 	end
 
 	def load_cart

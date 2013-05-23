@@ -2,18 +2,27 @@
 <div class="row">
 	<div class="span10 offset1">
 	
-		<%= form_for(@product, url: { action: "index" }, method: :get, html: { class: "search-form form-inline" }) do |f| %>
-			<%= render 'shared/error_messages', object: f.object %>
+		<%= form_tag products_path, url: { action: "index" }, method: :get, html: { class: "search-form form-inline" } do %>
 			<div class="well">
-				<%#= hidden_field_tag "sort" %>
-				<%= f.text_field :name, class: "input-medium", placeholder: "Name" %>
-				<%= f.text_field :product_code, class: "input-medium", placeholder: "Product code" %>
-				<%= f.select :format, ["", "Online", "Download", "Paper"], html: {class: "span2", placeholder: "Format"}  %>
-				<label class="checkbox">
-					<%= f.check_box :dormant %>Dormant
-				</label>
-				<%= f.submit "Search", name: "search", class: "btn" %>
-				<%= f.submit "Clear", type: "reset", class: "btn" %>
+				<div class="form-inline">
+					Filter: 
+					<%# locs_array =  Location.all.map { |loc| [loc.name, loc.id] } %>
+					<%#= select_tag "filter[location]", options_for_select(locs_array) %>
+					<%= text_field_tag "filter[location]", @filter["location"], class: "input-medium", placeholder: "Location" %>
+					<%= text_field_tag "filter[name]", @filter["name"], class: "input-medium", placeholder: "Name" %>
+					<%= text_field_tag "filter[product_code]", @filter["product_code"], class: "input-medium", placeholder: "Product code" %>
+					<%= select_tag "filter[format]", options_for_select(["", "Online", "Download", "Paper"], @filter["format"]), class: "input-medium" %>
+				</div>
+				<div class="form-inline">
+					Sort: 
+					<%= select_tag "sort[field]", options_for_select(@sort_fields, @sort["field"]), class: "input-medium"  %>
+					<%= select_tag "sort[dir]", options_for_select(["ASC","DESC"], @sort["dir"]), class: "input-small"   %>
+					<label class="checkbox"><%= check_box_tag "filter[dormant]", "1", @filter["dormant"] %> Include dormant</label>				
+				
+					<%= submit_tag "Filter", name: "search", class: "btn" %>
+					<%= submit_tag "Reset", type: "reset", class: "btn" %> : <%= pluralize(@products.count, "product") %>
+				</div>
+
 			</div>
 			
 			<%= render "shared/product_table", obj: @products %>

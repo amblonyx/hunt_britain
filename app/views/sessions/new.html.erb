@@ -9,8 +9,8 @@
 		<% if signed_in? %>
 			<%= render 'shared/already_signed_in', signin: true, signup: false %>
 		<% else %>
-			<%= form_for(:session, url: "sessions",  html: { class: "form-horizontal" } ) do |f| %>
-				<%= render "shared/error_messages", object: @user %>
+			<%= form_for(:session, url: "sessions",  html: { class: "form-horizontal form-validate" } ) do |f| %>
+				<%#= render "shared/error_messages", object: @user %>
 
 				<div class="form_group well">
 					<% if @mode == "forgot_password" %>
@@ -19,10 +19,10 @@
 						I have an account already
 					<% end %>
 					<div class="control-group">
-						<label class="control-label" for="session_user_name">Email</label>
+						<%= f.label :user_name, "Email", class: "control-label" %>
 						<div class="controls">
 							<input name="honey" class="input_honey"/>
-							<%= f.text_field :user_name %>
+							<%= f.text_field :user_name, class: "required email", required: "required" %>
 						</div>
 					</div>
 
@@ -30,8 +30,8 @@
 						<div class="control-group">
 							<%= f.label :password, class: "control-label" %>
 							<div class="controls">
-								<%= f.password_field :password %>
-								<%= f.button "Sign in", name: "known_user", class: "btn btn-primary" %>
+								<%= f.password_field :password, required: "required" %>
+								<%= f.button "Sign in", name: "known_user", class: "btn btn-primary required" %>
 							</div>
 						</div>		
 						<%= link_to "Lost password?", signin_path(mode: "forgot_password") %> | <%= link_to "Register with Hunt Britain", signup_path %>
@@ -45,8 +45,11 @@
 					<% end %>
 							
 				</div>
+			<% end %>
 
-				<% if in_checkout? %>
+			<% if in_checkout? %>
+				<%= form_for(:session, url: "sessions",  html: { class: "form-horizontal form-validate" } ) do |f| %>
+					<%= render "shared/error_messages", object: @user %>
 
 					<div class="form_group well">
 						Continue as guest
@@ -66,13 +69,10 @@
 								<%= f.button "Continue as guest", name: "guest_user", class: "btn btn-primary" %>
 							</div>
 						</div>
-
 					</div>
 					
 				<% end %>
 			<% end %>
-			
-			
 		<% end %>
 	</div>
 	

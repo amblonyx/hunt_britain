@@ -78,7 +78,8 @@ class SessionsController < ApplicationController
 				else
 					flash[:error] = "Invalid email/password combination"
 					set_state	# keep location and need for addy
-					redirect_to signin_path
+					#redirect_to signin_path
+					render "new", layout: pick_layout
 				end
 			end
 		end 
