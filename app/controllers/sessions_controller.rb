@@ -200,45 +200,6 @@ class SessionsController < ApplicationController
 		redirect_to "/cart"
 	end
 	
-	def reset_password
-		if !params[:honey].blank?
-			# BOT alert!
-			flash[:error] = "Are you a BOT?"
-			redirect_to root_path
-			return
-		end
-
-		# Link should contain token
-		if params.has_key?(:token)
-			@token = params[:token]
-			@user = User.find_by_token(@token)
-			
-			if @user 
-				if !params[:password].blank? && !params[:confirm_password].blank?
-					if params[:password] == params[:confirm_password]
-						# Update password
-						@user.password = params[:password]
-						@user.token = nil
-						@user.save
-						sign_in @user
-						
-						flash[:success] = "Your password has been updated.  Welcome back."
-						redirect_to @user
-						return
-					else	
-						flash[:error] = "The entries in the password and confirmation fields did not match"
-						render layout: pick_layout
-						return
-					end 
-				else
-					render layout: pick_layout
-					return
-				end 
-			end
-		end 
-		redirect_to new_session_path(mode: "forgot_password")
-	end
-	
 
 	private
 	

@@ -17,7 +17,7 @@
 		<% else %>
 			<!-- ########## Cart is NOT empty ########## -->
 			
-			<%= form_tag("/update_cart", id: "updateCartForm", method: "put") do %>
+			<%= form_tag("/update_cart", id: "updateCartForm", method: "put", class: "form-validate form-cart") do %>
 
 				<table class="table table-bordered table-striped">
 					<thead>

@@ -48,7 +48,7 @@ HuntBritain::Application.routes.draw do
   match '/signout', to: 'sessions#destroy', via: :delete
   match '/identify', to: 'sessions#identify'
   match 'download', to: 'users#download'
-  match 'reset_password', to: 'sessions#reset_password'
+  match 'reset_password', to: 'users#reset_password'
   
   match '/handle_payment', to: 'purchases#handle_payment'
   match 'paypal_notify' => 'pay_pal#notify'

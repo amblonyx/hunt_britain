@@ -10,6 +10,7 @@
 		</div>
 	</div>
 </footer>
+
 <script>
 /*
 	jQuery.validator.setDefaults({
@@ -19,6 +20,18 @@
 */
 	$(".form-validate").validate({
 		rules: {
+			'session[user_name]': {
+				email: true,
+				required: true			
+			},
+			'session[email]': {
+				email: true,
+				required: true			
+			},
+			'session[password]': {
+				minlength: 6,
+				required: true 
+			},
 			'user[name]': {
 				required: true
 			},
@@ -32,17 +45,60 @@
 			},
 			'user[password_confirmation]': {
 				equalTo: '#user_password'
+			},
+			'user[email]': {
+				email: true,
+				required: true 
+			},
+			'user[address_1]': {
+				required: true 
+			},
+			'user[postcode]': {
+				required: true 
+			},
+			'session[email]': {
+				email: true,
+				required: true 
+			},
+			'session[address_1]': {
+				required: true 
+			},
+			'session[postcode]': {
+				required: true 
 			}
 		},
 		highlight: function(element) {
 			$(element).closest('.control-group').removeClass('success').addClass('error');
 		},
 		success: function(element) {
-			 element 
-			/* .text('OK!').addClass('valid') */
-			.addClass('valid')
-			.closest('.control-group').removeClass('error').addClass('success');
+			$(element).text('').addClass('valid');
+			$(element).closest('.control-group').removeClass('error').addClass('success');
 		}
-	})
-
+	});
+	$(".form-validate2").validate({
+		rules: {
+			'session[email]': {
+				email: true,
+				required: true 
+			},
+			'session[address_1]': {
+				required: true 
+			},
+			'session[postcode]': {
+				required: true 
+			}
+		},
+		highlight: function(element) {
+			$(element).closest('.control-group').removeClass('success').addClass('error');
+		},
+		success: function(element) {
+			$(element).text('').addClass('valid');
+			$(element).closest('.control-group').removeClass('error').addClass('success');
+		}
+	});
+	$(".form-cart :text[name^='product[']").each(function(){
+		$(this).rules("add", {
+			range: [1, 20]
+		});
+	});
 </script>

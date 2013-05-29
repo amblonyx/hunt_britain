@@ -7,7 +7,12 @@
 <div class="row">
 	<div class="span6 offset3">
 		<%= form_for(@user, html: { class:"form-horizontal well form-validate"} ) do |f| %>
-			<%= render 'shared/contact_fields', f: f, confirm: "Confirm password", guest: false %>
+		
+			<% if !in_checkout? %>
+				<%= render 'fields', f: f, show: ["name"] %>
+			<% end %>
+			<%= render 'shared/contact_fields', f: f, guest: false %>
+			
 			<div class="control-group">
 				<div class="controls">
 					<% if in_checkout? %>

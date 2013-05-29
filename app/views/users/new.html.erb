@@ -1,20 +1,26 @@
 <h1>Register for Treasure Hunt Britain</h1>
 <div class="row">
 	<div class="span6 offset3 well">
+	
 		<% if signed_in? %>
 			<%= render 'shared/already_signed_in', signin: false, signup: true %>
 		<% else %>
 			<%= form_for(@user, html: { id: "signupForm", class: "form-horizontal form-validate" }) do |f| %>
-				<%= render 'fields', f: f, confirm: "Confirm password" %>
+			
+				<%= render 'shared/error_messages', object: f.object %>
+				<%#= render 'shared/flash_messages' %>
+				<%= render 'fields', f: f, show: ["password","name"] %>
+				
 				<input name="honey" class="input_honey"/>
 				<div class="control-group">
 					<div class="controls">
 						<%= f.submit "Create my account", class: "btn btn-primary" %>
-						<%= submit_tag "Cancel", class: "btn" %>
+						<%= link_to "Cancel", users_path(commit: "Cancel"), method: :post, class: "btn" %>
 					</div>
 				</div>
+				
 			<% end %>
 		<% end %>
+		
 	</div>
-	
 </div>

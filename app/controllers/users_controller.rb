@@ -55,7 +55,6 @@ class UsersController < ApplicationController
 			send_welcome_email
 			redirect_back_or(@user)
 		else
-			flash[:error] = @user.errors.first
 			render 'new', layout: pick_layout
 		end
 	end
@@ -69,6 +68,11 @@ class UsersController < ApplicationController
 	def update
 		if params[:commit] == "Cancel"
 			redirect_back_or(current_user) 
+			return
+		end
+		if !params[:honey].blank?
+			flash[:error] = "Are you a BOT?"
+			redirect_back_or(root_path) 
 			return
 		end
 		
@@ -113,6 +117,40 @@ class UsersController < ApplicationController
 		send_file  "#{DOWNLOAD_PATH}#{@product.data_file}", filename: @product.data_file,  type: "application/pdf", disposition: 'attachment'
 		flash[:notice] = "Your file has been downloaded"
 	end 
+
+	def reset_password
+		# Link should contain token
+		if params.has_key?(:token)
+			@token = params[:token]
+			@user = User.find_by_token(@token)
+			if @user 
+				render layout: pick_layout
+				return
+			end
+		elsif params.has_key?(:id)
+			@user = User.find(params[:id])
+			if @user 
+				if !params[:user][:password].blank? && !params[:user][:password_confirmation].blank?
+					if params[:user][:password] == params[:user][:password_confirmation]
+						# Update password
+						@user.password = params[:user][:password]
+						@user.token = nil
+						@user.save
+						sign_in @user
+						
+						flash[:success] = "Your password has been updated.  Welcome back."
+						redirect_to @user
+						return
+					else	
+						flash[:error] = "The entries in the password and confirmation fields did not match"
+						render layout: pick_layout
+						return
+					end 
+				end 
+			end
+		end 
+		redirect_to new_session_path(mode: "forgot_password")
+	end
 	
 	private
 	

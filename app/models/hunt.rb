@@ -25,18 +25,13 @@ class Hunt < ActiveRecord::Base
 		fields = Array.new
 		criteria = Hash.new
 		status = Array.new
+		with_user = false 
 
 		if opts.has_key?(:product)
 			if !opts[:product].empty?
 				fields.push("products.name ilike :product")
 				criteria[:product] = "%#{opts[:product]}%"
 			end 
-		end
-		if opts.has_key?(:user)
-			if !opts[:product].empty?
-				fields.push("users.email ilike :user")
-				criteria[:user] = "%#{opts[:user]}%"
-			end
 		end
 		if opts.has_key?(:voucher_code)
 			if !opts[:voucher_code].empty?
@@ -65,6 +60,13 @@ class Hunt < ActiveRecord::Base
 				status.push("(completed = true)")
 			end
 		end
+		if opts.has_key?(:user)
+			if !opts[:user].empty?
+				fields.push("users.email ilike :user")
+				criteria[:user] = "%#{opts[:user]}%"
+				with_user = true 
+			end
+		end
 
 		status_string = status.join(" OR ")
 		if !status_string.empty?
@@ -72,8 +74,12 @@ class Hunt < ActiveRecord::Base
 		end
 		field_string = fields.join(" AND ")
 		
-		result = self.joins(:product).joins(:user).where( field_string, criteria ).order( "#{sort[:field]} #{sort[:dir]}" )
-
+		if with_user
+			result = self.joins(:product).joins(:user).where( field_string, criteria ).order( "#{sort[:field]} #{sort[:dir]}" )
+		else
+			result = self.joins(:product).where( field_string, criteria ).order( "#{sort[:field]} #{sort[:dir]}" )		
+		end
+		
 		return result
 	end
 	
