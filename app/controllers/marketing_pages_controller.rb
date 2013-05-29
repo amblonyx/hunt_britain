@@ -47,7 +47,7 @@ class MarketingPagesController < ApplicationController
 	
 	def faq
 		@info = "faq"
-		@title = "FAQ" 
+		@title = "Frequently Asked Questions" 
 		render "info"
 	end
 	def about
