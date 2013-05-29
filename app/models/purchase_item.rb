@@ -3,6 +3,7 @@ class PurchaseItem < ActiveRecord::Base
   belongs_to :purchase
   belongs_to :product
   has_many :hunts
+  
 end
 # == Schema Information
 #

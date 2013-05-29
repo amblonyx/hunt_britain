@@ -63,14 +63,12 @@
 						</tr>
 					</thead>
 					<tbody>
-						<% @user.purchases.each do |purchase| %>
-							<% purchase.purchase_items.each do |item| %>
-								<% if item.product.format == "Download" %>
-									<tr>  
-									  <td><%= item.description %></td>
-									  <td><%= link_to "Download", action: :download, id: @user.id, pid: item.product.id %></td>
-									</tr>		
-								<% end %>
+						<% @user.paid_purchases.each do |purchase| %>
+							<% purchase.download_items.each do |item| %>
+								<tr>  
+								  <td><%= item.description %></td>
+								  <td><%= link_to "Download", action: :download, id: @user.id, pid: item.product.id %></td>
+								</tr>		
 							<% end %>
 						<% end %>
 					<tbody>
@@ -80,7 +78,7 @@
 		
 		<section>
 			<h2>Order history</h2>
-			<% if @user.purchases.count == 0 %>
+			<% if @user.paid_purchases.count == 0 %>
 				<table class="table table-bordered table-condensed">
 					<tbody><tr><td>None</td></tr></tbody>
 				</table>
@@ -96,7 +94,7 @@
 					</tr>
 					</thead>
 					<tbody>
-				<% @user.purchases.each do |purchase| %>
+				<% @user.paid_purchases.each do |purchase| %>
 					<tr class="warning">
 						<td colspan="4">Order reference: <strong><%= purchase.reference %></strong>, Date: <strong><%= purchase.date_purchased.to_formatted_s(:long) %></strong></td>
 					</tr>

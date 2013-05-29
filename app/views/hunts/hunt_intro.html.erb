@@ -48,6 +48,7 @@
 					<ul>
 						<li><strong>Pause hunt</strong> - take a break, for tea! This stops the timer, though it does cost 2 minutes so only use it for proper breaks</li>
 						<li><strong>Clue broken</strong> - please let us know if you think a clue cannot be solved, whether by roadworks or vandalism or whatever</li>					
+						<li><strong>Restart hunt</strong> - in case you started by mistake! You'll go back to this start page, but note that the clock won't be wiped back to zero</li>					
 					</ul>
 				</ul>
 				<p>Oh, and you should know that choosing a wrong answer costs 4 minutes, so make sure you choose carefully.</p>
@@ -61,7 +62,8 @@
 				<ul>
 					<li>Look ahead at the next direction (the Peek button), so you'll know if you reach it that you've gone too far for this clue</li>
 					<li>Picture clues can be tough to see in strong sunlight, look around for some shade where you can study them more easily</li>
-					<li>Watch out for scaffolding and roadworks, they may have hidden a clue (in which case you may have no choice but to pass on it)</li>
+					<li>If there's a big group of you playing as one team, feel free to enter the same voucher code on more than one device and follow along together (if one person answers a clue on their device, the others can just refresh the page on their own devices and they'll see the next clue)</li>
+					<li>If you can't find a clue, look out for scaffolding, roadworks or other recent changes - the clue may have been hidden (in which case you may have no choice but to "Pass!" on it)</li>
 					<li>Please let us know if any clues have vanished or become hidden, it will help us keep our hunts bang up-to-date</li>
 					<li>Have fun!</li>
 				</ul>
@@ -76,5 +78,7 @@
 			<input class="btn btn-block btn-primary" name="submit_start_hunt" type="submit" value="Start the hunt!" />			
 		<% end %>	
 	<% end %>
+	
+	<p><%= link_to( "Treasure Hunt Britain homepage", root_path ) %></p>
 	
 </div>
