@@ -66,7 +66,43 @@ module HuntsHelper
 		return "The next clue is in the same location."
 	end
 	
+	def six_answers(xml, correct)	
+		# Put the answers that haven't been got yet in an array
+		c = xml.xpath("//clues/clue[@number>'" + correct.to_s + "']")
+		aarray = []
+		c.each do |node|
+			aarray.push(node)
+		end
+		# Also add the odd-one-out answer
+		answernode = xml.xpath("//outcome/answer").first
+		aarray.push(answernode)
+		# Now get five random answers out (unless there are less than 5 already)
+		if aarray.count > 5
+			aarray.shuffle!
+			afive = aarray[0..4]
+		else
+			afive = aarray
+		end
+		# Add the correct answer to the wrong ones, and shuffle again
+		correctnode = xml.xpath("//clues/clue[@number='" + correct.to_s + "']").first
+		afive.push(correctnode)
+		afive.shuffle!
+		# Put the six answers into a hash to return to the view
+		n = 0
+		afive.each do |node|
+			ahash = {}
+			ahash[:index] = n + 1
+			ahash[:id] = node.get_attribute("number")
+			ahash[:text] = node.xpath("option").inner_text
+			afive[n] = ahash
+			n = n + 1
+		end
+		return afive
+		
+	end
+
 	def five_answers(xml, correct)	
+		# This is the old method
 		# Put the answers (except the correct one) in an array and get four random ones
 		a = xml.xpath("//outcome/selection/option[@id!='" + correct + "']")
 		aarray = []

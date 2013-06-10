@@ -142,11 +142,11 @@ header {
 .input-honey {
 	display: none !important;
 }
-input, textarea, select, .uneditable-input {
+/*input, textarea, select, .uneditable-input {
 	border: 1px solid #bbb;
 	margin-bottom: 15px;
 	@include box_sizing;
-}
+}*/
 #answerbox {
 	margin: 0.5em 0.25em 0.5em 0.25em;
 	padding: 0em 0.3em 0em 0.3em;
@@ -178,7 +178,7 @@ input, textarea, select, .uneditable-input {
 .answer_set {
 	height: 100%;
 	padding: 0px;
-	width: 250px;
+	width: 95%;
 	margin-left: auto;
 	margin-right: auto;
 	margin-top: 1px;
@@ -186,18 +186,18 @@ input, textarea, select, .uneditable-input {
 	.answer_btn {
 		padding-left: 0px;
 		margin-left: 0px;
-		float: left;
+/*		float: left;*/
 	}
 	.answer_text {
 		text-align: left;
-		font-size: 0.8em;
-		float: right;
+		font-size: 1.0em;
+/*		float: right;*/
 		width: 80%;
 	}
 	.answer_clear {
 		font-size: 1px;
 		height: 1px;
-		clear: both;
+/*		clear: both;*/
 	}
 }
 .cluepic {

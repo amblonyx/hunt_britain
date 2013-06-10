@@ -189,11 +189,16 @@ class HuntsController < ApplicationController
 				huntxml = Nokogiri::XML(f)
 				f.close
 				@clue_node = huntxml.xpath("//clues/clue[@number='#{@hunt.current_clue}']")
+
+				if huntxml.xpath("//style").inner_html == "elimination"
+					opt = "option_" + @hunt.current_clue.to_s
+				else
+					#-- Parameter being returned is "option_#" where # is the position of the (clicked) answer within the node set (starting at 0)
+					correct_node = @clue_node.xpath("options/option[@correct='1']").first
+					correct_posn = correct_node.parent.children.index(correct_node).to_s
+					opt = "option_" + correct_posn
+				end
 				
-				#-- Parameter being returned is "option_#" where # is the position of the (clicked) answer within the node set (starting at 0)
-				correct_node = @clue_node.xpath("options/option[@correct='1']").first
-				correct_posn = correct_node.parent.children.index(correct_node).to_s
-				opt = "option_" + correct_posn
 				if params.has_key?(opt.to_sym)	# then the right answer was submitted
 					@hunt.right_answer
 					render "answer.js"

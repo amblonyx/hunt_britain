@@ -17,16 +17,17 @@
 	
 	<div class="accordion" id="condenser">
 	<% if xml_doc.xpath("//style").inner_html == "elimination" %>
-		<% answer_node = xml_doc.xpath("//outcome/selection/*") %>
+		<% selection_node = xml_doc.xpath("//outcome/selection").first %>
+		<% option_nodes = xml_doc.xpath("//outcome/selection/option") %>
 		<div class="accordion-group">
 			<div class="accordion-heading">
-				<a class="btn btn-inverse btn-block" data-toggle="collapse" data-parent="#condenser" href="#collapseOne">See the quotes</a>
+				<a class="btn btn-inverse btn-block" data-toggle="collapse" data-parent="#condenser" href="#collapseOne"><%= selection_node.get_attribute("label") %></a>
 			</div>
 			<div id="collapseOne" class="accordion-body collapse">
 				<div class="accordion-inner">
 					<ul>
-					<% answer_node.each do |node| %>
-						<li><%= node.inner_text.to_s.html_safe %></li>
+					<% option_nodes.each do |node| %>
+						<li>"<%= node.inner_text.to_s.html_safe %>"</li>
 					<% end %>
 					</ul>
 				</div>

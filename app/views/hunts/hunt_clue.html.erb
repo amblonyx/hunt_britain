@@ -15,13 +15,9 @@
 		<%= form_tag("/hunt_trail/" + @hunt.id.to_s, remote: true, class: "form", method: "post") do %>
 			<div id="answerbox">
 			<% if xml_doc.xpath("//style").inner_html == "elimination" %>
-				<% answers = five_answers(xml_doc, clue_node.xpath("answer").first.get_attribute("id")) %>
+				<% answers = six_answers(xml_doc, @hunt.current_clue) %>
 				<% answers.each do |ahash| %>
-				<div class="answer_set">
-					<div class="answer_btn"><input class="btn btn-large" name="<%= ahash[:id].to_s %>" type="submit" value="<%= ahash[:index].to_s %>" /></div>
-					<div class="answer_text"><%= ahash[:text] %></div>
-					<div class="answer_clear">&nbsp;</div>
-				</div>
+					<a class="btn btn-block" href="/hunt_trail/<%= @hunt.id.to_s %>?option_<%= ahash[:id].to_s %>=1&current_clue=<%= @hunt.current_clue %>" data-remote="true" data-method="post"><%= ahash[:text] %></a>
 				<% end %>
 			<% elsif xml_doc.xpath("//style").inner_html == "multichoice" %>
 				<% clue_node.xpath("options/*").each do |node| %>
