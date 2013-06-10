@@ -25,11 +25,11 @@
 			</div>
 			<div id="collapseOne" class="accordion-body collapse">
 				<div class="accordion-inner">
-					<ul>
-					<% option_nodes.each do |node| %>
-						<li>"<%= node.inner_text.to_s.html_safe %>"</li>
-					<% end %>
-					</ul>
+					<table class="table table-condensed">
+						<% option_nodes.each do |node| %>
+							<tr><td>"<%= node.inner_text.to_s.html_safe.rstrip %>"</td></tr>
+						<% end %>
+					</table>
 				</div>
 			</div>
 		</div>
