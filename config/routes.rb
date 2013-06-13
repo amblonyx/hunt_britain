@@ -38,6 +38,7 @@ HuntBritain::Application.routes.draw do
   match 'restart_hunt/:id', to: 'hunts#restart_hunt'
    
   match '/faq', to: 'marketing_pages#faq'
+  match '/print_settings', to: 'marketing_pages#print_settings'
   match '/about', to: 'marketing_pages#about'
   match '/contact', to: 'marketing_pages#contact'
   match '/copyright', to: 'marketing_pages#copyright'

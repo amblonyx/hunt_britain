@@ -65,6 +65,11 @@ class MarketingPagesController < ApplicationController
 		@title = "Copyright" 
 		render "info"
 	end
+	def print_settings
+		@info = "print_settings"
+		@title = "Print Settings" 
+		render "info"
+	end
 	
 	private
 	def load_cart

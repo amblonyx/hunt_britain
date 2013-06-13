@@ -19,6 +19,7 @@ header {
 	background-image: url('Header.jpg');
 	background-position: top center;
 	background-repeat: repeat;
+	background-color: #2D6EFA;
 	
 	#topnotebar {
 		margin: 0;
@@ -71,7 +72,7 @@ header {
 #topnote {
 	width: 100%;
 	height: 4px;
-	overflow: hidden;
+	overflow: auto;
 	position: relative;
 	margin: 0; padding: 0;
 	background: #FFE900;
@@ -96,6 +97,10 @@ header {
 			text-align: center;
 		}
 	}
+	#sample-clues {
+		position: relative;
+		height: 270px;
+	}
 	.content {
 		background: #FFE900;
 		border: none;
@@ -106,6 +111,68 @@ header {
 		}
 		.note {
 			font-size: 0.8em;
+		}
+		.howpic {
+			width: 125px;
+		}
+		.example-clue {
+			width: 180px;
+			font-weight: normal;
+			opacity: 0;
+			background: #FFFFFF;
+			border: 5px solid #f4f4ff; 
+			border-radius: 1em;
+			padding: 0.8em 0.8em 0em 0.8em;
+			img {
+				width: 140px;
+				margin-left: 20px;
+			}
+			box-shadow: 2px 3px 12px #DD9900, 0 -4px 4px -2px #dddddd inset, -3px 3px 6px #ffffff inset;
+			-moz-box-shadow: 2px 3px 12px #DD9900, 0 -4px 4px -2px #dddddd inset, -3px 3px 6px #ffffff inset;
+			-o-box-shadow: 2px 3px 12px #DD9900, 0 -4px 4px -2px #dddddd inset, -3px 3px 6px #ffffff inset;
+			background-image: -webkit-gradient(linear, left top, left bottom, from(#f2f2ff), to(#fcfcff));
+			background-image: -webkit-linear-gradient(top, #f2f2ff, #fcfcff); 
+			background-image: -moz-linear-gradient(top, #f2f2ff, #fcfcff); 
+			background-image: -ms-linear-gradient(top, #f2f2ff, #fcfcff); 
+			background-image: -o-linear-gradient(top, #f2f2ff, #fcfcff); 
+			
+			-webkit-animation: rotateWordsFirst 12s linear infinite 0s;
+			-moz-animation: rotateWordsFirst 12s linear infinite 0s;
+			-o-animation: rotateWordsFirst 12s linear infinite 0s;
+			-ms-animation: rotateWordsFirst 12s linear infinite 0s;
+			animation: rotateWordsFirst 12s linear infinite 0s;
+			
+			&:nth-child(2) { 
+				-webkit-animation-delay: 4s; 
+				-moz-animation-delay: 4s; 
+				-o-animation-delay: 4s; 
+				-ms-animation-delay: 4s; 
+				animation-delay: 4s; 
+				color: #6b889d;
+			}
+			&:nth-child(3) { 
+				-webkit-animation-delay: 8s; 
+				-moz-animation-delay: 8s; 
+				-o-animation-delay: 8s; 
+				-ms-animation-delay: 8s; 
+				animation-delay: 8s; 
+				color: #6b739d;
+			}
+		}
+		#clue1 {
+			position: absolute;
+			top: 0px;
+			left: 0px;
+		}
+		#clue2 {
+			position: absolute;
+			top: 40px;
+			left: 40px;
+		}
+		#clue3 {
+			position: absolute;
+			top: 80px;
+			left: 10px;
 		}
 	}
 	.closetopnote {
@@ -214,3 +281,38 @@ header {
 	}
 }
 
+@-webkit-keyframes rotateWordsFirst {
+    0% { opacity: 0; -webkit-animation-timing-function: ease-in }
+    6% { opacity: 1 }
+	30% { opacity: 1 }
+    40% { opacity: 0 }
+    100% { opacity: 0 }
+}
+@-moz-keyframes rotateWordsFirst {
+    0% { opacity: 0; -moz-animation-timing-function: ease-in }
+    6% { opacity: 1 }
+	30% { opacity: 1 }
+    40% { opacity: 0 }
+    100% { opacity: 0 }
+}
+@-o-keyframes rotateWordsFirst {
+    0% { opacity: 0; -o-animation-timing-function: ease-in }
+    6% { opacity: 1 }
+	30% { opacity: 1 }
+    40% { opacity: 0 }
+    100% { opacity: 0 }
+}
+@-ms-keyframes rotateWordsFirst {
+    0% { opacity: 0; -ms-animation-timing-function: ease-in }
+    6% { opacity: 1 }
+	30% { opacity: 1 }
+    40% { opacity: 0 }
+    100% { opacity: 0 }
+}
+@keyframes rotateWordsFirst {
+    0% { opacity: 0 }
+    6% { opacity: 1 }
+	30% { opacity: 1 }
+    40% { opacity: 0 }
+    100% { opacity: 0 }
+}
