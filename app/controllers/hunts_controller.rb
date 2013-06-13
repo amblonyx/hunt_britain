@@ -84,6 +84,8 @@ class HuntsController < ApplicationController
 	end 
 	
 	def hunt_login
+		@page_title = "Enter voucher code"
+
 		if !honeypot #Catch BOTS.  In ApplicationHelper
 			if params.has_key?(:voucher)
 				voucher = params[:voucher]

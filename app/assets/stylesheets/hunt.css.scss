@@ -236,6 +236,12 @@ centered {
 		margin: 0 0 18px 0;
 	}
 }
+.answer-link {
+	height: auto !important;
+	min-height: 3em;
+	font-size: 0.9em; 
+	line-height: 1; 
+}
 .field_with_errors {
 	@extend .control-group;
 	@extend .error;

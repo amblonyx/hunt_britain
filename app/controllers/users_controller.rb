@@ -22,6 +22,7 @@ class UsersController < ApplicationController
 	end
 	
 	def show 
+		@page_title = "My Account"
 		@user = User.find(params[:id])
 		if params[:email] == "welcome"
 			send_welcome_email
@@ -32,6 +33,7 @@ class UsersController < ApplicationController
 	end
 
 	def new
+		@page_title = "Sign Up"
 		@user = User.new
 		render layout: pick_layout
 	end
@@ -60,6 +62,7 @@ class UsersController < ApplicationController
 	end
 
 	def edit
+		@page_title = "Update details"
 		@user = User.find(params[:id])
 		set_state	# need to keep location and addy for upd
 		render layout: pick_layout

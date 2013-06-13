@@ -1,6 +1,14 @@
 module ApplicationHelper
 	require 'nokogiri'
 	
+	def get_title(title)
+		if title.blank?
+			"Treasure Hunt Britain"
+		else
+			"Treasure Hunt Britain - #{title}"
+		end
+	end 
+	
 	def honeypot
 		if params.has_key?(:honey)
 			if params[:honey].length > 0

@@ -32,6 +32,7 @@ if ($("#popup").attr("data-current") != hunt) {
 			$newtab.find("img").attr("src", imgurl)
 			$newtab.find("img").attr("alt", "<%= title %>")
 			$newtab.find("img").attr("title", "<%= title %>")
+			$newtab.find("img").addClass("resize")
 		}
 
 		$newtab.click(function() {

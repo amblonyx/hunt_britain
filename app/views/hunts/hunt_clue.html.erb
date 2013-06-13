@@ -17,7 +17,7 @@
 			<% if xml_doc.xpath("//style").inner_html == "elimination" %>
 				<% answers = six_answers(xml_doc, @hunt.current_clue) %>
 				<% answers.each do |ahash| %>
-					<a class="btn btn-block" href="/hunt_trail/<%= @hunt.id.to_s %>?option_<%= ahash[:id].to_s %>=1&current_clue=<%= @hunt.current_clue %>" data-remote="true" data-method="post"><%= ahash[:text] %></a>
+					<a class="btn btn-block answer-link" href="/hunt_trail/<%= @hunt.id.to_s %>?option_<%= ahash[:id].to_s %>=1&current_clue=<%= @hunt.current_clue %>" data-remote="true" data-method="post"><%= ahash[:text] %></a>
 				<% end %>
 			<% elsif xml_doc.xpath("//style").inner_html == "multichoice" %>
 				<% clue_node.xpath("options/*").each do |node| %>

@@ -3,12 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Treasure Hunt Britain</title>
+  <title><%= get_title(@page_title) %></title>
   <link href='http://fonts.googleapis.com/css?family=Wellfleet' rel='stylesheet' type='text/css'>
   <%= stylesheet_link_tag "marketing", :media => "all" %>
   <%= javascript_include_tag "marketing" %>
   <%= csrf_meta_tags %>
   <%= render 'layouts/shim' %>
+  <link rel="shortcut icon" href="<%=asset_path("THB-favicon.ico")%>">
 </head>
 <body>
 	<%= render 'header' %>

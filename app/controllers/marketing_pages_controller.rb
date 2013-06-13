@@ -3,6 +3,7 @@ class MarketingPagesController < ApplicationController
 	before_filter :clear_state
 
 	def home
+		@page_title = "Home page"
 		if params.has_key?(:voucher)
 			redirect_to '/hunt_login?voucher=' + params[:voucher]
 		else
@@ -46,21 +47,25 @@ class MarketingPagesController < ApplicationController
 	end
 	
 	def faq
+		@page_title = "FAQ"
 		@info = "faq"
 		@title = "Frequently Asked Questions" 
 		render "info"
 	end
 	def about
+		@page_title = "About Us"
 		@info = "about"
 		@title = "About Us" 
 		render "info"
 	end
 	def contact
+		@page_title = "Contact Us"
 		@info = "contact"
 		@title = "Contact Us" 
 		render "info"
 	end
 	def copyright
+		@page_title = "Copyright"
 		@info = "copyright"
 		@title = "Copyright" 
 		render "info"

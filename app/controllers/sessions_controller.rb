@@ -3,6 +3,7 @@ class SessionsController < ApplicationController
 	before_filter :clear_state	# in app helper
 
 	def new			
+		@page_title = "Sign In"
 		@user = User.new
 		@mode = params[:mode]
 		set_state	# keep state if we're here from checkout
@@ -91,6 +92,7 @@ class SessionsController < ApplicationController
 	end
 
 	def checkout
+		@page_title = "Checkout"
 		if @cart.length == 0 
 			redirect_to "/cart"
 		else
@@ -150,6 +152,7 @@ class SessionsController < ApplicationController
 	end
 	
 	def cart
+		@page_title = "Shopping Cart"
 		@action = "cart"
 		render layout: pick_layout
 	end
