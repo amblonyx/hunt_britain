@@ -24,7 +24,7 @@
 						<tr>
 							<% if @action == "cart" %>
 								<th>Product Name</th>
-								<th colspan="2">Quantity</th>
+								<th>Quantity</th>
 								<th>Price per unit</th>
 								<th>Total Price</th>
 								<th></th>
@@ -48,12 +48,10 @@
 									<% if product.format != "Download" %>
 										<td class="merge-right">
 											<%= text_field_tag "product[" + cart_item[:product_id] + "]", cart_item[:num], class: "input-small" %>
-										</td>
-										<td class="merge-left">
-											<%= submit_tag "Update", class: "btn" %>
+											<%= submit_tag "Update", class: "btn btn-small" %>
 										</td>
 									<% else %>
-										<td colspan="2">
+										<td>
 											<%= cart_item[:num] %>
 										</td>
 									<% end %>
@@ -76,14 +74,14 @@
 						<% end %>
 							<% if qty_note %>
 								<tr>
-									<td colspan="6">
+									<td colspan="5">
 										If you want to play a team hunt, increase the quantity by one per team. It costs £1.50 for each team after the first.
 									</td>
 								</tr>
 							<% end %>
 						<tr> 
 							<% if @action == "cart" %>
-								<td colspan="4"><strong>Grand Total:</strong></td>
+								<td colspan="3"><strong>Grand Total:</strong></td>
 								<td>£<%= "%.2f" % (total_price) %></td>
 								<td></td>
 							<% else %>

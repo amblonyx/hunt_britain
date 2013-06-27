@@ -81,7 +81,12 @@ fieldset {
 textarea {
     resize: vertical;
 }
-
+h1, h2, h3, h4 {
+	line-height: 1.3em;
+}
+th, td {
+	line-height: 1.3em !important;	
+}
 /* ==========================================================================
    Chrome Frame prompt
    ========================================================================== */
@@ -151,6 +156,12 @@ header {
 				}
 			}
 		}
+	}
+	.input-small {
+		width: 20px !important;
+	}
+	table {
+			font-size: 0.8em;
 	}
 }
 @media (max-width: 800px) { 
