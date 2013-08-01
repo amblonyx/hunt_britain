@@ -52,7 +52,7 @@ if ($("#popup").attr("data-current") != hunt) {
 		$("#producttemplate select option").remove()
 		<% @location.products.each do |prod| %>
 			<% if !prod.dormant %>
-				opt = "<option value='<%= prod.id %>'><%= prod.name %> - £<%= prod.price %></option>"
+				opt = "<option value='<%= prod.id %>'><%= prod.name %> - <%= number_to_currency(prod.price, locale: :en) %></option>"
 				$sel.append(opt)			
 			<% end %>
 		<% end %>

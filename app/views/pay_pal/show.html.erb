@@ -15,13 +15,13 @@
 			<% @purchase.purchase_items.each do |item| %>
 				<tr>
 					<td><%= item.description %></td>
-					<td>£<%= item.unit_price %></td>
+					<td><%= number_to_currency(item.unit_price) %></td>
 					<td><%= item.quantity %></td>
-					<td>£<%= item.total_price %></td>
+					<td><%= number_to_currency(item.total_price) %></td>
 				</tr>
 			<% end %>
 			<tr>
-				<td colspan="4" style="text-align:right;font-weight:bold">Order total price £<%= @purchase.price_total %></td>
+				<td colspan="4" style="text-align:right;font-weight:bold">Order total price <%= number_to_currency(@purchase.price_total) %></td>
 			</tr>
 		</table>
 	</div>

@@ -33,13 +33,13 @@
 				<% if item.product.format == "Paper" then has_paper = true else has_online = true end %>
 				<tr>
 					<td style="text-align:left; padding:5px;border:1px #d6d6d6 solid;"><%= item.description %></td>
-					<td style="text-align:right; padding:5px;border:1px #d6d6d6 solid;">£<%= item.product.price %></td>
+					<td style="text-align:right; padding:5px;border:1px #d6d6d6 solid;"><%= number_to_currency(item.product.price) %></td>
 					<td style="text-align:right; padding:5px;border:1px #d6d6d6 solid;"><%= item.quantity %></td>
-					<td style="text-align:right; padding:5px;border:1px #d6d6d6 solid;">£<%= item.total_price %></td>
+					<td style="text-align:right; padding:5px;border:1px #d6d6d6 solid;"><%= number_to_currency(item.total_price) %></td>
 				</tr>
 			<% end %>
 			<tr style="background-color: #F2F1F1">
-				<td colspan="4" style="text-align:right; padding:5px;font-weight:bold">Order total price £<%= @purchase.price_total %></td>
+				<td colspan="4" style="text-align:right; padding:5px;font-weight:bold">Order total price <%= number_to_currency(@purchase.price_total) %></td>
 			</tr>
 		</tbody>
 	</table>

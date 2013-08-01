@@ -26,11 +26,11 @@ module SessionsHelper
 	end
 
 	def identified?
-		!current_user.nil? || !session[:guest].blank?
+		signed_in? || !session[:guest].blank?
 	end
 	
 	def signed_in?
-		!current_user.nil? 
+		!current_user.nil? && !current_user.guest?
 	end
 	
 	def pick_layout

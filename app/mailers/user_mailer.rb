@@ -29,18 +29,30 @@ class UserMailer < ActionMailer::Base
 		
 		@purchase = purchase
 		@purchase.purchase_items.each do |item|
-			if item.product.format == "Download"
+			if item.product.format == "Download" 
 				file_name = item.product.data_file
-				#attachments[file_name] = File.read("#{DOWNLOAD_PATH}#{file_name}")
-				#attachments[file_name] = {data: File.read("#{DOWNLOAD_PATH}#{file_name}"), :mime_type => 'application/pdf' }
-				#attachment content_type: 'application/pdf', body: File.read("#{DOWNLOAD_PATH}#{file_name}"), filename: file_name, transfer_encoding: "base64" 
-				file_path = "#{DOWNLOAD_PATH}#{file_name}"
-				if File.exist?(file_path)
-					attachments[file_name] = File.read(file_path, mode: "rb")
-				else
-					@deliver = false 
-					@problem.push(file_path)
-				end 
+				file_name_2 = item.product.data_file_2
+			elsif item.product.format == "Online" 
+				# for Online hunts, send PDF and cheat sheets anyway 		
+				# Find associated download Product, and use its data files
+				product_code = item.product.product_code[0, item.product.product_code.length-1] + "D"
+				download_product = Product.find_by_product_code(product_code)
+				file_name = download_product.data_file
+				file_name_2 = download_product.data_file_2
+			end 
+			
+			file_path = "#{DOWNLOAD_PATH}#{file_name}"
+			file_path_2 = "#{DOWNLOAD_PATH}#{file_name_2}"
+			
+			if File.exist?(file_path)
+				attachments[file_name] = File.read(file_path, mode: "rb")
+				
+				if File.exist?(file_path_2)
+					attachments[file_name_2] = File.read(file_path_2, mode: "rb")
+				end
+			else
+				@deliver = false 
+				@problem.push(file_path)
 			end 
 		end
 

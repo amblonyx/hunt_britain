@@ -48,7 +48,7 @@
 									<% if product.format != "Download" %>
 										<td class="merge-right">
 											<%= text_field_tag "product[" + cart_item[:product_id] + "]", cart_item[:num], class: "input-small" %>
-											<%= submit_tag "Update", class: "btn btn-small" %>
+											
 										</td>
 									<% else %>
 										<td>
@@ -59,13 +59,13 @@
 									<td><%= cart_item[:num] %></td>
 								<% end %>
 								<% if product.format != "Download" %>
-									<td>£<%= "%.2f" % (product.price) %> + £1.50</td>
+									<td><%= number_to_currency(product.price) %> + £3.00</td>
 								<% else %>
-									<td>£<%= "%.2f" % (product.price) %></td>
+									<td><%= number_to_currency(product.price) %></td>
 								<% end %>
-								<td>£<%= "%.2f" % (calc_price(cart_item[:num].to_f, product)) %></td>
+								<td><%= number_to_currency(calc_price(cart_item[:num].to_f, product)) %></td>
 								<% if @action == "cart" %>
-									<td><%= link_to "Remove", remove_from_cart_path(product_id: product.id), method: :post %></td>
+									<td><%= submit_tag "Update", class: "btn btn-small" %> <%= link_to "Remove", remove_from_cart_path(product_id: product.id), method: :post, class: "btn btn-small" %></td>
 								<% end %>
 							</tr>
 							<% if @action == "cart" && product.format != "Download" %>
@@ -75,18 +75,18 @@
 							<% if qty_note %>
 								<tr>
 									<td colspan="5">
-										If you want to play a team hunt, increase the quantity by one per team. It costs £1.50 for each team after the first.
+										If you want to play a team hunt, increase the quantity by one per team. It costs £3.00 for each team after the first.
 									</td>
 								</tr>
 							<% end %>
 						<tr> 
 							<% if @action == "cart" %>
 								<td colspan="3"><strong>Grand Total:</strong></td>
-								<td>£<%= "%.2f" % (total_price) %></td>
+								<td><%= number_to_currency(total_price) %></td>
 								<td></td>
 							<% else %>
 								<td colspan="3"><strong>Grand Total:</strong></td>
-								<td>£<%= "%.2f" % (total_price) %></td>							
+								<td><%= number_to_currency(total_price) %></td>							
 							<% end %>
 						</tr>
 					<tbody>

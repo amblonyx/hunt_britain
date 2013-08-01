@@ -52,8 +52,9 @@ HuntBritain::Application.routes.draw do
   match 'reset_password', to: 'users#reset_password'
   
   match '/handle_payment', to: 'purchases#handle_payment'
-  match 'paypal_notify' => 'pay_pal#notify'
-  match 'paypal_show' => 'pay_pal#show'
+  match 'paypal_notify', to: 'pay_pal#notify'
+  match 'paypal_show', to: 'pay_pal#show'
+  match 'paypal_notify_test', to: 'pay_pal#notify_test'
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

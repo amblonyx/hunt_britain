@@ -2,6 +2,79 @@ class PayPalController < ApplicationController
 	include ActiveMerchant::Billing::Integrations
 	protect_from_forgery :except => [:create, :paypal_return] 
 	before_filter :load_cart
+
+	# For testing email and delivery system
+	def notify_test
+
+		# FORMAT of URL: paypal_notify_test?ref=bde974613f&updatestatus=N&emailconfirm=N&createhunt=N&emaildeliver=N&testonly=N&redirect=N
+		if params.has_key?(:ref)
+			@reference = params[:ref]
+			@purchase = Purchase.find_by_internal_ref(@reference)	
+			
+			
+			if !@purchase.nil?
+				if params[:testonly] != "N" && !@purchase.test?
+					@comment = "Not a test purchase!  Use parameter 'testonly=N' to continue anyway"
+					render layout: pick_layout	
+				else 
+					if params[:updatestatus] != "N"
+						@purchase.status = "Paid"
+						@purchase.save
+					end
+					
+					if params[:emailconfirm] != "N"
+						# Send a confirmation email for purchase
+						UserMailer.confirm_purchase(@purchase).deliver
+					end 
+					
+					if params[:createhunt] != "N"
+						# Create online hunts  
+						has_paper = false 
+						@purchase.purchase_items.each do |item|
+							num = 1
+							if item.product.format == "Online"
+								for num in 1..item.quantity
+									hunt = Hunt.new
+									hunt.product = item.product
+									hunt.user = @purchase.user
+									hunt.purchase_item = item 
+									hunt.save
+								end 
+							elsif item.product.format == "Paper"
+								has_paper = true 
+							end
+						end
+					end 
+					
+					if params[:emaildeliver] != "N"
+						# Deliver online and PDF hunts
+						UserMailer.deliver_purchases(@purchase).deliver
+					end 
+					
+					if params[:updatestatus] != "N"
+						# If we don't need to send out paper booklets, set dispatch date
+						if !has_paper
+							@purchase.dispatch_date = DateTime.now
+							@purchase.save
+						end 
+					end
+					
+					if params[:redirect] != "N"
+						redirect_to action: "show", item_number: @purchase.id	
+					else
+						@comment = "Reference #{@reference} - TEST SUCCESSFUL"
+						render layout: pick_layout						
+					end
+				end
+			else
+				@comment = "Reference #{@reference} not found"
+				render layout: pick_layout	
+			end  
+			
+		else
+			redirect_to root_path
+		end													
+	end
 	
 	def notify
 		#Resource on IPN: https://cms.paypal.com/uk/cgi-bin/?cmd=_render-content&content_ID=developer/e_howto_admin_IPNIntro
@@ -33,12 +106,12 @@ class PayPalController < ApplicationController
 #			@purchase = Purchase.last
 			
 			# Perform additional checks to make sure that notify is legitimate and not already processed
-			if notify.complete? &&  							# comment out to test locally
-					@purchase.price_total.to_s == notify.gross.to_s && 
-					@purchase.id.to_s == notify.item_id.to_s && 
-					@purchase.reference == notify.invoice && 
-					@purchase.status != "Paid"			
-			
+			#if notify.complete? &&  							# comment out to test locally
+			#		@purchase.price_total.to_s == notify.gross.to_s && 
+			#		@purchase.id.to_s == notify.item_id.to_s && 
+			#		@purchase.reference == notify.invoice && 
+			#		@purchase.status != "Paid"			
+			if notify.complete?
 				@purchase.status = "Paid"
 				@purchase.save
 

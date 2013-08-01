@@ -62,6 +62,11 @@ module PurchaseHandler
 		
 		purchase.date_purchased = DateTime.now
 		purchase.reference = SecureRandom.hex(5) 
+		purchase.internal_ref = loop do
+		  random_ref = SecureRandom.hex(5) 
+		  break random_ref unless Purchase.where(internal_ref: random_ref).exists?
+		end
+		purchase.internal_ref = SecureRandom.hex(5) 
 		purchase.price_total = purchase_total
 		purchase.user = current_user
 		purchase.status = "Raised"

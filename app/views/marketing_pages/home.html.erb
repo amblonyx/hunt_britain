@@ -1,10 +1,5 @@
 <section id="boxes">
 	<ul class="box activeview" id="box">
-		<li>
-			<span class="placelabel" style="background-color: <%= random_colour %>;">What people say</span>
-			<span class="placename">What people say</span>
-			<%= image_tag "places/BathMain.JPG", alt: "Testimonials", title: "Testimonials"  %>
-		</li>
 		<% @locations.each do |loc| %>
 			<% if loc.products.count - loc.dormant_products.count > 0 %>
 				<%= link_to "accordion/#{loc.id}", remote: true do %>

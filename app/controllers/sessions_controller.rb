@@ -120,7 +120,8 @@ class SessionsController < ApplicationController
 						@user.country = session[:country]
 					end 
 					@user.save	# we are finally at the point where we must save the guest, so they can pay
-					current_user = @user
+					#current_user = @user
+					sign_in @user
 				end
 				
 				@action = "checkout"

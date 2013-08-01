@@ -101,14 +101,14 @@
 					<% purchase.purchase_items.each do |item| %>
 						<tr>
 						<td><%= item.description %></td>
-						<td>£<%= item.product.price %></td>
+						<td><%= number_to_currency(item.product.price) %></td>
 						<td><%= item.quantity %></td>
-						<td>£<%= item.total_price %></td>
+						<td><%= number_to_currency(item.total_price) %></td>
 						</tr>
 					<% end %>
 						<tr>
 							<td colspan="3"><strong>Order total price</strong></td>
-							<td><strong>£<%= purchase.price_total %></strong></td>
+							<td><strong><%= number_to_currency(purchase.price_total) %></strong></td>
 						</tr>
 				<% end %>
 					</tbody>

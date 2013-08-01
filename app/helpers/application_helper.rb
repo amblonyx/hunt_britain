@@ -33,7 +33,7 @@ module ApplicationHelper
 	def calc_price(quantity, product)
 		additional = quantity - 1
 		price = product.price
-		price = price + (additional * 1.5)
+		price = price + (additional * 3.0)
 	end
 
 	def clear_state

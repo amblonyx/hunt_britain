@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130522224158) do
+ActiveRecord::Schema.define(:version => 20130729142826) do
 
   create_table "hunts", :force => true do |t|
     t.integer  "product_id"
@@ -71,6 +71,7 @@ ActiveRecord::Schema.define(:version => 20130522224158) do
     t.datetime "updated_at",                                                    :null => false
     t.integer  "location_id"
     t.boolean  "dormant",                                    :default => false
+    t.string   "data_file_2"
   end
 
   create_table "purchase_items", :force => true do |t|
@@ -89,11 +90,15 @@ ActiveRecord::Schema.define(:version => 20130522224158) do
     t.string   "reference"
     t.decimal  "price_total",    :precision => 8, :scale => 2
     t.integer  "user_id"
-    t.datetime "created_at",                                   :null => false
-    t.datetime "updated_at",                                   :null => false
+    t.datetime "created_at",                                                      :null => false
+    t.datetime "updated_at",                                                      :null => false
     t.datetime "dispatch_date"
     t.string   "status"
+    t.string   "internal_ref"
+    t.boolean  "test",                                         :default => false
   end
+
+  add_index "purchases", ["internal_ref"], :name => "index_purchases_on_internal_ref", :unique => true
 
   create_table "users", :force => true do |t|
     t.string   "name"
@@ -115,7 +120,6 @@ ActiveRecord::Schema.define(:version => 20130522224158) do
     t.string   "token"
   end
 
-  add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["remember_token"], :name => "index_users_on_remember_token", :unique => true
   add_index "users", ["user_name"], :name => "index_users_on_user_name", :unique => true
 
