@@ -1,0 +1,21 @@
+var clue = "<%= @popup_action %>"
+var popup_type = "#<%= @popup_type %>"
+
+if ($(popup_type).attr("data-current") != clue) {
+
+	$(popup_type + ' h2').text("<%= @popup_header.to_s.html_safe %>")
+	if (popup_type == "#popup_confirm") {
+		$('#popup_confirm p').text("<%= @popup_content.to_s.html_safe %>")
+		$('#popup_confirm #popup_action').attr("value", '<%= @popup_action %>')
+	} else {
+		$('#popup #p1').text("<%= @popup_content.to_s.html_safe %>")
+		$('#popup a').text('OK')
+		
+	}
+	$(popup_type).attr("data-current", clue)
+}
+
+$("#overlay").show()
+$(popup_type).show()
+
+

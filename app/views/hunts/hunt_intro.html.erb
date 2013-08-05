@@ -78,8 +78,47 @@
 		<% else %>
 			<input class="btn btn-block btn-primary" name="submit_start_hunt" type="submit" value="Start the hunt!" />			
 		<% end %>	
+		<section id="popup_confirm">
+			<h2></h2>
+			<p></p>
+			<div class="outer"><div class="inner"><div class="center">
+				<input class="btn" name="submit_ok" type="submit" value="OK" />			
+				<input class="btn" name="submit_cancel" type="submit" value="Cancel" />			
+				<input name="popaction" id="popup_action" type="hidden" />
+			</div></div></div>
+		</section>
 	<% end %>
 	
 	<p><%= link_to( "Treasure Hunt Britain homepage", root_path ) %></p>
 	
 </div>
+<div id="overlay" class="main_dark_overlay"></div>
+<section id="popup">
+	<h2></h2>
+	<p id="p1"></p>
+	<p id="p2"></p>
+	<div class="outer"><div class="inner"><div class="center">
+	<a id="closepopup" href="#" class="btn"></a>
+	</div></div></div>
+</section>
+
+	<script>
+		$('#closepopup').click(function(){
+			$("#overlay").hide()
+			$("#popup").hide()	
+			if (($("#popup").attr("data-current") == 'correct') || ($("#popup").attr("data-current") == 'reload'))
+			{
+				$("#popup").attr("data-current") == ''
+				window.location.replace(<%= @hunt.id.to_s %>);
+			}
+		})
+		$('#okgiveup').click(function(){
+			$("#overlay").hide()
+			$("#popup_confirm").hide()	
+			window.location.replace(<%= @hunt.id.to_s %>);
+		})
+		$('#cancelgiveup').click(function(){
+			$("#overlay").hide()
+			$("#popup_confirm").hide()	
+		})
+	</script>

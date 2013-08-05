@@ -3,7 +3,7 @@ class Hunt < ActiveRecord::Base
 	require 'nokogiri'
 
 	attr_accessible :completed, :current_clue, :current_status, :email, :last_submitted, 
-		:paused, :product_id, :user_id, :started, :started_at, :team_name, :time_taken, :voucher_code
+		:paused, :product_id, :user_id, :started, :started_at, :team_name, :time_taken, :voucher_code, :hunter_token
   
 	belongs_to :product
 	belongs_to :user

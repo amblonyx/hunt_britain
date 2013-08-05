@@ -25,30 +25,47 @@
 			<% if xml_doc.xpath("//style").inner_html == "elimination" %>
 				<% answers = six_answers(xml_doc, @hunt.current_clue) %>
 				<% answers.each do |ahash| %>
-					<a class="btn btn-block answer-link" href="/hunt_trail/<%= @hunt.id.to_s %>?option_<%= ahash[:id].to_s %>=1&current_clue=<%= @hunt.current_clue %>" data-remote="true" data-method="post"><%= ahash[:text] %></a>
+					<% if is_hunter? %>
+						<a class="btn btn-block answer-link" href="/hunt_trail/<%= @hunt.id.to_s %>?option_<%= ahash[:id].to_s %>=1&current_clue=<%= @hunt.current_clue %>" data-remote="true" data-method="post"><%= ahash[:text] %></a>
+					<% else %>
+						<a class="btn btn-block answer-link"><%= ahash[:text] %></a>
+					<% end %>
 				<% end %>
 			<% elsif xml_doc.xpath("//style").inner_html == "multichoice" %>
 				<% clue_node.xpath("options/*").each do |node| %>
-					<input class="btn btn-block" name="option_<%= node.parent.children.index(node).to_s.html_safe %>" type="submit" value="<%= node.inner_text.to_s.html_safe %>" />
+					<% if is_hunter? %>
+						<input class="btn btn-block" name="option_<%= node.parent.children.index(node).to_s.html_safe %>" type="submit" value="<%= node.inner_text.to_s.html_safe %>" />
+					<% else %>
+						<input class="btn btn-block" name="option_<%= node.parent.children.index(node).to_s.html_safe %>" type="button" value="<%= node.inner_text.to_s.html_safe %>" />					
+					<% end %>
 				<% end %>
 			<% else %>
 				<label for="answer">Answer</label>
 				<input id="answer" name="answer" size="30" type="text"/>			
-				<input class="btn" name="submit_answer" type="submit" value="Answer" />			
+				<% if is_hunter? %>
+					<input class="btn" name="submit_answer" type="submit" value="Answer" />		
+				<% end %>
 			<% end %>			
 			</div>
 			<div id="buttonbar">
-				<input name="current_clue" type="hidden" value="<%= @hunt.current_clue %>" />		
-				<div class="btn-group">
-					<input class="btn" name="submit_peek" type="submit" value="Peek" />			
-					<input class="btn" name="submit_hint" type="submit" value="Hint" />			
-					<input class="btn" name="submit_pass" type="submit" value="Pass!" />
-					<button class="btn dropdown-toggle" data-toggle="dropdown" href="#">More <span class="caret"></span></button>
-					<ul class="dropdown-menu">
-						<li><a href="/hunt_trail/<%= @hunt.id.to_s %>?submit_pause=1" data-remote="true" data-method="post">Pause hunt</a></li>
-						<li><a href="/hunt_trail/<%= @hunt.id.to_s %>?submit_problem=1" data-remote="true" data-method="post">Clue broken</a></li>
-						<li><a href="/hunt_trail/<%= @hunt.id.to_s %>?submit_restart=1" data-remote="true" data-method="post">Restart hunt</a></li>					</ul>					
-				</div>
+				<input name="current_clue" type="hidden" value="<%= @hunt.current_clue %>" />	
+				<% if is_hunter? %>
+					<div class="btn-group">
+						<input class="btn" name="submit_peek" type="submit" value="Peek" />			
+						<input class="btn" name="submit_hint" type="submit" value="Hint" />			
+						<input class="btn" name="submit_pass" type="submit" value="Pass!" />
+						<button class="btn dropdown-toggle" data-toggle="dropdown" href="#">More <span class="caret"></span></button>
+						<ul class="dropdown-menu">
+							<li><a href="/hunt_trail/<%= @hunt.id.to_s %>?submit_pause=1" data-remote="true" data-method="post">Pause hunt</a></li>
+							<li><a href="/hunt_trail/<%= @hunt.id.to_s %>?submit_problem=1" data-remote="true" data-method="post">Clue broken</a></li>
+							<li><a href="/hunt_trail/<%= @hunt.id.to_s %>?submit_restart=1" data-remote="true" data-method="post">Restart hunt</a></li>					</ul>					
+					</div>
+				<% else %>
+					<div class="btn-group">
+						<input class="btn" name="submit_next" type="submit" value="Next clue" />			
+						<input class="btn" name="submit_answer" type="submit" value="Answer this question" />			
+					</div>
+				<% end %>
 				<p><a href="/hunt_home/<%= @hunt.id.to_s %>?p=intro" class="whitelink">Instructions</a></p>
 			</div>
 			<section id="popup_confirm">
@@ -87,7 +104,7 @@
 		$('#closepopup').click(function(){
 			$("#overlay").hide()
 			$("#popup").hide()	
-			if ($("#popup").attr("data-current") == 'correct')
+			if (($("#popup").attr("data-current") == 'correct') || ($("#popup").attr("data-current") == 'reload'))
 			{
 				$("#popup").attr("data-current") == ''
 				window.location.replace(<%= @hunt.id.to_s %>);

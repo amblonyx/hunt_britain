@@ -139,80 +139,167 @@ class HuntsController < ApplicationController
 	
 		@hunt = Hunt.find(params[:id])
 	
-		# There are a lot of actions that could be taken, submitting a clue answer is the final "else"
-		if params[:submit_team_name]
-			if @hunt.update_attributes(params[:hunt])
-				redirect_to '/hunt_home/' + @hunt.id.to_s
+		# Set team name if it hasn't already been set
+		if params[:submit_team_name] 
+			if @hunt.team_name.blank?
+				if @hunt.update_attributes(params[:hunt])
+					redirect_to_hunt_home @hunt
+				else
+					render 'set_team_name'
+				end		
 			else
-				render 'set_team_name'
-			end		
+				redirect_to_hunt_home @hunt
+			end
+
+		# Start the hunt
 		elsif params[:submit_start_hunt]
-			@hunt.start
-			redirect_to '/hunt_home/' + @hunt.id.to_s
-		elsif params[:submit_peek]
-			render "peek.js" 
-		elsif params[:submit_hint]
-			@hunt.take_hint
-			render "hint.js" 
-		elsif params[:submit_pass]
-			render "pass.js" 
-		elsif params[:submit_pause]		# pause the hunt for a break
-			@hunt.pause_hunt
-			render "reload.js"			# will redirect to the paused page
-		elsif params[:submit_problem]
-			render "problem.js"
-		elsif params[:submit_restart]
-			render "restart.js" 
-		elsif params[:submit_ok]		# from a popup with OK/Cancel buttons
-			if params[:popaction] == "giveup"
-				@hunt.pass_on_clue
-				render "giveup.js"
-			else	# restart is the only other action
-				@hunt.restart
-				@hunt.save 
-				render "reload.js"
-			end
-		elsif params[:submit_cancel]	# from a popup with OK/Cancel buttons
-			render "cancel.js"		
-		elsif params[:submit_resume]	# resume after a pause by just triggering a reload
-			@hunt.resume_hunt
-			render "reload.js"
-		elsif params[:submit_continue]	# this is used if they re-view the instructions then continue
-			redirect_to '/hunt_home/' + @hunt.id.to_s
-		elsif params[:submit_problem_feedback]	# if they submit feedback in the popup
-			UserMailer.problem_email(@hunt, params[:current_clue], params[:problem]).deliver
-			flash[:success] = "Thanks for your feedback!"
-			render "reload.js"		# flash won't appear unless we reload
-		elsif params[:submit_problem_cancel]
-			render "cancel.js"
-		else	# it is an attempted answer, so check it
-			if params[:current_clue] == @hunt.current_clue.to_s		# this prevents double-clicks answering 2 clues
-				f = File.open( XML_PATH + "products/#{@hunt.product.data_file}.xml" )
-				huntxml = Nokogiri::XML(f)
-				f.close
-				@clue_node = huntxml.xpath("//clues/clue[@number='#{@hunt.current_clue}']")
-
-				if huntxml.xpath("//style").inner_html == "elimination"
-					opt = "option_" + @hunt.current_clue.to_s
-				else
-					#-- Parameter being returned is "option_#" where # is the position of the (clicked) answer within the node set (starting at 0)
-					correct_node = @clue_node.xpath("options/option[@correct='1']").first
-					correct_posn = correct_node.parent.children.index(correct_node).to_s
-					opt = "option_" + correct_posn
-				end
-				
-				if params.has_key?(opt.to_sym)	# then the right answer was submitted
-					@hunt.right_answer
-					render "answer.js"
-				else
-					@hunt.wrong_answer	
-					render "wrong.js"
-				end
+			if !@hunt.started?
+				@hunt.start
+				set_hunter
+				redirect_to_hunt_home @hunt
 			else
-				return
+				redirect_to_hunt_home @hunt
 			end
-		end
+		else 
+			# If we're the hunt leader....
+			if is_hunter?
+			
+				# There are a lot of actions that could be taken, submitting a clue answer is the final "else"
+				if params[:submit_peek]
+					render "peek.js" 
+				elsif params[:submit_hint]
+					@hunt.take_hint
+					render "hint.js" 
+				elsif params[:submit_pass]
+					render "pass.js" 
+				elsif params[:submit_pause]		# pause the hunt for a break
+					@hunt.pause_hunt
+					render "reload.js"			# will redirect to the paused page
+				elsif params[:submit_problem]
+					render "problem.js"
+				elsif params[:submit_restart]
+					render "restart.js" 
+				elsif params[:submit_ok]		# from a popup with OK/Cancel buttons
+					if params[:popaction] == "giveup"
+						@hunt.pass_on_clue
+						render "giveup.js"
+					else	# restart is the only other action
+						@hunt.restart
+						@hunt.save 
+						render "reload.js"
+					end
+				elsif params[:submit_cancel]	# from a popup with OK/Cancel buttons
+					render "cancel.js"		
+				elsif params[:submit_resume]	# resume after a pause by just triggering a reload
+					@hunt.resume_hunt
+					render "reload.js"
+				elsif params[:submit_continue]	# this is used if they re-view the instructions then continue
+					redirect_to_hunt_home @hunt
+				elsif params[:submit_problem_feedback]	# if they submit feedback in the popup
+					UserMailer.problem_email(@hunt, params[:current_clue], params[:problem]).deliver
+					flash[:success] = "Thanks for your feedback!"
+					render "reload.js"		# flash won't appear unless we reload
+				elsif params[:submit_problem_cancel]
+					render "cancel.js"
+				else	# it is an attempted answer, so check it
+					if params[:current_clue] == @hunt.current_clue.to_s		# this prevents double-clicks answering 2 clues
+						f = File.open( XML_PATH + "products/#{@hunt.product.data_file}.xml" )
+						huntxml = Nokogiri::XML(f)
+						f.close
+						@clue_node = huntxml.xpath("//clues/clue[@number='#{@hunt.current_clue}']")
 
+						if huntxml.xpath("//style").inner_html == "elimination"
+							opt = "option_" + @hunt.current_clue.to_s
+						else
+							#-- Parameter being returned is "option_#" where # is the position of the (clicked) answer within the node set (starting at 0)
+							correct_node = @clue_node.xpath("options/option[@correct='1']").first
+							correct_posn = correct_node.parent.children.index(correct_node).to_s
+							opt = "option_" + correct_posn
+						end
+						
+						if params.has_key?(opt.to_sym)	# then the right answer was submitted
+							@hunt.right_answer
+							render "answer.js"
+						else
+							@hunt.wrong_answer	
+							render "wrong.js"
+						end
+					else
+						return
+					end
+				end
+			# If we're NOT the hunt leader....
+			else
+				if @hunt.paused?
+					if params[:submit_resume]	# resume after a pause by just triggering a reload
+						@popup_header = "Are you sure?"
+						@popup_content = "You will replace the current leader."
+						@popup_action = "makehunter"
+						@popup_type = "popup_confirm"
+						render "popup_handler.js" 
+					elsif params[:submit_continue]	# this is used if they re-view the instructions then continue
+						redirect_to_hunt_home @hunt
+					elsif params[:submit_cancel]	# from a popup with OK/Cancel buttons
+						render "cancel.js"	
+					elsif params[:submit_ok]	 # Confirm, make me the hunter (OK)
+						if params[:popaction] == "makehunter"
+							make_hunter
+							@hunt.resume_hunt
+						end
+						render "reload.js"
+					else
+						@popup_header = "Time out"
+						@popup_content = "The hunt has been paused."
+						@popup_type = "popup"
+						@popup_action = "reload"
+						render "popup_handler.js" 	
+					end
+				elsif !@hunt.started?
+					if params[:submit_continue]	# this is used if they re-view the instructions then continue
+						redirect_to_hunt_home @hunt
+					else
+						render "reload.js"
+					end
+				elsif params[:submit_next] # See the next clue
+					if params[:current_clue] == @hunt.current_clue.to_s		
+						@popup_header = "You can't go on!"
+						@popup_content = "This clue hasn't been answered yet."
+						@popup_type = "popup"
+						render "popup_handler.js" 
+					else
+						render "reload.js"
+					end 
+				elsif params[:submit_answer] # Make me the hunter
+					@popup_header = "Are you sure?"
+					@popup_content = "You will replace the current leader."
+					@popup_action = "makehunter"
+					@popup_type = "popup_confirm"
+					render "popup_handler.js" 
+				elsif params[:submit_ok]	 # Confirm, make me the hunter (OK)
+					if params[:popaction] == "makehunter"
+						make_hunter
+						if @hunt.paused?
+							@hunt.resume_hunt
+						end
+					end
+					render "reload.js"
+				elsif params[:submit_cancel]	# from a popup with OK/Cancel buttons
+					render "cancel.js"		
+				elsif params[:submit_resume]	# resume after a pause by just triggering a reload
+					render "reload.js"			
+				elsif params[:submit_continue]	# this is used if they re-view the instructions then continue
+					redirect_to_hunt_home @hunt
+				elsif params[:submit_start_hunt]
+					redirect_to_hunt_home @hunt
+				else
+					@popup_header = "You can't do this..."
+					@popup_content = "Someone else has taken over as the leader of this hunt."
+					@popup_action = "reload"
+					@popup_type = "popup"
+					render "popup_handler.js" 
+				end
+			end
+		end 
 	end
 	
 	def show_intro
@@ -221,6 +308,10 @@ class HuntsController < ApplicationController
 
 	private
 
+	def redirect_to_hunt_home(hunt)
+		redirect_to "/hunt_home/#{hunt.id.to_s}"
+	end 
+	
 	def change_voucher_code
 		@hunt.voucher_code = SecureRandom.hex(5) 
 	end

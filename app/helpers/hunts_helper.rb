@@ -10,9 +10,32 @@ module HuntsHelper
 		@current_hunt ||= Hunt.find_by_voucher_code(cookies[:voucher_code])
 	end
 
-	def sign_in_voucher(hunt)
+	def sign_in_voucher(hunt)	
 		cookies.permanent[:voucher_code] = hunt.voucher_code
 		self.current_hunt = hunt
+	end
+	
+	def is_hunter?
+		hunter_token = cookies[:hunter_token]
+		current_hunt.hunter_token == hunter_token 
+	end
+	
+	def set_hunter
+		# allow synchronous access to hunt by "hunter" and "followers"
+		# create a token for this session, save to cookies
+		hunter_token = SecureRandom.urlsafe_base64
+		cookies.permanent[:hunter_token] = hunter_token
+		
+		# check the hunts table for hunter_token - if empty, set to this token otherwise do nothing
+		#if current_hunt.hunter_token.nil? 
+			current_hunt.hunter_token = hunter_token
+			current_hunt.save
+		#end	
+	end 
+	
+	def make_hunter 
+		current_hunt.hunter_token = cookies[:hunter_token]
+		current_hunt.save
 	end
 
 	def correct_hunt?(hunt)
