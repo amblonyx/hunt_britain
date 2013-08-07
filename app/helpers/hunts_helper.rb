@@ -42,6 +42,23 @@ module HuntsHelper
 		hunt == current_hunt
 	end
 
+	def get_coord(clue_node)
+		clue_node.xpath("map/latlng").inner_text
+	end
+	
+	def generate_static_map(clue_node)
+		latlng = get_coord(clue_node)
+		"http://maps.google.com/maps/api/staticmap?center=#{latlng}&markers=color:red|#{latlng}&zoom=16&size=250x250&sensor=false"
+	end 
+	
+	def has_map?(clue_node)
+		if clue_node.xpath("map").length > 0 
+			true 
+		else
+			false
+		end
+	end
+	
 	def status_string(hunt)
 		if hunt.completed?
 			"Completed " +  l(hunt.last_submitted, format: :short)

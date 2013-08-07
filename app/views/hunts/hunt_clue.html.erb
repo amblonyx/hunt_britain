@@ -79,6 +79,7 @@
 			</section>
 		<% end %>
 	</div>
+
 	<section id="popup">
 		<h2></h2>
 		<p id="p1"></p>
@@ -100,6 +101,8 @@
 		</div></div></div>
 	</section>
 	<div id="overlay" class="main_dark_overlay"></div>
+	<%= render "map" %>
+	
 	<script>
 		$('#closepopup').click(function(){
 			$("#overlay").hide()

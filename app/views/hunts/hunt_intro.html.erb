@@ -10,9 +10,12 @@
 		<p>Take a minute to review the instructions and tips for successful hunting</p>
 	<% else %>
 		<p><%= xml_doc.xpath("//outcome/intro").inner_text.to_s.html_safe %></p>
-		<% xml_doc.xpath("//clues/before/output/*").each do |node| %>
+		<% start_node = xml_doc.xpath("//clues/before") %>
+
+		<% start_node.xpath("output/*").each do |node| %>
 			<p><%= node.inner_text.to_s.html_safe %></p>
 		<% end %>
+
 	<% end %>
 	
 	<div class="accordion" id="condenser">
@@ -70,6 +73,16 @@
 				</ul>
 			</div></div>
 		</div>
+		<% if !@hunt.started? && has_map?(start_node) %>
+			<div class="accordion-group">
+				<div class="accordion-heading">
+					<a class="btn btn-inverse btn-block" data-toggle="collapse" data-parent="#condenser" href="#collapseFour">Map</a>
+				</div>
+				<div id="collapseFour" class="accordion-body collapse"><div class="accordion-inner" style="text-align:center">
+					<img id="staticmap" src="<%= generate_static_map(start_node).html_safe %>"/>
+				</div></div>
+			</div>
+		<% end %>
 	</div>
 
 	<%= form_tag("/hunt_trail/" + @hunt.id.to_s, class: "form", method: "post") do %>
@@ -102,23 +115,23 @@
 	</div></div></div>
 </section>
 
-	<script>
-		$('#closepopup').click(function(){
-			$("#overlay").hide()
-			$("#popup").hide()	
-			if (($("#popup").attr("data-current") == 'correct') || ($("#popup").attr("data-current") == 'reload'))
-			{
-				$("#popup").attr("data-current") == ''
-				window.location.replace(<%= @hunt.id.to_s %>);
-			}
-		})
-		$('#okgiveup').click(function(){
-			$("#overlay").hide()
-			$("#popup_confirm").hide()	
+<script>
+	$('#closepopup').click(function(){
+		$("#overlay").hide()
+		$("#popup").hide()	
+		if (($("#popup").attr("data-current") == 'correct') || ($("#popup").attr("data-current") == 'reload'))
+		{
+			$("#popup").attr("data-current") == ''
 			window.location.replace(<%= @hunt.id.to_s %>);
-		})
-		$('#cancelgiveup').click(function(){
-			$("#overlay").hide()
-			$("#popup_confirm").hide()	
-		})
-	</script>
+		}
+	})
+	$('#okgiveup').click(function(){
+		$("#overlay").hide()
+		$("#popup_confirm").hide()	
+		window.location.replace(<%= @hunt.id.to_s %>);
+	})
+	$('#cancelgiveup').click(function(){
+		$("#overlay").hide()
+		$("#popup_confirm").hide()	
+	})
+</script>

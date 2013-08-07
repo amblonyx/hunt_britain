@@ -1,0 +1,61 @@
+	<section id="popup_map">
+		<h2>Map</h2>
+		<div style="display:none">
+			<span id="target_latlng"></span>
+		</div>
+		<p id="p1"></p>
+		<img id="staticmap" src=""/>
+		<div id="interactivemap"></div>
+		<p id="p2"></p>
+		<div class="outer"><div class="inner"><div class="center">
+		<a id="closepopupmap" href="#" class="btn">OK</a>
+		<a id="showmylocation" href="#" class="btn">Where am I?*</a>
+		</div></div></div>
+		<p id="showmylocationinfo" style="margin-top: 1em">* To use this feature the website needs access to Location services. This may use up your device's battery faster.</p>
+	</section>
+	
+	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+	<script>
+		/* close the popup */
+		$('#closepopupmap').click(function(){
+			$("#overlay").hide()
+			$("#popup_map").hide()	
+		})
+		
+		/* Use geolocation to show location on map */
+		$('#showmylocation').click(function(){
+			navigator.geolocation.getCurrentPosition(successHandler, errorHandler);
+		})
+		
+		function successHandler(location) {
+			var myPosn = new google.maps.LatLng(location.coords.latitude, location.coords.longitude)
+			
+			var targetLatLng = new String($("#target_latlng").text()).split(",")
+			
+			var targetPosn = new google.maps.LatLng(targetLatLng[0], targetLatLng[1])
+			var mapOptions = {
+				zoom:14,
+				mapTypeId: google.maps.MapTypeId.ROADMAP,
+				center: myPosn
+			}
+			map = new google.maps.Map(document.getElementById('interactivemap'), mapOptions);
+			
+			/* Add markers */
+
+			me = new google.maps.Marker({ position: myPosn, map: map, title: "You are here" })		
+			target = new google.maps.Marker({ position: targetPosn, map: map, title: "Location of clue" })			
+			me.setIcon("/images/blue-dot.png")
+			target.setIcon("/images/red-dot.png")
+			
+			/* Show interactive map, hide static map */
+			$("#interactivemap").show()
+			$("#staticmap").css("display", "none")
+			$("#showmylocation").css("display", "none")
+			$("#showmylocationinfo").css("display", "none")
+		}
+		
+		function errorHandler(error) {
+			alert('Attempt to get location failed: ' + error.message);
+		}
+		
+	</script>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Simple Map</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <style>
+      html, body{
+        margin: 0;
+        padding: 0;
+        height: 100%;
+      }
+		#map-canvas, #map-static {
+        margin: 0;
+        padding: 0;
+        height: 500px;
+		width: 500px;
+		}
+    </style>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+    <script>
+
+		var directionsDisplay;
+		var directionsService = new google.maps.DirectionsService();
+		var map;
+		var current_location; 
+
+		 // Start/Finish icons
+		 var icons = {
+		  start: new google.maps.MarkerImage(
+		   // URL
+		   'images/THBLogo.png',
+		   // (width,height)
+		   new google.maps.Size( 44, 32 ),
+		   // The origin point (x,y)
+		   new google.maps.Point( 0, 0 ),
+		   // The anchor point (x,y)
+		   new google.maps.Point( 22, 32 )
+		  ),
+		  end: new google.maps.MarkerImage(
+		   // URL
+		   'images/acorns/Acorn1.png',
+		   // (width,height)
+		   new google.maps.Size( 44, 32 ),
+		   // The origin point (x,y)
+		   new google.maps.Point( 0, 0 ),
+		   // The anchor point (x,y)
+		   new google.maps.Point( 22, 32 )
+		  )
+		 };
+		 
+		function initialize() {
+		  directionsDisplay = new google.maps.DirectionsRenderer( {suppressMarkers: true} );
+		  var myPosn = new google.maps.LatLng(current_location.coords.latitude, current_location.coords.longitude)
+		  
+		  var mapOptions = {
+			zoom:16,
+			mapTypeId: google.maps.MapTypeId.ROADMAP,
+			center: myPosn
+		  }
+		  
+		  map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+		  directionsDisplay.setMap(map);
+		}
+
+		function calcRoute() {
+		  var request = {
+			  origin: current_location.coords.latitude + "," + current_location.coords.longitude,
+			  destination: "52.366638, -2.720814",
+			  travelMode: google.maps.DirectionsTravelMode.WALKING
+		  };
+		  directionsService.route(request, function(response, status) {
+			if (status == google.maps.DirectionsStatus.OK) {
+			  directionsDisplay.setDirections(response);
+			  var leg = response.routes[ 0 ].legs[ 0 ];
+			  makeMarker( leg.start_location, icons.start, "You are here" );
+			  makeMarker( leg.end_location, icons.end, "Clue number 1" );
+			}
+		  });
+		}
+		function makeMarker( position, icon, title ) {
+		 new google.maps.Marker({
+		  position: position,
+		  map: map,
+		  icon: icon,
+		  title: title
+		 });
+		}
+		function successHandler(location) {
+			/*
+			var message = document.getElementById("message"), html = [];
+			html.push("<img width='256' height='256' src='http://maps.google.com/maps/api/staticmap?center=", location.coords.latitude, ",", location.coords.longitude, "&markers=size:small|color:blue|", location.coords.latitude, ",", location.coords.longitude, "&zoom=14&size=256x256&sensor=false' />");
+			html.push("<p>Longitude: ", location.coords.longitude, "</p>");
+			html.push("<p>Latitude: ", location.coords.latitude, "</p>");
+			html.push("<p>Accuracy: ", location.coords.accuracy, " meters</p>");
+			message.innerHTML = html.join("");
+			*/
+			current_location = location;
+			initialize();
+			calcRoute();
+			
+			var message = document.getElementById("map-static"), html = [];
+			html.push("<img width='500' height='500' src='http://maps.google.com/maps/api/staticmap?center=", current_location.coords.latitude, ",", current_location.coords.longitude, "&markers=size:small|color:blue|", current_location.coords.latitude, ",", current_location.coords.longitude, "&zoom=16&size=500x500&sensor=false' />");	
+			message.innerHTML = html.join("");
+		}
+		function errorHandler(error) {
+			alert('Attempt to get location failed: ' + error.message);
+		}
+		
+		//google.maps.event.addDomListener(window, 'load', initialize);
+		navigator.geolocation.getCurrentPosition(successHandler, errorHandler);
+
+		function setStaticMap() {
+			var src = "http://maps.google.com/maps/api/staticmap?center=" & current_location.coords.latitude & "," & current_location.coords.longitude & "&zoom=14&size=256x256&sensor=false"
+			document.getElementById("static").setAttribute("src", src);
+		}
+		
+    </script>
+  </head>
+  <body>
+    <div id="map-canvas"></div>
+    <div id="map-static"></div>
+</body>
+</html>
