@@ -8,7 +8,23 @@ if ($(popup_type).attr("data-current") != clue) {
 		$('#popup_confirm p').text("<%= @popup_content.to_s.html_safe %>")
 		$('#popup_confirm #popup_action').attr("value", '<%= @popup_action %>')
 	} else {
-		$('#popup #p1').text("<%= @popup_content.to_s.html_safe %>")
+		if (clue == "stats") {
+			var html = [];
+			
+			html.push("<ul>");
+			html.push("<%= get_hunt_info(@hunt, true) %>");
+			<% get_hunts_in_group.each do |hunt| %> 
+				html.push("<%= get_hunt_info(hunt, false) %>");
+			<% end %>
+
+			html.push("</ul>");
+
+			$('#popup #p1').html(html.join(""))
+
+		} else {
+			$('#popup #p1').text("<%= @popup_content.to_s.html_safe %>")
+		}
+
 		$('#popup a').text('OK')
 		
 	}

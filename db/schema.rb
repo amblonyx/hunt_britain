@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130801153441) do
+ActiveRecord::Schema.define(:version => 20130808115439) do
 
   create_table "hunts", :force => true do |t|
     t.integer  "product_id"
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(:version => 20130801153441) do
     t.integer  "user_id"
     t.integer  "purchase_item_id"
     t.string   "hunter_token"
+    t.string   "hunt_group"
   end
 
   create_table "ipn_logs", :force => true do |t|

@@ -7,6 +7,7 @@
 		<% end %>
 	</td>
 	<td><%= link_to hunt.voucher_code, "#{hunt_login_url}?voucher=#{hunt.voucher_code}" %></td>
+	<td><%= hunt.hunt_group %></td>
 	<td><%= hunt.status %><% if hunt.status == "Ongoing" && hunt.paused %>, paused<% end %>
 		<% if hunt.status == "Ongoing" %> [<%= hunt.current_clue %>]<% end %>
 	</td>

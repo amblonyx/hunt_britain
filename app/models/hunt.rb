@@ -3,14 +3,23 @@ class Hunt < ActiveRecord::Base
 	require 'nokogiri'
 
 	attr_accessible :completed, :current_clue, :current_status, :email, :last_submitted, 
-		:paused, :product_id, :user_id, :started, :started_at, :team_name, :time_taken, :voucher_code, :hunter_token
+		:paused, :product_id, :user_id, :started, :started_at, :team_name, :time_taken, 
+		:voucher_code, :hunter_token, :hunt_group
   
 	belongs_to :product
 	belongs_to :user
 	belongs_to :purchase_item
 
 	before_save :create_voucher_code
-	
+	scope :none, where("1 = 0")
+
+	def generate_hunt_group
+		self.hunt_group = loop do
+		  random_token = SecureRandom.urlsafe_base64
+		  break random_token unless Hunt.where(hunt_group: random_token).exists?
+		end
+	end
+  
 	def status 
 		if !self.started?
 			"Fresh"
@@ -32,6 +41,12 @@ class Hunt < ActiveRecord::Base
 				fields.push("products.name ilike :product")
 				criteria[:product] = "%#{opts[:product]}%"
 			end 
+		end
+		if opts.has_key?(:hunt_group)
+			if !opts[:hunt_group].empty?
+				fields.push("hunt_group ilike :hunt_group")
+				criteria[:hunt_group] = "%#{opts[:hunt_group]}%"
+			end
 		end
 		if opts.has_key?(:voucher_code)
 			if !opts[:voucher_code].empty?

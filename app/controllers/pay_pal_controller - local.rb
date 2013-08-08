@@ -55,6 +55,13 @@ class PayPalController < ApplicationController
 							hunt.product = item.product
 							hunt.user = @purchase.user
 							hunt.purchase_item = item 
+							if (item.quantity > 1) 
+								if num == 1
+									hunt_group = hunt.generate_hunt_group
+								else
+									hunt.hunt_group = hunt_group
+								end
+							end
 							hunt.save
 						end 
 					elsif item.product.format == "Paper"

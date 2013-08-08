@@ -160,6 +160,21 @@ class HuntsController < ApplicationController
 			else
 				redirect_to_hunt_home @hunt
 			end
+			
+		# Team stats
+		elsif params[:submit_stats]
+			# Retrieve all the hunts in the group
+			@hunts_in_group = get_hunts_in_group
+			
+			if @hunts_in_group.length > 0
+				@popup_header = "Team stats"
+				@popup_content = "So far you have recorded x minutes.  You are on your xth clue."
+				@popup_type = "popup"
+				@popup_action = "stats"
+				render "popup_handler.js" 	
+			else
+				render "reload.js"
+			end 
 		else 
 			# If we're the hunt leader....
 			if is_hunter?
@@ -243,7 +258,7 @@ class HuntsController < ApplicationController
 						render "cancel.js"	
 					elsif params[:submit_ok]	 # Confirm, make me the hunter (OK)
 						if params[:popaction] == "makehunter"
-							make_hunter
+							set_hunter
 							@hunt.resume_hunt
 						end
 						render "reload.js"
@@ -277,7 +292,7 @@ class HuntsController < ApplicationController
 					render "popup_handler.js" 
 				elsif params[:submit_ok]	 # Confirm, make me the hunter (OK)
 					if params[:popaction] == "makehunter"
-						make_hunter
+						set_hunter
 						if @hunt.paused?
 							@hunt.resume_hunt
 						end

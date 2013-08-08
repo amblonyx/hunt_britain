@@ -16,28 +16,62 @@ module HuntsHelper
 	end
 	
 	def is_hunter?
-		hunter_token = cookies[:hunter_token]
+		token_key = "hunter_token-#{current_hunt.id}"
+		hunter_token = cookies[token_key.to_sym]
 		current_hunt.hunter_token == hunter_token 
 	end
 	
 	def set_hunter
 		# allow synchronous access to hunt by "hunter" and "followers"
 		# create a token for this session, save to cookies
+		token_key = "hunter_token-#{current_hunt.id}"
 		hunter_token = SecureRandom.urlsafe_base64
-		cookies.permanent[:hunter_token] = hunter_token
+		cookies.permanent[token_key.to_sym] = hunter_token
 		
-		# check the hunts table for hunter_token - if empty, set to this token otherwise do nothing
-		#if current_hunt.hunter_token.nil? 
-			current_hunt.hunter_token = hunter_token
-			current_hunt.save
-		#end	
+		# set hunter_token in the hunts table 
+		current_hunt.hunter_token = hunter_token
+		current_hunt.save
 	end 
 	
-	def make_hunter 
-		current_hunt.hunter_token = cookies[:hunter_token]
-		current_hunt.save
+	def is_group_hunt?
+		!current_hunt.hunt_group.blank?
 	end
-
+	
+	def get_hunts_in_group
+		if is_group_hunt?
+			hunt_group = current_hunt.hunt_group
+			
+			# Don't include the current hunt and only retrieve hunts where team name has been set
+			Hunt.where("hunt_group = ? AND id != ? AND team_name is not null", hunt_group, current_hunt.id)
+		else
+			Hunt.none
+		end
+	end
+	
+	def get_hunt_info(hunt, use_self)
+		if hunt.completed?
+			if use_self 
+				info = "<li>You completed the hunt in #{hunt_time(hunt)} including penalties.</li>"
+			else
+				info = "<li>Team <b>#{hunt.team_name}</b> completed the hunt in #{hunt_time(hunt)} including penalties.</li>"
+			end		
+		elsif hunt.started?
+			solved = hunt.current_clue-1
+			if use_self 
+				info = "<li>So far it has taken you #{hunt_time(hunt)} including penalties to solve #{solved} #{"clue".pluralize(solved)}.</li>"
+			else
+				info = "<li>Team <b>#{hunt.team_name}</b> has taken #{hunt_time(hunt)} including penalties to solve #{solved} #{"clue".pluralize(solved)}.</li>"
+			end
+		else
+			if use_self 
+				info = "<li>You haven't started yet!</li>"
+			else
+				info = "<li>Team <b>#{hunt.team_name}</b> hasn't started yet.</li>"
+			end		
+		end
+		return info.html_safe
+	end
+	
 	def correct_hunt?(hunt)
 		hunt == current_hunt
 	end
