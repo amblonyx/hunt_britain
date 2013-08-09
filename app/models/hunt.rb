@@ -1,5 +1,5 @@
 class Hunt < ActiveRecord::Base
-
+	include StandardLib
 	require 'nokogiri'
 
 	attr_accessible :completed, :current_clue, :current_status, :email, :last_submitted, 
@@ -208,7 +208,10 @@ class Hunt < ActiveRecord::Base
 	
 	def create_voucher_code
 		if self.voucher_code.blank? 
-			self.voucher_code = SecureRandom.hex(5) 
+			self.voucher_code = loop do
+			  random_token = random_alphanumeric(5)
+			  break random_token unless Hunt.where(voucher_code: random_token).exists?
+			end
 		end
 	end
 
