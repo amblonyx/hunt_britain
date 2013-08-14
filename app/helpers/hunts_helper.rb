@@ -13,6 +13,18 @@ module HuntsHelper
 	def sign_in_voucher(hunt)	
 		cookies.permanent[:voucher_code] = hunt.voucher_code
 		self.current_hunt = hunt
+		
+		#cache_xml(hunt)
+	end
+
+	def cache_xml(hunt)
+		# Cache XML file
+		#filepath = XML_PATH + "products/#{hunt.product.data_file}.xml"
+		filepath = XML_PATH + "products/bath-easy.xml"
+		xml = Rails.cache.fetch("huntxml_#{hunt.id}", :expires_in => 1.day) do
+		  open(filepath).read
+		end
+		huntxml = Nokogiri::XML(xml)
 	end
 	
 	def is_hunter?

@@ -107,7 +107,6 @@ class HuntsController < ApplicationController
 	end
 	
 	def hunt_home
-	
 		@hunt = Hunt.find_by_id(params[:id])
 		
 		if @hunt.nil?
@@ -168,7 +167,6 @@ class HuntsController < ApplicationController
 			
 			if @hunts_in_group.length > 0
 				@popup_header = "Team stats"
-				@popup_content = "So far you have recorded x minutes.  You are on your xth clue."
 				@popup_type = "popup"
 				@popup_action = "stats"
 				render "popup_handler.js" 	

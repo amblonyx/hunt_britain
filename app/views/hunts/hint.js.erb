@@ -7,11 +7,25 @@ if ($("#popup_map").attr("data-current") != clue) {
 	$('#popup_map h2').text('Hint for this clue')
 	$('#popup_map #p1').html('<%= clue_node.xpath("hint").inner_text.to_s %>')
 	
-	$('#target_latlng').text("<%= get_coord(clue_node) %>")
-
-	$('#staticmap').attr("src", "<%= generate_static_map(clue_node).html_safe %>")
-	$('#interactivemap').css("display", "none")
+	<% coord = get_coord(clue_node) %>
+	<% if !coord.blank? %>
+		$('#target_latlng').text("<%= get_coord(clue_node) %>")
+		$('#staticmap').attr("src", "<%= generate_static_map(clue_node).html_safe %>")
+		
+		$('#staticmap').css("display", "block")
+		$('#interactivemap').css("display", "none")
+		$('#showmylocation').css("display", "inline-block")
+		$('#showmylocationinfo').css("display", "block")
+		
+		$('#popup_map').css("top", "25%")
+	<% else %>
+		$('#staticmap').css("display", "none")
+		$('#showmylocation').css("display", "none")
+		$('#showmylocationinfo').css("display", "none")
+		$('#interactivemap').css("display", "none")
 	
+		$('#popup_map').css("top", "50%")
+	<% end %>	
 	$("#popup_map").attr("data-current", clue)
 }
 

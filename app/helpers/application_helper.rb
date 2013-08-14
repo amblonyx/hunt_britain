@@ -84,6 +84,7 @@ module ApplicationHelper
 	end
 
 	def load_xml(model, xml)	
+		
 		if model.blank?
 			f = File.open( XML_PATH + xml)
 		else

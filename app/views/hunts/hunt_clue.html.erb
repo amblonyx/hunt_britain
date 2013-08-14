@@ -3,12 +3,7 @@
 	<% clue_count = xml_doc.xpath("//clues/clue").length %>
 	<% clue_progress = ((@hunt.current_clue.to_f - 1)/clue_count)*100 %>
 	
-	<div class="row">
-	
-	<div class="progress progress-striped" style="text-align: right; font-size: 0.8em; font-weight: bold">
-		<div class="bar bar-success" style="width:<%= clue_progress %>%;"></div><%= clue_count %> CLUES&nbsp;
-	</div>
-		
+	<div class="row">		
 	<div class="blob"><h3><span id="cluelabel">CLUE</span><br/><span id="cluenumber"><%= @hunt.current_clue %></span></h3></div>
 		<% clue_node.xpath("output/*").each do |node| %>
 			<% if node.name() == "image" %>
@@ -83,6 +78,10 @@
 				</div></div></div>
 			</section>
 		<% end %>
+	<div class="progress progress-striped" style="text-align: right; font-size: 0.8em; font-weight: bold">
+		<div class="bar bar-success" style="width:<%= clue_progress %>%;"></div><%= clue_count %> CLUES&nbsp;
+	</div>
+
 	</div>
 
 	<section id="popup">

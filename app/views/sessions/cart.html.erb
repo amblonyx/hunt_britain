@@ -17,7 +17,7 @@
 		<% else %>
 			<!-- ########## Cart is NOT empty ########## -->
 			
-			<%= form_tag("/update_cart", id: "updateCartForm", method: "put", class: "form-validate form-cart") do %>
+			<%= form_tag("/checkout", id: "updateCartForm", method: "put", class: "form-validate form-cart") do %>
 
 				<table class="table table-bordered table-striped">
 					<thead>
@@ -65,7 +65,7 @@
 								<% end %>
 								<td><%= number_to_currency(calc_price(cart_item[:num].to_f, product)) %></td>
 								<% if @action == "cart" %>
-									<td><%= submit_tag "Update", class: "btn btn-small" %> <%= link_to "Remove", remove_from_cart_path(product_id: product.id), method: :post, class: "btn btn-small" %></td>
+									<td><%= link_to "Remove", remove_from_cart_path(product_id: product.id), method: :post, class: "btn btn-small" %></td>
 								<% end %>
 							</tr>
 							<% if @action == "cart" && product.format != "Download" %>
@@ -91,7 +91,6 @@
 						</tr>
 					<tbody>
 				</table>				
-			<% end %>
 
 			<% if @action == "checkout" %>
 				<% if has_purchase_format(@cart, "Paper") %>
@@ -110,15 +109,17 @@
 			<% end %>
 
 
-			<div class="pull-right bottom-margin">
-				<%= link_to "Continue shopping", root_path, class: "btn" %>
-				
+			<div class="pull-right bottom-margin">				
 				<% if @action == "cart" %>
-					<%= link_to "Checkout", checkout_path, class: "btn btn-primary" %>
+					<%= submit_tag "Continue shopping", class: "btn" %> 
+					<%= submit_tag "Checkout", class: "btn btn-primary" %> 
 				<% else %>
+					<%= link_to "Continue shopping", root_path, class: "btn" %>
 					<%= link_to "Pay with Paypal", @paypal_link, class: "btn btn-primary" %>
 				<% end %>
 			</div>
+			<% end %>
+
 			<div style="clear:both"></div>
 			
 			<% if Rails.env.development? %>	

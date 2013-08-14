@@ -2,13 +2,13 @@ module PurchaseHandler
 	
 	def generate_paypal_link
 
-		if @purchase.purchase_items.count > 1
+		#if @purchase.purchase_items.count > 1
 			iname = "Your Treasure Hunts"
 			iqty = 1
-		else
-			iname = @purchase.purchase_items.first.description
-			iqty = @purchase.purchase_items.first.quantity
-		end
+		#else
+		#	iname = @purchase.purchase_items.first.description
+		#	iqty = @purchase.purchase_items.first.quantity
+		#end
 		
 		paypal_params = {
 			business: PAYPAL_ACCOUNT,

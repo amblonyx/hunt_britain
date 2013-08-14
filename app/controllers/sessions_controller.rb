@@ -96,58 +96,63 @@ class SessionsController < ApplicationController
 		if @cart.length == 0 
 			redirect_to "/cart"
 		else
-			set_return_to("/checkout")	# make note that we're in the checkout process
-			if identified?
-				if signed_in?
-					@user = current_user
-					if cart_needs_address && !@user.have_address?
-						need_address("yes")
-						hash = {id: @user.id.to_s}
-						set_state	# keep track of where we are and need for address
-						redirect_to editdetails_path(hash)  		
-						return	# so the action stops here
-					end
-				else
-					@user = User.new
-					@user.create_as_guest session[:guest]
-					session.delete(:guest)	# so their email isn't stored if they leave the page
-					if cart_needs_address
-						@user.address_1 = session[:address_1]
-						@user.address_2 = session[:address_2]
-						@user.town = session[:town]
-						@user.county = session[:county]
-						@user.postcode = session[:postcode]
-						@user.country = session[:country]
-					end 
-					@user.save	# we are finally at the point where we must save the guest, so they can pay
-					#current_user = @user
-					sign_in @user
-				end
-				
-				@action = "checkout"
-
-				# if we reach this point, we can trash the session stored guest
-				# so that if the guest continues shopping they won't have their email stored
-				session.delete(:guest)
-				session.delete(:address_1)
-				session.delete(:address_2)
-				session.delete(:town)
-				session.delete(:county)
-				session.delete(:postcode)
-				session.delete(:country)
-
-				@paypal_link = handle_payment_path
-				
-				render "cart", layout: pick_layout
+			update_cart
+			if params[:commit] == "Continue shopping" 
+				redirect_to root_path
 			else
-				# also must decide whether to require the address fields
-				if cart_needs_address
-					need_address("yes")
+				set_return_to("/checkout")	# make note that we're in the checkout process
+				if identified?
+					if signed_in?
+						@user = current_user
+						if cart_needs_address && !@user.have_address?
+							need_address("yes")
+							hash = {id: @user.id.to_s}
+							set_state	# keep track of where we are and need for address
+							redirect_to editdetails_path(hash)  		
+							return	# so the action stops here
+						end
+					else
+						@user = User.new
+						@user.create_as_guest session[:guest]
+						session.delete(:guest)	# so their email isn't stored if they leave the page
+						if cart_needs_address
+							@user.address_1 = session[:address_1]
+							@user.address_2 = session[:address_2]
+							@user.town = session[:town]
+							@user.county = session[:county]
+							@user.postcode = session[:postcode]
+							@user.country = session[:country]
+						end 
+						@user.save	# we are finally at the point where we must save the guest, so they can pay
+						#current_user = @user
+						sign_in @user
+					end
+					
+					@action = "checkout"
+
+					# if we reach this point, we can trash the session stored guest
+					# so that if the guest continues shopping they won't have their email stored
+					session.delete(:guest)
+					session.delete(:address_1)
+					session.delete(:address_2)
+					session.delete(:town)
+					session.delete(:county)
+					session.delete(:postcode)
+					session.delete(:country)
+
+					@paypal_link = handle_payment_path
+					
+					render "cart", layout: pick_layout
 				else
-					need_address("no")
+					# also must decide whether to require the address fields
+					if cart_needs_address
+						need_address("yes")
+					else
+						need_address("no")
+					end
+					set_state	# to remember where we are and need address
+					redirect_to signin_path
 				end
-				set_state	# to remember where we are and need address
-				redirect_to signin_path
 			end
 		end
 	end
@@ -182,26 +187,28 @@ class SessionsController < ApplicationController
 	
 	def update_cart
 		
-		params[:product].each do |key, value|
-			cart_items = @cart.select { |item| item[:product_id] == key }
-			if cart_items.length > 0
-				if value.to_i.to_s != value.to_s			# check for non-integer value
-					flash[:error] = "Invalid quantity entered"
-					redirect_to "/cart"
-					return
-				elsif value.to_i > 20
-					flash[:error] = "You should not need more than 20 copies!"
-					redirect_to "/cart"
-					return				
-				else
-					cart_items.first[:num] = value
-				end
-			end 
+		if params.has_key?(:product)
+			params[:product].each do |key, value|
+				cart_items = @cart.select { |item| item[:product_id] == key }
+				if cart_items.length > 0
+					if value.to_i.to_s != value.to_s			# check for non-integer value
+						flash[:error] = "Invalid quantity entered"
+						redirect_to "/cart"
+						return
+					elsif value.to_i > 20
+						flash[:error] = "You should not need more than 20 copies!"
+						redirect_to "/cart"
+						return				
+					else
+						cart_items.first[:num] = value
+					end
+				end 
+			end
 		end
 		# remove items where quantity have been set to zero
 		@cart.reject! { |item| item[:num].to_i == 0  }
 
-		redirect_to "/cart"
+		# redirect_to "/cart"
 	end
 	
 

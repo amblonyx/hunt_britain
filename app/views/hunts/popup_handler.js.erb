@@ -1,7 +1,7 @@
 var clue = "<%= @popup_action %>"
 var popup_type = "#<%= @popup_type %>"
 
-if ($(popup_type).attr("data-current") != clue) {
+/* if ($(popup_type).attr("data-current") != clue) { */
 
 	$(popup_type + ' h2').text("<%= @popup_header.to_s.html_safe %>")
 	if (popup_type == "#popup_confirm") {
@@ -29,7 +29,7 @@ if ($(popup_type).attr("data-current") != clue) {
 		
 	}
 	$(popup_type).attr("data-current", clue)
-}
+/* } */
 
 $("#overlay").show()
 $(popup_type).show()
