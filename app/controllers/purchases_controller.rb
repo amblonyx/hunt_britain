@@ -31,11 +31,15 @@ class PurchasesController < ApplicationController
 			@cart = session[:cart]
 			create_purchase @purchase, @cart
 			
+			# when testing paypal link, uncomment this section
+			# @paypal_link = generate_paypal_link
+			# flash[:error] = @paypal_link	# for testing
+			# redirect_to "/checkout"		# for testing
+
+			# when testing paypal link, comment out this section
 			if @purchase.save 
 				@paypal_link = generate_paypal_link
 				redirect_to @paypal_link
-				#flash[:error] = @paypal_link	# for testing
-				#redirect_to "/checkout"		# for testing
 			else
 				flash[:error] = "There was an error with your purchase"
 				redirect_to "/cart"

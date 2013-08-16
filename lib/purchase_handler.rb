@@ -1,14 +1,15 @@
 module PurchaseHandler
 	
 	def generate_paypal_link
-
-		#if @purchase.purchase_items.count > 1
-			iname = "Your Treasure Hunts"
-			iqty = 1
-		#else
-		#	iname = @purchase.purchase_items.first.description
-		#	iqty = @purchase.purchase_items.first.quantity
-		#end
+	
+		iname = ""
+		iqty = 1
+		@purchase.purchase_items.each do |item|
+			if !iname.empty?
+				iname << ", "
+			end
+			iname << "#{item.quantity} x #{item.product.location.name} (#{item.product.format})"
+		end 
 		
 		paypal_params = {
 			business: PAYPAL_ACCOUNT,

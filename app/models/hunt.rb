@@ -209,7 +209,7 @@ class Hunt < ActiveRecord::Base
 	def create_voucher_code
 		if self.voucher_code.blank? 
 			self.voucher_code = loop do
-			  random_token = random_alphanumeric(5)
+			  random_token = random_alphabet(6)
 			  break random_token unless Hunt.where(voucher_code: random_token).exists?
 			end
 		end
