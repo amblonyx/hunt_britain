@@ -326,7 +326,7 @@ class HuntsController < ApplicationController
 	end 
 	
 	def change_voucher_code
-		@hunt.voucher_code = SecureRandom.hex(5) 
+		@hunt.create_voucher_code(true)
 	end
 	
 	def admin_user
