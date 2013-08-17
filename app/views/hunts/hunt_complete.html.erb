@@ -3,6 +3,10 @@
 <div class="row">
 	<p><%= get_xml_node("product", "#{@hunt.product.data_file}.xml", "//outcome/congrat").inner_text.to_s.html_safe %></p>
 	<p>You completed the hunt in <span class="badge badge-warning badge-large"><%= hunt_time(@hunt) %></span></p>
+	<% @hunts_in_group = get_hunts_in_group %>
+	<% get_hunts_in_group.each do |hunt| %> 
+		<p><%= get_hunt_info(hunt, false, false) %></p>
+	<% end %>
 	<% xml_doc.xpath("//clues/after/output/*").each do |node| %>
 		<p><%= node.inner_text.to_s.html_safe %></p>
 	<% end %>

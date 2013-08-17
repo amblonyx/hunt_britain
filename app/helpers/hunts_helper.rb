@@ -60,25 +60,30 @@ module HuntsHelper
 		end
 	end
 	
-	def get_hunt_info(hunt, use_self)
+	def get_hunt_info(hunt, use_self = false, penalties = true )
+	
+		penalties_string = ""
+		if penalties 
+			penalties_string = " including penalties"
+		end 
 		if hunt.completed?
 			if use_self 
-				info = "<li>You completed the hunt in #{hunt_time(hunt)} including penalties.</li>"
+				info = "You completed the hunt in #{hunt_time(hunt)}#{penalties_string}."
 			else
-				info = "<li>Team <b>#{hunt.team_name}</b> completed the hunt in #{hunt_time(hunt)} including penalties.</li>"
+				info = "Team <b>#{hunt.team_name}</b> completed the hunt in #{hunt_time(hunt)}#{penalties_string}."
 			end		
 		elsif hunt.started?
 			solved = hunt.current_clue-1
 			if use_self 
-				info = "<li>So far it has taken you #{hunt_time(hunt)} including penalties to solve #{solved} #{"clue".pluralize(solved)}.</li>"
+				info = "So far it has taken you #{hunt_time(hunt)}#{penalties_string} to solve #{solved} #{"clue".pluralize(solved)}."
 			else
-				info = "<li>Team <b>#{hunt.team_name}</b> has taken #{hunt_time(hunt)} including penalties to solve #{solved} #{"clue".pluralize(solved)}.</li>"
+				info = "Team <b>#{hunt.team_name}</b> has taken #{hunt_time(hunt)}#{penalties_string} to solve #{solved} #{"clue".pluralize(solved)}."
 			end
 		else
 			if use_self 
-				info = "<li>You haven't started yet!</li>"
+				info = "You haven't started yet!"
 			else
-				info = "<li>Team <b>#{hunt.team_name}</b> hasn't started yet.</li>"
+				info = "Team <b>#{hunt.team_name}</b> hasn't started yet."
 			end		
 		end
 		return info.html_safe

@@ -12,9 +12,9 @@ var popup_type = "#<%= @popup_type %>"
 			var html = [];
 			
 			html.push("<ul>");
-			html.push("<%= get_hunt_info(@hunt, true) %>");
+			html.push("<li><%= get_hunt_info(@hunt, true) %></li>");
 			<% get_hunts_in_group.each do |hunt| %> 
-				html.push("<%= get_hunt_info(hunt, false) %>");
+				html.push("<li><%= get_hunt_info(hunt, false) %></li>");
 			<% end %>
 
 			html.push("</ul>");
